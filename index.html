@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Estudios</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #eff6ff;
+      --surface: #ffffff;
+      --surface2: #f8fafc;
+      --border: #dbeafe;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-bg: rgba(37,99,235,0.08);
+      --radius: 14px; --radius-sm: 8px;
+      --shadow: 0 1px 4px rgba(0,0,0,0.07), 0 2px 12px rgba(0,0,0,0.05);
+    }
+    [data-theme="dark"] {
+      --bg: #0f172a; --surface: #1e293b; --surface2: #0f172a;
+      --border: #334155; --text: #f1f5f9; --text-muted: #94a3b8;
+      --accent: #60a5fa; --accent-hover: #93c5fd;
+      --accent-bg: rgba(96,165,250,0.1);
+      --shadow: 0 1px 4px rgba(0,0,0,0.3), 0 2px 12px rgba(0,0,0,0.2);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg); color: var(--text); min-height: 100vh;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1.5rem;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+    header h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; }
+    header h1 span { color: var(--accent); }
+    #theme-toggle {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 0.35rem 0.55rem;
+      cursor: pointer; font-size: 1rem; line-height: 1; transition: background 0.15s;
+    }
+    #theme-toggle:hover { background: var(--border); }
+
+    main {
+      max-width: 720px; margin: 0 auto;
+      padding: 2.5rem 1rem 4rem;
+    }
+
+    .hero { text-align: center; margin-bottom: 2.5rem; }
+    .hero h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .hero p { color: var(--text-muted); font-size: 0.95rem; }
+
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--text-muted);
+      margin-bottom: 0.85rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .project-card {
+      display: block; text-decoration: none; color: inherit;
+      background: var(--surface); border: 1.5px solid var(--border);
+      border-radius: var(--radius); padding: 1.4rem;
+      box-shadow: var(--shadow); transition: all 0.18s;
+      position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: ''; position: absolute; inset: 0 auto 0 0;
+      width: 4px; background: var(--accent);
+      border-radius: var(--radius) 0 0 var(--radius);
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 20px rgba(37,99,235,0.15);
+      transform: translateY(-2px);
+    }
+    .project-card-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .project-icon {
+      font-size: 2rem; line-height: 1;
+    }
+    .project-badge {
+      font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.6rem;
+      background: var(--accent-bg); color: var(--accent);
+      border-radius: 999px; white-space: nowrap;
+    }
+    .project-title {
+      font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem;
+    }
+    .project-subject {
+      font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;
+    }
+    .project-meta {
+      display: flex; gap: 0.75rem; flex-wrap: wrap;
+    }
+    .project-stat {
+      font-size: 0.75rem; color: var(--text-muted);
+      display: flex; align-items: center; gap: 0.25rem;
+    }
+    .project-arrow {
+      position: absolute; right: 1.2rem; bottom: 1.2rem;
+      font-size: 1.1rem; color: var(--accent); opacity: 0.5;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+    .project-card:hover .project-arrow { opacity: 1; transform: translateX(3px); }
+
+    footer {
+      text-align: center; padding: 2rem 1rem;
+      color: var(--text-muted); font-size: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Mis <span>Estudios</span></h1>
+  <button id="theme-toggle" title="Cambiar tema">🌙</button>
+</header>
+
+<main>
+  <div class="hero">
+    <h2>Sets de estudio</h2>
+    <p>Selecciona un proyecto para empezar a repasar</p>
+  </div>
+
+  <p class="section-label">Proyectos disponibles</p>
+  <div class="projects-grid">
+
+    <a href="PAIA/" class="project-card">
+      <div class="project-card-header">
+        <span class="project-icon">🔍</span>
+        <span class="project-badge">PAIA</span>
+      </div>
+      <div class="project-title">Local Search &amp; SAT</div>
+      <div class="project-subject">Grau en Enginyeria Informàtica · Josep Argelich</div>
+      <div class="project-meta">
+        <span class="project-stat">📝 60 preguntas test</span>
+        <span class="project-stat">✏️ 55 completar frases</span>
+      </div>
+      <span class="project-arrow">→</span>
+    </a>
+
+  </div>
+</main>
+
+<footer>
+  Guardado localmente en tu dispositivo &middot; Sin servidores
+</footer>
+
+<script>
+  const THEME_KEY = 'paia_theme';
+  function loadTheme() {
+    const saved = localStorage.getItem(THEME_KEY);
+    const t = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.setAttribute('data-theme', t);
+    document.getElementById('theme-toggle').textContent = t === 'dark' ? '☀️' : '🌙';
+  }
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    document.getElementById('theme-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem(THEME_KEY, next);
+  });
+  loadTheme();
+</script>
+</body>
+</html>
