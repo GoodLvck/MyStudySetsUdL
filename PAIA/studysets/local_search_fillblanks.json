@@ -1,0 +1,523 @@
+{
+  "metadata": {
+    "title": "Local Search & SAT — Fill in the Blanks",
+    "subject": "Local Search & SAT",
+    "author": "Josep Argelich",
+    "course": "Grau en Enginyeria Informàtica",
+    "totalQuestions": 55,
+    "format": "fill-in-the-blank",
+    "formatDescription": "Cada pregunta tiene un enunciado con uno o más huecos marcados con '___'. El campo 'blanks' es un array ordenado con las respuestas correctas para cada hueco, en el mismo orden en que aparecen en el enunciado.",
+    "topics": [
+      "Clasificación de algoritmos",
+      "Fundamentos (X, D, F)",
+      "Neighborhood Search",
+      "Hill Climbing y variaciones",
+      "Simulated Annealing",
+      "Tabu Search",
+      "Algoritmos Genéticos",
+      "SAT y fórmulas CNF",
+      "Formato DIMACS",
+      "Random k-SAT y transición de fase",
+      "GSAT",
+      "WalkSAT",
+      "UBCSAT"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Clasificación de algoritmos",
+      "difficulty": "easy",
+      "sentence": "Los algoritmos sistemáticos son también llamados algoritmos ___, mientras que los algoritmos de Local Search son algoritmos ___.",
+      "blanks": ["completos", "incompletos"],
+      "hints": ["Sinónimo de 'que siempre encuentran la solución'", "Sinónimo de 'que no siempre encuentran la solución'"],
+      "explanation": "Los algoritmos sistemáticos son 'completos' (siempre hallan la solución con suficiente tiempo). Los de Local Search son 'incompletos' (no garantizan encontrarla)."
+    },
+    {
+      "id": 2,
+      "topic": "Clasificación de algoritmos",
+      "difficulty": "easy",
+      "sentence": "Un algoritmo sistemático para un problema de decisión es ___ (no prueba cosas falsas) y ___ (es capaz de determinar si hay solución o no).",
+      "blanks": ["sound", "completo"],
+      "hints": ["Término en inglés que indica que no produce resultados incorrectos", "Capacidad de terminar con una respuesta definitiva"],
+      "explanation": "'Sound' significa que si el algoritmo afirma algo, es verdad. 'Completo' significa que siempre termina con una respuesta (SAT o UNSAT)."
+    },
+    {
+      "id": 3,
+      "topic": "Clasificación de algoritmos",
+      "difficulty": "medium",
+      "sentence": "Para un problema de optimización, un algoritmo no sistemático es sound pero NO completo, por lo que devuelve una solución ___ en lugar del óptimo global.",
+      "blanks": ["sub-óptima"],
+      "hints": ["Solución que es buena pero no necesariamente la mejor posible"],
+      "explanation": "Al ser incompleto, no puede garantizar el óptimo. Devuelve la mejor solución que encontró, que puede ser sub-óptima."
+    },
+    {
+      "id": 4,
+      "topic": "Clasificación de algoritmos",
+      "difficulty": "easy",
+      "sentence": "La principal ventaja de los algoritmos No Sistemáticos sobre los Sistemáticos es que obtienen soluciones ___ en ___ tiempo.",
+      "blanks": ["buenas", "menos"],
+      "hints": ["No perfectas, pero aceptables", "Reducción del recurso computacional principal"],
+      "explanation": "Los algoritmos no sistemáticos cambian garantía de optimalidad por eficiencia: obtienen buenas soluciones (aunque sub-óptimas) en mucho menos tiempo que los sistemáticos."
+    },
+    {
+      "id": 5,
+      "topic": "Fundamentos",
+      "difficulty": "easy",
+      "sentence": "Un problema de Local Search se define como una terna (___, ___, ___), donde el primer elemento son las variables, el segundo el espacio de posibles soluciones, y el tercero la función de coste.",
+      "blanks": ["X", "D", "F"],
+      "hints": ["Variables del problema", "Dominio / espacio de soluciones", "Función de coste (o fitness)"],
+      "explanation": "La terna (X, D, F): X = variables, D = dominio (espacio de soluciones = d₁ × d₂ × ... × dₙ), F = función de coste f: D → C."
+    },
+    {
+      "id": 6,
+      "topic": "Fundamentos",
+      "difficulty": "medium",
+      "sentence": "En la definición del problema (X, D, F), D se define como d₁ × d₂ × ... × dₙ, donde dᵢ es el ___ de la variable ___.",
+      "blanks": ["dominio", "xᵢ"],
+      "hints": ["Conjunto de valores que puede tomar la variable", "Variable número i"],
+      "explanation": "D es el producto cartesiano de los dominios individuales. dᵢ es el dominio de la variable xᵢ (los valores que puede tomar xᵢ)."
+    },
+    {
+      "id": 7,
+      "topic": "Fundamentos",
+      "difficulty": "medium",
+      "sentence": "Los algoritmos de Local Search no comprueban todo el espacio de posibles soluciones. Por ejemplo, para el problema N-Queens con 8 reinas, el espacio de soluciones tiene ___ configuraciones posibles pero solo ___ soluciones válidas.",
+      "blanks": ["4.426.165.368", "92"],
+      "hints": ["Número muy grande de millones", "Número de doble cifra menor que 100"],
+      "explanation": "El problema N-Queens con n=8 tiene 4.426.165.368 configuraciones posibles pero solo 92 son soluciones válidas. Explorar todo el espacio es inviable, de ahí la utilidad de Local Search."
+    },
+    {
+      "id": 8,
+      "topic": "Neighborhood Search",
+      "difficulty": "easy",
+      "sentence": "La idea principal del Neighborhood Search es comenzar desde un punto inicial ___ y navegar de ___ en ___ usando una función de selección.",
+      "blanks": ["X₀", "vecino", "vecino"],
+      "hints": ["Símbolo del punto de partida", "Término para el estado adyacente", "Igual que el anterior"],
+      "explanation": "El algoritmo parte de X₀ y realiza saltos usando un criterio local: X₀ → X₁ → X₂ → ..., donde cada Xₜ₊₁ se elige entre los vecinos de Xₜ."
+    },
+    {
+      "id": 9,
+      "topic": "Neighborhood Search",
+      "difficulty": "medium",
+      "sentence": "La función de vecindario N(X) tiene la firma N : D → ___, y define qué puntos del espacio de búsqueda son ___ del punto X.",
+      "blanks": ["#D", "vecinos"],
+      "hints": ["Subconjunto del dominio", "Puntos accesibles directamente desde X"],
+      "explanation": "N : D → #D mapea cada punto del dominio a un subconjunto del dominio (sus vecinos). N(X) es el conjunto de vecinos del punto X."
+    },
+    {
+      "id": 10,
+      "topic": "Neighborhood Search",
+      "difficulty": "medium",
+      "sentence": "Se dice que N(X) es ___ si desde cualquier punto del espacio se puede llegar a cualquier otro pasando por vecinos. Esta propiedad define el concepto de ___.",
+      "blanks": ["accesible", "localidad"],
+      "hints": ["Adjetivo que indica conectividad completa", "Concepto geográfico aplicado al espacio de búsqueda"],
+      "explanation": "Accesibilidad: si N(X) es accesible, el grafo de vecindad es conexo y el algoritmo puede en principio alcanzar cualquier punto. El vecindario define el 'concepto de localidad'."
+    },
+    {
+      "id": 11,
+      "topic": "Neighborhood Search",
+      "difficulty": "medium",
+      "sentence": "La función Nᵢ(X) se define como el conjunto de puntos que difieren de X en, como máximo, ___ variables. En la práctica se usa i ≤ ___.",
+      "blanks": ["i", "2"],
+      "hints": ["El propio parámetro", "Valor máximo recomendado"],
+      "explanation": "Nᵢ(X) permite vecindarios más ricos (mayor i), pero cada iteración es más costosa. En la práctica, i ≤ 2 ofrece el mejor equilibrio potencia/coste computacional."
+    },
+    {
+      "id": 12,
+      "topic": "Neighborhood Search",
+      "difficulty": "hard",
+      "sentence": "En el algoritmo básico de Neighborhood Search, la diferencia clave con la búsqueda aleatoria es que el siguiente punto se elige mediante ___, en lugar de ___.",
+      "blanks": ["selection(N(X))", "random_point(X)"],
+      "hints": ["Función que explora el vecindario del punto actual", "Función que elige cualquier punto del dominio al azar"],
+      "explanation": "Neighborhood Search: `X := selection(N(X))` — el siguiente punto se elige entre los vecinos del actual. Búsqueda aleatoria: `X := random_point(X)` — se elige cualquier punto del dominio."
+    },
+    {
+      "id": 13,
+      "topic": "Hill Climbing",
+      "difficulty": "easy",
+      "sentence": "Hill Climbing es un algoritmo de tipo ___, ya que siempre se mueve al vecino que ___ la función de coste.",
+      "blanks": ["greedy", "mejora"],
+      "hints": ["Estrategia que toma la mejor decisión local en cada paso", "Verbo que indica dirección de mejora"],
+      "explanation": "Hill Climbing es greedy: en cada paso selecciona un vecino que mejore la función de coste, sin considerar el efecto a largo plazo de esa decisión."
+    },
+    {
+      "id": 14,
+      "topic": "Hill Climbing",
+      "difficulty": "medium",
+      "sentence": "Los tres tipos de 'trampas' del Hill Climbing son: los ___ (zonas donde ningún vecino mejora y no hay salida), los ___ (zonas planas con posible subida posterior) y los ___ (zonas planas sin salida ascendente).",
+      "blanks": ["máximos locales", "shoulders", "flat local maxima"],
+      "hints": ["Pico local que no es el pico global", "Término inglés para 'hombros' o mesetas con continuación", "Meseta que es un máximo local definitivo"],
+      "explanation": "El State Space Landscape tiene: local maximum (trampa sin salida), shoulder (meseta con posible subida posterior), y flat local maximum (meseta que es un máximo local definitivo)."
+    },
+    {
+      "id": 15,
+      "topic": "Hill Climbing",
+      "difficulty": "medium",
+      "sentence": "El ___ Hill Climbing selecciona el vecino que produce la ___ mejora posible en la función de coste, a diferencia del Hill Climbing básico que acepta cualquier mejora.",
+      "blanks": ["Steepest Ascent", "mayor"],
+      "hints": ["Adjetivo que significa 'más pronunciado/empinado'", "Superlativo de 'grande'"],
+      "explanation": "Steepest Ascent HC explora todos los vecinos y selecciona el que produce la máxima mejora. HC básico simplemente acepta el primer vecino que mejore."
+    },
+    {
+      "id": 16,
+      "topic": "Hill Climbing",
+      "difficulty": "medium",
+      "sentence": "La variación 'Steepest Ascent HC + Mildest Descent' resuelve el problema de quedarse atascado seleccionando, cuando ningún vecino mejora, el que ___ menos. Sin embargo, puede generar ___.",
+      "blanks": ["empeora", "ciclos"],
+      "hints": ["Verbo opuesto a 'mejora'", "Secuencia que se repite indefinidamente"],
+      "explanation": "Mildest Descent permite moverse a vecinos peores (el que empeora menos) para escapar de mesetas. El riesgo es quedar en un ciclo entre estados sin progresar."
+    },
+    {
+      "id": 17,
+      "topic": "Hill Climbing",
+      "difficulty": "medium",
+      "sentence": "El ___ reinicia la búsqueda con un nuevo punto inicial aleatorio tras un número dado de pasos. Esto minimiza la influencia del ___ en el resultado final.",
+      "blanks": ["Restart", "punto inicial"],
+      "hints": ["Acción de empezar de nuevo", "Primera asignación de valores X₀"],
+      "explanation": "El Restart (o multi-start) ejecuta el algoritmo varias veces desde distintos puntos de partida aleatorios, reduciendo la dependencia del resultado con respecto al punto inicial X₀."
+    },
+    {
+      "id": 18,
+      "topic": "Hill Climbing",
+      "difficulty": "hard",
+      "sentence": "El ___ modifica dinámicamente la función de ___ para escapar de mínimos locales, añadiendo penalizaciones a las soluciones visitadas.",
+      "blanks": ["Breakout", "coste"],
+      "hints": ["Nombre del método que 'rompe' la situación de estancamiento", "La función f que se evalúa en cada punto"],
+      "explanation": "Breakout altera la función de coste dinámicamente (añadiendo penalizaciones o pesos) para que el mínimo local actual deje de serlo, forzando al algoritmo a moverse."
+    },
+    {
+      "id": 19,
+      "topic": "Hill Climbing",
+      "difficulty": "medium",
+      "sentence": "El Local ___ Search mantiene ___ estados simultáneamente en lugar de uno, seleccionando los ___ mejores vecinos de todos ellos en cada iteración.",
+      "blanks": ["Beam", "k", "k"],
+      "hints": ["Término náutico que da nombre al algoritmo", "Tamaño de la población de estados", "Mismo número que el anterior"],
+      "explanation": "Local Beam Search: mantiene k estados activos. En cada paso genera los vecinos de todos los estados y selecciona los k mejores como nueva generación de estados."
+    },
+    {
+      "id": 20,
+      "topic": "Simulated Annealing",
+      "difficulty": "easy",
+      "sentence": "Simulated Annealing se inspira en el proceso de ___ de la metalurgia, donde los materiales se calientan y se enfrían ___ para minimizar defectos.",
+      "blanks": ["recocido (annealing)", "lentamente"],
+      "hints": ["Proceso metalúrgico de tratamiento térmico", "Adverbio que indica ritmo pausado"],
+      "explanation": "El recocido metalúrgico (annealing) consiste en calentar un material y enfriarlo lentamente y de forma controlada. SA simula este proceso para escapar de mínimos locales."
+    },
+    {
+      "id": 21,
+      "topic": "Simulated Annealing",
+      "difficulty": "medium",
+      "sentence": "En SA, la probabilidad de aceptar una solución ___ decrece con el tiempo porque la ___ va disminuyendo progresivamente.",
+      "blanks": ["peor", "temperatura"],
+      "hints": ["Adjetivo comparativo: con mayor coste", "Variable que controla la 'amplitud' de búsqueda"],
+      "explanation": "A mayor temperatura, mayor es la probabilidad de aceptar soluciones peores (exploración). A medida que T decrece, también decrece esa probabilidad, favoreciendo la explotación."
+    },
+    {
+      "id": 22,
+      "topic": "Simulated Annealing",
+      "difficulty": "medium",
+      "sentence": "En el algoritmo de SA, la temperatura se calcula como temperature(___ - k/___), donde k es el contador de evaluaciones actual.",
+      "blanks": ["1", "kmax"],
+      "hints": ["Valor máximo del rango normalizado", "Número total máximo de evaluaciones"],
+      "explanation": "La temperatura se calcula como temperature(1 - k/kmax): cuando k=0 (inicio), T es alta. Cuando k=kmax (final), T tiende a 0. Esto controla el enfriamiento gradual."
+    },
+    {
+      "id": 23,
+      "topic": "Simulated Annealing",
+      "difficulty": "hard",
+      "sentence": "La función de probabilidad de aceptación P(e, e', T) en SA siempre devuelve ___ cuando el nuevo estado es ___ (e' < e). Cuando es peor, devuelve una probabilidad que depende de T.",
+      "blanks": ["1", "mejor"],
+      "hints": ["Certeza total", "Menor coste"],
+      "explanation": "Si el nuevo estado mejora el coste (e' < e), siempre se acepta (P=1). Si empeora, se acepta con probabilidad que depende de T: alta T → alta probabilidad de aceptar, baja T → baja probabilidad."
+    },
+    {
+      "id": 24,
+      "topic": "Simulated Annealing",
+      "difficulty": "medium",
+      "sentence": "SA para cuando k alcanza ___ (tiempo agotado) o cuando la energía e es ___ o igual a emax (calidad suficiente alcanzada).",
+      "blanks": ["kmax", "menor"],
+      "hints": ["Límite máximo de evaluaciones", "Comparación que indica 'suficientemente bueno'"],
+      "explanation": "El bucle de SA tiene condición: `while k < kmax and e > emax`. Para cuando se agota el presupuesto de evaluaciones (k=kmax) o se alcanza la calidad objetivo (e ≤ emax)."
+    },
+    {
+      "id": 25,
+      "topic": "Tabu Search",
+      "difficulty": "easy",
+      "sentence": "El Tabu Search usa una ___ tabú para registrar soluciones o movimientos recientes, que quedan ___ durante un número de iteraciones.",
+      "blanks": ["lista", "prohibidos"],
+      "hints": ["Estructura de datos lineal", "Adjetivo que indica que no están permitidos"],
+      "explanation": "La lista tabú almacena soluciones o características de movimientos recientes. Los movimientos marcados como tabú están prohibidos, forzando al algoritmo a explorar regiones nuevas."
+    },
+    {
+      "id": 26,
+      "topic": "Tabu Search",
+      "difficulty": "medium",
+      "sentence": "Tabu Search usa tres tipos de memoria: ___ (soluciones recientes), ___ (reglas para sesgar la búsqueda) y ___ (reglas para promover diversidad).",
+      "blanks": ["short-term", "intermediate-term", "long-term"],
+      "hints": ["Memoria de corto plazo", "Memoria de medio plazo", "Memoria de largo plazo"],
+      "explanation": "Short-term: lista de soluciones recientes prohibidas. Intermediate-term: reglas que prohíben ciertos atributos de las soluciones. Long-term: estrategias de diversificación como reinicios."
+    },
+    {
+      "id": 27,
+      "topic": "Tabu Search",
+      "difficulty": "medium",
+      "sentence": "Los elementos de la lista tabú caducan siguiendo una política ___, eliminando los elementos más ___ cuando la lista supera maxTabuListSize.",
+      "blanks": ["FIFO", "antiguos"],
+      "hints": ["First In, First Out", "Los que llevan más tiempo en la lista"],
+      "explanation": "FIFO (First In, First Out): el primer elemento en entrar es el primero en salir. Así, las restricciones tabú son temporales: caducan en el orden en que se añadieron."
+    },
+    {
+      "id": 28,
+      "topic": "Tabu Search",
+      "difficulty": "hard",
+      "sentence": "Tabu Search solo es efectivo para espacios de búsqueda ___, ya que la lista tabú debe almacenar elementos ___.",
+      "blanks": ["discretos", "discretos"],
+      "hints": ["Opuesto a continuo", "Que se pueden enumerar y comparar por igualdad"],
+      "explanation": "La lista tabú necesita identificar si una solución ya fue visitada. En espacios continuos, la probabilidad de visitar exactamente el mismo punto es cero, haciendo el mecanismo tabú inútil."
+    },
+    {
+      "id": 29,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "easy",
+      "sentence": "Los Algoritmos Genéticos se inspiran en la ___ natural de Darwin, donde los individuos más ___ sobreviven y se reproducen.",
+      "blanks": ["evolución", "adaptados"],
+      "hints": ["Proceso biológico de cambio en poblaciones", "Los que mejor se ajustan al entorno"],
+      "explanation": "Darwin propuso que los organismos más adaptados a su entorno tienen mayor probabilidad de sobrevivir y reproducirse. Los AGs simulan este proceso para buscar soluciones óptimas."
+    },
+    {
+      "id": 30,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "medium",
+      "sentence": "Las cuatro técnicas clave de los Algoritmos Genéticos son: ___ (de padres a hijos), ___ (para diversidad), ___ (de los más aptos) y ___ (operador genético de reproducción).",
+      "blanks": ["herencia (inheritance)", "mutación (mutation)", "selección (selection)", "crossover"],
+      "hints": ["Transmisión de características", "Cambio aleatorio del genoma", "Proceso de elegir los mejores", "Cruce genético entre dos individuos"],
+      "explanation": "Las cuatro técnicas imitan la evolución: herencia (los hijos heredan de los padres), mutación (cambios aleatorios), selección (los más aptos se reproducen más), crossover (combinación de padres)."
+    },
+    {
+      "id": 31,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "medium",
+      "sentence": "En el método de selección ___, la probabilidad de que un individuo sea elegido es proporcional a su ___. Individuos con mayor fitness tienen mayor probabilidad.",
+      "blanks": ["Roulette Wheel", "fitness"],
+      "hints": ["Metáfora de un juego de casino", "Función que mide la calidad/adaptación de un individuo"],
+      "explanation": "Roulette Wheel: cada individuo ocupa un sector de la ruleta proporcional a su fitness. Al girar la ruleta, los individuos con mayor fitness tienen mayor probabilidad de ser seleccionados."
+    },
+    {
+      "id": 32,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "medium",
+      "sentence": "En el crossover de tipo ___, se elige un punto de corte y el hijo hereda la parte ___ de un padre y la parte ___ del otro.",
+      "blanks": ["single-point", "izquierda", "derecha"],
+      "hints": ["Un solo punto de división", "Antes del punto de corte", "Después del punto de corte"],
+      "explanation": "Single-point crossover: se elige aleatoriamente un punto de corte. El hijo hereda genes[0..corte] de un padre y genes[corte..n] del otro padre."
+    },
+    {
+      "id": 33,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "medium",
+      "sentence": "La ___ en los AGs sirve para mantener la ___ genética de la población y evitar la convergencia prematura a un óptimo local.",
+      "blanks": ["mutación", "diversidad"],
+      "hints": ["Operador genético que introduce cambios aleatorios", "Variedad en los genotipos de la población"],
+      "explanation": "Sin mutación, la población converge rápidamente a un conjunto homogéneo, perdiendo capacidad de explorar nuevas regiones. La mutación introduce variabilidad aleatoria que previene esto."
+    },
+    {
+      "id": 34,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "hard",
+      "sentence": "En el método de selección ___, se realizan pequeños torneos entre grupos aleatorios de individuos, y el ganador de cada torneo (el de mayor ___) es seleccionado.",
+      "blanks": ["Tournament", "fitness"],
+      "hints": ["Competición directa entre individuos", "Medida de calidad de la solución"],
+      "explanation": "Tournament selection: se forman grupos pequeños de k individuos elegidos al azar. El individuo con mayor fitness en cada grupo gana el torneo y es seleccionado para reproducirse."
+    },
+    {
+      "id": 35,
+      "topic": "SAT",
+      "difficulty": "easy",
+      "sentence": "SAT es el problema de determinar si una fórmula proposicional en ___ (CNF) es ___.",
+      "blanks": ["Forma Normal Conjuntiva", "satisfacible"],
+      "hints": ["Tipo de forma normal lógica (conjunción de disyunciones)", "Que tiene al menos una interpretación que la hace verdadera"],
+      "explanation": "SAT (Boolean Satisfiability): dado una fórmula en CNF (AND de ORs), determinar si existe alguna asignación de verdad que la hace verdadera."
+    },
+    {
+      "id": 36,
+      "topic": "SAT",
+      "difficulty": "easy",
+      "sentence": "En CNF, un ___ es una variable positiva o negativa (xᵢ o ¬xᵢ). Una ___ es una disyunción de literales. Una fórmula CNF es una ___ de cláusulas.",
+      "blanks": ["literal", "cláusula", "conjunción"],
+      "hints": ["Elemento básico de las fórmulas", "OR de literales", "AND de cláusulas"],
+      "explanation": "Jerarquía CNF: Literal (xᵢ o ¬xᵢ) → Cláusula (OR de literales) → Fórmula CNF (AND de cláusulas). Ejemplo: (x₁ ∨ ¬x₂) ∧ (x₂ ∨ x₃)."
+    },
+    {
+      "id": 37,
+      "topic": "SAT",
+      "difficulty": "medium",
+      "sentence": "Una interpretación I ___ una cláusula c si y solo si I satisface ___ un literal de c. I ___ una fórmula CNF F si satisface ___ las cláusulas de F.",
+      "blanks": ["satisface", "al menos", "satisface", "todas"],
+      "hints": ["Verbo principal", "Cuantificador existencial (basta con uno)", "Mismo verbo", "Cuantificador universal"],
+      "explanation": "Cláusula (OR): basta con que un literal sea verdadero. Fórmula CNF (AND): todos los componentes (cláusulas) deben ser verdaderos."
+    },
+    {
+      "id": 38,
+      "topic": "SAT",
+      "difficulty": "medium",
+      "sentence": "Una fórmula CNF que contiene una ___ vacía (□) es trivialmente ___. La fórmula vacía (Ø), en cambio, es ___.",
+      "blanks": ["cláusula", "insatisfacible", "satisfacible"],
+      "hints": ["Componente de la CNF", "No tiene solución", "Tiene solución (vacuamente)"],
+      "explanation": "Cláusula vacía □: no contiene literales → ninguna interpretación la satisface → fórmula UNSAT. Fórmula vacía Ø: no hay cláusulas que satisfacer → toda interpretación la satisface → SAT."
+    },
+    {
+      "id": 39,
+      "topic": "SAT",
+      "difficulty": "medium",
+      "sentence": "Una ___ (I) es una asignación de valores de verdad ___ a las variables. I satisface el literal xᵢ ssi I(xᵢ) = ___, y satisface ¬xᵢ ssi I(xᵢ) = ___.",
+      "blanks": ["interpretación", "{0, 1}", "1", "0"],
+      "hints": ["Asignación de verdad a las variables", "Conjunto de valores booleanos", "true", "false"],
+      "explanation": "Una interpretación asigna 0 (false) o 1 (true) a cada variable. Para literales: xᵢ es satisfecho cuando I(xᵢ)=1 (true); ¬xᵢ es satisfecho cuando I(xᵢ)=0 (false)."
+    },
+    {
+      "id": 40,
+      "topic": "SAT",
+      "difficulty": "hard",
+      "sentence": "La motivación de reducir problemas a SAT es que permite usar ___ ya existentes como GSAT o WalkSAT. El flujo es: problema X → ___ a SAT → algoritmo SAT → ___.",
+      "blanks": ["solvers SAT", "reducción (traducción)", "solución"],
+      "hints": ["Programas especializados en resolver SAT", "Proceso de convertir un problema en otro", "Resultado final del proceso"],
+      "explanation": "La reducción a SAT permite aprovechar décadas de investigación en solvers SAT. En lugar de diseñar un algoritmo ad-hoc para cada problema, se traduce a SAT y se usa un solver existente."
+    },
+    {
+      "id": 41,
+      "topic": "Formato DIMACS",
+      "difficulty": "easy",
+      "sentence": "En el formato DIMACS, las líneas de comentario comienzan con '___'. La línea de problema tiene el formato '___ cnf num_variables num_clauses'.",
+      "blanks": ["c", "p"],
+      "hints": ["Primera letra de 'comment'", "Primera letra de 'problem'"],
+      "explanation": "Formato DIMACS: 'c' inicia comentarios, 'p cnf n m' es la línea del problema con n variables y m cláusulas, seguida de las m cláusulas, cada una terminada en 0."
+    },
+    {
+      "id": 42,
+      "topic": "Formato DIMACS",
+      "difficulty": "medium",
+      "sentence": "En DIMACS, una cláusula es una secuencia de enteros terminada en ___. Un número ___ representa el literal positivo de esa variable, y un número ___ representa el literal negativo.",
+      "blanks": ["0", "positivo", "negativo"],
+      "hints": ["Centinela que marca el fin de la cláusula", "Mayor que cero", "Menor que cero"],
+      "explanation": "Cada cláusula en DIMACS termina con 0 (centinela). Entero positivo k → xₖ (literal positivo). Entero negativo -k → ¬xₖ (literal negativo)."
+    },
+    {
+      "id": 43,
+      "topic": "Formato DIMACS",
+      "difficulty": "medium",
+      "sentence": "La línea 'p cnf 3 4' indica un problema con ___ variables y ___ cláusulas. Una solución de un solver que devuelve '1 2 -3 0' significa x₁=___, x₂=___, x₃=___.",
+      "blanks": ["3", "4", "true", "true", "false"],
+      "hints": ["Primer número después de 'cnf'", "Segundo número", "Positivo → verdadero", "Positivo → verdadero", "Negativo → falso"],
+      "explanation": "'p cnf 3 4': 3 variables, 4 cláusulas. Solución '1 2 -3 0': x₁=true (1 positivo), x₂=true (2 positivo), x₃=false (-3 negativo), terminado en 0."
+    },
+    {
+      "id": 44,
+      "topic": "Random k-SAT",
+      "difficulty": "medium",
+      "sentence": "En Random ___-SAT, K es la ___ de las cláusulas. Los parámetros del generador son: número de variables, número de cláusulas, ___ y semilla aleatoria.",
+      "blanks": ["k", "longitud", "longitud de las cláusulas (K)"],
+      "hints": ["Variable que da nombre al tipo de SAT", "Número de literales por cláusula", "El parámetro K"],
+      "explanation": "k-SAT: fórmulas CNF donde todas las cláusulas tienen exactamente k literales. Los parámetros del generador aleatorio son: #variables, #cláusulas, K (longitud) y semilla."
+    },
+    {
+      "id": 45,
+      "topic": "Random k-SAT",
+      "difficulty": "medium",
+      "sentence": "La dificultad del Random 3-SAT sigue un patrón ___-___-___: fácil con pocas cláusulas, máxima dificultad entorno al ratio ___, y fácil de nuevo con muchas cláusulas.",
+      "blanks": ["easy", "hard", "easy", "4.25"],
+      "hints": ["Fácil en inglés", "Difícil en inglés", "Fácil en inglés", "Valor decimal alrededor de 4"],
+      "explanation": "El patrón easy-hard-easy del 3-SAT: pocas cláusulas → muchas soluciones → fácil. Ratio ~4.25 → máxima dificultad (zona de transición). Muchas cláusulas → muy restringido → fácil probar UNSAT."
+    },
+    {
+      "id": 46,
+      "topic": "Random k-SAT",
+      "difficulty": "medium",
+      "sentence": "La ___ de fase es el fenómeno por el cual, alrededor del ratio ≈ ___, la probabilidad de que una fórmula 3-SAT sea satisfacible cae bruscamente de ~100% a ~0%.",
+      "blanks": ["transición", "4.25"],
+      "hints": ["Cambio abrupto de estado (físico)", "Valor del ratio crítico"],
+      "explanation": "Phase transition (transición de fase): de forma análoga a las transiciones físicas (agua→hielo), la satisfacibilidad del 3-SAT cambia bruscamente alrededor del ratio 4.25 clauses/variables."
+    },
+    {
+      "id": 47,
+      "topic": "GSAT",
+      "difficulty": "medium",
+      "sentence": "En cada iteración, GSAT calcula S = conjunto de variables cuyo ___ incrementa más el total de cláusulas ___. Luego elige una variable p de S y hace ___.",
+      "blanks": ["flip", "satisfechas", "flip de p"],
+      "hints": ["Inversión del valor booleano", "Que son verdaderas bajo la interpretación actual", "Invertir el valor de esa variable"],
+      "explanation": "GSAT es greedy: busca el flip que maximiza las cláusulas satisfechas. Calcula S (variables óptimas), elige una p de S y aplica el flip: I(p) := ¬I(p)."
+    },
+    {
+      "id": 48,
+      "topic": "GSAT",
+      "difficulty": "medium",
+      "sentence": "GSAT es un procedimiento ___. Si encuentra una interpretación que satisface F, la fórmula es ___. Si no la encuentra, ___ podemos saber si F es SAT o UNSAT.",
+      "blanks": ["incompleto", "SAT", "no"],
+      "hints": ["No garantiza respuesta completa", "Satisfacible", "Negación de 'podemos'"],
+      "explanation": "GSAT incompleto: éxito → fórmula SAT (certeza). Fallo (agota recursos) → no podemos concluir nada: F podría ser SAT (y GSAT no encontró la solución) o UNSAT."
+    },
+    {
+      "id": 49,
+      "topic": "GSAT",
+      "difficulty": "medium",
+      "sentence": "GSAT puede resolver instancias difíciles con más de ___ variables. El problema principal es que queda atrapado en ___ locales.",
+      "blanks": ["2.000", "mínimos"],
+      "hints": ["Número de miles", "Zonas donde no se puede mejorar"],
+      "explanation": "GSAT es potente: puede manejar instancias con >2000 variables. Sin embargo, sufre del problema de los mínimos locales (zonas donde ningún flip mejora el número de cláusulas satisfechas)."
+    },
+    {
+      "id": 50,
+      "topic": "GSAT",
+      "difficulty": "hard",
+      "sentence": "En GWSAT (GSAT + Random Walk), con probabilidad ___ se hace flip de una variable aleatoria de una cláusula ___ aleatoria. Con probabilidad ___ se actúa como GSAT normal.",
+      "blanks": ["ω", "no satisfecha", "1 - ω"],
+      "hints": ["Letra griega omega", "Cláusula que actualmente es falsa", "Complementario de ω"],
+      "explanation": "GWSAT mezcla dos estrategias: con prob ω hace random walk (flip aleatorio en cláusula insatisfecha), con prob 1-ω hace greedy como GSAT. El random walk ayuda a escapar de mínimos locales."
+    },
+    {
+      "id": 51,
+      "topic": "WalkSAT",
+      "difficulty": "medium",
+      "sentence": "A diferencia de GSAT, WalkSAT primero selecciona una ___ no satisfecha C, luego calcula S = variables que aparecen en ___, y finalmente decide qué variable de S ___.",
+      "blanks": ["cláusula", "C", "flipar"],
+      "hints": ["Componente de la CNF", "La cláusula seleccionada", "Invertir su valor"],
+      "explanation": "WalkSAT restringe la búsqueda: en lugar de buscar el mejor flip en toda la fórmula (GSAT), escoge primero una cláusula insatisfecha y solo considera flipar variables que aparecen en esa cláusula."
+    },
+    {
+      "id": 52,
+      "topic": "WalkSAT",
+      "difficulty": "hard",
+      "sentence": "La función ___(p, F, I) cuenta el número de cláusulas que ___ de satisfechas a insatisfechas al hacer flip de p. WalkSAT busca el p que minimiza este valor (___).",
+      "blanks": ["broken", "pasan", "b"],
+      "hints": ["Término inglés que indica 'rotas'", "Verbo de cambio de estado", "Variable que almacena el mínimo"],
+      "explanation": "broken(p, F, I): número de cláusulas 'rotas' al flipar p (que eran satisfechas y dejarían de serlo). WalkSAT calcula b = min broken de todas las variables de S, minimizando el daño."
+    },
+    {
+      "id": 53,
+      "topic": "WalkSAT",
+      "difficulty": "hard",
+      "sentence": "En WalkSAT, si b > 0 Y con probabilidad ___, se hace ___ walk (p aleatorio de S). Si b = 0 O con probabilidad ___, se elige p tal que broken(p) = ___.",
+      "blanks": ["ω", "random", "1 - ω", "b"],
+      "hints": ["Probabilidad de paseo aleatorio", "Término inglés para 'aleatorio'", "Complementario", "El mínimo calculado"],
+      "explanation": "WalkSAT decide: si todas las variables de S rompen cláusulas (b>0) Y ocurre con prob ω → random walk. Sino → elige la variable que minimiza el daño (broken = b)."
+    },
+    {
+      "id": 54,
+      "topic": "UBCSAT",
+      "difficulty": "medium",
+      "sentence": "El comando de UBCSAT para ejecutar GSAT en el fichero test.cnf es: './___ -alg ___ -solve -i ___'.",
+      "blanks": ["ubcsat", "gsat", "test.cnf"],
+      "hints": ["Nombre del programa", "Nombre del algoritmo", "Nombre del fichero de entrada"],
+      "explanation": "Sintaxis básica: `./ubcsat -alg gsat -solve -i test.cnf`. El flag -solve hace que pare al encontrar solución, -alg especifica el algoritmo, -i el fichero de entrada."
+    },
+    {
+      "id": 55,
+      "topic": "UBCSAT",
+      "difficulty": "medium",
+      "sentence": "En UBCSAT, el parámetro ___ controla el número de intentos independientes (por defecto ___), el parámetro ___ controla los flips por intento (por defecto ___) y el parámetro ___ la probabilidad de random walk (por defecto ___).",
+      "blanks": ["-runs", "1", "-cutoff", "100.000", "-wp", "0.5"],
+      "hints": ["Flag de número de runs", "Valor por defecto de runs", "Flag de flips máximos", "Valor por defecto de cutoff", "Flag de walk probability", "Valor por defecto de wp"],
+      "explanation": "-runs INT: número de ejecuciones independientes (default 1). -cutoff INT: flips máximos por run (default 100.000). -wp [0,1]: probabilidad de random walk para WalkSAT/GWSAT (default 0.5)."
+    }
+  ]
+}

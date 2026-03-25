@@ -1,0 +1,866 @@
+{
+  "metadata": {
+    "title": "Local Search — Advanced Programming in Artificial Intelligence",
+    "subject": "Local Search & SAT",
+    "author": "Josep Argelich",
+    "course": "Grau en Enginyeria Informàtica",
+    "totalQuestions": 60,
+    "topics": [
+      "Introducción y clasificación de algoritmos",
+      "Fundamentos (X, D, F)",
+      "Neighborhood Search",
+      "Variaciones: Hill Climbing, Steepest Ascent, Random Walk",
+      "Simulated Annealing",
+      "Tabu Search",
+      "Algoritmos Genéticos",
+      "SAT y fórmulas CNF",
+      "Formato DIMACS",
+      "Random k-SAT y transición de fase",
+      "GSAT",
+      "WalkSAT",
+      "UBCSAT"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Clasificación de algoritmos",
+      "difficulty": "easy",
+      "question": "¿Cuál de las siguientes afirmaciones describe mejor un algoritmo sistemático (completo)?",
+      "options": [
+        "A) Siempre encuentra la solución si dispone de suficientes recursos de tiempo",
+        "B) Encuentra soluciones buenas en menos tiempo que los incompletos",
+        "C) No puede probar que una solución es óptima",
+        "D) Puede visitar el mismo punto del espacio de búsqueda varias veces"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Los algoritmos sistemáticos (completos) garantizan encontrar la solución siempre que tengan suficiente tiempo. Para problemas de decisión son sound y completos; para optimización también dan el óptimo."
+    },
+    {
+      "id": 2,
+      "topic": "Clasificación de algoritmos",
+      "difficulty": "easy",
+      "question": "Para un problema de optimización, un algoritmo NO sistemático (incompleto):",
+      "options": [
+        "A) Da siempre el óptimo global",
+        "B) Es sound y completo",
+        "C) Es sound pero NO completo, dando un sub-óptimo",
+        "D) No es sound ni completo"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Los algoritmos no sistemáticos son sound (no demuestran cosas falsas), pero no completos. Para optimización devuelven una solución sub-óptima, no el óptimo global garantizado."
+    },
+    {
+      "id": 3,
+      "topic": "Clasificación de algoritmos",
+      "difficulty": "easy",
+      "question": "¿Cuál es la principal ventaja práctica de los algoritmos No Sistemáticos frente a los Sistemáticos?",
+      "options": [
+        "A) Garantizan encontrar el óptimo global",
+        "B) Obtienen 'buenas' soluciones en mucho menos tiempo",
+        "C) Pueden probar que una fórmula es insatisfacible",
+        "D) Exploran todo el espacio de búsqueda"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La clave es el trade-off: los sistemáticos necesitan mucho tiempo para probar la optimalidad, mientras que los no sistemáticos ofrecen buenas soluciones (no necesariamente óptimas) en tiempo mucho menor."
+    },
+    {
+      "id": 4,
+      "topic": "Clasificación de algoritmos",
+      "difficulty": "medium",
+      "question": "Un algoritmo no sistemático para un problema de decisión, cuando no encuentra solución dentro del límite de recursos:",
+      "options": [
+        "A) Garantiza que no existe solución",
+        "B) No puede concluir si existe o no solución",
+        "C) Siempre encuentra la solución si existe",
+        "D) Devuelve una solución sub-óptima"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Si un algoritmo incompleto agota sus recursos sin encontrar solución, no puede afirmar si el problema es satisfacible o insatisfacible. Solo puede decir 'no encontré solución en el límite dado'."
+    },
+    {
+      "id": 5,
+      "topic": "Fundamentos",
+      "difficulty": "easy",
+      "question": "En la definición formal del problema de Local Search (X, D, F), ¿qué representa D?",
+      "options": [
+        "A) El conjunto de variables del problema",
+        "B) La función de coste",
+        "C) El espacio de posibles soluciones (producto cartesiano de los dominios)",
+        "D) El número de iteraciones máximo"
+      ],
+      "correctAnswer": "C",
+      "explanation": "D = d₁ × d₂ × ... × dₙ es el espacio de posibles soluciones, donde dᵢ es el dominio de la variable xᵢ. Cada punto de D es una asignación completa de valores a las variables."
+    },
+    {
+      "id": 6,
+      "topic": "Fundamentos",
+      "difficulty": "easy",
+      "question": "¿Qué representa la función f en el problema (X, D, F)?",
+      "options": [
+        "A) La función de vecindario que genera los vecinos de cada punto",
+        "B) La función de coste que asigna un valor a cada posible solución",
+        "C) La función de selección que elige el siguiente punto",
+        "D) La función de temperatura en Simulated Annealing"
+      ],
+      "correctAnswer": "B",
+      "explanation": "f : D → C es la función de coste. Para cada posible solución devuelve su coste, y el objetivo es maximizar o minimizar este valor."
+    },
+    {
+      "id": 7,
+      "topic": "Fundamentos",
+      "difficulty": "medium",
+      "question": "En el problema N-Queens, ¿cuántas soluciones válidas existen (con 8 reinas)?",
+      "options": [
+        "A) 8",
+        "B) 64",
+        "C) 92",
+        "D) 4.426.165.368"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Para 8 reinas, el espacio total de posibles colocaciones es 4.426.165.368, pero solo 92 de esas configuraciones son soluciones válidas (sin que ninguna reina amenace a otra). Esto ilustra por qué explorar todo el espacio es inviable."
+    },
+    {
+      "id": 8,
+      "topic": "Neighborhood Search",
+      "difficulty": "easy",
+      "question": "¿Cuál es el punto de partida del algoritmo de Neighborhood Search?",
+      "options": [
+        "A) La solución óptima conocida del problema",
+        "B) Una asignación inicial aleatoria de valores a las variables (X₀)",
+        "C) El punto central del espacio de búsqueda",
+        "D) El peor punto del espacio de búsqueda"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El algoritmo comienza con un punto X₀, que es una asignación inicial (normalmente aleatoria) de valores del dominio a las variables del problema."
+    },
+    {
+      "id": 9,
+      "topic": "Neighborhood Search",
+      "difficulty": "easy",
+      "question": "¿Cuál es la condición de parada para un problema de OPTIMIZACIÓN en Neighborhood Search?",
+      "options": [
+        "A) Se encontró una solución o se alcanzó el máximo de saltos",
+        "B) Se alcanzó un coste objetivo o el máximo de saltos",
+        "C) El algoritmo siempre itera exactamente max_tries veces",
+        "D) Cuando todos los vecinos tienen peor coste"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Para problemas de optimización, el algoritmo para cuando alcanza el coste objetivo deseado O cuando se alcanza el número máximo de saltos permitido. Para decisión: solución encontrada O máximo de saltos."
+    },
+    {
+      "id": 10,
+      "topic": "Neighborhood Search",
+      "difficulty": "medium",
+      "question": "La función de vecindario N(X) se dice que es 'accesible' cuando:",
+      "options": [
+        "A) Todos los vecinos de X tienen mejor coste que X",
+        "B) Se puede ir desde cualquier punto del espacio a cualquier otro pasando por vecinos",
+        "C) El número de vecinos es mayor que n/2",
+        "D) La función N genera siempre el mismo número de vecinos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "N(X) es accesible si desde cualquier punto del dominio se puede alcanzar cualquier otro punto del dominio navegando exclusivamente por relaciones de vecindad. Esta propiedad es crucial para garantizar que el algoritmo puede en principio llegar a la solución óptima."
+    },
+    {
+      "id": 11,
+      "topic": "Neighborhood Search",
+      "difficulty": "medium",
+      "question": "Si usamos Nᵢ(X) = puntos que difieren en, como mucho, i variables, ¿cuál es el valor recomendado de i en la práctica?",
+      "options": [
+        "A) i = n (todas las variables)",
+        "B) i ≥ 3",
+        "C) i ≤ 2",
+        "D) i = 0"
+      ],
+      "correctAnswer": "C",
+      "explanation": "En la práctica se usa i ≤ 2. Si i es muy grande, |Nᵢ(X)| puede ser enorme: el algoritmo sería más potente pero cada iteración sería computacionalmente muy costosa. Hay que encontrar el equilibrio."
+    },
+    {
+      "id": 12,
+      "topic": "Neighborhood Search",
+      "difficulty": "medium",
+      "question": "¿Cuál es la diferencia fundamental entre búsqueda aleatoria (random search) y Neighborhood Search?",
+      "options": [
+        "A) La búsqueda aleatoria usa una función de coste; Neighborhood Search no",
+        "B) En Neighborhood Search el siguiente punto se elige entre los vecinos del actual; en búsqueda aleatoria se elige cualquier punto del dominio",
+        "C) La búsqueda aleatoria es sistemática; Neighborhood Search no",
+        "D) No hay diferencia, son algoritmos equivalentes"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La diferencia clave está en la función de selección: en Neighborhood Search se usa `selection(N(X))` — se elige entre los vecinos del punto actual. En búsqueda aleatoria se usa `random_point(X)` — cualquier punto del dominio."
+    },
+    {
+      "id": 13,
+      "topic": "Hill Climbing",
+      "difficulty": "easy",
+      "question": "¿Qué tipo de estrategia de selección usa el Hill Climbing básico?",
+      "options": [
+        "A) Selecciona cualquier vecino aleatoriamente",
+        "B) Selecciona un vecino que mejore la función de coste (greedy)",
+        "C) Selecciona el peor vecino para escapar de mínimos locales",
+        "D) Selecciona el vecino más lejano en el espacio de búsqueda"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Hill Climbing es una estrategia greedy: selecciona un vecino que mejore la función de coste. Es eficaz para funciones cóncavas/convexas simples, pero tiene problemas con paisajes más complejos."
+    },
+    {
+      "id": 14,
+      "topic": "Hill Climbing",
+      "difficulty": "medium",
+      "question": "¿Cuál de los siguientes NO es un problema conocido del Hill Climbing?",
+      "options": [
+        "A) Puede quedar atrapado en máximos locales",
+        "B) Puede quedar atrapado en 'shoulders' (crestas/mesetas con subida posible)",
+        "C) El punto inicial influye mucho en el resultado",
+        "D) Siempre converge al óptimo global si se ejecuta suficiente tiempo"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Hill Climbing NO garantiza converger al óptimo global. Sus problemas conocidos son: máximos locales (trampa sin salida), shoulders (mesetas con posible salida), flat local maxima (mesetas sin salida), y alta dependencia del punto inicial."
+    },
+    {
+      "id": 15,
+      "topic": "Hill Climbing",
+      "difficulty": "medium",
+      "question": "¿Qué diferencia al Steepest Ascent Hill Climbing del Hill Climbing básico?",
+      "options": [
+        "A) Steepest Ascent acepta soluciones peores con cierta probabilidad",
+        "B) Steepest Ascent selecciona el vecino que mejora MÁS la función de coste, no solo uno que mejore",
+        "C) Steepest Ascent usa múltiples puntos de inicio simultáneamente",
+        "D) Steepest Ascent no tiene el problema de los máximos locales"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En Steepest Ascent HC, la función selection(N(X)) devuelve el vecino que produce la mejora MÁS grande. En HC básico, cualquier vecino que mejore es válido. Ambos siguen teniendo el problema de los mínimos/máximos locales."
+    },
+    {
+      "id": 16,
+      "topic": "Hill Climbing",
+      "difficulty": "medium",
+      "question": "La variación 'Steepest Ascent HC + Mildest Descent' ¿qué hace cuando ningún vecino mejora la función de coste?",
+      "options": [
+        "A) Reinicia desde un punto aleatorio",
+        "B) Para la búsqueda y devuelve la mejor solución encontrada",
+        "C) Selecciona el vecino que empeora MENOS la función de coste",
+        "D) Acepta cualquier vecino con probabilidad e^(-Δ/T)"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Mildest Descent: cuando ningún vecino mejora, en lugar de parar, selecciona el que empeora menos. Esto permite escapar de mesetas (shoulders/flat areas), pero puede generar ciclos."
+    },
+    {
+      "id": 17,
+      "topic": "Hill Climbing",
+      "difficulty": "hard",
+      "question": "En el State Space Landscape, ¿cuál es la diferencia entre un 'shoulder' y un 'flat local maximum'?",
+      "options": [
+        "A) No hay diferencia; son términos equivalentes",
+        "B) Un shoulder es una meseta desde la que SÍ existe una subida posterior; un flat local maximum es una meseta desde la que NO hay salida ascendente",
+        "C) Un flat local maximum es más alto que un shoulder en términos de función de coste",
+        "D) Un shoulder solo aparece en problemas continuos; flat local maximum en discretos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Shoulder: zona plana con posibilidad de subir más adelante (el algoritmo puede atravesarla). Flat local maximum: zona plana que es un máximo local, sin ninguna dirección ascendente posible — el algoritmo queda atrapado definitivamente."
+    },
+    {
+      "id": 18,
+      "topic": "Hill Climbing",
+      "difficulty": "medium",
+      "question": "¿Cuál es el principal problema de la variación 'Steepest Ascent HC + Mildest Descent'?",
+      "options": [
+        "A) Es demasiado lenta por explorar todos los vecinos",
+        "B) Puede generar ciclos (volver a estados ya visitados)",
+        "C) No puede escapar de máximos locales estrictos",
+        "D) Necesita almacenar todo el espacio de búsqueda en memoria"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Al aceptar movimientos que empeoran (el mildest descent), el algoritmo puede oscilar entre los mismos estados sin progresar, generando ciclos. Esto se puede mitigar combinándolo con random walk."
+    },
+    {
+      "id": 19,
+      "topic": "Hill Climbing",
+      "difficulty": "medium",
+      "question": "¿Qué estrategia propone el 'Local Beam Search'?",
+      "options": [
+        "A) Usar una lista de soluciones prohibidas para evitar ciclos",
+        "B) Mantener k estados simultáneamente y seleccionar los k mejores vecinos en cada paso",
+        "C) Reiniciar la búsqueda k veces desde puntos aleatorios distintos",
+        "D) Aceptar soluciones peores con probabilidad proporcional a k"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Local Beam Search mantiene k estados en lugar de uno solo. En cada iteración genera los vecinos de todos los estados actuales y selecciona los k mejores de entre todos esos vecinos para la siguiente ronda."
+    },
+    {
+      "id": 20,
+      "topic": "Simulated Annealing",
+      "difficulty": "easy",
+      "question": "¿En qué proceso físico/industrial se inspira el Simulated Annealing?",
+      "options": [
+        "A) En la evolución natural darwiniana",
+        "B) En el recocido metalúrgico (calentamiento y enfriamiento controlado de materiales)",
+        "C) En la propagación de ondas electromagnéticas",
+        "D) En el comportamiento de colonias de hormigas"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Simulated Annealing se inspira en el recocido (annealing) de la metalurgia: un material se calienta hasta alta temperatura y se enfría lentamente y de forma controlada para reducir defectos y llegar a un estado de mínima energía."
+    },
+    {
+      "id": 21,
+      "topic": "Simulated Annealing",
+      "difficulty": "medium",
+      "question": "En Simulated Annealing, ¿qué ocurre con la probabilidad de aceptar soluciones peores a medida que avanza el algoritmo?",
+      "options": [
+        "A) Aumenta gradualmente hasta 1",
+        "B) Se mantiene constante durante toda la ejecución",
+        "C) Decrece gradualmente desde 1 hacia 0",
+        "D) Oscila entre 0 y 1 sin patrón definido"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Al inicio (temperatura alta), hay alta probabilidad de aceptar cualquier solución, incluso peores. Conforme la temperatura decrece, la probabilidad P(e, e', T) de aceptar soluciones peores también decrece, hasta converger a comportamiento greedy."
+    },
+    {
+      "id": 22,
+      "topic": "Simulated Annealing",
+      "difficulty": "medium",
+      "question": "En el algoritmo de Simulated Annealing, ¿para qué sirve el parámetro kmax?",
+      "options": [
+        "A) Define el tamaño de la lista tabú",
+        "B) Define el tamaño de la población inicial",
+        "C) Controla el número máximo de evaluaciones (tiempo total de búsqueda)",
+        "D) Define cuántos vecinos se generan en cada iteración"
+      ],
+      "correctAnswer": "C",
+      "explanation": "kmax es el número máximo de evaluaciones permitidas. El algoritmo para cuando k = kmax (tiempo agotado) o cuando la energía e ≤ emax (se alcanzó calidad suficiente). La temperatura se calcula como temperature(1 - k/kmax)."
+    },
+    {
+      "id": 23,
+      "topic": "Simulated Annealing",
+      "difficulty": "hard",
+      "question": "La función de probabilidad de aceptación P(e, e', T) en Simulated Annealing:",
+      "options": [
+        "A) Es siempre 1 si e' < e (el nuevo estado es mejor)",
+        "B) Es siempre 0 si e' > e (el nuevo estado es peor)",
+        "C) Es siempre 1 si e' < e, y una probabilidad decreciente con T si e' ≥ e",
+        "D) Es una función constante independiente de la temperatura"
+      ],
+      "correctAnswer": "C",
+      "explanation": "P(e, e', T): si el nuevo estado es mejor (e' < e), siempre se acepta (P=1). Si es peor (e' ≥ e), se acepta con una probabilidad que depende de T — cuanto mayor la temperatura, mayor la probabilidad de aceptar. A T→0, P→0 para soluciones peores."
+    },
+    {
+      "id": 24,
+      "topic": "Tabu Search",
+      "difficulty": "easy",
+      "question": "¿Cuál es la idea central del Tabu Search?",
+      "options": [
+        "A) Usar una temperatura decreciente para controlar la aceptación de peores soluciones",
+        "B) Usar estructuras de memoria para registrar soluciones visitadas y evitar revisitarlas",
+        "C) Mantener una población de soluciones que evoluciona por crossover",
+        "D) Reiniciar la búsqueda periódicamente desde puntos aleatorios"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Tabu Search usa estructuras de memoria (la lista tabú) que describen las soluciones visitadas recientemente. Los movimientos que llevan a soluciones en la lista tabú están prohibidos (son 'tabú'), forzando al algoritmo a explorar nuevas regiones."
+    },
+    {
+      "id": 25,
+      "topic": "Tabu Search",
+      "difficulty": "medium",
+      "question": "¿Cuáles son los tres tipos de memoria que puede usar el Tabu Search?",
+      "options": [
+        "A) RAM, caché y disco",
+        "B) Short-term, intermediate-term y long-term",
+        "C) Local, global y universal",
+        "D) Táctica, estratégica y operacional"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Tabu Search usa tres tipos de memoria: Short-term (soluciones consideradas recientemente), Intermediate-term (reglas para sesgar la búsqueda, como prohibir atributos concretos), y Long-term (reglas que promueven diversidad, como reiniciar cuando el algoritmo se estanca)."
+    },
+    {
+      "id": 26,
+      "topic": "Tabu Search",
+      "difficulty": "medium",
+      "question": "¿Cómo caducan los elementos de la lista tabú en Tabu Search?",
+      "options": [
+        "A) Se eliminan aleatoriamente cuando la lista está llena",
+        "B) Nunca caducan; permanecen para siempre en la lista",
+        "C) Se eliminan en el orden en que fueron añadidos (FIFO), cuando la lista supera maxTabuListSize",
+        "D) Caducan según una función de probabilidad exponencial"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Los elementos de la lista tabú expiran siguiendo un esquema FIFO (First In, First Out): cuando la lista supera el tamaño máximo maxTabuListSize, se eliminan los elementos más antiguos (los primeros en ser añadidos)."
+    },
+    {
+      "id": 27,
+      "topic": "Tabu Search",
+      "difficulty": "hard",
+      "question": "¿Para qué tipo de espacio de búsqueda es efectivo el Tabu Search con lista tabú?",
+      "options": [
+        "A) Solo para espacios continuos",
+        "B) Solo para espacios discretos (la lista tabú debe contener elementos discretos)",
+        "C) Para cualquier tipo de espacio, continuo o discreto",
+        "D) Solo para problemas con menos de 100 variables"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El Tabu Search con lista tabú solo es efectivo para espacios discretos, ya que la lista tabú debe almacenar elementos discretos (soluciones o características de soluciones). En espacios continuos, la probabilidad de visitar exactamente el mismo punto es prácticamente cero."
+    },
+    {
+      "id": 28,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "easy",
+      "question": "¿En qué se inspiran los Algoritmos Genéticos?",
+      "options": [
+        "A) En el proceso de recocido metalúrgico",
+        "B) En la teoría de la evolución natural de Darwin",
+        "C) En el comportamiento de enjambres de abejas",
+        "D) En la propagación de señales nerviosas"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los Algoritmos Genéticos se inspiran en la evolución natural darwiniana: los individuos más adaptados sobreviven y se reproducen, transmitiendo sus características a la siguiente generación mediante herencia, mutación y selección natural."
+    },
+    {
+      "id": 29,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "medium",
+      "question": "¿Cuáles son las cuatro técnicas clave que usan los Algoritmos Genéticos?",
+      "options": [
+        "A) Temperatura, enfriamiento, aceptación, rechazo",
+        "B) Herencia, mutación, selección y crossover",
+        "C) Inicialización, evaluación, terminación, reinicio",
+        "D) Vecindario, local, global, óptimo"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Las cuatro técnicas clave son: Inheritance (Herencia, de padres a hijos), Mutation (Mutación, para diversidad genética), Selection (Selección de los más adaptados via fitness function), y Crossover (cruce genético para generar descendencia)."
+    },
+    {
+      "id": 30,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "medium",
+      "question": "En el método de selección 'Roulette Wheel' de los Algoritmos Genéticos:",
+      "options": [
+        "A) Todos los individuos tienen la misma probabilidad de ser seleccionados",
+        "B) La probabilidad de selección es proporcional al fitness del individuo",
+        "C) Solo se seleccionan los dos mejores individuos de la población",
+        "D) Se seleccionan individuos aleatoriamente sin considerar el fitness"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En Roulette Wheel, la probabilidad de ser seleccionado es proporcional al fitness: mayor fitness → mayor probabilidad de selección. Es como una ruleta donde cada individuo ocupa un sector proporcional a su fitness."
+    },
+    {
+      "id": 31,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "medium",
+      "question": "¿Cuál es el propósito de la mutación en los Algoritmos Genéticos?",
+      "options": [
+        "A) Combinar características de dos padres para generar un hijo mejor",
+        "B) Seleccionar los individuos más aptos de la población",
+        "C) Mantener la diversidad genética y evitar convergencia prematura",
+        "D) Calcular el fitness de cada individuo de la población"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La mutación sirve para mantener la diversidad genética en la población y evitar que el algoritmo converja prematuramente a un óptimo local. Sin mutación, la población podría homogeneizarse y perder capacidad de exploración."
+    },
+    {
+      "id": 32,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "hard",
+      "question": "En el crossover de tipo 'single-point', ¿cómo se genera el hijo a partir de dos padres?",
+      "options": [
+        "A) Se toma toda la información del padre con mayor fitness",
+        "B) Se elige un punto de corte y el hijo hereda la parte izquierda de un padre y la parte derecha del otro",
+        "C) Cada gen del hijo se elige aleatoriamente de uno de los dos padres con probabilidad 0.5",
+        "D) Se promedian los valores de los genes de ambos padres"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En el crossover de un punto (single-point): se elige aleatoriamente un punto de corte en el cromosoma. El hijo hereda todos los genes antes del punto de corte de un padre, y todos los genes después del punto de corte del otro padre."
+    },
+    {
+      "id": 33,
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "medium",
+      "question": "En el método de selección 'Tournament' de los AGs, ¿cómo funciona?",
+      "options": [
+        "A) Se eliminan todos los individuos salvo el mejor",
+        "B) Se realizan varios torneos basados en fitness y los ganadores son seleccionados",
+        "C) Se ordenan todos los individuos y se seleccionan los n primeros",
+        "D) Se selecciona aleatoriamente el individuo que participa en el crossover"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En Tournament selection, se realizan múltiples torneos: se escogen aleatoriamente pequeños grupos de individuos, y el de mayor fitness de cada grupo gana el torneo y es seleccionado. Esto crea presión selectiva sin ser tan extremo como seleccionar solo el mejor."
+    },
+    {
+      "id": 34,
+      "topic": "SAT",
+      "difficulty": "easy",
+      "question": "¿Qué determina el problema SAT (Boolean Satisfiability Problem)?",
+      "options": [
+        "A) Si una fórmula en Forma Normal Disyuntiva (DNF) es válida",
+        "B) Si una fórmula proposicional en Forma Normal Conjuntiva (CNF) es satisfacible",
+        "C) El valor óptimo de una función de coste booleana",
+        "D) Si dos fórmulas lógicas son equivalentes"
+      ],
+      "correctAnswer": "B",
+      "explanation": "SAT determina si existe una interpretación (asignación de valores de verdad) que hace verdadera una fórmula proposicional en Forma Normal Conjuntiva (CNF). Es el primer problema demostrado NP-completo (teorema de Cook-Levin)."
+    },
+    {
+      "id": 35,
+      "topic": "SAT",
+      "difficulty": "easy",
+      "question": "¿Qué es un 'literal' en una fórmula CNF?",
+      "options": [
+        "A) Una conjunción de variables",
+        "B) Una variable o su negación (xᵢ o ¬xᵢ)",
+        "C) Una cláusula formada por una sola variable",
+        "D) La fórmula completa en forma normal conjuntiva"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Un literal es una variable proposicional (xᵢ, literal positivo) o su negación (¬xᵢ, literal negativo). Son los elementos básicos de las cláusulas CNF."
+    },
+    {
+      "id": 36,
+      "topic": "SAT",
+      "difficulty": "easy",
+      "question": "¿Qué es una 'cláusula' en una fórmula CNF?",
+      "options": [
+        "A) Una conjunción (AND) de literales",
+        "B) Una disyunción (OR) de literales",
+        "C) Una única variable booleana",
+        "D) La negación de una fórmula CNF"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Una cláusula es una disyunción (OR) de literales. Ejemplo: (x₁ ∨ ¬x₂ ∨ x₃). Una fórmula CNF es una conjunción (AND) de cláusulas."
+    },
+    {
+      "id": 37,
+      "topic": "SAT",
+      "difficulty": "medium",
+      "question": "Una interpretación I satisface una cláusula c si y solo si:",
+      "options": [
+        "A) I satisface TODOS los literales de c",
+        "B) I satisface AL MENOS UN literal de c",
+        "C) I satisface exactamente la mitad de los literales de c",
+        "D) I satisface NINGÚN literal de c"
+      ],
+      "correctAnswer": "B",
+      "explanation": "I satisface una cláusula c si y solo si satisface al menos uno de sus literales. Como la cláusula es una disyunción (OR), basta con que un literal sea verdadero para que toda la cláusula sea verdadera."
+    },
+    {
+      "id": 38,
+      "topic": "SAT",
+      "difficulty": "medium",
+      "question": "¿Cuándo es una fórmula CNF F satisfacible?",
+      "options": [
+        "A) Cuando existe al menos una cláusula vacía",
+        "B) Cuando existe una interpretación que satisface TODAS las cláusulas de F",
+        "C) Cuando la fórmula contiene más variables que cláusulas",
+        "D) Cuando todas las variables aparecen tanto positivas como negativas"
+      ],
+      "correctAnswer": "B",
+      "explanation": "F es satisfacible (SAT) ssi existe al menos una interpretación I que satisface todas y cada una de sus cláusulas. Si no existe tal interpretación, F es insatisfacible (UNSAT)."
+    },
+    {
+      "id": 39,
+      "topic": "SAT",
+      "difficulty": "medium",
+      "question": "¿Qué ocurre con una fórmula CNF que contiene una cláusula vacía (□)?",
+      "options": [
+        "A) Es trivialmente satisfacible",
+        "B) Es trivialmente insatisfacible",
+        "C) Necesita evaluación completa para determinar su satisfacibilidad",
+        "D) La cláusula vacía se ignora"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Una fórmula con una cláusula vacía (□) es TRIVIALMENTE INSATISFACIBLE. Una cláusula vacía no contiene ningún literal, por lo que ninguna interpretación puede satisfacerla."
+    },
+    {
+      "id": 40,
+      "topic": "SAT",
+      "difficulty": "medium",
+      "question": "¿Qué es la fórmula vacía (Ø) en el contexto de SAT?",
+      "options": [
+        "A) Es insatisfacible porque no tiene ninguna cláusula que satisfacer",
+        "B) Es satisfacible (vacuamente verdadera)",
+        "C) Es equivalente a una contradicción",
+        "D) Su satisfacibilidad es indeterminada"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La fórmula vacía Ø (sin ninguna cláusula) es SATISFACIBLE. Una conjunción de cero cláusulas es vacuamente verdadera: cualquier interpretación la satisface."
+    },
+    {
+      "id": 41,
+      "topic": "Formato DIMACS",
+      "difficulty": "easy",
+      "question": "En el formato DIMACS para SAT, ¿cómo se indica una línea de comentario?",
+      "options": [
+        "A) La línea empieza con '#'",
+        "B) La línea empieza con 'c'",
+        "C) La línea empieza con '//'",
+        "D) La línea empieza con '%'"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En el formato DIMACS, las líneas de comentario empiezan con la letra 'c'. Ejemplo: 'c This is a random CNF formula'."
+    },
+    {
+      "id": 42,
+      "topic": "Formato DIMACS",
+      "difficulty": "easy",
+      "question": "¿Qué significa la línea 'p cnf 4 10' en un fichero DIMACS?",
+      "options": [
+        "A) El problema tiene 10 variables y 4 cláusulas",
+        "B) El problema tiene 4 variables y 10 cláusulas",
+        "C) El problema tiene 4 soluciones y 10 variables",
+        "D) El problema tiene 10 interpretaciones y 4 literales"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La línea de problema tiene el formato 'p cnf num_variables num_clauses'. Por tanto, 'p cnf 4 10' indica 4 variables y 10 cláusulas."
+    },
+    {
+      "id": 43,
+      "topic": "Formato DIMACS",
+      "difficulty": "medium",
+      "question": "En el formato DIMACS, la cláusula '-3 5 24 -18 0' representa:",
+      "options": [
+        "A) ¬x₃ ∨ x₅ ∨ x₂₄ ∨ ¬x₁₈",
+        "B) x₃ ∨ ¬x₅ ∨ ¬x₂₄ ∨ x₁₈",
+        "C) ¬x₃ ∧ x₅ ∧ x₂₄ ∧ ¬x₁₈",
+        "D) x₃ → x₅ → x₂₄ → x₁₈"
+      ],
+      "correctAnswer": "A",
+      "explanation": "En DIMACS: número positivo = literal positivo (xᵢ), número negativo = literal negativo (¬xᵢ). La cláusula termina en 0. Por tanto: -3 5 24 -18 0 = ¬x₃ ∨ x₅ ∨ x₂₄ ∨ ¬x₁₈."
+    },
+    {
+      "id": 44,
+      "topic": "Random k-SAT",
+      "difficulty": "medium",
+      "question": "¿Para qué valor del ratio clauses/variables es máxima la dificultad del Random 3-SAT?",
+      "options": [
+        "A) Ratio ≈ 1.0",
+        "B) Ratio ≈ 2.5",
+        "C) Ratio ≈ 4.25",
+        "D) Ratio ≈ 10.0"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La zona de máxima dificultad para Random 3-SAT se encuentra en ratio ≈ 4.25. En este punto también ocurre la transición de fase entre fórmulas satisfacibles e insatisfacibles, y los solvers necesitan el mayor número de operaciones."
+    },
+    {
+      "id": 45,
+      "topic": "Random k-SAT",
+      "difficulty": "medium",
+      "question": "¿Cómo se denomina el fenómeno donde el Random 3-SAT pasa bruscamente de ser satisfacible a insatisfacible?",
+      "options": [
+        "A) Punto de inflexión (inflection point)",
+        "B) Transición de fase (phase transition)",
+        "C) Cambio de estado (state change)",
+        "D) Umbral de dificultad (difficulty threshold)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El fenómeno se llama transición de fase (phase transition). Cerca del ratio ≈ 4.25, la probabilidad de que una instancia 3-SAT aleatoria sea satisfacible cae bruscamente del ~100% al ~0%, de forma análoga a una transición de fase en física."
+    },
+    {
+      "id": 46,
+      "topic": "Random k-SAT",
+      "difficulty": "medium",
+      "question": "¿Cuál de las siguientes describe el patrón de dificultad del Random 3-SAT en función del ratio clauses/variables?",
+      "options": [
+        "A) La dificultad aumenta monótonamente con el ratio",
+        "B) La dificultad disminuye monótonamente con el ratio",
+        "C) Se observa un patrón easy-hard-easy: fácil con ratio bajo, máxima dificultad ~4.25, fácil con ratio alto",
+        "D) La dificultad es constante independientemente del ratio"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El patrón es easy-hard-easy: con ratio bajo (pocas cláusulas), hay muchas soluciones y es fácil encontrar una. Con ratio alto (muchas cláusulas), el problema está muy restringido y es fácil probar UNSAT. En la zona intermedia (~4.25) es máximamente difícil."
+    },
+    {
+      "id": 47,
+      "topic": "Random k-SAT",
+      "difficulty": "easy",
+      "question": "¿Cuáles son los parámetros del generador Random k-SAT?",
+      "options": [
+        "A) Solo el número de variables",
+        "B) Número de variables, número de cláusulas, longitud K de las cláusulas y semilla aleatoria",
+        "C) Solo el ratio clauses/variables",
+        "D) Número de variables, número de soluciones y longitud de la fórmula"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los parámetros del generador Random k-SAT son: número de variables, número de cláusulas, longitud K de las cláusulas (K define el 'k-SAT') y la semilla aleatoria (para reproducibilidad)."
+    },
+    {
+      "id": 48,
+      "topic": "GSAT",
+      "difficulty": "medium",
+      "question": "¿Qué variable selecciona GSAT para hacer el flip en cada iteración?",
+      "options": [
+        "A) Una variable aleatoria de la fórmula",
+        "B) La variable cuyo flip decremente más el número de cláusulas satisfechas",
+        "C) Una variable del conjunto S que, al fliparla, incrementa más el número total de cláusulas satisfechas",
+        "D) La variable que aparece más veces en las cláusulas insatisfechas"
+      ],
+      "correctAnswer": "C",
+      "explanation": "GSAT calcula S = conjunto de variables cuyo flip incrementa más el número total de cláusulas satisfechas, y elige una variable p de S para flipar. Esto es un enfoque greedy: maximizar cláusulas satisfechas en cada paso."
+    },
+    {
+      "id": 49,
+      "topic": "GSAT",
+      "difficulty": "medium",
+      "question": "GSAT es un procedimiento INCOMPLETO. ¿Qué implica esto exactamente?",
+      "options": [
+        "A) Si GSAT no encuentra solución, la fórmula es insatisfacible",
+        "B) Si GSAT no encuentra solución, NO podemos saber si la fórmula es SAT o UNSAT",
+        "C) GSAT siempre encontrará la solución si se le da suficiente tiempo",
+        "D) GSAT puede probar que una fórmula es insatisfacible"
+      ],
+      "correctAnswer": "B",
+      "explanation": "GSAT es incompleto: si encuentra una interpretación, la fórmula es definitivamente SAT. Pero si no la encuentra (agota max_tries × max_flips), no puede concluir nada — la fórmula podría ser SAT (y GSAT simplemente no la encontró) o UNSAT."
+    },
+    {
+      "id": 50,
+      "topic": "GSAT",
+      "difficulty": "medium",
+      "question": "¿Cuál es el problema principal del GSAT que motiva sus variaciones (GWSAT, Tabu+GSAT)?",
+      "options": [
+        "A) Es demasiado lento incluso para problemas pequeños",
+        "B) Queda atrapado en mínimos locales (no puede escapar de zonas donde ningún flip mejora)",
+        "C) Usa demasiada memoria para almacenar todas las cláusulas",
+        "D) No puede manejar fórmulas con más de 100 cláusulas"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El problema principal de GSAT son los mínimos locales: estados donde ningún flip de ninguna variable mejora el número de cláusulas satisfechas. El algoritmo queda atascado y no puede progresar hacia la solución."
+    },
+    {
+      "id": 51,
+      "topic": "GSAT",
+      "difficulty": "hard",
+      "question": "En GWSAT (GSAT con Random Walk), ¿qué ocurre con probabilidad ω?",
+      "options": [
+        "A) Se reinicia la búsqueda desde una interpretación aleatoria",
+        "B) Se elige la variable de S que maximiza las cláusulas satisfechas (igual que GSAT)",
+        "C) Se flipea una variable aleatoria de una cláusula no satisfecha aleatoria",
+        "D) Se añade la interpretación actual a la lista tabú"
+      ],
+      "correctAnswer": "C",
+      "explanation": "En GWSAT, con probabilidad ω: se elige una cláusula no satisfecha aleatoriamente y se flipea una variable aleatoria de esa cláusula (random walk). Con probabilidad 1-ω: se comporta como GSAT normal (greedy)."
+    },
+    {
+      "id": 52,
+      "topic": "WalkSAT",
+      "difficulty": "medium",
+      "question": "¿Cuál es la primera diferencia clave de WalkSAT con respecto a GSAT en cada iteración?",
+      "options": [
+        "A) WalkSAT considera toda la fórmula para elegir el flip; GSAT solo considera la cláusula actual",
+        "B) WalkSAT primero elige una cláusula no satisfecha y luego decide qué variable flipar dentro de ella",
+        "C) WalkSAT no usa random walk; GSAT sí",
+        "D) WalkSAT siempre acepta el mejor flip global; GSAT usa random walk"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En GSAT, se busca globalmente la variable cuyo flip maximiza las cláusulas satisfechas. En WalkSAT, primero se elige una cláusula C no satisfecha, y luego se decide qué variable de C flipar — esto reduce el espacio de búsqueda a las variables de C."
+    },
+    {
+      "id": 53,
+      "topic": "WalkSAT",
+      "difficulty": "hard",
+      "question": "En WalkSAT, ¿qué representa la función broken(p, F, I)?",
+      "options": [
+        "A) El número total de cláusulas satisfechas tras flipar p",
+        "B) El número de cláusulas que pasan de satisfechas a insatisfechas al flipar la variable p",
+        "C) La probabilidad de que p sea la variable correcta a flipar",
+        "D) El número de veces que p ha sido flipada en la búsqueda actual"
+      ],
+      "correctAnswer": "B",
+      "explanation": "broken(p, F, I) = número de cláusulas que 'se rompen' al flipar p: cláusulas que actualmente son satisfechas por I pero que dejarían de serlo si se flipara el valor de p. WalkSAT busca minimizar este valor para causar el menor daño posible."
+    },
+    {
+      "id": 54,
+      "topic": "WalkSAT",
+      "difficulty": "hard",
+      "question": "En WalkSAT, si b = min({broken(p, F, I) | p in S}) > 0 y con probabilidad ω, ¿qué hace el algoritmo?",
+      "options": [
+        "A) Elige la variable de S con broken = b (la que causa menos daño)",
+        "B) Reinicia la búsqueda desde una interpretación aleatoria",
+        "C) Elige una variable ALEATORIA de S (random walk, ignorando broken)",
+        "D) Para y devuelve la interpretación actual como solución aproximada"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Si b > 0 (todas las variables de S rompen al menos una cláusula) Y con probabilidad ω: WalkSAT hace un random walk, eligiendo una variable ALEATORIA de S. Si NO (con prob 1-ω): elige la variable con menor broken, es decir, p tal que broken(p)=b."
+    },
+    {
+      "id": 55,
+      "topic": "UBCSAT",
+      "difficulty": "easy",
+      "question": "¿Para qué sirve el parámetro '-alg' en UBCSAT?",
+      "options": [
+        "A) Especifica el número de intentos independientes",
+        "B) Especifica el nombre del algoritmo a usar (ej: gsat, walksat)",
+        "C) Especifica el fichero CNF de entrada",
+        "D) Especifica la semilla aleatoria"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El parámetro -alg <name> especifica el nombre del algoritmo de local search a usar. Para ver la lista completa de algoritmos disponibles se usa -ha."
+    },
+    {
+      "id": 56,
+      "topic": "UBCSAT",
+      "difficulty": "easy",
+      "question": "¿Qué indica el parámetro '-cutoff INT' en UBCSAT?",
+      "options": [
+        "A) El número de intentos independientes por ejecución",
+        "B) La calidad mínima aceptable de la solución",
+        "C) El número máximo de flips por cada run (por defecto 100.000)",
+        "D) El número máximo de cláusulas del fichero de entrada"
+      ],
+      "correctAnswer": "C",
+      "explanation": "-cutoff INT define el número máximo de flips (pasos) por cada run independiente. Si en un run no se encuentra solución en ese número de flips, el run termina. El valor por defecto es 100.000."
+    },
+    {
+      "id": 57,
+      "topic": "UBCSAT",
+      "difficulty": "medium",
+      "question": "¿Qué controla el parámetro '-wp <[0,1]>' en UBCSAT?",
+      "options": [
+        "A) El tamaño de la lista tabú",
+        "B) La probabilidad de hacer random walk (walk probability), por defecto 0.5",
+        "C) El número de puntos de crossover en los AGs",
+        "D) La temperatura inicial en Simulated Annealing"
+      ],
+      "correctAnswer": "B",
+      "explanation": "-wp especifica la probabilidad de random walk (ω en WalkSAT/GWSAT). Con esta probabilidad, el algoritmo hace un paso aleatorio en lugar del paso greedy. El valor por defecto es 0.5."
+    },
+    {
+      "id": 58,
+      "topic": "UBCSAT",
+      "difficulty": "medium",
+      "question": "En UBCSAT, con el parámetro '-target INT', ¿cuándo para el algoritmo si se usa '-solve'?",
+      "options": [
+        "A) Cuando el número de cláusulas satisfechas supera target",
+        "B) Cuando el número de cláusulas insatisfechas es menor o igual a target",
+        "C) Cuando se realizan exactamente target flips",
+        "D) Cuando se han completado target runs independientes"
+      ],
+      "correctAnswer": "B",
+      "explanation": "-target INT define la calidad objetivo: el número de cláusulas insatisfechas que se acepta como solución. Por defecto es 0 (busca solución perfecta). -solve hace que el algoritmo pare cuando alcanza el target."
+    },
+    {
+      "id": 59,
+      "topic": "Local Search aplicado a SAT",
+      "difficulty": "medium",
+      "question": "Un algoritmo de Local Search para SAT que termina sin encontrar solución, ¿qué puede concluir?",
+      "options": [
+        "A) La fórmula es definitivamente insatisfacible (UNSAT)",
+        "B) La fórmula es definitivamente satisfacible (SAT)",
+        "C) No puede concluir nada sobre la satisfacibilidad de la fórmula",
+        "D) La fórmula tiene exactamente una solución"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Los Local Search para SAT son incompletos: si encuentran solución, la fórmula es SAT. Si agotan los recursos sin encontrar solución, NO pueden concluir si la fórmula es SAT o UNSAT — simplemente no lo saben."
+    },
+    {
+      "id": 60,
+      "topic": "Aplicaciones y motivación",
+      "difficulty": "medium",
+      "question": "¿Por qué es útil reducir un problema combinatorio X a SAT?",
+      "options": [
+        "A) Porque SAT es más sencillo de resolver que cualquier otro problema",
+        "B) Porque permite usar solvers SAT existentes y especializados (como UBCSAT) en lugar de desarrollar un algoritmo ad-hoc para X",
+        "C) Porque la reducción a SAT garantiza encontrar la solución óptima",
+        "D) Porque SAT siempre es más eficiente que resolver X directamente"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La reducción a SAT permite reutilizar solvers SAT altamente optimizados (como GSAT, WalkSAT, UBCSAT) en lugar de diseñar un algoritmo específico para X. El flujo es: problema X → reducción a SAT → algoritmo SAT → solución."
+    }
+  ]
+}

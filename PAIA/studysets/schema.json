@@ -1,0 +1,86 @@
+{
+  "_comment": "Esquema de referencia para mapear el quiz en una interfaz web interactiva",
+  "schemaVersion": "1.0",
+  "fileDescription": "local_search_quiz.json — 60 preguntas tipo test sobre Local Search y SAT",
+
+  "topLevelFields": {
+    "metadata": {
+      "type": "object",
+      "fields": {
+        "title": "string — título del quiz",
+        "subject": "string — tema principal",
+        "author": "string — autor del material",
+        "course": "string — asignatura/grado",
+        "totalQuestions": "number — total de preguntas",
+        "topics": "string[] — lista de temas cubiertos"
+      }
+    },
+    "questions": {
+      "type": "array",
+      "description": "Array principal de preguntas. Cada elemento tiene el esquema de QuestionObject."
+    }
+  },
+
+  "QuestionObject": {
+    "id": {
+      "type": "number",
+      "description": "Identificador único de la pregunta (1-based)"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Tema al que pertenece la pregunta. Usar para filtrar por tema."
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["easy", "medium", "hard"],
+      "description": "Nivel de dificultad. Usar para filtrar o puntuar diferencialmente."
+    },
+    "question": {
+      "type": "string",
+      "description": "Enunciado completo de la pregunta, listo para renderizar."
+    },
+    "options": {
+      "type": "string[]",
+      "description": "Array de 4 opciones. Cada opción empieza con su letra: 'A) ...', 'B) ...', 'C) ...', 'D) ...'. Para mostrar las opciones sin la letra puedes hacer option.substring(3).",
+      "example": [
+        "A) Texto de la opción A",
+        "B) Texto de la opción B",
+        "C) Texto de la opción C",
+        "D) Texto de la opción D"
+      ]
+    },
+    "correctAnswer": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D"],
+      "description": "Letra de la respuesta correcta. Comparar con la letra inicial de la opción seleccionada por el usuario."
+    },
+    "explanation": {
+      "type": "string",
+      "description": "Explicación detallada de por qué la respuesta correcta es correcta. Mostrar tras responder."
+    }
+  },
+
+  "suggestedWebIntegration": {
+    "loadData": "fetch('local_search_quiz.json').then(r => r.json())",
+    "accessQuestions": "data.questions",
+    "getById": "data.questions.find(q => q.id === targetId)",
+    "filterByTopic": "data.questions.filter(q => q.topic === selectedTopic)",
+    "filterByDifficulty": "data.questions.filter(q => q.difficulty === 'easy')",
+    "shuffleQuestions": "data.questions.sort(() => Math.random() - 0.5)",
+    "checkAnswer": "selectedLetter === question.correctAnswer",
+    "getOptionLetter": "option[0]",
+    "getOptionText": "option.substring(3)"
+  },
+
+  "suggestedFeatures": [
+    "Modo quiz completo (60 preguntas en orden o aleatoria)",
+    "Modo por tema (filtrar por question.topic)",
+    "Modo por dificultad (filtrar por question.difficulty)",
+    "Mostrar feedback inmediato (question.explanation) tras responder",
+    "Barra de progreso (pregunta X de N)",
+    "Puntuación final con desglose por tema y dificultad",
+    "Revisar respuestas incorrectas al finalizar",
+    "Modo 'solo difíciles' (difficulty === 'hard')",
+    "Guardar progreso en localStorage"
+  ]
+}
