@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Local Search & SAT — Estudio</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -159,6 +160,27 @@
       font-size: 0.72rem; color: var(--text-muted);
       margin-top: 0.3rem;
     }
+
+    /* ── Apuntes ── */
+    .apuntes-view { line-height: 1.7; }
+    .apuntes-view h1 { font-size: 1.4rem; font-weight: 700; margin: 0 0 1rem; }
+    .apuntes-view h2 { font-size: 1.15rem; font-weight: 700; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+    .apuntes-view h3 { font-size: 0.95rem; font-weight: 700; margin: 1.1rem 0 0.4rem; color: var(--accent); }
+    .apuntes-view p { margin-bottom: 0.7rem; }
+    .apuntes-view ul, .apuntes-view ol { margin: 0.4rem 0 0.7rem 1.4rem; }
+    .apuntes-view li { margin-bottom: 0.2rem; }
+    .apuntes-view code { font-family: 'Courier New', monospace; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 0.1rem 0.35rem; font-size: 0.82em; }
+    .apuntes-view pre { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem; overflow-x: auto; margin: 0.7rem 0; }
+    .apuntes-view pre code { background: none; border: none; padding: 0; font-size: 0.82rem; }
+    .apuntes-view blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; color: var(--text-muted); margin: 0.7rem 0; font-style: italic; }
+    .apuntes-view table { width: 100%; border-collapse: collapse; margin: 0.7rem 0; font-size: 0.85rem; }
+    .apuntes-view th { background: var(--accent-bg); color: var(--accent); font-weight: 600; padding: 0.45rem 0.7rem; border: 1px solid var(--border); text-align: left; }
+    .apuntes-view td { padding: 0.35rem 0.7rem; border: 1px solid var(--border); }
+    .apuntes-view tr:nth-child(even) td { background: var(--surface2); }
+    .apuntes-view hr { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
+    .apuntes-view a { color: var(--accent); text-decoration: none; }
+    .apuntes-view a:hover { text-decoration: underline; }
+    .card.apuntes-card { min-height: unset; }
 
     /* ── Card ── */
     .card {
@@ -465,7 +487,7 @@
   <a href="../" class="back-btn">← Proyectos</a>
   <div class="header-center">
     <h1>Local Search &amp; SAT</h1>
-    <span class="subtitle">Grau en Enginyeria Informàtica · Josep Argelich</span>
+    <span class="subtitle">Grau en Enginyeria Informàtica</span>
   </div>
   <button id="theme-toggle" title="Cambiar tema">🌙</button>
 </header>
@@ -476,6 +498,7 @@
     <button class="tab" data-mode="fill" role="tab">✏️ Completar</button>
     <button class="tab" data-mode="algoid" role="tab">🔍 Identificar</button>
     <button class="tab" data-mode="dragdrop" role="tab">↕ Arrastrar</button>
+    <button class="tab" data-mode="apuntes" role="tab">📖 Apuntes</button>
   </div>
 
   <div class="controls">
@@ -526,7 +549,7 @@ const LEVELS = [
 ];
 
 /* ── State ── */
-let quizData, fillData, algoIdData, dragdropData;
+let quizData, fillData, algoIdData, apuntesText = '', dragdropData;
 let mode         = 'quiz';
 let isRandom     = false;
 let currentIdx   = 0;
@@ -539,10 +562,11 @@ let sessionStates   = {};
 async function init() {
   loadTheme();
   try {
-    [quizData, fillData, algoIdData, dragdropData] = await Promise.all([
+    [quizData, fillData, algoIdData, apuntesText, dragdropData] = await Promise.all([
       fetch('studysets/local_search_quiz.json').then(r => r.json()),
       fetch('studysets/local_search_fillblanks.json').then(r => r.json()),
       fetch('studysets/local_search_algo_id.json').then(r => r.json()),
+      fetch('studysets/resumen_busqueda_local.md').then(r => r.text()),
       fetch('studysets/local_search_dragdrop.json').then(r => r.json()),
     ]);
   } catch (e) {
@@ -648,6 +672,20 @@ function modePrefix() {
 }
 function masteryKey(q) { return modePrefix() + q.id; }
 function stateKey(q)   { return modePrefix() + q.id; }
+
+/* ── Apuntes ── */
+function toggleExerciseUI(show) {
+  const d = show ? '' : 'none';
+  document.querySelector('.controls').style.display = d;
+  document.querySelector('.progress-section').style.display = d;
+  document.querySelector('.navigation').style.display = d;
+  document.getElementById('question-card').classList.toggle('apuntes-card', !show);
+}
+
+function renderApuntes() {
+  const card = document.getElementById('question-card');
+  card.innerHTML = `<div class="apuntes-view">${marked.parse(apuntesText)}</div>`;
+}
 
 /* ── Render ── */
 function renderQuestion() {
@@ -1105,9 +1143,15 @@ function setupListeners() {
       if (tab.dataset.mode === mode) return;
       mode = tab.dataset.mode;
       document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
-      setupOrder();
-      renderQuestion();
-      renderMasteryStats();
+      if (mode === 'apuntes') {
+        toggleExerciseUI(false);
+        renderApuntes();
+      } else {
+        toggleExerciseUI(true);
+        setupOrder();
+        renderQuestion();
+        renderMasteryStats();
+      }
     });
   });
 
