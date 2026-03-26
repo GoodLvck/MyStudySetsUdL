@@ -341,6 +341,61 @@
     }
     .completion-stat-row:last-child { border: none; }
 
+    /* ── Pseudocode block ── */
+    .pseudocode-block {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 0.65rem 0.9rem;
+      margin-bottom: 1.25rem; overflow-x: auto;
+    }
+    .pseudo-line {
+      display: flex; gap: 0.75rem; padding: 0.1rem 0.35rem;
+      border-radius: 3px; white-space: pre;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+      font-size: 0.8rem; line-height: 1.8;
+    }
+    .pseudo-line.key {
+      background: var(--warning-bg);
+      border-left: 3px solid var(--warning-border);
+      padding-left: 0.25rem;
+    }
+    .line-num {
+      color: var(--text-muted); min-width: 1.4rem;
+      text-align: right; user-select: none; flex-shrink: 0;
+    }
+    .line-code { color: var(--text); }
+
+    /* ── Algo ID choices (checkboxes) ── */
+    .algo-choices { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1rem; }
+    .algo-choice {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      padding: 0.65rem 1rem;
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--surface2); color: var(--text);
+      cursor: pointer; transition: all 0.15s;
+      font-size: 0.88rem; line-height: 1.5;
+    }
+    .algo-choice:not(.disabled):hover { border-color: var(--accent); background: var(--accent-bg); }
+    .algo-choice.selected { border-color: var(--accent); background: var(--accent-bg); }
+    .algo-choice.correct  { border-color: var(--success-border); background: var(--success-bg); color: var(--success); font-weight: 600; }
+    .algo-choice.wrong    { border-color: var(--error-border);   background: var(--error-bg);   color: var(--error); }
+    .algo-choice.missed   { border-color: var(--warning-border); background: var(--warning-bg); color: var(--warning); }
+    .algo-choice.disabled { cursor: default; }
+    .choice-checkbox {
+      width: 1rem; height: 1rem; flex-shrink: 0; margin-top: 0.2rem;
+      accent-color: var(--accent); cursor: pointer;
+    }
+    .choice-checkbox:disabled { cursor: default; }
+
+    /* ── Algo score pill ── */
+    .algo-score {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.3rem 0.8rem; border-radius: 999px;
+      font-size: 0.8rem; font-weight: 600;
+    }
+    .algo-score.perfect { background: var(--success-bg); color: var(--success); }
+    .algo-score.partial { background: var(--warning-bg); color: var(--warning); }
+    .algo-score.zero    { background: var(--error-bg);   color: var(--error); }
+
     /* ── Loading / Error ── */
     .loading, .error-msg {
       text-align: center; padding: 3rem 1rem;
@@ -372,6 +427,7 @@
   <div class="mode-tabs" role="tablist">
     <button class="tab active" data-mode="quiz" role="tab">📝 Tipo Test</button>
     <button class="tab" data-mode="fill" role="tab">✏️ Completar</button>
+    <button class="tab" data-mode="algoid" role="tab">🔍 Identificar</button>
   </div>
 
   <div class="controls">
@@ -422,7 +478,7 @@ const LEVELS = [
 ];
 
 /* ── State ── */
-let quizData, fillData;
+let quizData, fillData, algoIdData;
 let mode         = 'quiz';
 let isRandom     = false;
 let currentIdx   = 0;
@@ -435,9 +491,10 @@ let sessionStates   = {};
 async function init() {
   loadTheme();
   try {
-    [quizData, fillData] = await Promise.all([
+    [quizData, fillData, algoIdData] = await Promise.all([
       fetch('studysets/local_search_quiz.json').then(r => r.json()),
       fetch('studysets/local_search_fillblanks.json').then(r => r.json()),
+      fetch('studysets/local_search_algo_id.json').then(r => r.json()),
     ]);
   } catch (e) {
     document.getElementById('question-card').innerHTML =
@@ -511,7 +568,9 @@ function applyTheme(t) {
 
 /* ── Order ── */
 function getQuestions() {
-  return mode === 'quiz' ? quizData.questions : fillData.questions;
+  if (mode === 'quiz')   return quizData.questions;
+  if (mode === 'algoid') return algoIdData.questions;
+  return fillData.questions;
 }
 function setupOrder() {
   const qs = getQuestions();
@@ -531,8 +590,9 @@ function shuffle(a) {
 function getCurrentQuestion() {
   return getQuestions()[questionOrder[currentIdx]];
 }
-function masteryKey(q) { return (mode === 'quiz' ? 'q_' : 'f_') + q.id; }
-function stateKey(q)   { return (mode === 'quiz' ? 'q_' : 'f_') + q.id; }
+function modePrefix() { return mode === 'quiz' ? 'q_' : mode === 'algoid' ? 'a_' : 'f_'; }
+function masteryKey(q) { return modePrefix() + q.id; }
+function stateKey(q)   { return modePrefix() + q.id; }
 
 /* ── Render ── */
 function renderQuestion() {
@@ -542,8 +602,9 @@ function renderQuestion() {
   document.getElementById('prev-btn').disabled = currentIdx === 0;
   document.getElementById('next-btn').disabled = currentIdx === total - 1;
   const card = document.getElementById('question-card');
-  if (mode === 'quiz') renderQuiz(q, card);
-  else                 renderFill(q, card);
+  if (mode === 'quiz')   renderQuiz(q, card);
+  else if (mode === 'algoid') renderAlgoId(q, card);
+  else                   renderFill(q, card);
   saveSession();
 }
 
@@ -679,6 +740,110 @@ function onFillValidate(q) {
   saveSession();
 }
 
+/* Algo ID */
+function renderAlgoId(q, card) {
+  const prev   = sessionStates[stateKey(q)];
+  const keySet = new Set(q.key_lines || []);
+
+  // Pseudocode
+  const codeHtml = q.pseudocode.map((line, i) => {
+    const isKey = keySet.has(i);
+    return `<div class="pseudo-line${isKey ? ' key' : ''}">` +
+      `<span class="line-num">${i + 1}</span>` +
+      `<span class="line-code">${esc(line)}</span></div>`;
+  }).join('');
+
+  // Choices
+  const correct = q.answer.variants;
+  const choicesHtml = q.algorithm_choices.map(opt => {
+    const k = opt[0];
+    const isCorrect = correct.includes(k);
+    let cls = 'algo-choice';
+    let checked = '';
+    if (prev) {
+      cls += ' disabled';
+      const wasSel = prev.selected.includes(k);
+      if (wasSel && isCorrect)  cls += ' correct';
+      else if (wasSel)          cls += ' wrong';
+      else if (isCorrect)       cls += ' missed';
+      if (wasSel) checked = ' checked';
+    }
+    return `<label class="${cls}" data-key="${k}">` +
+      `<input type="checkbox" class="choice-checkbox" value="${k}"${checked}${prev ? ' disabled' : ''}>` +
+      esc(opt) + `</label>`;
+  }).join('');
+
+  // Score pill
+  let scoreHtml = '';
+  if (prev) {
+    const total   = correct.length;
+    const sc      = prev.score;
+    const scCls   = sc === total ? 'perfect' : sc > 0 ? 'partial' : 'zero';
+    const scIcon  = sc === total ? '✅' : sc > 0 ? '⚠️' : '❌';
+    const perfect = prev.perfect;
+    scoreHtml = `<span class="algo-score ${scCls}">${scIcon} ${sc} / ${total}</span>`;
+    if (perfect) scoreHtml += `&ensp;<strong style="font-size:0.85rem">¡Identificación perfecta!</strong>`;
+  }
+
+  // Hints
+  const hintsHtml = (q.hints || []).map((h, i) =>
+    `<p><strong>Pista ${i + 1}:</strong> ${esc(h)}</p>`).join('');
+  const hasHints = q.hints && q.hints.length > 0;
+
+  const explHdr = prev
+    ? (prev.perfect ? '✅ ¡Identificación perfecta!' : prev.score > 0 ? '⚠️ Parcialmente correcto' : '❌ Incorrecto')
+    : '';
+
+  card.innerHTML = `
+    ${buildHeader(q)}
+    <p class="question-text">${esc(q.question)}</p>
+    <div class="pseudocode-block">${codeHtml}</div>
+    <div class="algo-choices" id="choices">${choicesHtml}</div>
+    <div class="fill-controls">
+      ${hasHints ? '<button class="btn-secondary" id="hint-btn">💡 Pistas</button>' : ''}
+      ${!prev ? '<button class="btn-primary" id="val-btn">✓ Validar</button>' : scoreHtml}
+    </div>
+    ${hasHints ? `<div class="hints-panel hidden" id="hints">${hintsHtml}</div>` : ''}
+    <div class="explanation${prev ? '' : ' hidden'}" id="expl">
+      <span class="expl-header">${explHdr}</span>
+      ${esc(q.explanation)}
+    </div>`;
+
+  if (hasHints) {
+    document.getElementById('hint-btn').addEventListener('click', () =>
+      document.getElementById('hints').classList.toggle('hidden')
+    );
+  }
+  if (!prev) {
+    card.querySelectorAll('.choice-checkbox').forEach(cb => {
+      cb.addEventListener('change', () =>
+        cb.closest('.algo-choice').classList.toggle('selected', cb.checked)
+      );
+    });
+    document.getElementById('val-btn').addEventListener('click', () => onAlgoIdValidate(q));
+  }
+}
+
+function onAlgoIdValidate(q) {
+  const selected = [...document.querySelectorAll('.choice-checkbox')]
+    .filter(cb => cb.checked).map(cb => cb.value);
+  const correct = q.answer.variants;
+  const goodSel = selected.filter(k =>  correct.includes(k)).length;
+  const badSel  = selected.filter(k => !correct.includes(k)).length;
+  const score   = Math.max(0, goodSel - badSel);
+  const perfect = goodSel === correct.length && badSel === 0;
+
+  sessionStates[stateKey(q)] = { selected, score, perfect };
+  sessionAnswered.add(stateKey(q));
+  setMastery(masteryKey(q), perfect);
+
+  const card = document.getElementById('question-card');
+  renderAlgoId(q, card);
+  updateProgress();
+  renderMasteryStats();
+  saveSession();
+}
+
 /* ── Helpers ── */
 function esc(s) {
   return String(s)
@@ -707,7 +872,7 @@ function refreshMasteryBadge(q) {
 }
 function renderMasteryStats() {
   const qs     = getQuestions();
-  const prefix = mode === 'quiz' ? 'q_' : 'f_';
+  const prefix = modePrefix();
   const counts = [0, 0, 0, 0];
   qs.forEach(q => counts[getMastery(prefix + q.id)]++);
   const titles = ['Desconocido', 'Aprendiendo', 'Familiar', 'Dominado'];
@@ -718,12 +883,13 @@ function renderMasteryStats() {
 }
 function showCompletion() {
   const qs      = getQuestions();
-  const prefix  = mode === 'quiz' ? 'q_' : 'f_';
+  const prefix  = modePrefix();
   const counts  = [0, 0, 0, 0];
   qs.forEach(q => counts[getMastery(prefix + q.id)]++);
   let correct = 0;
   Object.values(sessionStates).forEach(s => {
-    if (Array.isArray(s.correct)) { if (s.correct.every(Boolean)) correct++; }
+    if (s.perfect !== undefined) { if (s.perfect) correct++; }
+    else if (Array.isArray(s.correct)) { if (s.correct.every(Boolean)) correct++; }
     else if (s.correct) correct++;
   });
   document.getElementById('completion-stats').innerHTML =
