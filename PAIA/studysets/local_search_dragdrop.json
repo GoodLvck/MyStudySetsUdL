@@ -1,0 +1,216 @@
+{
+  "metadata": {
+    "title": "Drag & Drop — Local Search & SAT",
+    "subject": "Local Search, Metaheurísticas y SAT",
+    "author": "Josep Argelich",
+    "course": "Grau en Enginyeria Informàtica",
+    "totalQuestions": 8,
+    "topics": [
+      "Hill Climbing",
+      "Simulated Annealing",
+      "Tabu Search",
+      "Algoritmos Evolutivos",
+      "GSAT",
+      "WalkSAT",
+      "Comparativa"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Hill Climbing",
+      "difficulty": "easy",
+      "type": "order",
+      "question": "Ordena los pasos del algoritmo Hill Climbing en el orden correcto:",
+      "items": [
+        "Generar una solución inicial aleatoria",
+        "Generar la vecindad completa de la solución actual",
+        "Evaluar todos los vecinos con la función objetivo",
+        "Seleccionar el vecino con mejor evaluación",
+        "Si el mejor vecino mejora la solución actual, moverse a él; si no, devolver la solución actual (óptimo local)"
+      ],
+      "hints": [
+        "El algoritmo siempre comienza con una solución de partida.",
+        "En Hill Climbing básico se evalúan todos los vecinos antes de decidir el movimiento."
+      ],
+      "explanation": "Hill Climbing sigue el ciclo: (1) partir de una solución inicial, (2) generar su vecindad, (3) evaluar todos los vecinos, (4) escoger el mejor, y (5) moverse a él si mejora, o detenerse en caso contrario. Este comportamiento voraz lo hace vulnerable a óptimos locales."
+    },
+    {
+      "id": 2,
+      "topic": "Simulated Annealing",
+      "difficulty": "medium",
+      "type": "order",
+      "question": "Ordena los pasos de una iteración de Simulated Annealing:",
+      "items": [
+        "Seleccionar aleatoriamente un vecino de la solución actual",
+        "Calcular la diferencia de evaluación Δ = eval(vecino) − eval(actual)",
+        "Si Δ > 0, aceptar el vecino incondicionalmente (es una mejora)",
+        "Si Δ ≤ 0, aceptar el vecino con probabilidad e^(Δ/T)",
+        "Reducir la temperatura T según el esquema de enfriamiento (T ← α·T)"
+      ],
+      "hints": [
+        "SA siempre acepta mejoras; la clave está en cómo trata los movimientos que empeoran.",
+        "La temperatura T controla la probabilidad de aceptar soluciones peores."
+      ],
+      "explanation": "En cada iteración de SA: (1) se elige un vecino al azar, (2) se calcula Δ, (3) si Δ > 0 se acepta directamente, (4) si Δ ≤ 0 se acepta con probabilidad e^(Δ/T), y (5) se reduce la temperatura. Al disminuir T, la probabilidad de aceptar empeoramientos tiende a 0 y el algoritmo se comporta como Hill Climbing."
+    },
+    {
+      "id": 3,
+      "topic": "Tabu Search",
+      "difficulty": "medium",
+      "type": "order",
+      "question": "Ordena los pasos de una iteración de Tabu Search:",
+      "items": [
+        "Generar la vecindad de la solución actual",
+        "Filtrar los vecinos prohibidos por la lista tabú (salvo criterio de aspiración)",
+        "Seleccionar el mejor vecino no tabú (aunque empeore la solución actual)",
+        "Actualizar la lista tabú añadiendo el movimiento recién realizado",
+        "Si la nueva solución supera la mejor solución conocida, actualizarla"
+      ],
+      "hints": [
+        "La lista tabú impide volver a soluciones recientemente visitadas.",
+        "El criterio de aspiración permite ignorar la prohibición tabú si el movimiento produce la mejor solución global conocida."
+      ],
+      "explanation": "Tabu Search extiende Hill Climbing con memoria explícita: (1) genera vecindad, (2) descarta vecinos tabú salvo criterio de aspiración, (3) escoge el mejor vecino permitido aunque empeore, (4) registra el movimiento en la lista tabú, y (5) actualiza la mejor solución global si corresponde. La memoria evita ciclos y permite escapar de óptimos locales."
+    },
+    {
+      "id": 4,
+      "topic": "Algoritmos Evolutivos",
+      "difficulty": "hard",
+      "type": "order",
+      "question": "Ordena las fases de un Algoritmo Evolutivo (Genético) básico:",
+      "items": [
+        "Inicializar la población con individuos generados aleatoriamente",
+        "Evaluar el fitness de cada individuo de la población",
+        "Seleccionar los individuos más aptos como progenitores (selección)",
+        "Aplicar operadores de cruce y mutación para generar la nueva generación",
+        "Reemplazar la población antigua por la nueva y comprobar el criterio de parada"
+      ],
+      "hints": [
+        "Los algoritmos evolutivos trabajan con poblaciones de soluciones, no con una única solución.",
+        "El ciclo evaluación → selección → reproducción se repite hasta cumplir el criterio de parada."
+      ],
+      "explanation": "Un algoritmo evolutivo sigue el ciclo: (1) inicializar la población, (2) evaluar el fitness, (3) seleccionar progenitores, (4) aplicar cruce y mutación para producir nuevos individuos, y (5) reemplazar la población y comprobar el criterio de parada. Este ciclo imita la evolución natural: los individuos más aptos tienen mayor probabilidad de reproducirse."
+    },
+    {
+      "id": 5,
+      "topic": "Comparativa",
+      "difficulty": "easy",
+      "type": "match",
+      "question": "Relaciona cada algoritmo con su política de aceptación de nuevas soluciones:",
+      "pairs": [
+        {
+          "left": "Hill Climbing",
+          "right": "Solo acepta vecinos que mejoran estrictamente la solución actual"
+        },
+        {
+          "left": "Simulated Annealing",
+          "right": "Acepta mejoras siempre y empeoramientos con probabilidad e^(Δ/T)"
+        },
+        {
+          "left": "Tabu Search",
+          "right": "Acepta el mejor vecino no prohibido, aunque empeore la solución actual"
+        },
+        {
+          "left": "Búsqueda Aleatoria",
+          "right": "Acepta cualquier vecino sin ningún criterio de calidad"
+        }
+      ],
+      "hints": [
+        "Hill Climbing es el más restrictivo: nunca acepta empeoramientos.",
+        "SA usa una función de probabilidad que depende de la temperatura y del valor de Δ."
+      ],
+      "explanation": "Cada algoritmo tiene una política de aceptación distinta: HC es puramente voraz (nunca empeora), SA introduce aleatoriedad controlada por temperatura, TS acepta el mejor disponible usando memoria para evitar ciclos, y la búsqueda aleatoria no aplica ningún criterio de calidad."
+    },
+    {
+      "id": 6,
+      "topic": "Comparativa",
+      "difficulty": "medium",
+      "type": "match",
+      "question": "Relaciona cada algoritmo con el tipo de memoria que utiliza:",
+      "pairs": [
+        {
+          "left": "Hill Climbing",
+          "right": "Sin memoria: solo conoce la solución actual en cada paso"
+        },
+        {
+          "left": "Tabu Search",
+          "right": "Memoria a corto plazo: lista de movimientos recientes prohibidos"
+        },
+        {
+          "left": "Simulated Annealing",
+          "right": "Sin memoria explícita: usa la temperatura como parámetro global de control"
+        },
+        {
+          "left": "Beam Search",
+          "right": "Memoria de anchura k: mantiene las k mejores soluciones activas en paralelo"
+        }
+      ],
+      "hints": [
+        "La lista tabú es la forma de memoria más explícita y estructurada entre estos algoritmos.",
+        "SA no recuerda soluciones pasadas; solo utiliza la temperatura como contexto global."
+      ],
+      "explanation": "La gestión de memoria es un factor clave: HC es completamente reactivo (sin memoria), SA usa la temperatura como único contexto global, TS mantiene una lista de movimientos prohibidos (memoria a corto plazo), y Beam Search mantiene k soluciones simultáneas ampliando la cobertura de búsqueda."
+    },
+    {
+      "id": 7,
+      "topic": "Simulated Annealing",
+      "difficulty": "medium",
+      "type": "match",
+      "question": "Relaciona cada parámetro de Simulated Annealing con su descripción:",
+      "pairs": [
+        {
+          "left": "Temperatura inicial T₀",
+          "right": "Determina la probabilidad inicial de aceptar movimientos malos; debe ser alta para explorar ampliamente"
+        },
+        {
+          "left": "Factor de enfriamiento α",
+          "right": "Controla la velocidad a la que decrece T en cada paso (típicamente α ∈ [0.95, 0.99])"
+        },
+        {
+          "left": "Temperatura final Tf",
+          "right": "Criterio de parada por temperatura; cuando T < Tf el algoritmo es casi voraz"
+        },
+        {
+          "left": "Función e^(Δ/T)",
+          "right": "Probabilidad de aceptar un vecino peor; tiende a 0 cuando |Δ| es grande o T es pequeña"
+        }
+      ],
+      "hints": [
+        "Con T alta, e^(Δ/T) ≈ 1 → casi cualquier movimiento se acepta (exploración).",
+        "Con T baja, e^(Δ/T) ≈ 0 → el algoritmo se comporta como Hill Climbing (explotación)."
+      ],
+      "explanation": "Los parámetros de SA controlan el balance exploración/explotación: T₀ alta permite explorar sin restricciones al inicio, α determina cuán rápido el algoritmo se vuelve voraz, Tf establece el criterio de parada por temperatura, y e^(Δ/T) es el mecanismo que permite escapar de óptimos locales con probabilidad decreciente."
+    },
+    {
+      "id": 8,
+      "topic": "GSAT y WalkSAT",
+      "difficulty": "hard",
+      "type": "match",
+      "question": "Relaciona cada variante de búsqueda para SAT con su estrategia de selección de variable a cambiar (flip):",
+      "pairs": [
+        {
+          "left": "GSAT",
+          "right": "Evalúa todos los flips posibles y escoge el que maximiza el número global de cláusulas satisfechas"
+        },
+        {
+          "left": "WalkSAT",
+          "right": "Selecciona una cláusula insatisfecha al azar y, con probabilidad p, hace flip aleatorio; si no, escoge el flip que menos cláusulas rompe"
+        },
+        {
+          "left": "GSAT con reinicio aleatorio",
+          "right": "Idéntico a GSAT pero reinicia la asignación aleatoriamente cuando queda atascado sin mejorar"
+        },
+        {
+          "left": "Hill Climbing para SAT",
+          "right": "Solo acepta flips que estrictamente aumentan el número de cláusulas satisfechas"
+        }
+      ],
+      "hints": [
+        "WalkSAT combina un paso aleatorio (walk) con un paso voraz (min-break).",
+        "GSAT evalúa globalmente el impacto de cada flip posible antes de decidir."
+      ],
+      "explanation": "GSAT es una búsqueda voraz global: evalúa todos los flips y escoge el mejor. WalkSAT es más eficiente: primero elige una cláusula insatisfecha al azar y luego decide entre flip aleatorio o voraz según la probabilidad p. GSAT con reinicio añade diversificación ante estancamientos. HC para SAT es el más restrictivo: nunca acepta un flip que empeore."
+    }
+  ]
+}
