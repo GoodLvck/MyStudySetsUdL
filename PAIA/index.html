@@ -418,6 +418,53 @@
     .algo-score.partial { background: var(--warning-bg); color: var(--warning); }
     .algo-score.zero    { background: var(--error-bg);   color: var(--error); }
 
+    /* ── Drag & Drop ── */
+    .dd-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .dd-item {
+      display: flex; align-items: center; gap: 0.65rem;
+      padding: 0.65rem 1rem;
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--surface2); color: var(--text);
+      cursor: grab; font-size: 0.88rem; line-height: 1.5; user-select: none;
+      transition: all 0.15s;
+    }
+    .dd-item[draggable="false"] { cursor: default; }
+    .dd-item.dragging { opacity: 0.35; border-style: dashed; }
+    .dd-item.drag-over { border-color: var(--accent); background: var(--accent-bg); transform: translateY(-2px); }
+    .dd-item.correct { border-color: var(--success-border); background: var(--success-bg); color: var(--success); font-weight: 600; cursor: default; }
+    .dd-item.wrong   { border-color: var(--error-border);   background: var(--error-bg);   color: var(--error);   cursor: default; }
+    .dd-handle { color: var(--text-muted); flex-shrink: 0; font-size: 1.1rem; line-height: 1; }
+    .dd-num { min-width: 1.6rem; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); flex-shrink: 0; }
+
+    /* Match layout */
+    .match-table { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .match-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem; }
+    .match-left-cell {
+      padding: 0.65rem 0.85rem;
+      background: var(--accent-bg); color: var(--accent);
+      font-size: 0.83rem; font-weight: 600; line-height: 1.45;
+      border-radius: var(--radius-sm); display: flex; align-items: center;
+    }
+    .match-row .dd-item { border-radius: var(--radius-sm); }
+    .match-row.validated-correct .dd-item       { border-color: var(--success-border); background: var(--success-bg); color: var(--success); font-weight: 600; cursor: default; }
+    .match-row.validated-correct .match-left-cell { background: var(--success-bg); color: var(--success); }
+    .match-row.validated-wrong .dd-item         { border-color: var(--error-border);   background: var(--error-bg);   color: var(--error);   cursor: default; }
+    .match-row.validated-wrong .match-left-cell   { background: var(--error-bg);   color: var(--error); }
+    .dd-score {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.3rem 0.8rem; border-radius: 999px;
+      font-size: 0.8rem; font-weight: 600;
+    }
+    .dd-score.perfect { background: var(--success-bg); color: var(--success); }
+    .dd-score.partial { background: var(--warning-bg); color: var(--warning); }
+    .dd-score.zero    { background: var(--error-bg);   color: var(--error); }
+
+    @media (max-width: 480px) {
+      .match-row { grid-template-columns: 1fr; }
+      .match-left-cell { border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
+      .match-row .dd-item { border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
+    }
+
     /* ── Loading / Error ── */
     .loading, .error-msg {
       text-align: center; padding: 3rem 1rem;
@@ -450,6 +497,7 @@
     <button class="tab active" data-mode="quiz" role="tab">📝 Tipo Test</button>
     <button class="tab" data-mode="fill" role="tab">✏️ Completar</button>
     <button class="tab" data-mode="algoid" role="tab">🔍 Identificar</button>
+    <button class="tab" data-mode="dragdrop" role="tab">↕ Arrastrar</button>
     <button class="tab" data-mode="apuntes" role="tab">📖 Apuntes</button>
   </div>
 
@@ -501,7 +549,7 @@ const LEVELS = [
 ];
 
 /* ── State ── */
-let quizData, fillData, algoIdData, apuntesText = '';
+let quizData, fillData, algoIdData, apuntesText = '', dragdropData;
 let mode         = 'quiz';
 let isRandom     = false;
 let currentIdx   = 0;
@@ -514,11 +562,12 @@ let sessionStates   = {};
 async function init() {
   loadTheme();
   try {
-    [quizData, fillData, algoIdData, apuntesText] = await Promise.all([
+    [quizData, fillData, algoIdData, apuntesText, dragdropData] = await Promise.all([
       fetch('studysets/local_search_quiz.json').then(r => r.json()),
       fetch('studysets/local_search_fillblanks.json').then(r => r.json()),
       fetch('studysets/local_search_algo_id.json').then(r => r.json()),
       fetch('studysets/resumen_busqueda_local.md').then(r => r.text()),
+      fetch('studysets/local_search_dragdrop.json').then(r => r.json()),
     ]);
   } catch (e) {
     document.getElementById('question-card').innerHTML =
@@ -592,8 +641,9 @@ function applyTheme(t) {
 
 /* ── Order ── */
 function getQuestions() {
-  if (mode === 'quiz')   return quizData.questions;
-  if (mode === 'algoid') return algoIdData.questions;
+  if (mode === 'quiz')     return quizData.questions;
+  if (mode === 'algoid')   return algoIdData.questions;
+  if (mode === 'dragdrop') return dragdropData.questions;
   return fillData.questions;
 }
 function setupOrder() {
@@ -614,7 +664,12 @@ function shuffle(a) {
 function getCurrentQuestion() {
   return getQuestions()[questionOrder[currentIdx]];
 }
-function modePrefix() { return mode === 'quiz' ? 'q_' : mode === 'algoid' ? 'a_' : 'f_'; }
+function modePrefix() {
+  if (mode === 'quiz')     return 'q_';
+  if (mode === 'algoid')   return 'a_';
+  if (mode === 'dragdrop') return 'dd_';
+  return 'f_';
+}
 function masteryKey(q) { return modePrefix() + q.id; }
 function stateKey(q)   { return modePrefix() + q.id; }
 
@@ -640,9 +695,10 @@ function renderQuestion() {
   document.getElementById('prev-btn').disabled = currentIdx === 0;
   document.getElementById('next-btn').disabled = currentIdx === total - 1;
   const card = document.getElementById('question-card');
-  if (mode === 'quiz')   renderQuiz(q, card);
-  else if (mode === 'algoid') renderAlgoId(q, card);
-  else                   renderFill(q, card);
+  if (mode === 'quiz')         renderQuiz(q, card);
+  else if (mode === 'algoid')  renderAlgoId(q, card);
+  else if (mode === 'dragdrop') renderDragDrop(q, card);
+  else                         renderFill(q, card);
   saveSession();
 }
 
@@ -877,6 +933,143 @@ function onAlgoIdValidate(q) {
 
   const card = document.getElementById('question-card');
   renderAlgoId(q, card);
+  updateProgress();
+  renderMasteryStats();
+  saveSession();
+}
+
+/* DragDrop */
+function renderDragDrop(q, card) {
+  const key = stateKey(q);
+  // Init state (shuffled arrangement) if first time seeing this question
+  if (!sessionStates[key]) {
+    const n = q.type === 'order' ? q.items.length : q.pairs.length;
+    const arr = Array.from({length: n}, (_, i) => i);
+    shuffle(arr);
+    sessionStates[key] = { arrangement: arr, validated: false };
+    saveSession();
+  }
+  const state = sessionStates[key];
+  const validated = state.validated;
+  const arrangement = state.arrangement;
+  const n = arrangement.length;
+
+  const getRight = i => q.type === 'order' ? q.items[i] : q.pairs[i].right;
+
+  let bodyHtml;
+  if (q.type === 'order') {
+    bodyHtml = `<div class="dd-list" id="dd-container">` +
+      arrangement.map((origIdx, pos) => {
+        let cls = 'dd-item';
+        if (validated) cls += origIdx === pos ? ' correct' : ' wrong';
+        return `<div class="${cls}" draggable="${!validated}" data-pos="${pos}">` +
+          `<span class="dd-num">${pos + 1}.</span>` +
+          (validated ? '' : `<span class="dd-handle">⠿</span>`) +
+          `<span>${esc(getRight(origIdx))}</span></div>`;
+      }).join('') +
+      `</div>`;
+  } else {
+    bodyHtml = `<div class="match-table" id="dd-container">` +
+      arrangement.map((origIdx, pos) => {
+        let rowCls = 'match-row';
+        if (validated) rowCls += origIdx === pos ? ' validated-correct' : ' validated-wrong';
+        return `<div class="${rowCls}">` +
+          `<div class="match-left-cell">${esc(q.pairs[pos].left)}</div>` +
+          `<div class="dd-item" draggable="${!validated}" data-pos="${pos}">` +
+          (validated ? '' : `<span class="dd-handle">⠿</span>`) +
+          `<span>${esc(getRight(origIdx))}</span></div></div>`;
+      }).join('') +
+      `</div>`;
+  }
+
+  const hintsHtml = (q.hints || []).map((h, i) =>
+    `<p><strong>Pista ${i + 1}:</strong> ${esc(h)}</p>`).join('');
+
+  let scoreHtml = '';
+  if (validated) {
+    const numOk = arrangement.filter((orig, pos) => orig === pos).length;
+    const scCls = numOk === n ? 'perfect' : numOk > 0 ? 'partial' : 'zero';
+    const scIcon = numOk === n ? '✅' : numOk > 0 ? '⚠️' : '❌';
+    scoreHtml = `<span class="dd-score ${scCls}">${scIcon} ${numOk} / ${n} correctos</span>`;
+    if (numOk === n) scoreHtml += `&ensp;<strong style="font-size:0.85rem">¡Perfecto!</strong>`;
+  }
+
+  const explHdr = validated
+    ? (arrangement.every((orig, pos) => orig === pos) ? '✅ ¡Perfecto!' :
+       arrangement.some((orig, pos) => orig === pos) ? '⚠️ Parcialmente correcto' : '❌ Incorrecto')
+    : '';
+
+  card.innerHTML = `
+    ${buildHeader(q)}
+    <p class="question-text">${esc(q.question)}</p>
+    ${bodyHtml}
+    <div class="fill-controls">
+      <button class="btn-secondary" id="hint-btn">💡 Pistas</button>
+      ${!validated ? '<button class="btn-primary" id="val-btn">✓ Validar</button>' : scoreHtml}
+    </div>
+    <div class="hints-panel hidden" id="hints">${hintsHtml}</div>
+    <div class="explanation${validated ? '' : ' hidden'}" id="expl">
+      <span class="expl-header">${explHdr}</span>
+      ${esc(q.explanation)}
+    </div>`;
+
+  document.getElementById('hint-btn').addEventListener('click', () =>
+    document.getElementById('hints').classList.toggle('hidden')
+  );
+  if (!validated) {
+    setupDragDrop(q);
+    document.getElementById('val-btn').addEventListener('click', () => onDragDropValidate(q));
+  }
+}
+
+function setupDragDrop(q) {
+  const container = document.getElementById('dd-container');
+  let dragSrcPos = null;
+
+  container.querySelectorAll('[draggable="true"]').forEach(el => {
+    el.addEventListener('dragstart', e => {
+      dragSrcPos = +el.dataset.pos;
+      el.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    el.addEventListener('dragend', () => {
+      el.classList.remove('dragging');
+      container.querySelectorAll('.drag-over').forEach(x => x.classList.remove('drag-over'));
+    });
+    el.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      el.classList.add('drag-over');
+    });
+    el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
+    el.addEventListener('drop', e => {
+      e.preventDefault();
+      el.classList.remove('drag-over');
+      const tgtPos = +el.dataset.pos;
+      if (dragSrcPos === null || dragSrcPos === tgtPos) return;
+      const key = stateKey(q);
+      const arr = sessionStates[key].arrangement;
+      // Insert: move item at dragSrcPos to tgtPos
+      const [moved] = arr.splice(dragSrcPos, 1);
+      arr.splice(tgtPos, 0, moved);
+      saveSession();
+      renderDragDrop(q, document.getElementById('question-card'));
+    });
+  });
+}
+
+function onDragDropValidate(q) {
+  const key = stateKey(q);
+  const state = sessionStates[key];
+  const arrangement = state.arrangement;
+  const n = arrangement.length;
+  const numOk = arrangement.filter((orig, pos) => orig === pos).length;
+  const perfect = numOk === n;
+  state.validated = true;
+  state.correct = perfect;
+  sessionAnswered.add(key);
+  setMastery(masteryKey(q), perfect);
+  renderDragDrop(q, document.getElementById('question-card'));
   updateProgress();
   renderMasteryStats();
   saveSession();
