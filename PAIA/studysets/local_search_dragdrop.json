@@ -1,216 +1,1200 @@
 {
   "metadata": {
-    "title": "Drag & Drop — Local Search & SAT",
-    "subject": "Local Search, Metaheurísticas y SAT",
-    "author": "Josep Argelich",
+    "title": "Local Search — Drag & Drop Pseudocode",
+    "subject": "Local Search & SAT",
     "course": "Grau en Enginyeria Informàtica",
-    "totalQuestions": 8,
+    "totalQuestions": 26,
+    "format": "drag-and-drop",
+    "formatDescription": "Cada pregunta muestra el pseudocódigo de un algoritmo con uno o más huecos marcados como [B1], [B2], etc. Arrastra los tokens correctos desde el banco de tokens a cada hueco. Se incluyen tokens correctos e incorrectos (distractores). El campo 'blanks' indica la respuesta correcta para cada hueco. El campo 'tokens' contiene todos los tokens disponibles (correctos + distractores) en orden aleatorio.",
     "topics": [
-      "Hill Climbing",
+      "Random Search",
+      "Neighborhood Search",
       "Simulated Annealing",
       "Tabu Search",
-      "Algoritmos Evolutivos",
+      "Genetic Algorithms",
       "GSAT",
-      "WalkSAT",
-      "Comparativa"
+      "WalkSAT"
     ]
   },
   "questions": [
     {
       "id": 1,
-      "topic": "Hill Climbing",
+      "algorithm": "Random Search",
+      "topic": "Neighborhood Search",
       "difficulty": "easy",
-      "type": "order",
-      "question": "Ordena los pasos del algoritmo Hill Climbing en el orden correcto:",
-      "items": [
-        "Generar una solución inicial aleatoria",
-        "Generar la vecindad completa de la solución actual",
-        "Evaluar todos los vecinos con la función objetivo",
-        "Seleccionar el vecino con mejor evaluación",
-        "Si el mejor vecino mejora la solución actual, moverse a él; si no, devolver la solución actual (óptimo local)"
+      "description": "En la inicialización del algoritmo Random Search, ¿qué función se usa para obtener el primer punto X?",
+      "code": [
+        "i := 0",
+        "X := [B1]",
+        "best_solution := X",
+        "best_cost := f(X)",
+        "while i < max_tries do",
+        "    X := random_point(X)",
+        "    if f(X) < best_cost then",
+        "        best_solution := X",
+        "        best_cost := f(X)",
+        "    end if",
+        "    i++",
+        "end while",
+        "return best_solution"
       ],
-      "hints": [
-        "El algoritmo siempre comienza con una solución de partida.",
-        "En Hill Climbing básico se evalúan todos los vecinos antes de decidir el movimiento."
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "random_point(X)",
+          "hint": "Función que genera un punto aleatorio del dominio"
+        }
       ],
-      "explanation": "Hill Climbing sigue el ciclo: (1) partir de una solución inicial, (2) generar su vecindad, (3) evaluar todos los vecinos, (4) escoger el mejor, y (5) moverse a él si mejora, o detenerse en caso contrario. Este comportamiento voraz lo hace vulnerable a óptimos locales."
+      "tokens": [
+        "random_point(X)",
+        "selection(N(X))",
+        "neighbor(s)",
+        "best_solution",
+        "f(X)",
+        "s0"
+      ],
+      "explanation": "Random Search inicializa X con random_point(X), que elige un punto aleatorio del dominio. selection(N(X)) pertenece al Neighborhood Search (navega por vecinos), no a Random Search."
     },
     {
       "id": 2,
-      "topic": "Simulated Annealing",
-      "difficulty": "medium",
-      "type": "order",
-      "question": "Ordena los pasos de una iteración de Simulated Annealing:",
-      "items": [
-        "Seleccionar aleatoriamente un vecino de la solución actual",
-        "Calcular la diferencia de evaluación Δ = eval(vecino) − eval(actual)",
-        "Si Δ > 0, aceptar el vecino incondicionalmente (es una mejora)",
-        "Si Δ ≤ 0, aceptar el vecino con probabilidad e^(Δ/T)",
-        "Reducir la temperatura T según el esquema de enfriamiento (T ← α·T)"
+      "algorithm": "Random Search",
+      "topic": "Neighborhood Search",
+      "difficulty": "easy",
+      "description": "¿Cuál es la condición para actualizar la mejor solución encontrada en Random Search?",
+      "code": [
+        "i := 0",
+        "X := random_point(X)",
+        "best_solution := X",
+        "best_cost := f(X)",
+        "while i < max_tries do",
+        "    X := random_point(X)",
+        "    if f(X) < [B1] then",
+        "        best_solution := X",
+        "        best_cost := f(X)",
+        "    end if",
+        "    i++",
+        "end while",
+        "return best_solution"
       ],
-      "hints": [
-        "SA siempre acepta mejoras; la clave está en cómo trata los movimientos que empeoran.",
-        "La temperatura T controla la probabilidad de aceptar soluciones peores."
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "best_cost",
+          "hint": "Variable que guarda el mejor coste encontrado hasta el momento"
+        }
       ],
-      "explanation": "En cada iteración de SA: (1) se elige un vecino al azar, (2) se calcula Δ, (3) si Δ > 0 se acepta directamente, (4) si Δ ≤ 0 se acepta con probabilidad e^(Δ/T), y (5) se reduce la temperatura. Al disminuir T, la probabilidad de aceptar empeoramientos tiende a 0 y el algoritmo se comporta como Hill Climbing."
+      "tokens": [
+        "best_cost",
+        "max_tries",
+        "emax",
+        "0",
+        "f(best_solution)",
+        "kmax"
+      ],
+      "explanation": "La condición f(X) < best_cost compara el coste del nuevo punto con el mejor coste guardado. Si mejora, se actualiza best_solution y best_cost."
     },
     {
       "id": 3,
-      "topic": "Tabu Search",
+      "algorithm": "Neighborhood Search",
+      "topic": "Neighborhood Search",
       "difficulty": "medium",
-      "type": "order",
-      "question": "Ordena los pasos de una iteración de Tabu Search:",
-      "items": [
-        "Generar la vecindad de la solución actual",
-        "Filtrar los vecinos prohibidos por la lista tabú (salvo criterio de aspiración)",
-        "Seleccionar el mejor vecino no tabú (aunque empeore la solución actual)",
-        "Actualizar la lista tabú añadiendo el movimiento recién realizado",
-        "Si la nueva solución supera la mejor solución conocida, actualizarla"
+      "description": "Diferencia clave entre Random Search y Neighborhood Search: ¿qué función reemplaza a random_point dentro del bucle?",
+      "code": [
+        "i := 0",
+        "X := random_point(X)",
+        "best_solution := X",
+        "best_cost := f(X)",
+        "while i < max_tries do",
+        "    X := [B1]",
+        "    if f(X) < best_cost then",
+        "        best_solution := X",
+        "        best_cost := f(X)",
+        "    end if",
+        "    i++",
+        "end while",
+        "return best_solution"
       ],
-      "hints": [
-        "La lista tabú impide volver a soluciones recientemente visitadas.",
-        "El criterio de aspiración permite ignorar la prohibición tabú si el movimiento produce la mejor solución global conocida."
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "selection(N(X))",
+          "hint": "Función que selecciona el siguiente punto entre los vecinos del actual"
+        }
       ],
-      "explanation": "Tabu Search extiende Hill Climbing con memoria explícita: (1) genera vecindad, (2) descarta vecinos tabú salvo criterio de aspiración, (3) escoge el mejor vecino permitido aunque empeore, (4) registra el movimiento en la lista tabú, y (5) actualiza la mejor solución global si corresponde. La memoria evita ciclos y permite escapar de óptimos locales."
+      "tokens": [
+        "selection(N(X))",
+        "random_point(X)",
+        "neighbor(s)",
+        "f(X)",
+        "best_individual(X)",
+        "N(X)"
+      ],
+      "explanation": "La diferencia clave: Neighborhood Search usa selection(N(X)) — navega entre vecinos del punto actual. Random Search usaba random_point(X) — saltaba a cualquier punto del dominio."
     },
     {
       "id": 4,
-      "topic": "Algoritmos Evolutivos",
-      "difficulty": "hard",
-      "type": "order",
-      "question": "Ordena las fases de un Algoritmo Evolutivo (Genético) básico:",
-      "items": [
-        "Inicializar la población con individuos generados aleatoriamente",
-        "Evaluar el fitness de cada individuo de la población",
-        "Seleccionar los individuos más aptos como progenitores (selección)",
-        "Aplicar operadores de cruce y mutación para generar la nueva generación",
-        "Reemplazar la población antigua por la nueva y comprobar el criterio de parada"
+      "algorithm": "Neighborhood Search",
+      "topic": "Neighborhood Search",
+      "difficulty": "easy",
+      "description": "¿Qué devuelve el Neighborhood Search al terminar el bucle?",
+      "code": [
+        "i := 0",
+        "X := random_point(X)",
+        "best_solution := X",
+        "best_cost := f(X)",
+        "while i < max_tries do",
+        "    X := selection(N(X))",
+        "    if f(X) < best_cost then",
+        "        best_solution := X",
+        "        best_cost := f(X)",
+        "    end if",
+        "    i++",
+        "end while",
+        "return [B1]"
       ],
-      "hints": [
-        "Los algoritmos evolutivos trabajan con poblaciones de soluciones, no con una única solución.",
-        "El ciclo evaluación → selección → reproducción se repite hasta cumplir el criterio de parada."
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "best_solution",
+          "hint": "La mejor solución acumulada a lo largo de toda la búsqueda"
+        }
       ],
-      "explanation": "Un algoritmo evolutivo sigue el ciclo: (1) inicializar la población, (2) evaluar el fitness, (3) seleccionar progenitores, (4) aplicar cruce y mutación para producir nuevos individuos, y (5) reemplazar la población y comprobar el criterio de parada. Este ciclo imita la evolución natural: los individuos más aptos tienen mayor probabilidad de reproducirse."
+      "tokens": [
+        "best_solution",
+        "X",
+        "best_cost",
+        "sbest",
+        "f(X)",
+        "i"
+      ],
+      "explanation": "Se devuelve best_solution, que es la mejor solución encontrada en todas las iteraciones, no necesariamente el X actual al final del bucle."
     },
     {
       "id": 5,
-      "topic": "Comparativa",
+      "algorithm": "Simulated Annealing",
+      "topic": "Simulated Annealing",
       "difficulty": "easy",
-      "type": "match",
-      "question": "Relaciona cada algoritmo con su política de aceptación de nuevas soluciones:",
-      "pairs": [
+      "description": "Completa la inicialización del estado inicial y el contador de evaluaciones en Simulated Annealing.",
+      "code": [
+        "s ← [B1]; e ← E(s)",
+        "sbest ← s; ebest ← e",
+        "k ← [B2]",
+        "while k < kmax and e > emax",
+        "    T ← temperature(1 − k / kmax)",
+        "    snew ← neighbor(s)",
+        "    enew ← E(snew)",
+        "    if P(e, enew, T) > random()",
+        "        s ← snew; e ← enew",
+        "    endif",
+        "    if enew < ebest",
+        "        sbest ← snew; ebest ← enew",
+        "    endif",
+        "    k ← k + 1",
+        "endwhile",
+        "return sbest"
+      ],
+      "blanks": [
         {
-          "left": "Hill Climbing",
-          "right": "Solo acepta vecinos que mejoran estrictamente la solución actual"
+          "id": "B1",
+          "answer": "s0",
+          "hint": "El estado inicial dado como entrada al algoritmo"
         },
         {
-          "left": "Simulated Annealing",
-          "right": "Acepta mejoras siempre y empeoramientos con probabilidad e^(Δ/T)"
-        },
-        {
-          "left": "Tabu Search",
-          "right": "Acepta el mejor vecino no prohibido, aunque empeore la solución actual"
-        },
-        {
-          "left": "Búsqueda Aleatoria",
-          "right": "Acepta cualquier vecino sin ningún criterio de calidad"
+          "id": "B2",
+          "answer": "0",
+          "hint": "Valor inicial del contador de evaluaciones"
         }
       ],
-      "hints": [
-        "Hill Climbing es el más restrictivo: nunca acepta empeoramientos.",
-        "SA usa una función de probabilidad que depende de la temperatura y del valor de Δ."
+      "tokens": [
+        "s0",
+        "0",
+        "snew",
+        "sbest",
+        "1",
+        "random()",
+        "kmax"
       ],
-      "explanation": "Cada algoritmo tiene una política de aceptación distinta: HC es puramente voraz (nunca empeora), SA introduce aleatoriedad controlada por temperatura, TS acepta el mejor disponible usando memoria para evitar ciclos, y la búsqueda aleatoria no aplica ningún criterio de calidad."
+      "explanation": "s ← s0 asigna el estado inicial. k ← 0 inicializa el contador de evaluaciones de energía, que se incrementa en cada iteración hasta kmax."
     },
     {
       "id": 6,
-      "topic": "Comparativa",
+      "algorithm": "Simulated Annealing",
+      "topic": "Simulated Annealing",
       "difficulty": "medium",
-      "type": "match",
-      "question": "Relaciona cada algoritmo con el tipo de memoria que utiliza:",
-      "pairs": [
+      "description": "Completa la fórmula del argumento de la función de temperatura en SA.",
+      "code": [
+        "s ← s0; e ← E(s)",
+        "sbest ← s; ebest ← e",
+        "k ← 0",
+        "while k < kmax and e > emax",
+        "    T ← temperature([B1])",
+        "    snew ← neighbor(s)",
+        "    enew ← E(snew)",
+        "    if P(e, enew, T) > random()",
+        "        s ← snew; e ← enew",
+        "    endif",
+        "    if enew < ebest",
+        "        sbest ← snew; ebest ← enew",
+        "    endif",
+        "    k ← k + 1",
+        "endwhile",
+        "return sbest"
+      ],
+      "blanks": [
         {
-          "left": "Hill Climbing",
-          "right": "Sin memoria: solo conoce la solución actual en cada paso"
-        },
-        {
-          "left": "Tabu Search",
-          "right": "Memoria a corto plazo: lista de movimientos recientes prohibidos"
-        },
-        {
-          "left": "Simulated Annealing",
-          "right": "Sin memoria explícita: usa la temperatura como parámetro global de control"
-        },
-        {
-          "left": "Beam Search",
-          "right": "Memoria de anchura k: mantiene las k mejores soluciones activas en paralelo"
+          "id": "B1",
+          "answer": "1 − k / kmax",
+          "hint": "Fracción que vale 1 al inicio (k=0) y tiende a 0 al final (k=kmax)"
         }
       ],
-      "hints": [
-        "La lista tabú es la forma de memoria más explícita y estructurada entre estos algoritmos.",
-        "SA no recuerda soluciones pasadas; solo utiliza la temperatura como contexto global."
+      "tokens": [
+        "1 − k / kmax",
+        "k / kmax",
+        "k",
+        "kmax",
+        "1 / T",
+        "k − kmax"
       ],
-      "explanation": "La gestión de memoria es un factor clave: HC es completamente reactivo (sin memoria), SA usa la temperatura como único contexto global, TS mantiene una lista de movimientos prohibidos (memoria a corto plazo), y Beam Search mantiene k soluciones simultáneas ampliando la cobertura de búsqueda."
+      "explanation": "temperature(1 − k/kmax): cuando k=0, el argumento es 1 (T alta → acepta peores soluciones). Cuando k=kmax, el argumento tiende a 0 (T baja → solo acepta mejoras). Modela el enfriamiento gradual."
     },
     {
       "id": 7,
+      "algorithm": "Simulated Annealing",
       "topic": "Simulated Annealing",
       "difficulty": "medium",
-      "type": "match",
-      "question": "Relaciona cada parámetro de Simulated Annealing con su descripción:",
-      "pairs": [
+      "description": "Completa la generación del vecino y el cálculo de su energía en SA.",
+      "code": [
+        "s ← s0; e ← E(s)",
+        "sbest ← s; ebest ← e",
+        "k ← 0",
+        "while k < kmax and e > emax",
+        "    T ← temperature(1 − k / kmax)",
+        "    snew ← [B1]",
+        "    enew ← [B2]",
+        "    if P(e, enew, T) > random()",
+        "        s ← snew; e ← enew",
+        "    endif",
+        "    if enew < ebest",
+        "        sbest ← snew; ebest ← enew",
+        "    endif",
+        "    k ← k + 1",
+        "endwhile",
+        "return sbest"
+      ],
+      "blanks": [
         {
-          "left": "Temperatura inicial T₀",
-          "right": "Determina la probabilidad inicial de aceptar movimientos malos; debe ser alta para explorar ampliamente"
+          "id": "B1",
+          "answer": "neighbor(s)",
+          "hint": "Función que genera un vecino aleatorio del estado actual s"
         },
         {
-          "left": "Factor de enfriamiento α",
-          "right": "Controla la velocidad a la que decrece T en cada paso (típicamente α ∈ [0.95, 0.99])"
-        },
-        {
-          "left": "Temperatura final Tf",
-          "right": "Criterio de parada por temperatura; cuando T < Tf el algoritmo es casi voraz"
-        },
-        {
-          "left": "Función e^(Δ/T)",
-          "right": "Probabilidad de aceptar un vecino peor; tiende a 0 cuando |Δ| es grande o T es pequeña"
+          "id": "B2",
+          "answer": "E(snew)",
+          "hint": "Función de energía aplicada al nuevo estado generado"
         }
       ],
-      "hints": [
-        "Con T alta, e^(Δ/T) ≈ 1 → casi cualquier movimiento se acepta (exploración).",
-        "Con T baja, e^(Δ/T) ≈ 0 → el algoritmo se comporta como Hill Climbing (explotación)."
+      "tokens": [
+        "neighbor(s)",
+        "E(snew)",
+        "selection(N(s))",
+        "E(s)",
+        "P(e, enew, T)",
+        "random()",
+        "temperature(snew)"
       ],
-      "explanation": "Los parámetros de SA controlan el balance exploración/explotación: T₀ alta permite explorar sin restricciones al inicio, α determina cuán rápido el algoritmo se vuelve voraz, Tf establece el criterio de parada por temperatura, y e^(Δ/T) es el mecanismo que permite escapar de óptimos locales con probabilidad decreciente."
+      "explanation": "snew ← neighbor(s) genera un vecino aleatorio del estado actual (no el mejor, sino uno al azar). enew ← E(snew) calcula la energía (coste) de ese vecino para decidir si aceptarlo."
     },
     {
       "id": 8,
-      "topic": "GSAT y WalkSAT",
+      "algorithm": "Simulated Annealing",
+      "topic": "Simulated Annealing",
       "difficulty": "hard",
-      "type": "match",
-      "question": "Relaciona cada variante de búsqueda para SAT con su estrategia de selección de variable a cambiar (flip):",
-      "pairs": [
+      "description": "Completa la condición de aceptación estocástica y la actualización de la mejor solución global en SA.",
+      "code": [
+        "s ← s0; e ← E(s)",
+        "sbest ← s; ebest ← e",
+        "k ← 0",
+        "while k < kmax and e > emax",
+        "    T ← temperature(1 − k / kmax)",
+        "    snew ← neighbor(s)",
+        "    enew ← E(snew)",
+        "    if [B1] > random()",
+        "        s ← snew; e ← enew",
+        "    endif",
+        "    if enew < ebest",
+        "        [B2] ← snew; ebest ← enew",
+        "    endif",
+        "    k ← k + 1",
+        "endwhile",
+        "return sbest"
+      ],
+      "blanks": [
         {
-          "left": "GSAT",
-          "right": "Evalúa todos los flips posibles y escoge el que maximiza el número global de cláusulas satisfechas"
+          "id": "B1",
+          "answer": "P(e, enew, T)",
+          "hint": "Función de probabilidad de aceptación que depende de la energía actual, la nueva y la temperatura"
         },
         {
-          "left": "WalkSAT",
-          "right": "Selecciona una cláusula insatisfecha al azar y, con probabilidad p, hace flip aleatorio; si no, escoge el flip que menos cláusulas rompe"
-        },
-        {
-          "left": "GSAT con reinicio aleatorio",
-          "right": "Idéntico a GSAT pero reinicia la asignación aleatoriamente cuando queda atascado sin mejorar"
-        },
-        {
-          "left": "Hill Climbing para SAT",
-          "right": "Solo acepta flips que estrictamente aumentan el número de cláusulas satisfechas"
+          "id": "B2",
+          "answer": "sbest",
+          "hint": "Variable que almacena la mejor solución global encontrada durante toda la ejecución"
         }
       ],
-      "hints": [
-        "WalkSAT combina un paso aleatorio (walk) con un paso voraz (min-break).",
-        "GSAT evalúa globalmente el impacto de cada flip posible antes de decidir."
+      "tokens": [
+        "P(e, enew, T)",
+        "sbest",
+        "T",
+        "enew",
+        "e − enew",
+        "s",
+        "ebest",
+        "random()"
       ],
-      "explanation": "GSAT es una búsqueda voraz global: evalúa todos los flips y escoge el mejor. WalkSAT es más eficiente: primero elige una cláusula insatisfecha al azar y luego decide entre flip aleatorio o voraz según la probabilidad p. GSAT con reinicio añade diversificación ante estancamientos. HC para SAT es el más restrictivo: nunca acepta un flip que empeore."
+      "explanation": "P(e, enew, T) > random() es la condición de aceptación de SA: si la probabilidad supera un umbral aleatorio se acepta snew (aunque sea peor). sbest ← snew guarda la mejor solución global cuando se encuentra una energía inferior a ebest."
+    },
+    {
+      "id": 9,
+      "algorithm": "Simulated Annealing",
+      "topic": "Simulated Annealing",
+      "difficulty": "medium",
+      "description": "Completa la condición del bucle principal de SA y su valor de retorno.",
+      "code": [
+        "s ← s0; e ← E(s)",
+        "sbest ← s; ebest ← e",
+        "k ← 0",
+        "while k < [B1] and e > emax",
+        "    T ← temperature(1 − k / kmax)",
+        "    snew ← neighbor(s)",
+        "    enew ← E(snew)",
+        "    if P(e, enew, T) > random()",
+        "        s ← snew; e ← enew",
+        "    endif",
+        "    if enew < ebest",
+        "        sbest ← snew; ebest ← enew",
+        "    endif",
+        "    k ← k + 1",
+        "endwhile",
+        "return [B2]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "kmax",
+          "hint": "Límite máximo del número de evaluaciones de energía"
+        },
+        {
+          "id": "B2",
+          "answer": "sbest",
+          "hint": "La mejor solución global encontrada a lo largo de toda la ejecución"
+        }
+      ],
+      "tokens": [
+        "kmax",
+        "sbest",
+        "max_tries",
+        "s",
+        "max_flips",
+        "ebest",
+        "emax"
+      ],
+      "explanation": "El bucle termina cuando k = kmax (recursos agotados) o e ≤ emax (calidad suficiente alcanzada). Se retorna sbest, la mejor solución de toda la ejecución, no el estado actual s."
+    },
+    {
+      "id": 10,
+      "algorithm": "Tabu Search",
+      "topic": "Tabu Search",
+      "difficulty": "easy",
+      "description": "Completa la inicialización de Tabu Search: estado inicial y lista tabú.",
+      "code": [
+        "s ← [B1]",
+        "sBest ← s",
+        "tabuList ← [B2]",
+        "while (not stoppingCondition())",
+        "   candidateList ← null",
+        "   for(sCandidate in sNeighborhood)",
+        "     if(not containsTabuElements(sCandidate, tabuList))",
+        "        candidateList ← candidateList + sCandidate",
+        "     endif",
+        "   endfor",
+        "   sCandidate ← LocateBestCandidate(candidateList)",
+        "   if(fitness(sCandidate) < fitness(sBest))",
+        "      sBest ← sCandidate",
+        "   endif",
+        "   tabuList ← featureDifferences(sCandidate, sBest)",
+        "   while(size(tabuList) > maxTabuListSize)",
+        "      ExpireFeatures(tabuList)",
+        "   endwhile",
+        "endwhile",
+        "return(sBest)"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "s0",
+          "hint": "El estado de partida del algoritmo"
+        },
+        {
+          "id": "B2",
+          "answer": "null",
+          "hint": "Valor inicial cuando no hay elementos prohibidos todavía"
+        }
+      ],
+      "tokens": [
+        "s0",
+        "null",
+        "sBest",
+        "candidateList",
+        "0",
+        "[]"
+      ],
+      "explanation": "s ← s0 es la asignación del estado inicial. tabuList ← null indica que al inicio no hay movimientos prohibidos. La lista se irá llenando a medida que el algoritmo avanza."
+    },
+    {
+      "id": 11,
+      "algorithm": "Tabu Search",
+      "topic": "Tabu Search",
+      "difficulty": "medium",
+      "description": "Completa la comprobación que filtra candidatos que contienen elementos tabú.",
+      "code": [
+        "s ← s0",
+        "sBest ← s",
+        "tabuList ← null",
+        "while (not stoppingCondition())",
+        "   candidateList ← null",
+        "   for(sCandidate in sNeighborhood)",
+        "     if(not [B1](sCandidate, tabuList))",
+        "        candidateList ← candidateList + sCandidate",
+        "     endif",
+        "   endfor",
+        "   sCandidate ← LocateBestCandidate(candidateList)",
+        "   if(fitness(sCandidate) < fitness(sBest))",
+        "      sBest ← sCandidate",
+        "   endif",
+        "   tabuList ← featureDifferences(sCandidate, sBest)",
+        "   while(size(tabuList) > maxTabuListSize)",
+        "      ExpireFeatures(tabuList)",
+        "   endwhile",
+        "endwhile",
+        "return(sBest)"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "containsTabuElements",
+          "hint": "Función que comprueba si un candidato tiene atributos presentes en la lista tabú"
+        }
+      ],
+      "tokens": [
+        "containsTabuElements",
+        "fitness",
+        "stoppingCondition",
+        "LocateBestCandidate",
+        "featureDifferences",
+        "ExpireFeatures"
+      ],
+      "explanation": "containsTabuElements(sCandidate, tabuList) verifica si el candidato tiene atributos prohibidos. Solo se añade a candidateList si NO contiene elementos tabú (de ahí el 'not')."
+    },
+    {
+      "id": 12,
+      "algorithm": "Tabu Search",
+      "topic": "Tabu Search",
+      "difficulty": "medium",
+      "description": "Completa la localización del mejor candidato y la actualización de sBest en Tabu Search.",
+      "code": [
+        "s ← s0",
+        "sBest ← s",
+        "tabuList ← null",
+        "while (not stoppingCondition())",
+        "   candidateList ← null",
+        "   for(sCandidate in sNeighborhood)",
+        "     if(not containsTabuElements(sCandidate, tabuList))",
+        "        candidateList ← candidateList + sCandidate",
+        "     endif",
+        "   endfor",
+        "   sCandidate ← [B1](candidateList)",
+        "   if(fitness(sCandidate) < fitness([B2]))",
+        "      sBest ← sCandidate",
+        "   endif",
+        "   tabuList ← featureDifferences(sCandidate, sBest)",
+        "   while(size(tabuList) > maxTabuListSize)",
+        "      ExpireFeatures(tabuList)",
+        "   endwhile",
+        "endwhile",
+        "return(sBest)"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "LocateBestCandidate",
+          "hint": "Función que encuentra el candidato con mejor fitness dentro de la lista de no-tabú"
+        },
+        {
+          "id": "B2",
+          "answer": "sBest",
+          "hint": "La mejor solución global acumulada hasta ahora, con la que se compara el candidato"
+        }
+      ],
+      "tokens": [
+        "LocateBestCandidate",
+        "sBest",
+        "selection",
+        "best_individual",
+        "fitness",
+        "containsTabuElements",
+        "s"
+      ],
+      "explanation": "LocateBestCandidate(candidateList) elige el mejor candidato no tabú (equivalente greedy). Se compara con fitness(sBest): si el candidato es mejor, se actualiza sBest."
+    },
+    {
+      "id": 13,
+      "algorithm": "Tabu Search",
+      "topic": "Tabu Search",
+      "difficulty": "hard",
+      "description": "Completa la actualización de la lista tabú y el control de su tamaño máximo.",
+      "code": [
+        "s ← s0",
+        "sBest ← s",
+        "tabuList ← null",
+        "while (not stoppingCondition())",
+        "   candidateList ← null",
+        "   for(sCandidate in sNeighborhood)",
+        "     if(not containsTabuElements(sCandidate, tabuList))",
+        "        candidateList ← candidateList + sCandidate",
+        "     endif",
+        "   endfor",
+        "   sCandidate ← LocateBestCandidate(candidateList)",
+        "   if(fitness(sCandidate) < fitness(sBest))",
+        "      sBest ← sCandidate",
+        "   endif",
+        "   tabuList ← [B1](sCandidate, sBest)",
+        "   while(size(tabuList) > [B2])",
+        "      ExpireFeatures(tabuList)",
+        "   endwhile",
+        "endwhile",
+        "return(sBest)"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "featureDifferences",
+          "hint": "Función que extrae las características que diferencian al candidato elegido de la mejor solución"
+        },
+        {
+          "id": "B2",
+          "answer": "maxTabuListSize",
+          "hint": "Límite máximo de elementos en la lista tabú"
+        }
+      ],
+      "tokens": [
+        "featureDifferences",
+        "maxTabuListSize",
+        "containsTabuElements",
+        "LocateBestCandidate",
+        "size(tabuList)",
+        "kmax",
+        "stoppingCondition"
+      ],
+      "explanation": "featureDifferences(sCandidate, sBest) extrae las diferencias entre el candidato y la mejor solución y las añade a tabuList. Si la lista supera maxTabuListSize, ExpireFeatures la elimina en orden FIFO (los más antiguos primero)."
+    },
+    {
+      "id": 14,
+      "algorithm": "Tabu Search",
+      "topic": "Tabu Search",
+      "difficulty": "medium",
+      "description": "¿Qué devuelve Tabu Search al finalizar?",
+      "code": [
+        "s ← s0",
+        "sBest ← s",
+        "tabuList ← null",
+        "while (not stoppingCondition())",
+        "   candidateList ← null",
+        "   for(sCandidate in sNeighborhood)",
+        "     if(not containsTabuElements(sCandidate, tabuList))",
+        "        candidateList ← candidateList + sCandidate",
+        "     endif",
+        "   endfor",
+        "   sCandidate ← LocateBestCandidate(candidateList)",
+        "   if(fitness(sCandidate) < fitness(sBest))",
+        "      sBest ← sCandidate",
+        "   endif",
+        "   tabuList ← featureDifferences(sCandidate, sBest)",
+        "   while(size(tabuList) > maxTabuListSize)",
+        "      ExpireFeatures(tabuList)",
+        "   endwhile",
+        "endwhile",
+        "return([B1])"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "sBest",
+          "hint": "La mejor solución encontrada a lo largo de toda la búsqueda tabú"
+        }
+      ],
+      "tokens": [
+        "sBest",
+        "sCandidate",
+        "s",
+        "candidateList",
+        "tabuList",
+        "best"
+      ],
+      "explanation": "Se devuelve sBest, que es la mejor solución global encontrada durante toda la ejecución de Tabu Search, no el sCandidate de la última iteración."
+    },
+    {
+      "id": 15,
+      "algorithm": "Genetic Algorithms",
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "easy",
+      "description": "Completa la inicialización de la población y el cálculo de fitness del Algoritmo Genético.",
+      "code": [
+        "pop ← [B1](n * k)",
+        "fit_pop ← [B2](pop)",
+        "best ← best_individual(pop, fit_pop)",
+        "while (not stopping_condition())",
+        "  best_pop ← selection(n, pop, fit_pop)",
+        "  pop ← crossover_mutation(best_pop)",
+        "  fit_pop ← fitness(pop)",
+        "  new_best ← best_individual(pop, fit_pop)",
+        "  if best > new_best",
+        "     best ← new_best",
+        "  endif",
+        "endwhile",
+        "return best"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "random_population",
+          "hint": "Función que genera individuos aleatorios para la población inicial"
+        },
+        {
+          "id": "B2",
+          "answer": "fitness",
+          "hint": "Función que evalúa la calidad (adaptación) de cada individuo de la población"
+        }
+      ],
+      "tokens": [
+        "random_population",
+        "fitness",
+        "selection",
+        "crossover_mutation",
+        "best_individual",
+        "neighbor"
+      ],
+      "explanation": "random_population(n*k) genera la población inicial con n*k individuos aleatorios. fitness(pop) evalúa la adaptación de cada uno para guiar la selección en futuras generaciones."
+    },
+    {
+      "id": 16,
+      "algorithm": "Genetic Algorithms",
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "medium",
+      "description": "Completa la selección de los mejores individuos y el operador genético de crossover+mutación.",
+      "code": [
+        "pop ← random_population(n * k)",
+        "fit_pop ← fitness(pop)",
+        "best ← best_individual(pop, fit_pop)",
+        "while (not stopping_condition())",
+        "  best_pop ← [B1](n, pop, fit_pop)",
+        "  pop ← [B2](best_pop)",
+        "  fit_pop ← fitness(pop)",
+        "  new_best ← best_individual(pop, fit_pop)",
+        "  if best > new_best",
+        "     best ← new_best",
+        "  endif",
+        "endwhile",
+        "return best"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "selection",
+          "hint": "Operador que elige los individuos más aptos para reproducirse (roulette wheel, tournament, rank...)"
+        },
+        {
+          "id": "B2",
+          "answer": "crossover_mutation",
+          "hint": "Operador genético combinado que genera nueva descendencia mezclando y perturbando individuos"
+        }
+      ],
+      "tokens": [
+        "selection",
+        "crossover_mutation",
+        "fitness",
+        "best_individual",
+        "random_population",
+        "neighbor",
+        "stopping_condition"
+      ],
+      "explanation": "selection(n, pop, fit_pop) elige los mejores individuos usando métodos como roulette wheel o tournament. crossover_mutation(best_pop) genera la nueva generación cruzando pares de padres y aplicando mutaciones."
+    },
+    {
+      "id": 17,
+      "algorithm": "Genetic Algorithms",
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "medium",
+      "description": "Completa la búsqueda del mejor individuo de la nueva generación y la actualización del histórico.",
+      "code": [
+        "pop ← random_population(n * k)",
+        "fit_pop ← fitness(pop)",
+        "best ← best_individual(pop, fit_pop)",
+        "while (not stopping_condition())",
+        "  best_pop ← selection(n, pop, fit_pop)",
+        "  pop ← crossover_mutation(best_pop)",
+        "  fit_pop ← fitness(pop)",
+        "  new_best ← [B1](pop, fit_pop)",
+        "  if best > new_best",
+        "     best ← [B2]",
+        "  endif",
+        "endwhile",
+        "return best"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "best_individual",
+          "hint": "Función que identifica el individuo con mejor fitness en la generación actual"
+        },
+        {
+          "id": "B2",
+          "answer": "new_best",
+          "hint": "El mejor de la generación actual, que supera al histórico"
+        }
+      ],
+      "tokens": [
+        "best_individual",
+        "new_best",
+        "fitness",
+        "selection",
+        "pop",
+        "best",
+        "crossover_mutation"
+      ],
+      "explanation": "best_individual(pop, fit_pop) localiza el mejor de la nueva generación. Si supera al histórico (best > new_best), se actualiza best ← new_best para mantener el mejor global."
+    },
+    {
+      "id": 18,
+      "algorithm": "Genetic Algorithms",
+      "topic": "Algoritmos Genéticos",
+      "difficulty": "easy",
+      "description": "¿Qué devuelve el Algoritmo Genético y cuál es el mejor individuo inicial?",
+      "code": [
+        "pop ← random_population(n * k)",
+        "fit_pop ← fitness(pop)",
+        "best ← [B1](pop, fit_pop)",
+        "while (not stopping_condition())",
+        "  best_pop ← selection(n, pop, fit_pop)",
+        "  pop ← crossover_mutation(best_pop)",
+        "  fit_pop ← fitness(pop)",
+        "  new_best ← best_individual(pop, fit_pop)",
+        "  if best > new_best",
+        "     best ← new_best",
+        "  endif",
+        "endwhile",
+        "return [B2]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "best_individual",
+          "hint": "Función que extrae el mejor individuo de la población inicial"
+        },
+        {
+          "id": "B2",
+          "answer": "best",
+          "hint": "La variable que acumula el mejor individuo encontrado en toda la ejecución"
+        }
+      ],
+      "tokens": [
+        "best_individual",
+        "best",
+        "new_best",
+        "pop",
+        "fit_pop",
+        "best_pop",
+        "selection"
+      ],
+      "explanation": "best_individual(pop, fit_pop) extrae el mejor individuo de la población inicial. Al final, se retorna best, que es el mejor individuo encontrado en todas las generaciones."
+    },
+    {
+      "id": 19,
+      "algorithm": "GSAT",
+      "topic": "GSAT",
+      "difficulty": "easy",
+      "description": "Completa los límites de los dos bucles anidados de GSAT.",
+      "code": [
+        "F ← input CNF formula",
+        "for i = 1 to [B1] do",
+        "   I ← random interpretation for F",
+        "   for j = 1 to [B2] do",
+        "       if I satisfies F then",
+        "           return I",
+        "       endif",
+        "       S ← set of variables s.t. flipping them",
+        "           increments more the total number of satisfied clauses",
+        "       p ← a variable of S",
+        "       I ← I with the value of p flipped",
+        "   endfor",
+        "endfor",
+        "return \"No solution found\""
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "max_tries",
+          "hint": "Número máximo de intentos independientes, cada uno con interpretación aleatoria nueva"
+        },
+        {
+          "id": "B2",
+          "answer": "max_flips",
+          "hint": "Número máximo de flips (inversiones de variable) por intento"
+        }
+      ],
+      "tokens": [
+        "max_tries",
+        "max_flips",
+        "kmax",
+        "n",
+        "max_restarts",
+        "max_iterations"
+      ],
+      "explanation": "El bucle externo (max_tries) reinicia desde una interpretación aleatoria nueva. El bucle interno (max_flips) limita los flips por intento. Esta estructura permite escapar de mínimos locales mediante reinicios."
+    },
+    {
+      "id": 20,
+      "algorithm": "GSAT",
+      "topic": "GSAT",
+      "difficulty": "medium",
+      "description": "Completa la generación de la interpretación inicial y la condición de parada exitosa en GSAT.",
+      "code": [
+        "F ← input CNF formula",
+        "for i = 1 to max_tries do",
+        "   I ← [B1] for F",
+        "   for j = 1 to max_flips do",
+        "       if I [B2] F then",
+        "           return I",
+        "       endif",
+        "       S ← set of variables s.t. flipping them",
+        "           increments more the total number of satisfied clauses",
+        "       p ← a variable of S",
+        "       I ← I with the value of p flipped",
+        "   endfor",
+        "endfor",
+        "return \"No solution found\""
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "random interpretation",
+          "hint": "Asignación inicial aleatoria de valores true/false a cada variable de F"
+        },
+        {
+          "id": "B2",
+          "answer": "satisfies",
+          "hint": "Condición que indica que la interpretación actual hace verdaderas todas las cláusulas de F"
+        }
+      ],
+      "tokens": [
+        "random interpretation",
+        "satisfies",
+        "best interpretation",
+        "solves",
+        "random_point",
+        "violates",
+        "falsifies"
+      ],
+      "explanation": "I ← random interpretation for F: se asigna aleatoriamente true/false a cada variable para empezar el intento. 'if I satisfies F': la condición de éxito — si todas las cláusulas son satisfechas, se devuelve la solución."
+    },
+    {
+      "id": 21,
+      "algorithm": "GSAT",
+      "topic": "GSAT",
+      "difficulty": "medium",
+      "description": "Completa el cálculo del conjunto de variables óptimas S y la operación de flip en GSAT.",
+      "code": [
+        "F ← input CNF formula",
+        "for i = 1 to max_tries do",
+        "   I ← random interpretation for F",
+        "   for j = 1 to max_flips do",
+        "       if I satisfies F then",
+        "           return I",
+        "       endif",
+        "       S ← set of variables s.t. [B1] them",
+        "           increments more the total number of satisfied clauses",
+        "       p ← a variable of S",
+        "       I ← I with the value of p [B2]",
+        "   endfor",
+        "endfor",
+        "return \"No solution found\""
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "flipping",
+          "hint": "Operación que invierte el valor booleano de una variable (0→1 o 1→0)"
+        },
+        {
+          "id": "B2",
+          "answer": "flipped",
+          "hint": "Participio pasado: la variable p ha sido invertida en la nueva interpretación"
+        }
+      ],
+      "tokens": [
+        "flipping",
+        "flipped",
+        "selecting",
+        "selected",
+        "negating",
+        "negated",
+        "removing"
+      ],
+      "explanation": "GSAT calcula S como el conjunto de variables cuyo flip (inversión de valor booleano) maximiza el número de cláusulas satisfechas. Luego aplica el flip: I ← I with the value of p flipped."
+    },
+    {
+      "id": 22,
+      "algorithm": "GSAT",
+      "topic": "GSAT",
+      "difficulty": "hard",
+      "description": "Completa la selección de la variable p y la actualización de la interpretación I en GSAT.",
+      "code": [
+        "F ← input CNF formula",
+        "for i = 1 to max_tries do",
+        "   I ← random interpretation for F",
+        "   for j = 1 to max_flips do",
+        "       if I satisfies F then",
+        "           return I",
+        "       endif",
+        "       S ← set of variables s.t. flipping them",
+        "           increments more the total number of satisfied clauses",
+        "       p ← a variable of [B1]",
+        "       [B2] ← I with the value of p flipped",
+        "   endfor",
+        "endfor",
+        "return \"No solution found\""
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "S",
+          "hint": "El conjunto de variables óptimas calculado justo antes"
+        },
+        {
+          "id": "B2",
+          "answer": "I",
+          "hint": "La interpretación actual que se modifica con el flip de p"
+        }
+      ],
+      "tokens": [
+        "S",
+        "I",
+        "F",
+        "p",
+        "C",
+        "snew"
+      ],
+      "explanation": "p ← a variable of S: se elige aleatoriamente una variable del conjunto óptimo S (pueden existir empates). I ← I with the value of p flipped: la interpretación I se actualiza invirtiendo solo el valor de p."
+    },
+    {
+      "id": 23,
+      "algorithm": "WalkSAT",
+      "topic": "WalkSAT",
+      "difficulty": "medium",
+      "description": "Completa la selección de la cláusula no satisfecha y el conjunto de variables candidatas en WalkSAT.",
+      "code": [
+        "F ← input CNF formula",
+        "for i = 1 to max_tries do",
+        "    I ← random interpretation for F",
+        "    for j = 1 to max_flips do",
+        "        if I satisfies F then",
+        "            return I",
+        "        endif",
+        "        C ← a clause of F not satisfied by [B1]",
+        "        S ← set of variables that appear in [B2]",
+        "        b ← min({broken(p,F,I) | p in S})",
+        "        if b > 0 and with probability ω then",
+        "            p ← a variable of S",
+        "        else",
+        "            p ← a variable of S s.t. broken(p,F,I) = b",
+        "        endif",
+        "        I ← I with the value of p flipped",
+        "    endfor",
+        "endfor",
+        "return \"No solution found\""
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "I",
+          "hint": "La interpretación actual, que es la que no satisface la cláusula C"
+        },
+        {
+          "id": "B2",
+          "answer": "C",
+          "hint": "La cláusula no satisfecha seleccionada — WalkSAT solo considera variables de esta cláusula"
+        }
+      ],
+      "tokens": [
+        "I",
+        "C",
+        "F",
+        "S",
+        "b",
+        "p",
+        "snew"
+      ],
+      "explanation": "C ← clause not satisfied by I: se elige una cláusula que la interpretación actual no satisface. S ← variables that appear in C: clave de WalkSAT — solo considera variables de C, no de toda la fórmula como GSAT."
+    },
+    {
+      "id": 24,
+      "algorithm": "WalkSAT",
+      "topic": "WalkSAT",
+      "difficulty": "medium",
+      "description": "Completa el cálculo del valor mínimo de 'broken' y la probabilidad de random walk en WalkSAT.",
+      "code": [
+        "F ← input CNF formula",
+        "for i = 1 to max_tries do",
+        "    I ← random interpretation for F",
+        "    for j = 1 to max_flips do",
+        "        if I satisfies F then",
+        "            return I",
+        "        endif",
+        "        C ← a clause of F not satisfied by I",
+        "        S ← set of variables that appear in C",
+        "        b ← [B1]({broken(p,F,I) | p in S})",
+        "        if b > 0 and with probability [B2] then",
+        "            p ← a variable of S",
+        "        else",
+        "            p ← a variable of S s.t. broken(p,F,I) = b",
+        "        endif",
+        "        I ← I with the value of p flipped",
+        "    endfor",
+        "endfor",
+        "return \"No solution found\""
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "min",
+          "hint": "Se busca la variable que cause el mínimo número de cláusulas rotas"
+        },
+        {
+          "id": "B2",
+          "answer": "ω",
+          "hint": "Parámetro que controla la probabilidad de paseo aleatorio (letra griega omega)"
+        }
+      ],
+      "tokens": [
+        "min",
+        "ω",
+        "max",
+        "1 − ω",
+        "sum",
+        "T",
+        "avg",
+        "random()"
+      ],
+      "explanation": "b ← min({broken(p,F,I)}): se calcula el mínimo número de cláusulas que se 'romperían' al hacer flip. Con probabilidad ω se hace random walk (exploración aleatoria); con 1-ω se elige la variable que minimiza el daño."
+    },
+    {
+      "id": 25,
+      "algorithm": "WalkSAT",
+      "topic": "WalkSAT",
+      "difficulty": "hard",
+      "description": "Completa ambas ramas del if-else de decisión en WalkSAT: random walk vs. greedy.",
+      "code": [
+        "F ← input CNF formula",
+        "for i = 1 to max_tries do",
+        "    I ← random interpretation for F",
+        "    for j = 1 to max_flips do",
+        "        if I satisfies F then",
+        "            return I",
+        "        endif",
+        "        C ← a clause of F not satisfied by I",
+        "        S ← set of variables that appear in C",
+        "        b ← min({broken(p,F,I) | p in S})",
+        "        if b > 0 and with probability ω then",
+        "            p ← a variable of [B1]",
+        "        else",
+        "            p ← a variable of S s.t. broken(p,F,I) = [B2]",
+        "        endif",
+        "        I ← I with the value of p flipped",
+        "    endfor",
+        "endfor",
+        "return \"No solution found\""
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "S",
+          "hint": "En el random walk se elige una variable al azar de este conjunto (no la mejor)"
+        },
+        {
+          "id": "B2",
+          "answer": "b",
+          "hint": "El valor mínimo de broken calculado previamente — la variable que causa menos daño"
+        }
+      ],
+      "tokens": [
+        "S",
+        "b",
+        "C",
+        "F",
+        "I",
+        "0",
+        "ω",
+        "min"
+      ],
+      "explanation": "Random walk (prob ω): p ← a variable of S (aleatoria entre las de la cláusula). Greedy (prob 1-ω): p ← variable de S tal que broken(p,F,I) = b (la que causa mínimo daño). El equilibrio entre ambas estrategias da a WalkSAT su eficacia."
+    },
+    {
+      "id": 26,
+      "algorithm": "WalkSAT",
+      "topic": "WalkSAT",
+      "difficulty": "easy",
+      "description": "Completa la actualización final de la interpretación en WalkSAT tras seleccionar la variable p.",
+      "code": [
+        "F ← input CNF formula",
+        "for i = 1 to max_tries do",
+        "    I ← random interpretation for F",
+        "    for j = 1 to max_flips do",
+        "        if I satisfies F then",
+        "            return I",
+        "        endif",
+        "        C ← a clause of F not satisfied by I",
+        "        S ← set of variables that appear in C",
+        "        b ← min({broken(p,F,I) | p in S})",
+        "        if b > 0 and with probability ω then",
+        "            p ← a variable of S",
+        "        else",
+        "            p ← a variable of S s.t. broken(p,F,I) = b",
+        "        endif",
+        "        [B1] ← I with the value of [B2] flipped",
+        "    endfor",
+        "endfor",
+        "return \"No solution found\""
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "I",
+          "hint": "La interpretación actual que se modifica in-place"
+        },
+        {
+          "id": "B2",
+          "answer": "p",
+          "hint": "La variable seleccionada en el bloque if-else anterior"
+        }
+      ],
+      "tokens": [
+        "I",
+        "p",
+        "F",
+        "C",
+        "S",
+        "b",
+        "snew"
+      ],
+      "explanation": "I ← I with the value of p flipped: la nueva interpretación es la actual con la variable p invertida. Este patrón es idéntico en GSAT y WalkSAT — la diferencia está en cómo se elige p, no en cómo se aplica."
     }
   ]
 }
