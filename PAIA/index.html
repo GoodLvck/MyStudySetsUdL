@@ -419,37 +419,50 @@
     .algo-score.zero    { background: var(--error-bg);   color: var(--error); }
 
     /* ── Drag & Drop ── */
-    .dd-list { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-    .dd-item {
-      display: flex; align-items: center; gap: 0.65rem;
-      padding: 0.65rem 1rem;
-      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
-      background: var(--surface2); color: var(--text);
-      cursor: grab; font-size: 0.88rem; line-height: 1.5; user-select: none;
-      transition: all 0.15s;
+    .dd-instruction {
+      font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.6rem;
     }
-    .dd-item[draggable="false"] { cursor: default; }
-    .dd-item.dragging { opacity: 0.35; border-style: dashed; }
-    .dd-item.drag-over { border-color: var(--accent); background: var(--accent-bg); transform: translateY(-2px); }
-    .dd-item.correct { border-color: var(--success-border); background: var(--success-bg); color: var(--success); font-weight: 600; cursor: default; }
-    .dd-item.wrong   { border-color: var(--error-border);   background: var(--error-bg);   color: var(--error);   cursor: default; }
-    .dd-handle { color: var(--text-muted); flex-shrink: 0; font-size: 1.1rem; line-height: 1; }
-    .dd-num { min-width: 1.6rem; font-size: 0.78rem; font-weight: 700; color: var(--text-muted); flex-shrink: 0; }
-
-    /* Match layout */
-    .match-table { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
-    .match-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.25rem; }
-    .match-left-cell {
-      padding: 0.65rem 0.85rem;
+    .token-bank {
+      display: flex; flex-wrap: wrap; gap: 0.45rem;
+      padding: 0.75rem; margin-bottom: 0.85rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); min-height: 2.8rem;
+    }
+    .token-chip {
+      padding: 0.28rem 0.75rem;
       background: var(--accent-bg); color: var(--accent);
-      font-size: 0.83rem; font-weight: 600; line-height: 1.45;
-      border-radius: var(--radius-sm); display: flex; align-items: center;
+      border: 1.5px solid var(--accent); border-radius: 999px;
+      font-size: 0.8rem; font-family: 'SF Mono', 'Fira Code', ui-monospace, monospace;
+      cursor: grab; user-select: none; transition: all 0.15s; white-space: nowrap;
     }
-    .match-row .dd-item { border-radius: var(--radius-sm); }
-    .match-row.validated-correct .dd-item       { border-color: var(--success-border); background: var(--success-bg); color: var(--success); font-weight: 600; cursor: default; }
-    .match-row.validated-correct .match-left-cell { background: var(--success-bg); color: var(--success); }
-    .match-row.validated-wrong .dd-item         { border-color: var(--error-border);   background: var(--error-bg);   color: var(--error);   cursor: default; }
-    .match-row.validated-wrong .match-left-cell   { background: var(--error-bg);   color: var(--error); }
+    .token-chip:hover:not(.token-placed) { background: var(--accent); color: #fff; }
+    .token-chip.token-selected { background: var(--accent); color: #fff; box-shadow: 0 0 0 2px var(--accent-hover); }
+    .token-chip.token-placed { opacity: 0.28; cursor: default; pointer-events: none; }
+
+    .blank-zone {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 5.5rem; padding: 0.1rem 0.5rem;
+      background: var(--warning-bg); border: 1.5px dashed var(--warning-border);
+      border-radius: 4px; cursor: pointer;
+      font-family: inherit; font-size: inherit; line-height: 1.6;
+      transition: all 0.15s; vertical-align: middle;
+    }
+    .blank-zone.filled {
+      background: var(--accent-bg); border-color: var(--accent); border-style: solid; color: var(--accent);
+    }
+    .blank-zone.drag-over {
+      background: var(--accent-bg); border-color: var(--accent); border-style: solid;
+    }
+    .blank-zone.correct {
+      background: var(--success-bg); border-color: var(--success-border); border-style: solid;
+      color: var(--success); font-weight: 600; cursor: default;
+    }
+    .blank-zone.wrong {
+      background: var(--error-bg); border-color: var(--error-border); border-style: solid;
+      color: var(--error); cursor: default;
+    }
+    .blank-placeholder { color: var(--text-muted); font-style: italic; font-size: 0.78em; }
+
     .dd-score {
       display: inline-flex; align-items: center; gap: 0.4rem;
       padding: 0.3rem 0.8rem; border-radius: 999px;
@@ -458,12 +471,6 @@
     .dd-score.perfect { background: var(--success-bg); color: var(--success); }
     .dd-score.partial { background: var(--warning-bg); color: var(--warning); }
     .dd-score.zero    { background: var(--error-bg);   color: var(--error); }
-
-    @media (max-width: 480px) {
-      .match-row { grid-template-columns: 1fr; }
-      .match-left-cell { border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
-      .match-row .dd-item { border-radius: 0 0 var(--radius-sm) var(--radius-sm); }
-    }
 
     /* ── Loading / Error ── */
     .loading, .error-msg {
@@ -939,73 +946,92 @@ function onAlgoIdValidate(q) {
 }
 
 /* DragDrop */
+let ddSelectedToken = null;
+
+function buildDDHeader(q) {
+  const ml  = LEVELS[getMastery(masteryKey(q))];
+  const dif = { easy: 'Fácil', medium: 'Medio', hard: 'Difícil' }[q.difficulty] || q.difficulty;
+  return `
+    <div class="question-header">
+      <span class="topic-badge">${esc(q.algorithm)}</span>
+      ${q.topic !== q.algorithm ? `<span class="topic-badge" style="opacity:0.72">${esc(q.topic)}</span>` : ''}
+      <span class="diff-badge ${q.difficulty}">${dif}</span>
+      <span class="mastery-badge ${ml.cls}" id="mastery-badge">${ml.icon} ${ml.label}</span>
+    </div>`;
+}
+
 function renderDragDrop(q, card) {
+  ddSelectedToken = null;
   const key = stateKey(q);
-  // Init state (shuffled arrangement) if first time seeing this question
   if (!sessionStates[key]) {
-    const n = q.type === 'order' ? q.items.length : q.pairs.length;
-    const arr = Array.from({length: n}, (_, i) => i);
-    shuffle(arr);
-    sessionStates[key] = { arrangement: arr, validated: false };
+    sessionStates[key] = { placed: {}, validated: false };
     saveSession();
   }
-  const state = sessionStates[key];
+  const state     = sessionStates[key];
   const validated = state.validated;
-  const arrangement = state.arrangement;
-  const n = arrangement.length;
+  const placed    = state.placed;
 
-  const getRight = i => q.type === 'order' ? q.items[i] : q.pairs[i].right;
+  // answers map: {B1: "answer", ...}
+  const answers = {};
+  q.blanks.forEach(b => { answers[b.id] = b.answer; });
 
-  let bodyHtml;
-  if (q.type === 'order') {
-    bodyHtml = `<div class="dd-list" id="dd-container">` +
-      arrangement.map((origIdx, pos) => {
-        let cls = 'dd-item';
-        if (validated) cls += origIdx === pos ? ' correct' : ' wrong';
-        return `<div class="${cls}" draggable="${!validated}" data-pos="${pos}">` +
-          `<span class="dd-num">${pos + 1}.</span>` +
-          (validated ? '' : `<span class="dd-handle">⠿</span>`) +
-          `<span>${esc(getRight(origIdx))}</span></div>`;
-      }).join('') +
-      `</div>`;
-  } else {
-    bodyHtml = `<div class="match-table" id="dd-container">` +
-      arrangement.map((origIdx, pos) => {
-        let rowCls = 'match-row';
-        if (validated) rowCls += origIdx === pos ? ' validated-correct' : ' validated-wrong';
-        return `<div class="${rowCls}">` +
-          `<div class="match-left-cell">${esc(q.pairs[pos].left)}</div>` +
-          `<div class="dd-item" draggable="${!validated}" data-pos="${pos}">` +
-          (validated ? '' : `<span class="dd-handle">⠿</span>`) +
-          `<span>${esc(getRight(origIdx))}</span></div></div>`;
-      }).join('') +
-      `</div>`;
-  }
+  // Code block — escape line then inject blank zones
+  const codeHtml = q.code.map(line => {
+    const withZones = esc(line).replace(/\[B(\d+)\]/g, (_, n) => {
+      const bid = 'B' + n;
+      const val = placed[bid] || '';
+      let cls = 'blank-zone';
+      if (validated) cls += val === answers[bid] ? ' correct' : ' wrong';
+      else if (val)  cls += ' filled';
+      const inner = val
+        ? esc(val)
+        : `<span class="blank-placeholder">${bid}</span>`;
+      return `<span class="${cls}" data-id="${bid}">${inner}</span>`;
+    });
+    return `<div class="pseudo-line"><span class="line-code">${withZones}</span></div>`;
+  }).join('');
 
-  const hintsHtml = (q.hints || []).map((h, i) =>
-    `<p><strong>Pista ${i + 1}:</strong> ${esc(h)}</p>`).join('');
+  // Token bank
+  const placedSet = new Set(Object.values(placed));
+  const tokensHtml = q.tokens.map(t => {
+    const isPlaced = placedSet.has(t);
+    return `<span class="token-chip${isPlaced ? ' token-placed' : ''}"` +
+      ` draggable="${!validated && !isPlaced}" data-token="${esc(t)}">${esc(t)}</span>`;
+  }).join('');
 
+  // Hints (per blank)
+  const hintsHtml = q.blanks.map(b =>
+    `<p><strong>${esc(b.id)}:</strong> ${esc(b.hint)}</p>`).join('');
+
+  // Score pill
+  const total = q.blanks.length;
   let scoreHtml = '';
   if (validated) {
-    const numOk = arrangement.filter((orig, pos) => orig === pos).length;
-    const scCls = numOk === n ? 'perfect' : numOk > 0 ? 'partial' : 'zero';
-    const scIcon = numOk === n ? '✅' : numOk > 0 ? '⚠️' : '❌';
-    scoreHtml = `<span class="dd-score ${scCls}">${scIcon} ${numOk} / ${n} correctos</span>`;
-    if (numOk === n) scoreHtml += `&ensp;<strong style="font-size:0.85rem">¡Perfecto!</strong>`;
+    const numOk = q.blanks.filter(b => placed[b.id] === b.answer).length;
+    const scCls  = numOk === total ? 'perfect' : numOk > 0 ? 'partial' : 'zero';
+    const scIcon = numOk === total ? '✅' : numOk > 0 ? '⚠️' : '❌';
+    scoreHtml = `<span class="dd-score ${scCls}">${scIcon} ${numOk} / ${total} correctos</span>`;
+    if (numOk === total) scoreHtml += `&ensp;<strong style="font-size:0.85rem">¡Perfecto!</strong>`;
   }
 
+  const allFilled = q.blanks.every(b => placed[b.id]);
   const explHdr = validated
-    ? (arrangement.every((orig, pos) => orig === pos) ? '✅ ¡Perfecto!' :
-       arrangement.some((orig, pos) => orig === pos) ? '⚠️ Parcialmente correcto' : '❌ Incorrecto')
+    ? (q.blanks.every(b => placed[b.id] === b.answer) ? '✅ ¡Perfecto!'
+      : q.blanks.some(b => placed[b.id] === b.answer) ? '⚠️ Parcialmente correcto'
+      : '❌ Incorrecto')
     : '';
 
   card.innerHTML = `
-    ${buildHeader(q)}
-    <p class="question-text">${esc(q.question)}</p>
-    ${bodyHtml}
+    ${buildDDHeader(q)}
+    <p class="question-text">${esc(q.description)}</p>
+    <p class="dd-instruction">Arrastra los tokens al hueco correspondiente del pseudocódigo:</p>
+    <div class="token-bank" id="token-bank">${tokensHtml}</div>
+    <div class="pseudocode-block">${codeHtml}</div>
     <div class="fill-controls">
       <button class="btn-secondary" id="hint-btn">💡 Pistas</button>
-      ${!validated ? '<button class="btn-primary" id="val-btn">✓ Validar</button>' : scoreHtml}
+      ${!validated
+        ? `<button class="btn-primary" id="val-btn"${allFilled ? '' : ' disabled'}>✓ Validar</button>`
+        : scoreHtml}
     </div>
     <div class="hints-panel hidden" id="hints">${hintsHtml}</div>
     <div class="explanation${validated ? '' : ' hidden'}" id="expl">
@@ -1017,56 +1043,80 @@ function renderDragDrop(q, card) {
     document.getElementById('hints').classList.toggle('hidden')
   );
   if (!validated) {
-    setupDragDrop(q);
-    document.getElementById('val-btn').addEventListener('click', () => onDragDropValidate(q));
+    setupDragDropTokens(q);
+    const valBtn = document.getElementById('val-btn');
+    if (valBtn && !valBtn.disabled)
+      valBtn.addEventListener('click', () => onDragDropValidate(q));
   }
 }
 
-function setupDragDrop(q) {
-  const container = document.getElementById('dd-container');
-  let dragSrcPos = null;
+function placeToken(q, tokenText, blankId) {
+  const placed = sessionStates[stateKey(q)].placed;
+  // Remove token from any other blank it occupied
+  for (const bid of Object.keys(placed)) {
+    if (placed[bid] === tokenText) delete placed[bid];
+  }
+  placed[blankId] = tokenText;
+  saveSession();
+  renderDragDrop(q, document.getElementById('question-card'));
+}
 
-  container.querySelectorAll('[draggable="true"]').forEach(el => {
-    el.addEventListener('dragstart', e => {
-      dragSrcPos = +el.dataset.pos;
-      el.classList.add('dragging');
+function removeFromBlank(q, blankId) {
+  delete sessionStates[stateKey(q)].placed[blankId];
+  saveSession();
+  renderDragDrop(q, document.getElementById('question-card'));
+}
+
+function setupDragDropTokens(q) {
+  const card = document.getElementById('question-card');
+
+  // Tokens in bank: drag + click-to-select
+  card.querySelectorAll('.token-chip:not(.token-placed)').forEach(chip => {
+    chip.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', chip.dataset.token);
       e.dataTransfer.effectAllowed = 'move';
     });
-    el.addEventListener('dragend', () => {
-      el.classList.remove('dragging');
-      container.querySelectorAll('.drag-over').forEach(x => x.classList.remove('drag-over'));
+    chip.addEventListener('click', () => {
+      card.querySelectorAll('.token-chip').forEach(c => c.classList.remove('token-selected'));
+      if (ddSelectedToken && ddSelectedToken.text === chip.dataset.token) {
+        ddSelectedToken = null;
+      } else {
+        ddSelectedToken = chip.dataset.token;
+        chip.classList.add('token-selected');
+      }
     });
-    el.addEventListener('dragover', e => {
+  });
+
+  // Blank zones: drop target + click-to-fill/remove
+  card.querySelectorAll('.blank-zone').forEach(zone => {
+    zone.addEventListener('dragover', e => {
       e.preventDefault();
-      e.dataTransfer.dropEffect = 'move';
-      el.classList.add('drag-over');
+      zone.classList.add('drag-over');
     });
-    el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
-    el.addEventListener('drop', e => {
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => {
       e.preventDefault();
-      el.classList.remove('drag-over');
-      const tgtPos = +el.dataset.pos;
-      if (dragSrcPos === null || dragSrcPos === tgtPos) return;
-      const key = stateKey(q);
-      const arr = sessionStates[key].arrangement;
-      // Insert: move item at dragSrcPos to tgtPos
-      const [moved] = arr.splice(dragSrcPos, 1);
-      arr.splice(tgtPos, 0, moved);
-      saveSession();
-      renderDragDrop(q, document.getElementById('question-card'));
+      zone.classList.remove('drag-over');
+      const token = e.dataTransfer.getData('text/plain');
+      if (token) placeToken(q, token, zone.dataset.id);
+    });
+    zone.addEventListener('click', () => {
+      if (ddSelectedToken) {
+        placeToken(q, ddSelectedToken, zone.dataset.id);
+        ddSelectedToken = null;
+      } else if (zone.classList.contains('filled')) {
+        removeFromBlank(q, zone.dataset.id);
+      }
     });
   });
 }
 
 function onDragDropValidate(q) {
-  const key = stateKey(q);
+  const key   = stateKey(q);
   const state = sessionStates[key];
-  const arrangement = state.arrangement;
-  const n = arrangement.length;
-  const numOk = arrangement.filter((orig, pos) => orig === pos).length;
-  const perfect = numOk === n;
+  const perfect = q.blanks.every(b => state.placed[b.id] === b.answer);
   state.validated = true;
-  state.correct = perfect;
+  state.correct   = perfect;
   sessionAnswered.add(key);
   setMastery(masteryKey(q), perfect);
   renderDragDrop(q, document.getElementById('question-card'));
