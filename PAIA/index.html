@@ -472,6 +472,62 @@
     .dd-score.partial { background: var(--warning-bg); color: var(--warning); }
     .dd-score.zero    { background: var(--error-bg);   color: var(--error); }
 
+    /* ── Flashcards ── */
+    .fc-wrapper { display: flex; flex-direction: column; }
+    .fc-scene { perspective: 1100px; width: 100%; margin-bottom: 0; }
+    .fc-card {
+      display: grid; /* stack faces */
+      width: 100%; min-height: 190px;
+      transform-style: preserve-3d;
+      transition: transform 0.52s ease;
+      cursor: pointer;
+    }
+    .fc-card.flipped { transform: rotateY(180deg); }
+    .fc-face {
+      grid-area: 1/1;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 1.6rem 1.4rem; text-align: center;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      background: var(--surface);
+    }
+    .fc-back {
+      transform: rotateY(180deg);
+      background: var(--surface2); text-align: left; align-items: flex-start;
+    }
+    .fc-front-text {
+      font-size: 1.05rem; font-weight: 500; line-height: 1.65; color: var(--text);
+    }
+    .fc-tap-hint {
+      margin-top: 1.1rem; font-size: 0.72rem; color: var(--text-muted); opacity: 0.7;
+    }
+    .fc-back-content {
+      font-size: 0.9rem; line-height: 1.7; color: var(--text); width: 100%;
+    }
+    .fc-back-content p { margin-bottom: 0.45rem; }
+    .fc-back-content ul { padding-left: 1.2rem; margin: 0.3rem 0; }
+    .fc-back-content li { margin-bottom: 0.25rem; }
+    .fc-actions {
+      display: none; gap: 0.75rem; margin-top: 1rem;
+    }
+    .fc-wrapper.flipped .fc-actions { display: flex; }
+    .btn-fc-yes, .btn-fc-no {
+      flex: 1; padding: 0.6rem 1rem;
+      border: 1.5px solid; border-radius: var(--radius-sm);
+      font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit;
+      transition: all 0.15s;
+    }
+    .btn-fc-yes { background: var(--success-bg); color: var(--success); border-color: var(--success-border); }
+    .btn-fc-yes:hover { background: var(--success); color: #fff; }
+    .btn-fc-no  { background: var(--error-bg);   color: var(--error);   border-color: var(--error-border); }
+    .btn-fc-no:hover  { background: var(--error);   color: #fff; }
+    .fc-nav-hint {
+      text-align: center; font-size: 0.7rem; color: var(--text-muted);
+      margin-top: 0.55rem; opacity: 0.7;
+    }
+    @media (min-width: 600px) { .fc-nav-hint { display: none; } }
+
     /* ── Loading / Error ── */
     .loading, .error-msg {
       text-align: center; padding: 3rem 1rem;
@@ -505,6 +561,7 @@
     <button class="tab" data-mode="fill" role="tab">✏️ Completar</button>
     <button class="tab" data-mode="algoid" role="tab">🔍 Identificar</button>
     <button class="tab" data-mode="dragdrop" role="tab">↕ Arrastrar</button>
+    <button class="tab" data-mode="flashcard" role="tab">🃏 Flashcards</button>
     <button class="tab" data-mode="apuntes" role="tab">📖 Apuntes</button>
   </div>
 
@@ -556,7 +613,7 @@ const LEVELS = [
 ];
 
 /* ── State ── */
-let quizData, fillData, algoIdData, apuntesText = '', dragdropData;
+let quizData, fillData, algoIdData, apuntesText = '', dragdropData, flashcardData;
 let mode         = 'quiz';
 let isRandom     = false;
 let currentIdx   = 0;
@@ -569,12 +626,13 @@ let sessionStates   = {};
 async function init() {
   loadTheme();
   try {
-    [quizData, fillData, algoIdData, apuntesText, dragdropData] = await Promise.all([
+    [quizData, fillData, algoIdData, apuntesText, dragdropData, flashcardData] = await Promise.all([
       fetch('studysets/local_search_quiz.json').then(r => r.json()),
       fetch('studysets/local_search_fillblanks.json').then(r => r.json()),
       fetch('studysets/local_search_algo_id.json').then(r => r.json()),
       fetch('studysets/resumen_busqueda_local.md').then(r => r.text()),
       fetch('studysets/local_search_dragdrop.json').then(r => r.json()),
+      fetch('studysets/local_search_flashcards.json').then(r => r.json()),
     ]);
   } catch (e) {
     document.getElementById('question-card').innerHTML =
@@ -648,9 +706,10 @@ function applyTheme(t) {
 
 /* ── Order ── */
 function getQuestions() {
-  if (mode === 'quiz')     return quizData.questions;
-  if (mode === 'algoid')   return algoIdData.questions;
-  if (mode === 'dragdrop') return dragdropData.questions;
+  if (mode === 'quiz')      return quizData.questions;
+  if (mode === 'algoid')    return algoIdData.questions;
+  if (mode === 'dragdrop')  return dragdropData.questions;
+  if (mode === 'flashcard') return flashcardData.cards;
   return fillData.questions;
 }
 function setupOrder() {
@@ -672,9 +731,10 @@ function getCurrentQuestion() {
   return getQuestions()[questionOrder[currentIdx]];
 }
 function modePrefix() {
-  if (mode === 'quiz')     return 'q_';
-  if (mode === 'algoid')   return 'a_';
-  if (mode === 'dragdrop') return 'dd_';
+  if (mode === 'quiz')      return 'q_';
+  if (mode === 'algoid')    return 'a_';
+  if (mode === 'dragdrop')  return 'dd_';
+  if (mode === 'flashcard') return 'fc_';
   return 'f_';
 }
 function masteryKey(q) { return modePrefix() + q.id; }
@@ -702,10 +762,11 @@ function renderQuestion() {
   document.getElementById('prev-btn').disabled = currentIdx === 0;
   document.getElementById('next-btn').disabled = currentIdx === total - 1;
   const card = document.getElementById('question-card');
-  if (mode === 'quiz')         renderQuiz(q, card);
-  else if (mode === 'algoid')  renderAlgoId(q, card);
+  if (mode === 'quiz')          renderQuiz(q, card);
+  else if (mode === 'algoid')   renderAlgoId(q, card);
   else if (mode === 'dragdrop') renderDragDrop(q, card);
-  else                         renderFill(q, card);
+  else if (mode === 'flashcard') renderFlashcard(q, card);
+  else                          renderFill(q, card);
   saveSession();
 }
 
@@ -1123,6 +1184,112 @@ function onDragDropValidate(q) {
   updateProgress();
   renderMasteryStats();
   saveSession();
+}
+
+/* ── Flashcard ── */
+function formatBack(text) {
+  const lines = esc(text).split('\n');
+  let html = '', inList = false;
+  for (const line of lines) {
+    const bullet = line.match(/^•\s*(.*)/);
+    if (bullet) {
+      if (!inList) { html += '<ul>'; inList = true; }
+      html += `<li>${bullet[1]}</li>`;
+    } else {
+      if (inList) { html += '</ul>'; inList = false; }
+      if (line.trim()) html += `<p>${line}</p>`;
+    }
+  }
+  if (inList) html += '</ul>';
+  return html;
+}
+
+function renderFlashcard(q, card) {
+  const key      = stateKey(q);
+  const flipped  = sessionStates[key]?.flipped || false;
+  const ml       = LEVELS[getMastery(masteryKey(q))];
+
+  card.innerHTML = `
+    <div class="question-header">
+      <span class="topic-badge">${esc(q.topic)}</span>
+      <span class="mastery-badge ${ml.cls}" id="mastery-badge">${ml.icon} ${ml.label}</span>
+    </div>
+    <div class="fc-wrapper${flipped ? ' flipped' : ''}" id="fc-wrapper">
+      <div class="fc-scene">
+        <div class="fc-card${flipped ? ' flipped' : ''}" id="fc-inner">
+          <div class="fc-face fc-front">
+            <p class="fc-front-text">${esc(q.front)}</p>
+            <span class="fc-tap-hint">Toca / clic para ver la respuesta</span>
+          </div>
+          <div class="fc-face fc-back">
+            <div class="fc-back-content">${formatBack(q.back)}</div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-actions">
+        <button class="btn-fc-no"  id="fc-no">✗ No lo sabía</button>
+        <button class="btn-fc-yes" id="fc-yes">✓ Lo sabía</button>
+      </div>
+    </div>
+    <p class="fc-nav-hint">← desliza para cambiar de tarjeta · toca para girar →</p>`;
+
+  // Flip on click (skip if clicking rating buttons)
+  const inner   = document.getElementById('fc-inner');
+  const wrapper = document.getElementById('fc-wrapper');
+  inner.addEventListener('click', () => {
+    const nowFlipped = inner.classList.toggle('flipped');
+    wrapper.classList.toggle('flipped', nowFlipped);
+    if (!sessionStates[key]) sessionStates[key] = {};
+    sessionStates[key].flipped = nowFlipped;
+    saveSession();
+  });
+
+  // Rating buttons (stop click propagation so they don't re-flip)
+  document.getElementById('fc-yes').addEventListener('click', e => {
+    e.stopPropagation();
+    onFlashcardRate(q, true);
+  });
+  document.getElementById('fc-no').addEventListener('click', e => {
+    e.stopPropagation();
+    onFlashcardRate(q, false);
+  });
+
+  // Swipe for mobile
+  let swipeX = 0, swipeY = 0;
+  card.addEventListener('touchstart', e => {
+    swipeX = e.touches[0].clientX;
+    swipeY = e.touches[0].clientY;
+  }, { passive: true });
+  card.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - swipeX;
+    const dy = e.changedTouches[0].clientY - swipeY;
+    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      if (dx < 0 && currentIdx < questionOrder.length - 1) { currentIdx++; renderQuestion(); }
+      else if (dx > 0 && currentIdx > 0)                   { currentIdx--; renderQuestion(); }
+    }
+  }, { passive: true });
+}
+
+function onFlashcardRate(q, knew) {
+  const key = stateKey(q);
+  const cur = getMastery(masteryKey(q));
+  // Adjust mastery: correct → level up (max 3), wrong → level down to min 1
+  const next = knew ? Math.min(3, cur + 1) : Math.max(1, cur - 1);
+  setMastery(masteryKey(q), next);
+  sessionAnswered.add(key);
+  if (!sessionStates[key]) sessionStates[key] = {};
+  sessionStates[key].correct = knew;
+  sessionStates[key].flipped = false;
+  updateProgress();
+  renderMasteryStats();
+  saveSession();
+  // Auto-advance to next card
+  if (currentIdx < questionOrder.length - 1) {
+    currentIdx++;
+    renderQuestion();
+  } else {
+    renderFlashcard(q, document.getElementById('question-card'));
+  }
 }
 
 /* ── Helpers ── */

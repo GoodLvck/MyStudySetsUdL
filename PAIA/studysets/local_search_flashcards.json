@@ -1,0 +1,457 @@
+{
+  "metadata": {
+    "title": "Local Search & SAT — Flashcards",
+    "format": "flashcards",
+    "totalCards": 72,
+    "topics": [
+      "Algorithm Classification",
+      "Problem Definition",
+      "Neighborhood Function",
+      "Random Search",
+      "Neighborhood Search",
+      "Simulated Annealing",
+      "Tabu Search",
+      "Genetic Algorithms",
+      "SAT / CNF",
+      "GSAT",
+      "WalkSAT",
+      "Random k-SAT",
+      "UBCSAT"
+    ],
+    "description": "Comprehensive flashcard set covering all concepts from the Local Search and Local Search & SAT lecture notes."
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Algorithm Classification",
+      "front": "¿Qué es un algoritmo sistemático (completo)?",
+      "back": "Un algoritmo que garantiza encontrar una solución si existe, explorando el espacio de búsqueda de forma exhaustiva (o al menos de manera que no pierda ninguna solución). Ejemplo: backtracking, BFS."
+    },
+    {
+      "id": 2,
+      "topic": "Algorithm Classification",
+      "front": "¿Qué es un algoritmo no sistemático (incompleto)?",
+      "back": "Un algoritmo que NO garantiza encontrar una solución aunque exista. Sacrifica la completitud a cambio de mayor eficiencia o escalabilidad. Los algoritmos de búsqueda local son de este tipo."
+    },
+    {
+      "id": 3,
+      "topic": "Algorithm Classification",
+      "front": "¿Por qué usar algoritmos de búsqueda local si son incompletos?",
+      "back": "Porque en problemas de gran escala, los algoritmos completos son computacionalmente inviables. La búsqueda local puede encontrar soluciones de buena calidad en tiempo razonable, aunque no garantice la óptima."
+    },
+    {
+      "id": 4,
+      "topic": "Problem Definition",
+      "front": "¿Cómo se define formalmente un problema de optimización/búsqueda en el contexto de búsqueda local?",
+      "back": "Como una tupla (X, D, F) donde:\n• X = conjunto de variables\n• D = dominio de cada variable\n• F = función de coste (o fitness) a minimizar/maximizar\nUna solución es una asignación de valores de D a las variables de X."
+    },
+    {
+      "id": 5,
+      "topic": "Problem Definition",
+      "front": "¿Qué representa X en la definición de problema (X, D, F)?",
+      "back": "X es el conjunto de variables del problema. Cada variable xi ∈ X toma un valor de su dominio Di ⊆ D. Una asignación completa de valores a todas las variables define un punto en el espacio de búsqueda."
+    },
+    {
+      "id": 6,
+      "topic": "Problem Definition",
+      "front": "¿Qué representa F en la definición de problema (X, D, F)?",
+      "back": "F es la función de coste (o función objetivo). Asigna un valor numérico a cada asignación completa de variables. Los algoritmos de búsqueda local intentan minimizar (o maximizar) F."
+    },
+    {
+      "id": 7,
+      "topic": "Neighborhood Function",
+      "front": "¿Qué es la función de vecindad N(X)?",
+      "back": "N(X) es una función que, dada una solución X (punto en el espacio de búsqueda), devuelve el conjunto de soluciones vecinas (vecindario). Define qué soluciones son 'accesibles' desde X en un solo paso."
+    },
+    {
+      "id": 8,
+      "topic": "Neighborhood Function",
+      "front": "¿Qué propiedades importantes debe tener la función de vecindad N(X)?",
+      "back": "• Accesibilidad: desde cualquier solución debe poder alcanzarse cualquier otra (el grafo de vecindad debe ser conexo).\n• Localidad: los vecinos de X deben ser 'parecidos' a X (pequeños cambios). Un vecindario demasiado grande o pequeño puede ser ineficiente."
+    },
+    {
+      "id": 9,
+      "topic": "Neighborhood Function",
+      "front": "¿Qué es la 'accesibilidad' en el contexto de la función de vecindad?",
+      "back": "La propiedad de que desde cualquier punto del espacio de búsqueda se puede llegar a cualquier otro punto aplicando un número finito de movimientos de vecindad. Garantiza que ninguna región del espacio queda desconectada."
+    },
+    {
+      "id": 10,
+      "topic": "Neighborhood Function",
+      "front": "¿Qué es la 'localidad' en el contexto de la función de vecindad?",
+      "back": "La propiedad de que los vecinos de una solución X son 'cercanos' a X, es decir, difieren en pocos componentes. Una alta localidad implica vecindarios pequeños y movimientos de cambio mínimo."
+    },
+    {
+      "id": 11,
+      "topic": "Random Search",
+      "front": "¿En qué consiste el algoritmo de Random Search?",
+      "back": "Genera puntos aleatorios del espacio de búsqueda de forma iterativa mediante random_point(X) y se queda con el mejor encontrado. No usa información de la estructura del problema ni del historial de búsqueda."
+    },
+    {
+      "id": 12,
+      "topic": "Random Search",
+      "front": "Pseudocódigo de Random Search",
+      "back": "best ← random_point(X)\nrepeat\n  s ← random_point(X)\n  if f(s) < f(best) then\n    best ← s\nuntil termination_condition\nreturn best"
+    },
+    {
+      "id": 13,
+      "topic": "Random Search",
+      "front": "¿Cuál es la principal ventaja e inconveniente de Random Search?",
+      "back": "Ventaja: extremadamente simple; puede escapar de óptimos locales porque no depende de la posición actual.\nInconveniente: muy ineficiente; no aprovecha ninguna información del paisaje de búsqueda (fitness landscape)."
+    },
+    {
+      "id": 14,
+      "topic": "Neighborhood Search",
+      "front": "¿En qué consiste el algoritmo de Neighborhood Search (búsqueda local básica)?",
+      "back": "Comienza en una solución aleatoria y en cada paso selecciona una solución del vecindario actual (mediante selection(N(X))). Se mueve a esa solución si mejora (o según el criterio de selección). Continúa hasta cumplir la condición de parada."
+    },
+    {
+      "id": 15,
+      "topic": "Neighborhood Search",
+      "front": "Pseudocódigo de Neighborhood Search",
+      "back": "s ← random_point(X)\nrepeat\n  s ← selection(N(s))\nuntil termination_condition\nreturn s"
+    },
+    {
+      "id": 16,
+      "topic": "Neighborhood Search",
+      "front": "¿Qué problema fundamental tiene Neighborhood Search (hill climbing)?",
+      "back": "Queda atrapado en óptimos locales: una solución desde la que ningún vecino mejora la función de coste, pero que no es el óptimo global. El algoritmo no puede escapar porque solo acepta movimientos que mejoran."
+    },
+    {
+      "id": 17,
+      "topic": "Neighborhood Search",
+      "front": "¿Qué es un óptimo local en búsqueda local?",
+      "back": "Una solución s* tal que f(s*) ≤ f(s) para todo s ∈ N(s*). Es decir, ningún vecino inmediato la mejora. Puede no ser el óptimo global."
+    },
+    {
+      "id": 18,
+      "topic": "Simulated Annealing",
+      "front": "¿Qué es Simulated Annealing (SA) y en qué se inspira?",
+      "back": "Es un algoritmo de búsqueda local que acepta soluciones peores con cierta probabilidad, inspirado en el proceso de recocido (annealing) de metales: calentar y enfriar lentamente para reducir defectos y llegar a un estado de baja energía."
+    },
+    {
+      "id": 19,
+      "topic": "Simulated Annealing",
+      "front": "¿Cuál es el criterio de aceptación de SA?",
+      "back": "Se acepta una solución peor snew con probabilidad P(e, enew, T) = exp(-(enew - e) / T), donde e = f(s), enew = f(snew), T = temperatura actual. Si snew es mejor (enew < e), siempre se acepta."
+    },
+    {
+      "id": 20,
+      "topic": "Simulated Annealing",
+      "front": "¿Qué es la temperatura T en Simulated Annealing?",
+      "back": "T es un parámetro de control que disminuye progresivamente según un schedule de enfriamiento. Al inicio (T alta) se aceptan muchas soluciones peores (exploración). Al final (T baja) casi solo se aceptan mejoras (explotación)."
+    },
+    {
+      "id": 21,
+      "topic": "Simulated Annealing",
+      "front": "¿Qué es el schedule de temperatura (cooling schedule) en SA?",
+      "back": "La función que define cómo decrece la temperatura T a lo largo del tiempo. Un schedule común es T(t) = T0 · α^t, donde α ∈ (0,1) es el factor de enfriamiento. Determina el equilibrio exploración/explotación."
+    },
+    {
+      "id": 22,
+      "topic": "Simulated Annealing",
+      "front": "Pseudocódigo de Simulated Annealing",
+      "back": "s ← random_point(X)\nT ← initial_temperature\nrepeat\n  snew ← selection(N(s))\n  e ← f(s); enew ← f(snew)\n  if P(e, enew, T) > random(0,1) then\n    s ← snew\n  T ← update_temperature(T)\nuntil termination_condition\nreturn s"
+    },
+    {
+      "id": 23,
+      "topic": "Simulated Annealing",
+      "front": "¿Cómo garantiza SA escapar de óptimos locales?",
+      "back": "Aceptando soluciones peores con probabilidad P(e, enew, T) > 0. La probabilidad de aceptar un movimiento empeorante disminuye conforme baja la temperatura y conforme mayor es el empeoramiento (enew - e)."
+    },
+    {
+      "id": 24,
+      "topic": "Tabu Search",
+      "front": "¿Qué es Tabu Search y qué problema resuelve?",
+      "back": "Es un metaheurístico de búsqueda local que usa una lista tabú (tabuList) para evitar volver a visitar soluciones recientes. Resuelve el problema de ciclado y permite escapar de óptimos locales aceptando movimientos empeorantes."
+    },
+    {
+      "id": 25,
+      "topic": "Tabu Search",
+      "front": "¿Qué es la lista tabú (tabuList) en Tabu Search?",
+      "back": "Una estructura de memoria a corto plazo que almacena características (features) de movimientos o soluciones recientes. Los movimientos que producen soluciones con esas características están prohibidos (tabú) durante cierto número de iteraciones."
+    },
+    {
+      "id": 26,
+      "topic": "Tabu Search",
+      "front": "¿Qué son las 'features' (características) en Tabu Search?",
+      "back": "Atributos de una solución o de un movimiento que se almacenan en la lista tabú. En lugar de memorizar soluciones completas (costoso), se memorizan características parciales que identifican el movimiento realizado."
+    },
+    {
+      "id": 27,
+      "topic": "Tabu Search",
+      "front": "¿Qué hace la función featureDifferences(s, s') en Tabu Search?",
+      "back": "Calcula las diferencias de características entre dos soluciones s y s'. Estas diferencias son las que se añaden a la lista tabú para prohibir movimientos que lleven de vuelta a soluciones similares."
+    },
+    {
+      "id": 28,
+      "topic": "Tabu Search",
+      "front": "¿Qué hace la función ExpireFeatures(tabuList) en Tabu Search?",
+      "back": "Elimina de la lista tabú las características cuyo 'tiempo de vida' (tenure) ha expirado. Así, los movimientos dejan de ser tabú pasado un cierto número de iteraciones, evitando restricciones permanentes."
+    },
+    {
+      "id": 29,
+      "topic": "Tabu Search",
+      "front": "Pseudocódigo de Tabu Search",
+      "back": "s ← random_point(X); best ← s; tabuList ← ∅\nrepeat\n  candidates ← {s' ∈ N(s) | ¬containsTabuElements(s', tabuList)}\n  s' ← argmin_{c ∈ candidates} f(c)\n  tabuList ← tabuList ∪ featureDifferences(s, s')\n  s ← s'\n  if f(s) < f(best) then best ← s\n  ExpireFeatures(tabuList)\nuntil termination_condition\nreturn best"
+    },
+    {
+      "id": 30,
+      "topic": "Tabu Search",
+      "front": "¿Qué es el 'tenure' en Tabu Search?",
+      "back": "El número de iteraciones que una característica permanece en la lista tabú. Un tenure corto permite más flexibilidad pero más riesgo de ciclar; un tenure largo evita ciclos pero puede impedir buenos movimientos."
+    },
+    {
+      "id": 31,
+      "topic": "Tabu Search",
+      "front": "¿Qué es el criterio de aspiración en Tabu Search?",
+      "back": "Una condición que permite aceptar un movimiento tabú si, a pesar de estar prohibido, conduce a una solución mejor que la mejor solución encontrada hasta el momento (best). Evita descartar movimientos excelentes por estar tabú."
+    },
+    {
+      "id": 32,
+      "topic": "Genetic Algorithms",
+      "front": "¿Qué son los Algoritmos Genéticos (GA)?",
+      "back": "Metaheurísticos inspirados en la evolución biológica. Operan sobre una población de soluciones (individuos) y aplican operadores de selección, cruce (crossover) y mutación para generar nuevas generaciones progresivamente mejores."
+    },
+    {
+      "id": 33,
+      "topic": "Genetic Algorithms",
+      "front": "¿Qué es la función de fitness en un GA?",
+      "back": "Equivalente a la función de coste/objetivo F. Evalúa la calidad de cada individuo de la población. Los individuos con mayor fitness tienen más probabilidad de ser seleccionados para reproducirse."
+    },
+    {
+      "id": 34,
+      "topic": "Genetic Algorithms",
+      "front": "¿Qué es la selección en un GA?",
+      "back": "El proceso de elegir qué individuos de la población actual pasarán sus genes a la siguiente generación. Los individuos con mayor fitness tienen mayor probabilidad de ser elegidos (selección proporcional, por torneo, etc.)."
+    },
+    {
+      "id": 35,
+      "topic": "Genetic Algorithms",
+      "front": "¿Qué es el crossover (cruce) en un GA?",
+      "back": "Operador que combina el material genético de dos individuos padres para producir uno o más hijos. Permite combinar características buenas de distintas soluciones. Ejemplo: crossover de un punto, de dos puntos, uniforme."
+    },
+    {
+      "id": 36,
+      "topic": "Genetic Algorithms",
+      "front": "¿Qué es la mutación en un GA?",
+      "back": "Operador que introduce cambios aleatorios pequeños en un individuo. Mantiene la diversidad de la población y permite explorar regiones del espacio no alcanzables solo mediante cruce. Se aplica con baja probabilidad."
+    },
+    {
+      "id": 37,
+      "topic": "Genetic Algorithms",
+      "front": "Pseudocódigo de Genetic Algorithm",
+      "back": "population ← random_population(X)\nrepeat\n  fitness_values ← evaluate(population)\n  parents ← selection(population, fitness_values)\n  offspring ← crossover_mutation(parents)\n  population ← offspring\nuntil termination_condition\nreturn best_individual(population)"
+    },
+    {
+      "id": 38,
+      "topic": "Genetic Algorithms",
+      "front": "¿Qué diferencia principal existe entre GA y búsqueda local (SA, Tabu)?",
+      "back": "Los GA operan sobre una población de soluciones simultáneamente (búsqueda poblacional), mientras que SA y Tabu mantienen una sola solución en cada momento (búsqueda con un único punto). Los GA favorecen más la exploración global."
+    },
+    {
+      "id": 39,
+      "topic": "Genetic Algorithms",
+      "front": "¿Qué es el elitismo en un GA?",
+      "back": "Estrategia que garantiza que los mejores individuos de una generación siempre pasan a la siguiente sin modificación. Evita perder la mejor solución encontrada durante la evolución."
+    },
+    {
+      "id": 40,
+      "topic": "SAT / CNF",
+      "front": "¿Qué es el problema SAT (Boolean Satisfiability)?",
+      "back": "El problema de determinar si existe una interpretación (asignación de valores verdadero/falso a las variables) que satisfaga una fórmula booleana dada. SAT fue el primer problema demostrado NP-completo (Cook, 1971)."
+    },
+    {
+      "id": 41,
+      "topic": "SAT / CNF",
+      "front": "¿Qué es un literal en CNF?",
+      "back": "Una variable booleana xi o su negación ¬xi. Ejemplo: dado x1, los literales son x1 (positivo) y ¬x1 (negativo)."
+    },
+    {
+      "id": 42,
+      "topic": "SAT / CNF",
+      "front": "¿Qué es una cláusula en CNF?",
+      "back": "Una disyunción (OR) de uno o más literales. Ejemplo: (x1 ∨ ¬x2 ∨ x3). Una cláusula es satisfecha si al menos uno de sus literales es verdadero bajo la interpretación actual."
+    },
+    {
+      "id": 43,
+      "topic": "SAT / CNF",
+      "front": "¿Qué es una fórmula en Forma Normal Conjuntiva (CNF)?",
+      "back": "Una conjunción (AND) de cláusulas. Ejemplo: (x1 ∨ ¬x2) ∧ (¬x1 ∨ x3) ∧ (x2 ∨ x3). Una fórmula CNF es satisfecha si TODAS sus cláusulas son satisfechas simultáneamente."
+    },
+    {
+      "id": 44,
+      "topic": "SAT / CNF",
+      "front": "¿Qué es una interpretación en SAT?",
+      "back": "Una asignación de valores verdadero (1) o falso (0) a cada variable booleana. Una interpretación satisface una fórmula CNF si todas las cláusulas son verdaderas bajo esa asignación."
+    },
+    {
+      "id": 45,
+      "topic": "SAT / CNF",
+      "front": "¿Qué significa que una fórmula CNF sea satisfacible (SAT) vs. insatisfacible (UNSAT)?",
+      "back": "SAT: existe al menos una interpretación que satisface la fórmula (todas las cláusulas son verdaderas).\nUNSAT: no existe ninguna interpretación que satisfaga la fórmula (siempre hay al menos una cláusula falsa)."
+    },
+    {
+      "id": 46,
+      "topic": "SAT / CNF",
+      "front": "¿Qué es k-SAT?",
+      "back": "Una variante de SAT donde cada cláusula tiene exactamente k literales. 2-SAT es resoluble en tiempo polinomial; 3-SAT es NP-completo. k-SAT para k ≥ 3 es NP-completo."
+    },
+    {
+      "id": 47,
+      "topic": "SAT / CNF",
+      "front": "¿Cómo se puede modelar SAT como un problema de optimización para búsqueda local?",
+      "back": "Definir la función de coste F(I) = número de cláusulas NO satisfechas por la interpretación I. El objetivo es minimizar F(I) hasta llegar a 0 (fórmula satisfecha). El espacio de búsqueda son las 2^n interpretaciones posibles."
+    },
+    {
+      "id": 48,
+      "topic": "Random k-SAT",
+      "front": "¿Qué es un generador de Random k-SAT?",
+      "back": "Un procedimiento que genera fórmulas k-SAT aleatorias: dados n variables y m cláusulas, cada cláusula se crea eligiendo aleatoriamente k variables y negando cada una con probabilidad 0.5."
+    },
+    {
+      "id": 49,
+      "topic": "Random k-SAT",
+      "front": "¿Qué es el ratio de cláusulas (clause ratio) α en Random k-SAT?",
+      "back": "α = m/n, el cociente entre el número de cláusulas m y el número de variables n. Determina la dificultad esperada de la instancia: α bajo → fácil (SAT), α alto → fácil (UNSAT), α ≈ αc → difícil."
+    },
+    {
+      "id": 50,
+      "topic": "Random k-SAT",
+      "front": "¿Qué es la transición de fase en Random k-SAT?",
+      "back": "El fenómeno por el que al aumentar α = m/n, la probabilidad de que una instancia sea satisfacible pasa bruscamente de ~1 a ~0 alrededor de un valor crítico αc (≈4.27 para 3-SAT). En αc se concentran las instancias más difíciles."
+    },
+    {
+      "id": 51,
+      "topic": "Random k-SAT",
+      "front": "¿Qué es el patrón 'easy-hard-easy' en Random k-SAT?",
+      "back": "La dificultad computacional de resolver instancias Random k-SAT en función de α:\n• α bajo (pocas restricciones): fácil de resolver (SAT, muchas soluciones)\n• α ≈ αc (zona de transición): muy difícil\n• α alto (muchas restricciones): fácil de demostrar UNSAT"
+    },
+    {
+      "id": 52,
+      "topic": "Random k-SAT",
+      "front": "¿Cuál es el valor crítico αc para 3-SAT?",
+      "back": "αc ≈ 4.27 para 3-SAT. Cerca de este punto, las instancias Random 3-SAT están en la transición de fase y son las más difíciles de resolver tanto para algoritmos completos como incompletos."
+    },
+    {
+      "id": 53,
+      "topic": "GSAT",
+      "front": "¿Qué es GSAT y cuál es su idea principal?",
+      "back": "GSAT (Greedy SAT) es un algoritmo de búsqueda local para SAT. Comienza con una interpretación aleatoria y en cada paso realiza el flip de la variable que más reduce el número de cláusulas insatisfechas (movimiento greedy)."
+    },
+    {
+      "id": 54,
+      "topic": "GSAT",
+      "front": "¿Qué es un 'flip' en GSAT?",
+      "back": "Cambiar el valor de verdad de una variable booleana: si era True pasa a False, y viceversa. Es el movimiento elemental en el espacio de búsqueda de SAT. El vecindario de una interpretación son las n interpretaciones obtenidas por cada flip posible."
+    },
+    {
+      "id": 55,
+      "topic": "GSAT",
+      "front": "¿Qué son max_tries y max_flips en GSAT?",
+      "back": "Parámetros de parada:\n• max_tries: número máximo de reinicios aleatorios (intentos completos desde una nueva interpretación aleatoria).\n• max_flips: número máximo de flips por intento. Si no se encuentra solución en max_flips pasos, se reinicia."
+    },
+    {
+      "id": 56,
+      "topic": "GSAT",
+      "front": "Pseudocódigo de GSAT",
+      "back": "for i = 1 to max_tries do\n  I ← random_interpretation()\n  for j = 1 to max_flips do\n    if F satisfiable under I then return I\n    p ← variable that maximizes satisfied clauses when flipped\n    I ← flip(I, p)\nreturn failure"
+    },
+    {
+      "id": 57,
+      "topic": "GSAT",
+      "front": "¿Cuál es el principal problema de GSAT?",
+      "back": "Queda atrapado en plateaux (mesetas): regiones donde muchos flips tienen el mismo coste. También puede ciclar. La estrategia greedy pura no es suficiente para escapar de estas situaciones."
+    },
+    {
+      "id": 58,
+      "topic": "WalkSAT",
+      "front": "¿Qué es WalkSAT y cómo mejora a GSAT?",
+      "back": "WalkSAT es un algoritmo de búsqueda local para SAT que combina movimientos greedy con movimientos aleatorios (random walk). Primero selecciona una cláusula insatisfecha, luego decide si hacer flip greedy o aleatorio según un parámetro ω."
+    },
+    {
+      "id": 59,
+      "topic": "WalkSAT",
+      "front": "¿Cómo selecciona WalkSAT qué variable flipar?",
+      "back": "1. Selecciona aleatoriamente una cláusula insatisfecha c.\n2. Con probabilidad ω: elige aleatoriamente una variable de c (random walk).\n3. Con probabilidad (1-ω): elige la variable de c que minimiza broken(p, F, I) (movimiento greedy)."
+    },
+    {
+      "id": 60,
+      "topic": "WalkSAT",
+      "front": "¿Qué es la función broken(p, F, I) en WalkSAT?",
+      "back": "broken(p, F, I) = número de cláusulas que actualmente están satisfechas y dejarían de estarlo si se hiciera flip a la variable p en la interpretación I bajo la fórmula F. Mide el 'daño' de un flip."
+    },
+    {
+      "id": 61,
+      "topic": "WalkSAT",
+      "front": "¿Qué es el parámetro ω (walk probability) en WalkSAT?",
+      "back": "La probabilidad de hacer un movimiento aleatorio (random walk) en lugar del movimiento greedy. Un ω alto favorece la exploración; un ω bajo favorece la explotación. Valor típico: ω ≈ 0.5."
+    },
+    {
+      "id": 62,
+      "topic": "WalkSAT",
+      "front": "Pseudocódigo de WalkSAT",
+      "back": "for i = 1 to max_tries do\n  I ← random_interpretation()\n  for j = 1 to max_flips do\n    if F satisfiable under I then return I\n    c ← random unsatisfied clause in F\n    if random() < ω then\n      p ← random variable in c\n    else\n      p ← variable in c with min broken(p, F, I)\n    I ← flip(I, p)\nreturn failure"
+    },
+    {
+      "id": 63,
+      "topic": "WalkSAT",
+      "front": "¿Por qué WalkSAT selecciona primero una cláusula insatisfecha en lugar de evaluar todas las variables?",
+      "back": "Porque garantiza que el flip elegido solo afecta a cláusulas que actualmente fallan, lo que hace el movimiento localmente relevante. Además reduce el coste computacional: solo se evalúan k variables (las de la cláusula) en lugar de n."
+    },
+    {
+      "id": 64,
+      "topic": "WalkSAT",
+      "front": "¿Cuál es la diferencia principal entre GSAT y WalkSAT?",
+      "back": "GSAT evalúa todas las n variables y hace flip a la que más mejora globalmente (greedy puro). WalkSAT primero elige una cláusula insatisfecha y solo evalúa sus k variables, combinando greedy con random walk, lo que lo hace más eficiente y capaz de escapar de mesetas."
+    },
+    {
+      "id": 65,
+      "topic": "UBCSAT",
+      "front": "¿Qué es UBCSAT?",
+      "back": "Una herramienta software (framework) para experimentar y comparar algoritmos de búsqueda local para SAT. Implementa múltiples algoritmos (GSAT, WalkSAT, etc.) y permite configurarlos y ejecutarlos fácilmente desde la línea de comandos."
+    },
+    {
+      "id": 66,
+      "topic": "UBCSAT",
+      "front": "¿Qué hace el flag -alg en UBCSAT?",
+      "back": "Especifica el algoritmo a utilizar. Ejemplo: -alg gsat selecciona GSAT; -alg walksat selecciona WalkSAT."
+    },
+    {
+      "id": 67,
+      "topic": "UBCSAT",
+      "front": "¿Qué hace el flag -i en UBCSAT?",
+      "back": "Especifica el fichero de entrada con la fórmula CNF en formato DIMACS. Ejemplo: -i formula.cnf"
+    },
+    {
+      "id": 68,
+      "topic": "UBCSAT",
+      "front": "¿Qué hacen los flags -runs y -cutoff en UBCSAT?",
+      "back": "• -runs N: número de ejecuciones independientes (equivalente a max_tries).\n• -cutoff M: número máximo de flips por ejecución (equivalente a max_flips)."
+    },
+    {
+      "id": 69,
+      "topic": "UBCSAT",
+      "front": "¿Qué hace el flag -solve en UBCSAT?",
+      "back": "Indica a UBCSAT que pare en cuanto encuentre una solución satisfacible. Sin este flag, continúa todas las ejecuciones aunque ya haya encontrado una solución."
+    },
+    {
+      "id": 70,
+      "topic": "UBCSAT",
+      "front": "¿Qué hacen los flags -target, -seed y -wp en UBCSAT?",
+      "back": "• -target T: número de cláusulas insatisfechas que se considera éxito (por defecto 0).\n• -seed S: semilla para el generador de números aleatorios (reproducibilidad).\n• -wp ω: walk probability para WalkSAT (equivalente al parámetro ω)."
+    },
+    {
+      "id": 71,
+      "topic": "UBCSAT",
+      "front": "¿Qué es el formato DIMACS para fórmulas CNF?",
+      "back": "Formato estándar de texto para representar fórmulas CNF:\n• Línea de cabecera: p cnf <num_vars> <num_clauses>\n• Cada cláusula: lista de literales enteros terminada en 0 (negativo = negado).\nEjemplo: '1 -2 3 0' representa la cláusula (x1 ∨ ¬x2 ∨ x3)."
+    },
+    {
+      "id": 72,
+      "topic": "Algorithm Classification",
+      "front": "¿Cuál es la relación entre búsqueda local e inteligencia artificial?",
+      "back": "Los algoritmos de búsqueda local son fundamentales en IA para resolver problemas de optimización y satisfacción de restricciones. Se usan cuando el espacio de búsqueda es demasiado grande para métodos exhaustivos, como en planificación, scheduling, diseño de redes, etc."
+    }
+  ]
+}
