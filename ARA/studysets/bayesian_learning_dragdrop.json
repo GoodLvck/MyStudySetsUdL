@@ -1,0 +1,577 @@
+{
+  "metadata": {
+    "title": "Bayesian Learning — Drag & Drop Pseudocode",
+    "subject": "Aprendizaje de Modelos Bayesianos",
+    "course": "Grau en Enginyeria Informàtica — ARA",
+    "totalQuestions": 15,
+    "format": "drag-and-drop",
+    "formatDescription": "Cada pregunta muestra el pseudocódigo de un algoritmo o fórmula con uno o más huecos marcados como [B1], [B2], etc. Arrastra los tokens correctos desde el banco de tokens a cada hueco. Se incluyen tokens correctos e incorrectos (distractores).",
+    "topics": [
+      "MLE: fórmula y aplicación",
+      "Score UPSM: fórmula",
+      "Algoritmo K2",
+      "Comparación de modelos",
+      "BIC/MDL"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "algorithm": "MLE — Fórmula básica",
+      "topic": "MLE: fórmula y aplicación",
+      "difficulty": "easy",
+      "description": "Completa la fórmula de Maximum Likelihood Estimation para el parámetro P(xi=k | πi=wi,j).",
+      "code": [
+        "θ̂_{i,j,k} = P(xi=k | πi=wi,j)",
+        "           = [B1]",
+        "             ——————",
+        "             [B2]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "N_{i,j,k}",
+          "hint": "Número de registros donde xi=k y los padres tienen valores wi,j"
+        },
+        {
+          "id": "B2",
+          "answer": "N_{i,j}",
+          "hint": "Total de registros donde los padres tienen valores wi,j (suma sobre todos los k)"
+        }
+      ],
+      "tokens": [
+        "N_{i,j,k}",
+        "N_{i,j}",
+        "N_{i,j,k}!",
+        "|D|",
+        "ri",
+        "(ri-1)"
+      ],
+      "explanation": "θ̂_{i,j,k} = N_{i,j,k} / N_{i,j}. Numerador: co-ocurrencias de xi=k con el caso de padres j. Denominador: total de registros con ese caso de padres. Es la frecuencia relativa empírica."
+    },
+    {
+      "id": 2,
+      "algorithm": "MLE — Definición de N_{i,j,k}",
+      "topic": "MLE: fórmula y aplicación",
+      "difficulty": "medium",
+      "description": "Completa la definición formal de N_{i,j,k}.",
+      "code": [
+        "N_{i,j,k} = |{r | r ∈ [B1], r[xi = [B2], πi = [B3]]}|"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "D",
+          "hint": "La base de datos de casos"
+        },
+        {
+          "id": "B2",
+          "answer": "k",
+          "hint": "El valor de xi que contamos"
+        },
+        {
+          "id": "B3",
+          "answer": "wi,j",
+          "hint": "Los valores asignados a los padres de xi en el caso j"
+        }
+      ],
+      "tokens": [
+        "D",
+        "k",
+        "wi,j",
+        "xi",
+        "πi",
+        "j",
+        "|D|",
+        "ri"
+      ],
+      "explanation": "N_{i,j,k} cuenta los registros r en D donde simultáneamente xi=k y los padres πi tienen los valores wi,j. Es la cardinalidad del conjunto de registros que satisfacen ambas condiciones."
+    },
+    {
+      "id": 3,
+      "algorithm": "N_{i,j} como suma de N_{i,j,k}",
+      "topic": "MLE: fórmula y aplicación",
+      "difficulty": "easy",
+      "description": "Completa la relación entre N_{i,j} y los N_{i,j,k}.",
+      "code": [
+        "N_{i,j} = [B1] N_{i,j,k}",
+        "           k=1"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "Σ^{ri}",
+          "hint": "Sumatorio sobre todos los valores k de xi (de 1 a ri)"
+        }
+      ],
+      "tokens": [
+        "Σ^{ri}",
+        "∏^{ri}",
+        "max_{k=1}^{ri}",
+        "Σ^{|D|}",
+        "1/ri ·"
+      ],
+      "explanation": "N_{i,j} = Σ_{k=1}^{ri} N_{i,j,k}: el total de registros con el caso de padres j, sumando sobre todos los valores posibles k de xi. Es el denominador de MLE."
+    },
+    {
+      "id": 4,
+      "algorithm": "Número de parámetros independientes",
+      "topic": "MLE: fórmula y aplicación",
+      "difficulty": "medium",
+      "description": "Completa la fórmula del número de parámetros independientes de la CPT de xi.",
+      "code": [
+        "Parámetros independientes de CPT(xi)",
+        "= ([B1] - 1) · [B2]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "ri",
+          "hint": "Número de valores posibles de xi"
+        },
+        {
+          "id": "B2",
+          "answer": "qi",
+          "hint": "Número de casos distintos de las variables padre de xi"
+        }
+      ],
+      "tokens": [
+        "ri",
+        "qi",
+        "ni",
+        "ki",
+        "|D|",
+        "n"
+      ],
+      "explanation": "(ri-1)·qi: hay qi filas en la CPT (una por cada combinación de valores de padres). Cada fila tiene ri valores que suman 1, por lo que solo ri-1 son independientes. Total: (ri-1)·qi."
+    },
+    {
+      "id": 5,
+      "algorithm": "Factor UPSM por nodo y caso de padres",
+      "topic": "Score UPSM: fórmula",
+      "difficulty": "hard",
+      "description": "Completa el factor UPSM para el nodo xi y el caso de padres j.",
+      "code": [
+        "Factor(xi, j) = [B1]",
+        "                ———————————————————",
+        "                (N_{i,j} + [B2])!",
+        "              · [B3] N_{i,j,k}!"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "(ri - 1)!",
+          "hint": "Factorial de (número de valores de xi menos 1)"
+        },
+        {
+          "id": "B2",
+          "answer": "ri - 1",
+          "hint": "Término que se suma a N_{i,j} en el denominador"
+        },
+        {
+          "id": "B3",
+          "answer": "∏_{k=1}^{ri}",
+          "hint": "Producto sobre todos los valores k de xi"
+        }
+      ],
+      "tokens": [
+        "(ri - 1)!",
+        "ri - 1",
+        "∏_{k=1}^{ri}",
+        "Σ_{k=1}^{ri}",
+        "N_{i,j}!",
+        "ri!",
+        "(ri + 1)!"
+      ],
+      "explanation": "Factor UPSM(xi,j) = (ri-1)!·∏_k N_{i,j,k}! / (N_{i,j}+ri-1)!. Se obtiene por la integral de Dirichlet. Este factor es máximo cuando hay predicción perfecta (un único k con N_{i,j,k}=N_{i,j})."
+    },
+    {
+      "id": 6,
+      "algorithm": "Score UPSM total",
+      "topic": "Score UPSM: fórmula",
+      "difficulty": "hard",
+      "description": "Completa la fórmula del score UPSM total de una red BN y datos D.",
+      "code": [
+        "P(D, BN) = C · [B1] [B2] Factor(xi, j)"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "∏_{i=1}^{n}",
+          "hint": "Producto sobre todos los nodos de la red"
+        },
+        {
+          "id": "B2",
+          "answer": "∏_{j=1}^{qi}",
+          "hint": "Producto sobre todos los casos de padres del nodo xi"
+        }
+      ],
+      "tokens": [
+        "∏_{i=1}^{n}",
+        "∏_{j=1}^{qi}",
+        "Σ_{i=1}^{n}",
+        "Σ_{j=1}^{qi}",
+        "∏_{k=1}^{ri}",
+        "max_{i}"
+      ],
+      "explanation": "P(D,BN) = C · ∏_i ∏_j Factor(xi,j). El score es el producto de los factores locales de todos los nodos (i) y todos los casos de padres (j). La propiedad local permite este producto independiente."
+    },
+    {
+      "id": 7,
+      "algorithm": "Algoritmo K2 — estructura principal",
+      "topic": "Algoritmo K2",
+      "difficulty": "medium",
+      "description": "Completa el pseudocódigo principal del algoritmo K2.",
+      "code": [
+        "Function LearnBNetK2(D, Ordering, u):",
+        "  for each vi in [B1] do",
+        "    πi := {}",
+        "    Pold(xi) := UPSM(xi, πi, [B2])",
+        "    improving := true",
+        "    while improving ∧ |πi| < [B3] do",
+        "      z := argmax_{z∈Prev(xi,Ordering)\\πi} UPSM(xi, πi∪{z}, D)",
+        "      Pnew(xi) := UPSM(xi, πi∪{z}, D)",
+        "      if Pnew(xi) > Pold(xi) then",
+        "        Pold(xi) := Pnew(xi) ; πi := πi∪{z}",
+        "      else",
+        "        improving := false"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "Ordering",
+          "hint": "El orden entre los nodos dado como parámetro"
+        },
+        {
+          "id": "B2",
+          "answer": "D",
+          "hint": "La base de datos de casos"
+        },
+        {
+          "id": "B3",
+          "answer": "u",
+          "hint": "El límite máximo de padres permitidos"
+        }
+      ],
+      "tokens": [
+        "Ordering",
+        "D",
+        "u",
+        "n",
+        "Vars",
+        "πi",
+        "Prev(xi)",
+        "|D|"
+      ],
+      "explanation": "K2 itera sobre los nodos en el Ordering. Para cada nodo, evalúa UPSM con D, y añade padres mientras mejore y no supere u. La variable 'improving' controla el bucle greedy."
+    },
+    {
+      "id": 8,
+      "algorithm": "K2 — Selección del mejor padre",
+      "topic": "Algoritmo K2",
+      "difficulty": "medium",
+      "description": "Completa la línea de selección del mejor padre en K2.",
+      "code": [
+        "z := [B1]_{z ∈ [B2] \\ πi} UPSM(xi, πi ∪ {z}, D)"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "argmax",
+          "hint": "Seleccionar el nodo que maximiza el score"
+        },
+        {
+          "id": "B2",
+          "answer": "Prev(xi, Ordering)",
+          "hint": "Los nodos anteriores a xi en el orden (candidatos a padre)"
+        }
+      ],
+      "tokens": [
+        "argmax",
+        "argmin",
+        "max",
+        "Prev(xi, Ordering)",
+        "Next(xi, Ordering)",
+        "Vars",
+        "πi",
+        "D"
+      ],
+      "explanation": "z se selecciona como el nodo en Prev(xi,Ordering)\\πi que maximiza UPSM(xi,πi∪{z},D). Prev(xi) son los nodos anteriores en el Ordering (los únicos que pueden ser padres de xi para garantizar DAG)."
+    },
+    {
+      "id": 9,
+      "algorithm": "K2 — Condición de parada",
+      "topic": "Algoritmo K2",
+      "difficulty": "easy",
+      "description": "Completa la condición de actualización de padres en K2.",
+      "code": [
+        "if [B1] > [B2] then",
+        "  Pold(xi) := Pnew(xi)",
+        "  πi := πi ∪ {z}",
+        "else",
+        "  improving := false   // No se mejora: parar para xi"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "Pnew(xi)",
+          "hint": "El score con el nuevo padre añadido"
+        },
+        {
+          "id": "B2",
+          "answer": "Pold(xi)",
+          "hint": "El score actual sin el nuevo padre"
+        }
+      ],
+      "tokens": [
+        "Pnew(xi)",
+        "Pold(xi)",
+        "UPSM(xi, πi, D)",
+        "UPSM(xi, πi∪{z}, D)",
+        "|πi|",
+        "u"
+      ],
+      "explanation": "Si el nuevo score Pnew > Pold, el padre z mejora el modelo y se añade a πi. Si no mejora, 'improving' se pone a false y el bucle termina para xi: el conjunto actual πi es el resultado final."
+    },
+    {
+      "id": 10,
+      "algorithm": "BIC — Penalización por complejidad",
+      "topic": "BIC/MDL",
+      "difficulty": "medium",
+      "description": "Completa la fórmula del criterio BIC.",
+      "code": [
+        "BIC(BN, D) = log P(D, BN)",
+        "           - [B1] · [B2]",
+        "                    2",
+        "             i=1"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "log|D|",
+          "hint": "Logaritmo del tamaño de la base de datos"
+        },
+        {
+          "id": "B2",
+          "answer": "Σ^{n} qi·(ri-1)",
+          "hint": "Suma sobre todos los nodos del número de parámetros independientes"
+        }
+      ],
+      "tokens": [
+        "log|D|",
+        "Σ^{n} qi·(ri-1)",
+        "|D|",
+        "Σ^{n} ri·qi",
+        "log(n)",
+        "n·(ri-1)"
+      ],
+      "explanation": "BIC = log P(D,BN) − (log|D|/2)·Σ_i qi·(ri-1). El primer término es el log-score UPSM (ajuste a D). El segundo es la penalización por complejidad: crece con el número total de parámetros y con el tamaño de D."
+    },
+    {
+      "id": 11,
+      "algorithm": "Mejor caso UPSM",
+      "topic": "Score UPSM: fórmula",
+      "difficulty": "medium",
+      "description": "Completa las condiciones del mejor caso del factor UPSM.",
+      "code": [
+        "// Mejor caso: predicción perfecta",
+        "// Un único valor v tal que N_{i,j,v} = [B1]",
+        "// (los demás N_{i,j,k} = 0 para k≠v)",
+        "",
+        "Factor(xi, j) = (ri-1)! · [B2]!",
+        "                ———————————————————",
+        "                (N_{i,j} + ri - 1)!"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "N_{i,j}",
+          "hint": "Todos los registros del caso j tienen xi=v"
+        },
+        {
+          "id": "B2",
+          "answer": "N_{i,j}",
+          "hint": "El único factorial no trivial en el producto ∏_k N_{i,j,k}!"
+        }
+      ],
+      "tokens": [
+        "N_{i,j}",
+        "N_{i,j,k}",
+        "ri",
+        "0",
+        "1",
+        "(ri-1)"
+      ],
+      "explanation": "En el mejor caso, N_{i,j,v}=N_{i,j} y todos los demás N_{i,j,k}=0. El producto ∏_k N_{i,j,k}! = N_{i,j}!·(0!)^{ri-1} = N_{i,j}!. Factor = (ri-1)!·N_{i,j}!/(N_{i,j}+ri-1)!, que es máximo."
+    },
+    {
+      "id": 12,
+      "algorithm": "Peor caso UPSM",
+      "topic": "Score UPSM: fórmula",
+      "difficulty": "hard",
+      "description": "Completa las condiciones del peor caso del factor UPSM (incertidumbre máxima).",
+      "code": [
+        "// Peor caso: incertidumbre máxima",
+        "// Todos los N_{i,j,k} = [B1] (distribución uniforme)",
+        "",
+        "Factor(xi, j) = (ri-1)! · ([B2]!)^ri",
+        "                —————————————————————————",
+        "                (N_{i,j} + ri - 1)!"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "N_{i,j} / ri",
+          "hint": "Todos los valores igualmente frecuentes"
+        },
+        {
+          "id": "B2",
+          "answer": "N_{i,j}/ri",
+          "hint": "El valor de N_{i,j,k} cuando todos son iguales"
+        }
+      ],
+      "tokens": [
+        "N_{i,j} / ri",
+        "N_{i,j}/ri",
+        "N_{i,j}",
+        "ri",
+        "0",
+        "1/ri"
+      ],
+      "explanation": "En el peor caso, N_{i,j,k}=N_{i,j}/ri para todo k. El producto ∏_k N_{i,j,k}! = (N_{i,j}/ri)!^ri. Este es el valor mínimo del factor UPSM: el modelo tiene máxima incertidumbre sobre xi."
+    },
+    {
+      "id": 13,
+      "algorithm": "Comparación de modelos con UPSM",
+      "topic": "Comparación de modelos",
+      "difficulty": "hard",
+      "description": "Completa el cálculo del score UPSM para BN1 = P(C)·P(T1|C)·P(T2|C) con los datos del cáncer.",
+      "code": [
+        "// BN1: C→T1, C→T2. Para T1 y T2 (binarias con padre C binario):",
+        "Factor(Ti, j=0) = [B1]  // C=0: N=6, k=0 tiene 6, k=1 tiene 0",
+        "Factor(Ti, j=1) = [B2]  // C=1: N=1, k=0 tiene 0, k=1 tiene 1",
+        "",
+        "// Para C (raíz, binaria): N=8, valor0=7, valor1=1",
+        "Factor(C, j=0)  = [B3]",
+        "",
+        "P(BN1, D) = [B4]^2 · [B4]^2 · [B3]  (los 2 tests son iguales)"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "1!·6!·0! / 7! = 1/7",
+          "hint": "(ri-1)!·∏N_{i,j,k}! / (N_{i,j}+ri-1)! = 1!·6!·0!/7!"
+        },
+        {
+          "id": "B2",
+          "answer": "1!·0!·1! / 2! = 1/2",
+          "hint": "N_{i,j}=1, un valor tiene 0 ocurrencias y otro tiene 1"
+        },
+        {
+          "id": "B3",
+          "answer": "1!·7!·1! / 9! = 1/72",
+          "hint": "C tiene N=8, N_{C,1}=7 (C=0) y N_{C,2}=1 (C=1)"
+        },
+        {
+          "id": "B4",
+          "answer": "1/7·1/2",
+          "hint": "Producto de los dos factores del nodo Ti (j=0 y j=1)"
+        }
+      ],
+      "tokens": [
+        "1!·6!·0! / 7! = 1/7",
+        "1!·0!·1! / 2! = 1/2",
+        "1!·7!·1! / 9! = 1/72",
+        "1/7·1/2",
+        "6!/7! = 1/7",
+        "1/8",
+        "1/9"
+      ],
+      "explanation": "Factor(Ti,j=0): (2-1)!·6!·0!/(6+2-1)! = 1·720·1/5040 = 1/7. Factor(Ti,j=1): 1!·0!·1!/2! = 1/2. Factor(C): 1!·7!·1!/9! = 1/72. P(BN1,D)=(1/7·1/2)²·(1/72) = (1/14)²/72 = 1/(196·72) ≈ 11.07·10⁻⁶."
+    },
+    {
+      "id": 14,
+      "algorithm": "K2 — Inicialización y bucle exterior",
+      "topic": "Algoritmo K2",
+      "difficulty": "medium",
+      "description": "Completa la inicialización de K2 para cada nodo xi.",
+      "code": [
+        "// Inicialización para el nodo xi:",
+        "πi := [B1]          // Sin padres inicialmente",
+        "Pold(xi) := UPSM(xi, [B2], D)  // Score inicial con πi vacío",
+        "improving := [B3]   // El bucle comienza asumiendo que se puede mejorar"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "{}",
+          "hint": "Conjunto vacío: xi empieza sin padres"
+        },
+        {
+          "id": "B2",
+          "answer": "{}",
+          "hint": "El conjunto de padres inicial es vacío"
+        },
+        {
+          "id": "B3",
+          "answer": "true",
+          "hint": "El bucle empieza activo (asumiendo que hay mejoras posibles)"
+        }
+      ],
+      "tokens": [
+        "{}",
+        "true",
+        "false",
+        "πi",
+        "Vars",
+        "Ordering",
+        "null"
+      ],
+      "explanation": "K2 inicializa para cada nodo xi: el conjunto de padres πi={} (vacío), el score inicial UPSM(xi,{},D), y la bandera 'improving=true' para que el bucle comience. La búsqueda greedy parte sin padres y añade de uno en uno."
+    },
+    {
+      "id": 15,
+      "algorithm": "BIC vs UPSM: penalización",
+      "topic": "BIC/MDL",
+      "difficulty": "hard",
+      "description": "Completa la comparación entre añadir un padre z a xi según UPSM y según BIC.",
+      "code": [
+        "// UPSM: añadir z si mejora el score",
+        "UPSM(xi, πi∪{z}, D) > [B1]",
+        "",
+        "// BIC: añadir z solo si la mejora supera la penalización",
+        "UPSM(xi, πi∪{z}, D) - UPSM(xi, πi, D)",
+        "  > [B2] · Δparámetros(z)",
+        "",
+        "donde Δparámetros(z) = [B3] · (ri - 1)"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "UPSM(xi, πi, D)",
+          "hint": "Score sin el nuevo padre"
+        },
+        {
+          "id": "B2",
+          "answer": "log|D| / 2",
+          "hint": "Factor de escala de la penalización BIC"
+        },
+        {
+          "id": "B3",
+          "answer": "ri^{|parents(z)|}",
+          "hint": "Número de nuevos casos de padres que introduce z (el número de valores del nuevo padre multiplicado por los casos anteriores)"
+        }
+      ],
+      "tokens": [
+        "UPSM(xi, πi, D)",
+        "log|D| / 2",
+        "ri^{|parents(z)|}",
+        "UPSM(xi, πi∪{z}, D)",
+        "log|D|",
+        "1/|D|",
+        "qi · (ri-1)"
+      ],
+      "explanation": "UPSM añade z si hay cualquier mejora. BIC añade z solo si la mejora de UPSM supera la penalización (log|D|/2)·Δparámetros. Añadir z como padre multiplica los casos de padres de xi: los nuevos parámetros son el número de valores de z (dado el contexto actual) multiplicado por (ri-1)."
+    }
+  ]
+}

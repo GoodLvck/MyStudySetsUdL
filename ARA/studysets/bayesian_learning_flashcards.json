@@ -1,0 +1,382 @@
+{
+  "metadata": {
+    "title": "Bayesian Learning — Flashcards",
+    "format": "flashcards",
+    "totalCards": 60,
+    "topics": [
+      "Intro: Aprendizaje de modelos bayesianos",
+      "Aprendizaje de parámetros (MLE)",
+      "Problemas con probabilidades cero",
+      "Aprendizaje de estructura",
+      "Scoring: UPSM",
+      "Mejor y peor caso UPSM",
+      "Penalización por complejidad: BIC/MDL",
+      "Algoritmo K2",
+      "Limitaciones del greedy search",
+      "Ejemplo: Speed Dating"
+    ],
+    "description": "Flashcards completas sobre aprendizaje bayesiano: estimación máxima verosimilitud (MLE), scoring UPSM, algoritmo K2 de búsqueda greedy de estructura, penalización BIC/MDL y aplicación al problema Speed Dating."
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Intro: Aprendizaje de modelos bayesianos",
+      "front": "¿Cuáles son los dos grandes problemas del aprendizaje de modelos bayesianos?",
+      "back": "1. Aprendizaje de parámetros (Parameter Learning): conocemos la estructura de la red pero no las tablas de probabilidad condicional.\n2. Aprendizaje de estructura (Structure Learning): no conocemos ni la estructura ni los parámetros."
+    },
+    {
+      "id": 2,
+      "topic": "Intro: Aprendizaje de modelos bayesianos",
+      "front": "¿Qué es el aprendizaje de parámetros en una Red Bayesiana?",
+      "back": "Dado que conocemos la estructura de la red (DAG), estimamos las tablas de probabilidad condicional (CPTs) a partir de una base de datos D de casos observados. El método más común es MLE (Maximum Likelihood Estimation)."
+    },
+    {
+      "id": 3,
+      "topic": "Intro: Aprendizaje de modelos bayesianos",
+      "front": "¿Qué es el aprendizaje de estructura en una Red Bayesiana?",
+      "back": "Dado solo una base de datos D, aprendemos tanto la estructura del grafo (qué arcos existen) como los parámetros de las CPTs. Requiere un criterio de scoring y un algoritmo de búsqueda en el espacio exponencial de posibles DAGs."
+    },
+    {
+      "id": 4,
+      "topic": "Aprendizaje de parámetros (MLE)",
+      "front": "¿Qué es Maximum Likelihood Estimation (MLE) en el contexto de Redes Bayesianas?",
+      "back": "Dado el modelo BN (estructura) y una base de datos D, MLE estima los parámetros de las CPTs como los valores que maximizan la probabilidad de haber generado los datos observados D con ese modelo."
+    },
+    {
+      "id": 5,
+      "topic": "Aprendizaje de parámetros (MLE)",
+      "front": "Fórmula MLE para el parámetro θ̂_{i,j,k} = P(xi=k | πi=wi,j):",
+      "back": "θ̂_{i,j,k} = N_{i,j,k} / N_{i,j}\ndonde:\n• N_{i,j,k} = número de filas en D donde los padres πi tienen valores wi,j Y xi=k\n• N_{i,j} = número de filas donde πi=wi,j (sumando sobre todos los valores de xi)"
+    },
+    {
+      "id": 6,
+      "topic": "Aprendizaje de parámetros (MLE)",
+      "front": "¿Qué significa N_{i,j,k} en la fórmula MLE?",
+      "back": "N_{i,j,k} = |{r | r ∈ D, r[xi=k, πi=wi,j]}|: el número de registros en D donde la variable xi toma el valor k y sus padres πi tienen los valores wi,j. Es el contador de co-ocurrencias."
+    },
+    {
+      "id": 7,
+      "topic": "Aprendizaje de parámetros (MLE)",
+      "front": "¿Qué significa N_{i,j} en la fórmula MLE?",
+      "back": "N_{i,j} = Σ_{k} N_{i,j,k}: el número total de registros en D donde los padres πi tienen los valores wi,j, independientemente del valor de xi. Es el denominador de la estimación."
+    },
+    {
+      "id": 8,
+      "topic": "Aprendizaje de parámetros (MLE)",
+      "front": "¿Cuántos parámetros independientes tiene la CPT de xi con ri valores y qi casos de padres?",
+      "back": "(ri - 1)·qi\nCada caso de padres j (hay qi en total) requiere una distribución sobre ri valores de xi, con (ri-1) parámetros independientes (el último se obtiene por complemento ya que suman 1)."
+    },
+    {
+      "id": 9,
+      "topic": "Aprendizaje de parámetros (MLE)",
+      "front": "Ejemplo MLE en la red FO→DO: ¿cómo se estima P(DO=0|FO=0)?",
+      "back": "P(DO=0|FO=0) = N(DO=0, FO=0) / N(FO=0)\nEs decir, contar los registros donde FO=0 y DO=0, dividir entre los registros donde FO=0. Con la base de datos del ejemplo: 2/4 = 0.5."
+    },
+    {
+      "id": 10,
+      "topic": "Aprendizaje de parámetros (MLE)",
+      "front": "En la red FO→DO vs. DO→FO, ¿cuál de los dos modelos predice con menos incertidumbre?",
+      "back": "Depende de los datos. Se compara el modelo viendo qué factorización da distribuciones condicionales más deterministas. En el ejemplo dado, P(FO,DO)=P(DO)·P(FO|DO) tiene ligeramente mayor score UPSM, pero ambos son muy similares."
+    },
+    {
+      "id": 11,
+      "topic": "Problemas con probabilidades cero",
+      "front": "¿Qué problema puede ocurrir con la estimación MLE cuando la base de datos es pequeña?",
+      "back": "Algunas probabilidades pueden estimarse como 0 (si no hay ningún registro con esa combinación de valores), aunque la probabilidad real podría ser pequeña pero no cero. Esto genera problemas al multiplicar: 0 × X = 0, anulando toda la inferencia."
+    },
+    {
+      "id": 12,
+      "topic": "Problemas con probabilidades cero",
+      "front": "¿Cómo se soluciona el problema de probabilidades estimadas a cero en MLE?",
+      "back": "Algunos algoritmos añaden un factor de bias o pseudocuentas: se reemplaza N_{i,j,k}=0 por un valor pequeño ε > 0. Así, las probabilidades estimadas son siempre positivas, evitando que un factor cero anule toda la inferencia."
+    },
+    {
+      "id": 13,
+      "topic": "Problemas con probabilidades cero",
+      "front": "Ejemplo del impacto de probabilidades cero: P(C=1|T1=1, T2=0) con MLE donde P(T2=0|C=1)=0:",
+      "back": "P(C=1)·P(T1=1|C=1)·P(T2=0|C=1) = (1/8)·1·0 = 0\nEl resultado es 0 aunque otros factores fueran positivos. MLE obtiene P(T2=0|C=1)=0 porque en los datos ningún caso con C=1 tuvo T2=0, pero esto no significa que sea imposible."
+    },
+    {
+      "id": 14,
+      "topic": "Aprendizaje de estructura",
+      "front": "¿Cuáles son los tres ingredientes necesarios para aprender la estructura de una Red Bayesiana?",
+      "back": "1. Scoring: métrica para valorar cuán bien un modelo BN explica los datos D.\n2. Espacio de búsqueda: conjunto de posibles estructuras de BN a considerar.\n3. Estrategia de búsqueda: cómo explorar el espacio (exponencial) de posibles BNs."
+    },
+    {
+      "id": 15,
+      "topic": "Aprendizaje de estructura",
+      "front": "¿Por qué el espacio de estructuras de Redes Bayesianas es de tamaño exponencial?",
+      "back": "Con n variables y un orden fijo, el número de DAGs posibles es 2^{n(n-1)/2} (todos los subconjuntos de arcos posibles entre nodos en orden topológico). Sin orden fijo, el número total de DAGs es superexponencial."
+    },
+    {
+      "id": 16,
+      "topic": "Aprendizaje de estructura",
+      "front": "¿Qué criterio básico de scoring se usa para evaluar una Red Bayesiana BN dado D?",
+      "back": "P(D|BN): la probabilidad de observar los datos D si el modelo BN fuera el correcto. Cuanto mayor sea P(D|BN), mejor explica BN los datos. En la práctica se usa P(D,BN) para incorporar priors sobre las estructuras."
+    },
+    {
+      "id": 17,
+      "topic": "Scoring: UPSM",
+      "front": "¿Qué significa UPSM (Uniform Prior Scoring Model)?",
+      "back": "Uniform Prior Scoring Model: un modelo de scoring para Redes Bayesianas donde se asume una distribución uniforme sobre todas las posibles estructuras de BN (ausencia de sesgo previo hacia alguna estructura). El prior P(BN) es una constante C."
+    },
+    {
+      "id": 18,
+      "topic": "Scoring: UPSM",
+      "front": "Fórmula del score UPSM para una red BN y datos D:",
+      "back": "P(D, BN) = C · ∏_{i=1}^{n} ∏_{j=1}^{qi} [ (ri-1)! / (N_{i,j}+ri-1)! · ∏_{k=1}^{ri} N_{i,j,k}! ]\ndonde ri = número de valores de xi, qi = número de casos de padres, N_{i,j} = Σ_k N_{i,j,k}."
+    },
+    {
+      "id": 19,
+      "topic": "Scoring: UPSM",
+      "front": "¿Qué es la propiedad de local scoring del UPSM?",
+      "back": "El factor del score aportado por un nodo xi depende solo de xi y de su conjunto de padres πi, no de los padres de otros nodos. Esto permite calcular el score de forma incremental: al cambiar los padres de xi, solo hay que recalcular su factor, no el de los demás."
+    },
+    {
+      "id": 20,
+      "topic": "Scoring: UPSM",
+      "front": "¿Qué ventaja computacional da la propiedad de local scoring?",
+      "back": "Permite implementar algoritmos de búsqueda greedy de forma eficiente: al añadir o eliminar un arco (cambiar los padres de xi), solo se recalcula el factor local de xi. No es necesario recomputar el score completo de toda la red."
+    },
+    {
+      "id": 21,
+      "topic": "Mejor y peor caso UPSM",
+      "front": "¿Cuándo tiene el factor UPSM de un nodo xi su valor más alto (mejor caso)?",
+      "back": "Cuando para el caso de padres j, un único valor v de xi tiene N_{i,j,v} = N_{i,j} (todos los registros dan el mismo valor). Esto indica predicción perfecta: sin incertidumbre sobre xi. El score es máximo cuando el modelo predice sin ambigüedad."
+    },
+    {
+      "id": 22,
+      "topic": "Mejor y peor caso UPSM",
+      "front": "¿Cuándo tiene el factor UPSM de un nodo xi su valor más bajo (peor caso)?",
+      "back": "Cuando todos los valores de xi son igualmente frecuentes dado el caso de padres j: N_{i,j,k} = N_{i,j}/ri para todo k. Esto representa incertidumbre máxima: el modelo no puede predecir mejor que el azar el valor de xi."
+    },
+    {
+      "id": 23,
+      "topic": "Mejor y peor caso UPSM",
+      "front": "¿Qué incentiva el score UPSM: la certeza o la incertidumbre del modelo?",
+      "back": "El score UPSM favorece modelos con alta certeza: asigna mayor score cuando el modelo predice un valor concreto para xi con alta probabilidad dada la asignación de padres. Penaliza la incertidumbre (distribuciones uniformes sobre los valores de xi)."
+    },
+    {
+      "id": 24,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "front": "¿Por qué añadir más padres a un nodo casi siempre mejora el score UPSM?",
+      "back": "Porque más padres permiten modelar más precisamente los datos de entrenamiento. Sin embargo, esto puede llevar a overfitting: el modelo captura ruido específico de D y generaliza mal con datos nuevos."
+    },
+    {
+      "id": 25,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "front": "¿Qué es el overfitting en el contexto de aprendizaje de Redes Bayesianas?",
+      "back": "El modelo aprende demasiado bien los datos de entrenamiento D, capturando dependencias específicas de D que no son reales en el dominio. El modelo predice bien D pero mal con datos nuevos. Ocurre cuando la red es demasiado compleja para el tamaño de D."
+    },
+    {
+      "id": 26,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "front": "¿Qué es BIC (Bayesian Information Criterion) / MDL (Minimum Description Length)?",
+      "back": "Un criterio de scoring que penaliza la complejidad del modelo. Se obtiene restando del log del score UPSM un término de penalización:\nBIC = log P(D,BN) − (log|D|/2) · Σ_{i=1}^{n} qi·(ri-1)\nFavorece modelos simples que aun así explican bien los datos."
+    },
+    {
+      "id": 27,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "front": "¿Cómo actúa el término de penalización de BIC?",
+      "back": "El término −(log|D|/2)·Σ qi·(ri-1) crece con el número de parámetros del modelo (qi·(ri-1) es el número de parámetros independientes del nodo xi). Así, redes más complejas reciben una penalización mayor que puede superar la ganancia del score UPSM."
+    },
+    {
+      "id": 28,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "front": "¿Qué principio general de machine learning refleja el uso de BIC/MDL?",
+      "back": "El principio de la navaja de Occam (Occam's Razor): cuando múltiples hipótesis explican igual de bien los datos, se prefiere la más simple. BIC/MDL operacionaliza este principio penalizando la complejidad del modelo bayesiano."
+    },
+    {
+      "id": 29,
+      "topic": "Algoritmo K2",
+      "front": "¿Qué es el algoritmo K2?",
+      "back": "Un algoritmo de búsqueda local greedy para aprender la estructura de una Red Bayesiana. Dado un orden entre los nodos y un máximo de padres u, construye incrementalmente el conjunto de padres de cada nodo maximizando el score UPSM."
+    },
+    {
+      "id": 30,
+      "topic": "Algoritmo K2",
+      "front": "¿Cuáles son los parámetros de entrada del algoritmo K2?",
+      "back": "• D: base de datos de casos.\n• Ordering: un orden entre los nodos (define qué nodos pueden ser padres de cada nodo).\n• u: número máximo de padres permitidos para cada nodo.\nA partir de estos, K2 construye el DAG óptimo según UPSM."
+    },
+    {
+      "id": 31,
+      "topic": "Algoritmo K2",
+      "front": "¿Cómo procede K2 para encontrar los padres de un nodo xi?",
+      "back": "1. Inicializa πi = {} (sin padres).\n2. Evalúa UPSM(xi, πi, D).\n3. De forma greedy e incremental, añade el nodo z de Prev(xi) que más mejora UPSM(xi, πi∪{z}, D).\n4. Añade z si mejora el score. Repite hasta que no haya mejora o |πi|=u."
+    },
+    {
+      "id": 32,
+      "topic": "Algoritmo K2",
+      "front": "¿Qué garantiza el orden (Ordering) en K2?",
+      "back": "Que solo los nodos que preceden a xi en el orden pueden ser padres de xi. Esto garantiza que la red resultante es un DAG (sin ciclos), ya que los arcos solo van de nodos anteriores a posteriores en el orden."
+    },
+    {
+      "id": 33,
+      "topic": "Algoritmo K2",
+      "front": "¿Cuántos DAGs posibles existen con n nodos y un orden fijo?",
+      "back": "2^{n(n-1)/2}: cada par de nodos (i,j) con i antes de j en el orden puede tener un arco o no. Con 5 nodos: 2^{10} = 1024. Con 10 nodos: 2^{45} ≈ 35 billones. El espacio es aún exponencial aunque haya un orden fijo."
+    },
+    {
+      "id": 34,
+      "topic": "Algoritmo K2",
+      "front": "¿Por qué K2 usa un límite superior u en el número de padres?",
+      "back": "Para evitar el overfitting: más padres casi siempre mejoran el score UPSM en datos de entrenamiento, pero pueden llevar a una red sobreajustada que generaliza mal. El parámetro u limita la complejidad de la red aprendida."
+    },
+    {
+      "id": 35,
+      "topic": "Algoritmo K2",
+      "front": "¿Con qué otros criterios de scoring puede usarse el esquema de búsqueda de K2?",
+      "back": "K2 puede usarse con cualquier scoring local: un scoring donde el factor de xi depende solo de su conjunto de padres πi y no de los padres de otros nodos. Por ejemplo: UPSM, BIC/MDL, o cualquier otro scoring con la propiedad local."
+    },
+    {
+      "id": 36,
+      "topic": "Limitaciones del greedy search",
+      "front": "¿Por qué el algoritmo greedy K2 puede no encontrar el mejor conjunto global de padres?",
+      "back": "Porque toma decisiones locales sin mirar hacia adelante: añade el padre que más mejora ahora, pero puede quedar atrapado en un óptimo local. Puede ocurrir que agregar un padre que no mejora individualmente habilite una combinación mejor con otros padres futuros."
+    },
+    {
+      "id": 37,
+      "topic": "Limitaciones del greedy search",
+      "front": "Ejemplo de fallo greedy en K2: con variable xi y posibles padres {p1,p2,p3}, ¿qué puede fallar?",
+      "back": "Si UPSM(xi,{pj},D) < UPSM(xi,{},D) para cualquier pj individual, K2 termina sin padres. Sin embargo, puede que UPSM(xi,{p2,p3},D) >> UPSM(xi,{},D). El greedy no explora combinaciones de padres que no mejoran individualmente."
+    },
+    {
+      "id": 38,
+      "topic": "Limitaciones del greedy search",
+      "front": "¿Qué consecuencia tiene el fallo greedy en la calidad de la red aprendida?",
+      "back": "K2 no garantiza encontrar el conjunto de padres óptimo globalmente. La red aprendida puede ser subóptima: puede perderse estructuras que requieren añadir un padre intermedio 'neutro' para poder acceder a una combinación de padres más informativa."
+    },
+    {
+      "id": 39,
+      "topic": "Limitaciones del greedy search",
+      "front": "¿Qué estrategia usa K2 para mitigar su sensibilidad al orden inicial?",
+      "back": "Ejecutar K2 múltiples veces con órdenes aleatorios distintos y quedarse con la red de mayor score. En el ejemplo del Speed Dating se ejecuta 10 veces con órdenes aleatorios. Esto no garantiza el óptimo global pero aumenta las probabilidades de encontrar una buena solución."
+    },
+    {
+      "id": 40,
+      "topic": "Ejemplo: Speed Dating",
+      "front": "¿En qué consiste el problema Speed Dating en el contexto de aprendizaje bayesiano?",
+      "back": "Dado un historial de citas con atributos (ideología, sexo, conversación, vegetarianismo, gusto por Blade Runner) y si le gustaron al cliente (youlike), aprender un modelo bayesiano que prediga si una nueva persona le gustará al cliente basándose en sus atributos."
+    },
+    {
+      "id": 41,
+      "topic": "Ejemplo: Speed Dating",
+      "front": "¿Qué estructura de red encuentra K2 como mejor modelo para el Speed Dating?",
+      "back": "En la ejecución #3 (mejor score: Log(BayesScore)=-51.52), la red tiene youlike como nodo raíz con 7 arcos que conectan las demás variables. La variable youlike actúa como causa de los atributos observados (modelo generativo inverso)."
+    },
+    {
+      "id": 42,
+      "topic": "Ejemplo: Speed Dating",
+      "front": "¿Cuántas veces se ejecuta K2 en el ejemplo del Speed Dating y por qué?",
+      "back": "10 veces, cada una con un orden aleatorio distinto de las variables y máximo 3 padres por nodo. Se ejecuta múltiples veces para compensar la sensibilidad del algoritmo greedy al orden inicial y aumentar la probabilidad de encontrar un buen modelo."
+    },
+    {
+      "id": 43,
+      "topic": "Ejemplo: Speed Dating",
+      "front": "En el Speed Dating, los modelos con mayor score UPSM (mejores ejecuciones como #3 y #10), ¿predicen mejor la variable youlike para el caso de prueba?",
+      "back": "No. Los modelos con mayor score (ejecuciones #3 y #10) predicen P(youlike=yes|E)≈0.08-0.16 (incorrecto). Los modelos con menor score (#9, #7, #8) predicen P(youlike=yes|E)≈0.67-0.89 (correcto). Esto refleja overfitting en los modelos de mayor score."
+    },
+    {
+      "id": 44,
+      "topic": "Ejemplo: Speed Dating",
+      "front": "¿Qué demuestra el ejemplo del Speed Dating sobre overfitting?",
+      "back": "Los modelos con mayor score UPSM se han ajustado demasiado a los datos de entrenamiento y capturan dependencias espurias. Para los atributos del caso de prueba, en el conjunto de entrenamiento casi siempre la respuesta es youlike=no, y los mejores modelos predicen esto. Es un problema de overfitting al training set."
+    },
+    {
+      "id": 45,
+      "topic": "Scoring: UPSM",
+      "front": "¿Cómo se calcula el score UPSM de una red con la fórmula de integrales de Dirichlet?",
+      "back": "P(D, BN) = C · ∏_{i} ∏_{j} [ (ri-1)! / (N_{i,j}+ri-1)! · ∏_k N_{i,j,k}! ]\nEl producto doble recorre todos los nodos i y todos los casos de padres j. La integral de Dirichlet resuelve la integral sobre los parámetros asumiendo una distribución uniforme sobre ellos."
+    },
+    {
+      "id": 46,
+      "topic": "Scoring: UPSM",
+      "front": "¿Por qué UPSM usa P(D,BN) en lugar de P(D|BN)?",
+      "back": "P(D,BN) = P(D|BN)·P(BN). Usar P(D,BN) permite incorporar un prior P(BN) sobre el espacio de posibles redes. Con el prior uniforme del UPSM, P(BN) es constante C, pero la formulación es extensible a priors no uniformes si se tiene información previa sobre qué estructuras son más plausibles."
+    },
+    {
+      "id": 47,
+      "topic": "Algoritmo K2",
+      "front": "Pseudocódigo esquemático de K2:",
+      "back": "para cada vi en Ordering:\n  πi := {}\n  Pold(xi) := UPSM(xi, {}, D)\n  mejorando := verdad\n  mientras mejorando ∧ |πi| < u:\n    z := argmax_{z ∈ Prev(xi)\\πi} UPSM(xi, πi∪{z}, D)\n    Pnew := UPSM(xi, πi∪{z}, D)\n    si Pnew > Pold: Pold:=Pnew; πi:=πi∪{z}\n    si no: mejorando := falso"
+    },
+    {
+      "id": 48,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "front": "¿Qué término de penalización resta BIC al log-score UPSM?",
+      "back": "(log|D|/2) · Σ_{i=1}^{n} qi·(ri-1)\nDonde |D| es el tamaño de la base de datos, qi es el número de combinaciones de padres de xi y (ri-1) son los parámetros independientes por combinación. El término crece con la complejidad de la red."
+    },
+    {
+      "id": 49,
+      "topic": "Aprendizaje de parámetros (MLE)",
+      "front": "¿Cuántos parámetros independientes se necesitan para el nodo DO en la red FO→DO?",
+      "back": "• P(FO): 1 parámetro independiente: P(FO=0).\n• P(DO|FO): 2 parámetros independientes: P(DO=0|FO=0) y P(DO=0|FO=1).\nTotal para DO: 2. Total para la red: 1+2 = 3 parámetros."
+    },
+    {
+      "id": 50,
+      "topic": "Aprendizaje de estructura",
+      "front": "¿Por qué no se puede usar búsqueda sistemática (exhaustiva) para aprender la estructura de una BN?",
+      "back": "Porque el espacio de posibles DAGs tiene tamaño exponencial (superexponencial en n). Incluso con un orden fijo hay 2^{n(n-1)/2} DAGs posibles. Para n=10 ya son ≈35 billones. Los algoritmos prácticos usan búsqueda local incompleta (greedy, como K2)."
+    },
+    {
+      "id": 51,
+      "topic": "Scoring: UPSM",
+      "front": "¿Qué ocurre con el score UPSM de un nodo xi cuando Ni,j (conteo de casos de padres j) es muy grande?",
+      "back": "Cuanto mayor es Ni,j, mayor es la evidencia estadística. Si además hay un valor dominante (Ni,j,v=Ni,j), el factor del score se acerca a (ri-1)!/(Ni,j+ri-1)!·Ni,j!, que es máximo cuando Ni,j >> ri (certeza estadística con mucha evidencia)."
+    },
+    {
+      "id": 52,
+      "topic": "Limitaciones del greedy search",
+      "front": "¿Puede K2 encontrar el mejor conjunto global de padres con 3 nodos candidatos aunque el greedy falle?",
+      "back": "Solo si se amplía el límite u (máximo de padres) suficientemente y se tiene suerte con el orden. En el ejemplo, con p1 como primer padre no se puede llegar a {p2,p3} (el mejor conjunto), ya que desde {p1} ningún padre individual mejora el score, y K2 terminaría sin explorar {p2,p3}."
+    },
+    {
+      "id": 53,
+      "topic": "Aprendizaje de parámetros (MLE)",
+      "front": "¿Qué tipo de variables asume MLE en la fórmula θ̂ = N_{i,j,k}/N_{i,j}?",
+      "back": "Variables multinomiales (categóricas con ri valores discretos). La fórmula asume que los datos son generados i.i.d. (independientes e idénticamente distribuidos) según la distribución multinomial del modelo BN."
+    },
+    {
+      "id": 54,
+      "topic": "Ejemplo: Speed Dating",
+      "front": "¿Qué atributos se consideran en el Speed Dating?",
+      "back": "5 variables de atributos:\n• ideo: ideología política (izquierda/centro/derecha)\n• sex: sexo (masculino/femenino)\n• talks: conversación (nada/poco/mucho)\n• vege: vegetariano (sí/no)\n• blade: le gusta Blade Runner (sí/no)\nVariable objetivo: youlike (sí/no)."
+    },
+    {
+      "id": 55,
+      "topic": "Scoring: UPSM",
+      "front": "En la comparación UPSM de FO→DO vs. DO→FO, ¿cuál tiene mayor score?",
+      "back": "DO→FO: P(BN2,D)=0.000002756 > P(BN1,D)=0.000002646 para P(FO,DO)=P(DO)·P(FO|DO). El modelo DO→FO es ligeramente mejor según UPSM para los datos del ejemplo, aunque ambos valores son muy próximos."
+    },
+    {
+      "id": 56,
+      "topic": "Aprendizaje de estructura",
+      "front": "¿Cuántos DAGs posibles hay con 5 nodos y un orden fijo según el análisis combinatorio?",
+      "back": "2^{5·4/2} = 2^{10} = 1024 DAGs posibles. Para cada par (i,j) con i antes de j en el orden, puede haber o no un arco i→j. Con n nodos: 2^{n(n-1)/2} DAGs con orden fijo."
+    },
+    {
+      "id": 57,
+      "topic": "Algoritmo K2",
+      "front": "¿Por qué el orden (Ordering) es un parámetro crítico en K2?",
+      "back": "Porque define qué nodos pueden ser padres de cada nodo xi. Un mal orden puede impedir que K2 encuentre los padres reales de xi (porque aparecen después en el orden). Por eso se suele ejecutar K2 varias veces con órdenes aleatorios distintos."
+    },
+    {
+      "id": 58,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "front": "¿Qué significa MDL (Minimum Description Length)?",
+      "back": "Un principio de codificación de la información: el mejor modelo es el que permite describir los datos con el menor número de bits total (código del modelo + código de los datos dado el modelo). Equivalente a BIC: maximizar MDL ≈ minimizar la longitud de descripción total."
+    },
+    {
+      "id": 59,
+      "topic": "Scoring: UPSM",
+      "front": "¿Por qué UPSM prefiere redes donde el modelo predice valores sin incertidumbre?",
+      "back": "Porque UPSM maximiza P(D|BN): la probabilidad de los datos dado el modelo. Si el modelo predice con certeza el valor observado, su contribución a P(D|BN) es máxima. La incertidumbre (distribuciones uniformes) reduce la verosimilitud y por tanto el score."
+    },
+    {
+      "id": 60,
+      "topic": "Ejemplo: Speed Dating",
+      "front": "¿Qué lección práctica extrae del ejemplo del Speed Dating sobre los modelos con mayor score?",
+      "back": "Un mayor score UPSM no garantiza mejor predicción en datos nuevos. Los modelos con mayor score pueden haber hecho overfitting a los datos de entrenamiento. Para evaluar modelos correctamente hay que usar datos de test separados del training set."
+    }
+  ]
+}
