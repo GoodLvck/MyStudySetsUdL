@@ -561,6 +561,7 @@
     <button class="tab" data-mode="fill" role="tab">✏️ Completar</button>
     <button class="tab" data-mode="dragdrop" role="tab">↕ Arrastrar</button>
     <button class="tab" data-mode="flashcard" role="tab">🃏 Flashcards</button>
+    <button class="tab" data-mode="apuntes" role="tab">📖 Apuntes</button>
   </div>
 
   <div class="controls">
@@ -624,11 +625,12 @@ let sessionStates   = {};
 async function init() {
   loadTheme();
   try {
-    [quizData, fillData, dragdropData, flashcardData] = await Promise.all([
+    [quizData, fillData, dragdropData, flashcardData, apuntesText] = await Promise.all([
       fetch('studysets/bayesian_inference_quiz.json').then(r => r.json()),
       fetch('studysets/bayesian_inference_fillblanks.json').then(r => r.json()),
       fetch('studysets/bayesian_inference_dragdrop.json').then(r => r.json()),
       fetch('studysets/bayesian_inference_flashcards.json').then(r => r.json()),
+      fetch('studysets/resumen_inferencia_bayesiana.md').then(r => r.text()),
     ]);
   } catch (e) {
     document.getElementById('question-card').innerHTML =
