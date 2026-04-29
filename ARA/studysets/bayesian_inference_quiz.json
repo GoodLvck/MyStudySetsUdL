@@ -1,0 +1,792 @@
+{
+  "metadata": {
+    "title": "Bayesian Inference — Quiz",
+    "subject": "Inferencia Bayesiana para Modelos Probabilísticos",
+    "author": "",
+    "course": "Grau en Enginyeria Informàtica — ARA",
+    "totalQuestions": 55,
+    "topics": [
+      "Motivación y variables aleatorias",
+      "Distribución conjunta y probabilidad marginal",
+      "Probabilidad condicional y factorización",
+      "Teorema de Bayes",
+      "Redes Bayesianas",
+      "Independencia condicional",
+      "Algoritmo de inferencia general (ExpandProb/QueryVar)",
+      "Complejidad computacional",
+      "Ejemplos: FO/DO, Cáncer, Gemelos/Luna"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Motivación y variables aleatorias",
+      "difficulty": "easy",
+      "question": "¿Cuál es la principal razón para usar modelos probabilísticos en sistemas de IA?",
+      "options": [
+        "A) Porque los algoritmos deterministas son demasiado lentos",
+        "B) Porque en muchas aplicaciones reales la información es incompleta e inexacta",
+        "C) Porque los modelos probabilísticos siempre dan la respuesta exacta",
+        "D) Porque reducen el número de variables del problema"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los modelos probabilísticos nacen de la necesidad de razonar cuando la información no es completa ni exacta —condición habitual en problemas reales— permitiendo inferir la probabilidad de eventos no observados."
+    },
+    {
+      "id": 2,
+      "topic": "Motivación y variables aleatorias",
+      "difficulty": "easy",
+      "question": "¿Qué es la evidencia (evidence) en el contexto de inferencia bayesiana?",
+      "options": [
+        "A) El conjunto de todas las variables del modelo",
+        "B) La función de probabilidad conjunta",
+        "C) El conjunto de variables cuyo valor conocemos y usamos para condicionar la inferencia",
+        "D) La variable aleatoria cuya probabilidad queremos calcular"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La evidencia E es el conocimiento parcial disponible: las variables cuyos valores observamos. La inferencia bayesiana calcula P(Q|E), la probabilidad de la variable objetivo Q dada esa evidencia."
+    },
+    {
+      "id": 3,
+      "topic": "Distribución conjunta y probabilidad marginal",
+      "difficulty": "easy",
+      "question": "¿Qué es la probabilidad marginal P(X=v)?",
+      "options": [
+        "A) La probabilidad conjunta de todas las variables igualadas a v",
+        "B) La probabilidad de X=v sumando sobre todos los valores posibles de las demás variables",
+        "C) La probabilidad condicional de X dado que todas las demás variables son desconocidas",
+        "D) El valor máximo de X en la distribución conjunta"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La probabilidad marginal P(X=v) = Σ_{yi} P(X=v, Y=yi) se obtiene aplicando la regla de la suma: sumar todas las entradas de la distribución conjunta donde X=v, marginalizando sobre las demás variables."
+    },
+    {
+      "id": 4,
+      "topic": "Distribución conjunta y probabilidad marginal",
+      "difficulty": "easy",
+      "question": "En el problema FO/DO con la tabla conjunta dada (P(FO=1,DO=1)=0.375, P(FO=1,DO=0)=0.125, P(FO=0,DO=1)=0.25, P(FO=0,DO=0)=0.25), ¿cuál es P(DO=1)?",
+      "options": [
+        "A) 0.375",
+        "B) 0.5",
+        "C) 0.625",
+        "D) 0.75"
+      ],
+      "correctAnswer": "C",
+      "explanation": "P(DO=1) = P(FO=0,DO=1) + P(FO=1,DO=1) = 0.25 + 0.375 = 0.625. Se aplica la regla de la suma marginalizando sobre FO."
+    },
+    {
+      "id": 5,
+      "topic": "Distribución conjunta y probabilidad marginal",
+      "difficulty": "easy",
+      "question": "¿Cuántos parámetros independientes son necesarios para representar la distribución conjunta de n variables binarias?",
+      "options": [
+        "A) n",
+        "B) 2n",
+        "C) 2^n - 1",
+        "D) n^2"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La tabla conjunta tiene 2^n entradas que deben sumar 1, por lo que solo 2^n - 1 son independientes. Por eso la representación explícita es exponencial y las Redes Bayesianas resultan mucho más eficientes."
+    },
+    {
+      "id": 6,
+      "topic": "Distribución conjunta y probabilidad marginal",
+      "difficulty": "easy",
+      "question": "¿Por qué para una variable binaria basta calcular la probabilidad de un solo valor?",
+      "options": [
+        "A) Porque la otra probabilidad es siempre 0",
+        "B) Porque P(X=0) = 1 - P(X=1) por la ley de probabilidad total",
+        "C) Porque ambos valores tienen la misma probabilidad",
+        "D) Porque la distribución binaria es siempre simétrica"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Para variables binarias, P(X=0) + P(X=1) = 1 por la ley de probabilidad total (los valores son mutuamente excluyentes y exhaustivos). Basta calcular uno y el otro se obtiene por complemento."
+    },
+    {
+      "id": 7,
+      "topic": "Probabilidad condicional y factorización",
+      "difficulty": "easy",
+      "question": "¿Cómo se calcula la probabilidad condicional P(A|B) a partir de la distribución conjunta?",
+      "options": [
+        "A) P(A|B) = P(A) + P(B)",
+        "B) P(A|B) = P(A,B) / P(A)",
+        "C) P(A|B) = P(A,B) / P(B)",
+        "D) P(A|B) = P(B|A) - P(A)"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La probabilidad condicional se define como P(A|B) = P(A,B) / P(B). Es la fracción de probabilidad conjunta de A y B respecto a la probabilidad marginal de la condición B."
+    },
+    {
+      "id": 8,
+      "topic": "Probabilidad condicional y factorización",
+      "difficulty": "easy",
+      "question": "¿Cuál de las siguientes es una factorización válida de P(A,B)?",
+      "options": [
+        "A) P(A,B) = P(A) + P(B)",
+        "B) P(A,B) = P(A|B) · P(B)",
+        "C) P(A,B) = P(A) / P(B)",
+        "D) P(A,B) = P(A|B) + P(B|A)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "P(A,B) = P(A|B)·P(B) = P(B|A)·P(A) son las dos factorizaciones equivalentes. Ambas se obtienen directamente de la definición de probabilidad condicional: P(A|B)=P(A,B)/P(B) ↔ P(A,B)=P(A|B)·P(B)."
+    },
+    {
+      "id": 9,
+      "topic": "Probabilidad condicional y factorización",
+      "difficulty": "medium",
+      "question": "En el ejemplo FO/DO, P(DO=1|FO=1) vale:",
+      "options": [
+        "A) 0.5",
+        "B) 0.6",
+        "C) 0.75",
+        "D) 0.375"
+      ],
+      "correctAnswer": "C",
+      "explanation": "P(DO=1|FO=1) = P(DO=1,FO=1)/P(FO=1) = 0.375/(0.375+0.125) = 0.375/0.5 = 0.75. Dado que la familia está fuera, hay 75% de probabilidad de que el perro esté también fuera."
+    },
+    {
+      "id": 10,
+      "topic": "Probabilidad condicional y factorización",
+      "difficulty": "medium",
+      "question": "¿Es necesario tener la tabla completa de la distribución conjunta para realizar inferencia probabilística?",
+      "options": [
+        "A) Sí, siempre es necesaria",
+        "B) No, basta con una factorización correcta de la distribución conjunta",
+        "C) Solo si hay más de dos variables",
+        "D) Solo si las variables son independientes"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Basta con cualquier factorización correcta de la distribución conjunta (como P(DO|FO)·P(FO)). A partir de ella se puede calcular cualquier probabilidad marginal o condicional deseada sin necesidad de la tabla completa."
+    },
+    {
+      "id": 11,
+      "topic": "Teorema de Bayes",
+      "difficulty": "easy",
+      "question": "El teorema de Bayes para dos variables se formula como:",
+      "options": [
+        "A) P(A|B) = P(B|A) + P(A)",
+        "B) P(A|B) = P(B|A)·P(A) / P(B)",
+        "C) P(A|B) = P(A) / P(B|A)",
+        "D) P(A|B) = P(A,B) · P(B)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El teorema de Bayes: P(A|B) = P(B|A)·P(A) / P(B). Se deriva directamente de P(A,B) = P(A|B)·P(B) = P(B|A)·P(A). P(B) actúa como factor de normalización."
+    },
+    {
+      "id": 12,
+      "topic": "Teorema de Bayes",
+      "difficulty": "medium",
+      "question": "¿Cómo se computa P(B) en el teorema de Bayes sin conocerlo directamente?",
+      "options": [
+        "A) Se estima como 0.5 para variables binarias",
+        "B) Se calcula sumando P(B|A=ai)·P(A=ai) sobre todos los valores ai de A",
+        "C) Se obtiene directamente de la tabla conjunta siempre",
+        "D) No es necesario calcularlo nunca"
+      ],
+      "correctAnswer": "B",
+      "explanation": "P(B) = Σ_{ai} P(B|A=ai)·P(A=ai) por la ley de probabilidad total. Al calcular los numeradores de Bayes para todos los valores de A y sumarlos, obtenemos P(B) implícitamente, lo que permite normalizar."
+    },
+    {
+      "id": 13,
+      "topic": "Teorema de Bayes",
+      "difficulty": "medium",
+      "question": "Usando la factorización P(DO|FO)·P(FO) con P(DO=1|FO=0)=0.5, P(DO=1|FO=1)=0.75, P(FO=0)=P(FO=1)=0.5, ¿cuánto vale P(FO=1|DO=1)?",
+      "options": [
+        "A) 0.5",
+        "B) 0.6",
+        "C) 0.75",
+        "D) 0.8"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Numeradores: P(DO=1|FO=1)·P(FO=1)=0.75·0.5=0.375 y P(DO=1|FO=0)·P(FO=0)=0.5·0.5=0.25. Normalizando: 0.375/(0.375+0.25)=0.375/0.625=0.6."
+    },
+    {
+      "id": 14,
+      "topic": "Teorema de Bayes",
+      "difficulty": "hard",
+      "question": "En el ejemplo del cáncer con P(C=1)=0.01 y P(Ti=1|C=1)=0.9, P(Ti=1|C=0)=0.2, con 3 tests positivos, P(C=1|T1=1,T2=1,T3=1) ≈",
+      "options": [
+        "A) 0.01",
+        "B) 0.17",
+        "C) 0.48",
+        "D) 0.90"
+      ],
+      "correctAnswer": "C",
+      "explanation": "P(C=1,all Ti=1) = 0.9³·0.01 = 0.00729. P(C=0,all Ti=1) = 0.2³·0.99 = 0.00792. P(C=1|...) = 0.00729/(0.00729+0.00792) ≈ 0.479 ≈ 0.48. La baja prevalencia (1%) modera la probabilidad incluso con 3 tests positivos."
+    },
+    {
+      "id": 15,
+      "topic": "Teorema de Bayes",
+      "difficulty": "hard",
+      "question": "¿Por qué P(C=1|3 tests positivos) ≈ 0.48 y no mucho mayor, si cada test es bastante fiable (90%)?",
+      "options": [
+        "A) Porque los tests son independientes y se anulan entre sí",
+        "B) Porque la probabilidad a priori P(C=1)=0.01 es muy baja y domina el resultado",
+        "C) Porque las tablas CPT del ejemplo están mal definidas",
+        "D) Porque con 3 variables la inferencia siempre da 0.5"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El efecto de la probabilidad a priori (prior) P(C=1)=0.01 es muy fuerte. Aunque los tests son fiables, la rareza de la enfermedad hace que incluso 3 resultados positivos no eleven la probabilidad por encima del 50%. Esto es la esencia del razonamiento bayesiano: el prior importa."
+    },
+    {
+      "id": 16,
+      "topic": "Redes Bayesianas",
+      "difficulty": "easy",
+      "question": "¿Qué tipo de grafo es una Red Bayesiana?",
+      "options": [
+        "A) Grafo no dirigido conexo",
+        "B) Árbol binario",
+        "C) Grafo dirigido acíclico (DAG)",
+        "D) Grafo bipartito"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Una Red Bayesiana es un Directed Acyclic Graph (DAG): los arcos son dirigidos (representan dependencia o causalidad) y no hay ciclos. Los ciclos crearían dependencias circulares que invalidarían la factorización probabilística."
+    },
+    {
+      "id": 17,
+      "topic": "Redes Bayesianas",
+      "difficulty": "easy",
+      "question": "¿Qué tabla almacena cada nodo Xi en una Red Bayesiana?",
+      "options": [
+        "A) La distribución conjunta de todas las variables",
+        "B) La probabilidad marginal de Xi",
+        "C) La probabilidad condicional P(Xi | padres(Xi))",
+        "D) La función de densidad de Xi"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Cada nodo Xi almacena su CPT (Conditional Probability Table): P(Xi|padres(Xi)). Si Xi es un nodo raíz (sin padres), la tabla es simplemente P(Xi)."
+    },
+    {
+      "id": 18,
+      "topic": "Redes Bayesianas",
+      "difficulty": "medium",
+      "question": "¿Son igualmente buenas para inferencia dos factorizaciones distintas de la misma distribución conjunta?",
+      "options": [
+        "A) No, la factorización causal siempre es mejor",
+        "B) Solo si tienen el mismo número de arcos",
+        "C) Sí, si ambas son factorizaciones correctas de P(X1,...,Xn)",
+        "D) Solo si las variables son independientes"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Si dos redes son factorizaciones correctas de la misma distribución conjunta, producen exactamente los mismos resultados de inferencia para cualquier consulta. La diferencia es interpretativa o computacional, no informativa."
+    },
+    {
+      "id": 19,
+      "topic": "Redes Bayesianas",
+      "difficulty": "medium",
+      "question": "En la red bayesiana del ejemplo del cáncer (C→T1, C→T2, C→T3), ¿cuál es la factorización?",
+      "options": [
+        "A) P(C,T1,T2,T3) = P(C|T1)·P(C|T2)·P(C|T3)·P(T1,T2,T3)",
+        "B) P(C,T1,T2,T3) = P(T1|C)·P(T2|C)·P(T3|C)·P(C)",
+        "C) P(C,T1,T2,T3) = P(T1)·P(T2)·P(T3)·P(C)",
+        "D) P(C,T1,T2,T3) = P(T1,T2,T3|C)·P(C)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Con la estructura C→T1, C→T2, C→T3, cada test tiene solo C como padre. La factorización es el producto de cada CPT: P(T1|C)·P(T2|C)·P(T3|C)·P(C). La opción D también es correcta matemáticamente, pero no refleja las independencias condicionales del modelo."
+    },
+    {
+      "id": 20,
+      "topic": "Redes Bayesianas",
+      "difficulty": "medium",
+      "question": "¿Qué representa un arco de A a B en la interpretación causal de las Redes Bayesianas?",
+      "options": [
+        "A) Que A y B tienen la misma probabilidad",
+        "B) Que A y B son independientes",
+        "C) Una relación causa-efecto: A causa B",
+        "D) Que B ocurre antes que A en el tiempo"
+      ],
+      "correctAnswer": "C",
+      "explanation": "En la interpretación causal, un arco A→B indica que A es la causa y B es el efecto. Aunque no siempre hay una relación causal real, el modelado causal suele producir redes más compactas e interpretables."
+    },
+    {
+      "id": 21,
+      "topic": "Independencia Condicional",
+      "difficulty": "easy",
+      "question": "¿Qué significa que A y B son condicionalmente independientes dado M?",
+      "options": [
+        "A) P(A,B) = P(A)·P(B)",
+        "B) P(A,B|M) = P(A|M)·P(B|M)",
+        "C) P(A|M) = P(B|M)",
+        "D) P(A,B,M) = P(M)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La independencia condicional de A y B dado M se expresa como P(A,B|M) = P(A|M)·P(B|M). Equivalentemente: P(A|B,M) = P(A|M). Conocer M hace que A y B no aporten información adicional entre sí."
+    },
+    {
+      "id": 22,
+      "topic": "Independencia Condicional",
+      "difficulty": "medium",
+      "question": "De la factorización P(A,B,M) = P(A|M)·P(B|M)·P(M), ¿qué relación de independencia condicional se deduce directamente?",
+      "options": [
+        "A) A y M son independientes dado B",
+        "B) A y B son marginalmente independientes",
+        "C) A y B son condicionalmente independientes dado M",
+        "D) M es independiente de todo lo demás"
+      ],
+      "correctAnswer": "C",
+      "explanation": "De P(A,B,M)=P(A|M)·P(B|M)·P(M), dividiendo por P(M): P(A,B|M)=P(A|M)·P(B|M). Esta es exactamente la definición de independencia condicional de A y B dado M."
+    },
+    {
+      "id": 23,
+      "topic": "Independencia Condicional",
+      "difficulty": "medium",
+      "question": "En el ejemplo de los gemelos A (Alice) y B (Bob), con M (Luna) como causa común (M→A, M→B), ¿qué relación tienen A y B dado M?",
+      "options": [
+        "A) Son dependientes dado M",
+        "B) Son condicionalmente independientes dado M",
+        "C) Son marginalmente independientes",
+        "D) Siempre tienen la misma probabilidad dado M"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Dado M, Alice y Bob son condicionalmente independientes: P(A|B,M)=P(A|M). La luna 'explica' completamente la correlación entre los gemelos; conocido M, el estado de uno no aporta información adicional sobre el otro."
+    },
+    {
+      "id": 24,
+      "topic": "Independencia Condicional",
+      "difficulty": "hard",
+      "question": "¿Qué tipos de relaciones codifica la estructura de un grafo de una Red Bayesiana?",
+      "options": [
+        "A) Solo relaciones de dependencia directa entre variables",
+        "B) Solo relaciones de independencia marginal",
+        "C) Tanto relaciones de dependencia como de independencia condicional",
+        "D) Solo relaciones temporales entre eventos"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La estructura del grafo codifica dos tipos de relaciones: dependencias (representadas por arcos entre nodos) e independencias condicionales (determinadas por la ausencia de arcos y por los patrones de separación-d en el grafo)."
+    },
+    {
+      "id": 25,
+      "topic": "Independencia Condicional",
+      "difficulty": "hard",
+      "question": "En la red del cáncer (C→T1, C→T2, C→T3), ¿qué relación tienen T1 y T2 dado C?",
+      "options": [
+        "A) Son dependientes dado C",
+        "B) Son condicionalmente independientes dado C: P(T1|T2,C)=P(T1|C)",
+        "C) Su relación depende del valor de T3",
+        "D) Son siempre independientes, con o sin C"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La factorización P(T1|C)·P(T2|C)·P(T3|C)·P(C) asume que dado C, los tests son condicionalmente independientes entre sí. P(T1|T2,C)=P(T1|C): conocer T2 no aporta información sobre T1 cuando ya conocemos C."
+    },
+    {
+      "id": 26,
+      "topic": "Algoritmo de inferencia general (ExpandProb/QueryVar)",
+      "difficulty": "medium",
+      "question": "¿Qué calcula la función ExpandProb(BNet, Vars, E)?",
+      "options": [
+        "A) La distribución marginal de todas las variables",
+        "B) P(E), la probabilidad de la evidencia E, usando la factorización de la red",
+        "C) El máximo a posteriori de todas las variables",
+        "D) La estructura óptima de la red bayesiana"
+      ],
+      "correctAnswer": "B",
+      "explanation": "ExpandProb calcula recursivamente P(E): para cada variable en E usa su valor fijo; para variables libres suma sobre sus posibles valores. El resultado es la probabilidad del conjunto de evidencia E según la factorización de BNet."
+    },
+    {
+      "id": 27,
+      "topic": "Algoritmo de inferencia general (ExpandProb/QueryVar)",
+      "difficulty": "medium",
+      "question": "¿Qué condición debe cumplir el orden de las variables en ExpandProb para funcionar correctamente?",
+      "options": [
+        "A) Las variables deben estar en orden alfabético",
+        "B) Los padres de cada variable deben procesarse antes que sus hijos",
+        "C) Las variables de la evidencia deben ir al final",
+        "D) El orden es irrelevante para el resultado"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El orden debe ser topológico: los padres de cualquier nodo Y deben aparecer antes que Y en la lista. Así, cuando ExpandProb evalúa P(Y|padres(Y)), todos los padres ya tienen un valor asignado en la evidencia E."
+    },
+    {
+      "id": 28,
+      "topic": "Algoritmo de inferencia general (ExpandProb/QueryVar)",
+      "difficulty": "medium",
+      "question": "¿Qué retorna ExpandProb cuando Vars=[] (lista vacía de variables)?",
+      "options": [
+        "A) 0.0",
+        "B) La probabilidad marginal de la primera variable",
+        "C) 1.0 (caso base de la recursión)",
+        "D) El número de variables procesadas"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Vars=[] es el caso base de la recursión. ExpandProb retorna 1.0, el elemento neutro de la multiplicación, ya que no quedan más variables por procesar y la función se usa en contexto multiplicativo."
+    },
+    {
+      "id": 29,
+      "topic": "Algoritmo de inferencia general (ExpandProb/QueryVar)",
+      "difficulty": "hard",
+      "question": "¿Cómo calcula QueryVar(BNet, Vars, E, Q=vj) la probabilidad P(Q=vj|E)?",
+      "options": [
+        "A) Directamente como P(Q=vj, E) dividido entre P(E) de la tabla conjunta",
+        "B) Llamando ExpandProb(BNet, Vars, E∪{Q=vi}) para cada vi, sumando todos y dividiendo",
+        "C) Calculando la moda de la distribución marginal de Q",
+        "D) Usando la regla de la cadena de forma directa sin recursión"
+      ],
+      "correctAnswer": "B",
+      "explanation": "QueryVar calcula ExpandProb para cada valor vi de Q (extendiendo E con {Q=vi}), suma todos los resultados (= P(E)), y divide cada resultado individual entre esa suma para obtener P(Q=vi|E) para cada vi."
+    },
+    {
+      "id": 30,
+      "topic": "Algoritmo de inferencia general (ExpandProb/QueryVar)",
+      "difficulty": "hard",
+      "question": "¿Por qué más variables en la evidencia reduce el tiempo de cómputo de ExpandProb?",
+      "options": [
+        "A) Porque se usan heurísticas de poda",
+        "B) Porque las variables con valor fijo no generan ramas en el árbol de recursión",
+        "C) Porque se reduce el tamaño de la red bayesiana",
+        "D) Porque las variables observadas se eliminan del modelo"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Las variables en E tienen valor fijo y no generan ramificaciones en el árbol de recursión (no hay suma sobre sus valores). Cada variable libre dobla (o más) el número de ramas; eliminar variables libres reduce el tamaño exponencialmente."
+    },
+    {
+      "id": 31,
+      "topic": "Complejidad computacional",
+      "difficulty": "medium",
+      "question": "¿Cuál es la complejidad temporal de inferencia exacta en Redes Bayesianas en el peor caso?",
+      "options": [
+        "A) O(n log n)",
+        "B) O(n²)",
+        "C) Exponencial en el número de variables",
+        "D) O(n) si la red es un árbol"
+      ],
+      "correctAnswer": "C",
+      "explanation": "En el peor caso la complejidad es exponencial en n. El árbol de recursión de ExpandProb puede tener tamaño O(d^n) donde d es el número de valores por variable. El problema de inferencia exacta es NP-difícil en general."
+    },
+    {
+      "id": 32,
+      "topic": "Complejidad computacional",
+      "difficulty": "medium",
+      "question": "¿Es posible un algoritmo polinomial para inferencia exacta en Redes Bayesianas generales?",
+      "options": [
+        "A) Sí, el algoritmo de eliminación de variables es polinomial siempre",
+        "B) Sí, si la red tiene estructura de árbol siempre hay algoritmo polinomial",
+        "C) No, asumiendo P≠NP, porque inferencia exacta en BN es NP-difícil",
+        "D) Solo si todas las variables tienen el mismo número de valores"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El problema de inferencia exacta en Redes Bayesianas es NP-difícil. Bajo la hipótesis P≠NP, no existe un algoritmo polinomial para el caso general. Sin embargo, para estructuras especiales (árboles, redes con treewidth acotado) hay algoritmos eficientes."
+    },
+    {
+      "id": 33,
+      "topic": "Complejidad computacional",
+      "difficulty": "medium",
+      "question": "¿Cuál es la complejidad espacial del algoritmo ExpandProb?",
+      "options": [
+        "A) Exponencial en el número de variables",
+        "B) Lineal en el tamaño de la factorización",
+        "C) Cuadrática en el número de arcos de la red",
+        "D) Constante independientemente del tamaño"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La complejidad espacial es lineal en el tamaño de la factorización: solo necesita almacenar el valor final más la pila de recursión actual (la rama actual del árbol de cómputo). Si el número de padres por variable está acotado, es polinomial en n."
+    },
+    {
+      "id": 34,
+      "topic": "Complejidad computacional",
+      "difficulty": "hard",
+      "question": "¿Qué algoritmos de inferencia aproximada se mencionan como alternativa eficiente a la inferencia exacta?",
+      "options": [
+        "A) Backtracking y branch-and-bound",
+        "B) Gibbs sampling y Particle Filters",
+        "C) GSAT y WalkSAT",
+        "D) Algoritmos de búsqueda local con temperatura"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Gibbs sampling (un método MCMC) y Particle Filters son ejemplos de algoritmos de inferencia aproximada que trabajan en tiempo polinomial. Calculan valores de probabilidad que aproximan los valores exactos en lugar de calcularlos con precisión total."
+    },
+    {
+      "id": 35,
+      "topic": "Ejemplos: FO/DO, Cáncer, Gemelos/Luna",
+      "difficulty": "easy",
+      "question": "En el problema FO/DO, ¿qué significa FO=1?",
+      "options": [
+        "A) El perro está fuera",
+        "B) La familia está en casa",
+        "C) La familia está fuera de casa",
+        "D) El vecino está en casa"
+      ],
+      "correctAnswer": "C",
+      "explanation": "FO es la variable 'Family Out': FO=1 indica que la familia está fuera de casa, FO=0 que está dentro. DO es análoga para el perro ('Dog Out')."
+    },
+    {
+      "id": 36,
+      "topic": "Ejemplos: FO/DO, Cáncer, Gemelos/Luna",
+      "difficulty": "medium",
+      "question": "¿Cuáles son las dos factorizaciones equivalentes de P(FO,DO)?",
+      "options": [
+        "A) P(FO)·P(DO) y P(FO,DO)",
+        "B) P(DO|FO)·P(FO) y P(FO|DO)·P(DO)",
+        "C) P(DO)·P(FO|DO) y P(FO)·P(DO|FO) — son la misma",
+        "D) Solo hay una factorización válida"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Las dos factorizaciones son P(FO,DO)=P(DO|FO)·P(FO) (red FO→DO) y P(FO,DO)=P(FO|DO)·P(DO) (red DO→FO). Ambas son correctas y producen los mismos resultados de inferencia."
+    },
+    {
+      "id": 37,
+      "topic": "Ejemplos: FO/DO, Cáncer, Gemelos/Luna",
+      "difficulty": "medium",
+      "question": "En el ejemplo de los gemelos sin la luna, ¿por qué no está claro cuál de las dos redes (A→B o B→A) es la correcta?",
+      "options": [
+        "A) Porque ambas dan predicciones distintas",
+        "B) Porque no hay una relación causa-efecto clara entre los gemelos",
+        "C) Porque las redes bayesianas no pueden modelar gemelos",
+        "D) Porque A y B son siempre independientes"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Cuando Alice y Bob están simplemente 'entrelazados' (correlacionados sin causa-efecto clara), ambas factorizaciones A→B y B→A son igualmente válidas para inferencia. La dirección del arco es una elección de modelado, no una verdad objetiva."
+    },
+    {
+      "id": 38,
+      "topic": "Ejemplos: FO/DO, Cáncer, Gemelos/Luna",
+      "difficulty": "medium",
+      "question": "¿Qué descubrimiento permite mejora el modelo de los gemelos Alice y Bob?",
+      "options": [
+        "A) Que el humor de Alice causa el de Bob",
+        "B) Que existe una variable latente común M (estado de la luna) que causa el humor de ambos",
+        "C) Que ambos son siempre independientes",
+        "D) Que la red debe ser no dirigida"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Al observar el estado de la luna M, se descubre que P(A,B,M) = P(A|M)·P(B|M)·P(M) captura la dependencia real: la luna afecta a ambos gemelos independientemente, lo que explica su correlación sin necesidad de un arco directo entre ellos."
+    },
+    {
+      "id": 39,
+      "topic": "Ejemplos: FO/DO, Cáncer, Gemelos/Luna",
+      "difficulty": "hard",
+      "question": "Si en el ejemplo del cáncer añadimos un cuarto test T4 con la misma fiabilidad, ¿cómo cambia la inferencia con 4 tests positivos?",
+      "options": [
+        "A) La probabilidad de cáncer baja porque hay más incertidumbre",
+        "B) La probabilidad de cáncer sube porque hay más evidencia positiva",
+        "C) La probabilidad de cáncer no cambia: solo depende de P(C)",
+        "D) La red se vuelve inválida con más de 3 tests"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Más evidencia positiva sube la probabilidad. P(C=1,T1..T4=1)=0.9^4·0.01 y P(C=0,T1..T4=1)=0.2^4·0.99. El cociente favorece aún más C=1 respecto a 3 tests. Cada test positivo adicional acumula evidencia bayesiana a favor del cáncer."
+    },
+    {
+      "id": 40,
+      "topic": "Redes Bayesianas",
+      "difficulty": "hard",
+      "question": "En la red con V1→V3←V2, V3→V4, V3→V5, ¿cuál es la factorización correcta?",
+      "options": [
+        "A) P(V1)·P(V2)·P(V3)·P(V4|V3)·P(V5|V3)",
+        "B) P(V1)·P(V2)·P(V3|V1,V2)·P(V4|V3)·P(V5|V3)",
+        "C) P(V1|V3)·P(V2|V3)·P(V3)·P(V4|V3)·P(V5|V3)",
+        "D) P(V1,V2)·P(V3|V1,V2)·P(V4,V5|V3)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Siguiendo la estructura: V1 y V2 son raíces (sin padres) → P(V1), P(V2). V3 tiene padres V1 y V2 → P(V3|V1,V2). V4 y V5 tienen solo padre V3 → P(V4|V3), P(V5|V3). La factorización completa es su producto."
+    },
+    {
+      "id": 41,
+      "topic": "Distribución conjunta y probabilidad marginal",
+      "difficulty": "medium",
+      "question": "¿Cuál de las siguientes afirmaciones sobre la distribución conjunta P(X1,...,Xn) es correcta?",
+      "options": [
+        "A) Permite calcular marginales y condicionales, pero solo para variables binarias",
+        "B) Permite calcular cualquier probabilidad marginal o condicional del sistema",
+        "C) Solo permite calcular probabilidades marginales, no condicionales",
+        "D) Su tamaño crece linealmente con n"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La distribución conjunta completa permite calcular cualquier probabilidad marginal (sumando) y cualquier probabilidad condicional (dividiendo) para cualquier tipo de variable. Su limitación es el tamaño exponencial: 2^n entradas para variables binarias."
+    },
+    {
+      "id": 42,
+      "topic": "Probabilidad condicional y factorización",
+      "difficulty": "medium",
+      "question": "Si P(FO=1,DO=0)=0.125 y P(FO=1)=0.5, ¿cuánto vale P(DO=0|FO=1)?",
+      "options": [
+        "A) 0.125",
+        "B) 0.25",
+        "C) 0.375",
+        "D) 0.5"
+      ],
+      "correctAnswer": "B",
+      "explanation": "P(DO=0|FO=1) = P(DO=0,FO=1)/P(FO=1) = 0.125/0.5 = 0.25. Dado que la familia está fuera, solo hay un 25% de probabilidad de que el perro esté dentro."
+    },
+    {
+      "id": 43,
+      "topic": "Algoritmo de inferencia general (ExpandProb/QueryVar)",
+      "difficulty": "hard",
+      "question": "En ExpandProb, si una variable Y no está en la evidencia E, ¿cómo se trata?",
+      "options": [
+        "A) Se ignora y se pasa a la siguiente",
+        "B) Se asigna el valor 0 por defecto",
+        "C) Se suma su contribución para todos sus valores posibles (marginalización)",
+        "D) Se toma el valor más probable según la distribución marginal"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Si Y es una variable libre (no en E), ExpandProb suma P(Y=yj|padres(Y))×ExpandProb(BNet,Vars\\{Y},E∪{Y=yj}) para todos los valores yj de Y. Esto implementa la marginalización sobre las variables no observadas."
+    },
+    {
+      "id": 44,
+      "topic": "Teorema de Bayes",
+      "difficulty": "medium",
+      "question": "¿Cuál es el nombre que se da a P(A) en el contexto del teorema de Bayes?",
+      "options": [
+        "A) Likelihood",
+        "B) Prior (probabilidad a priori)",
+        "C) Posterior",
+        "D) Evidencia"
+      ],
+      "correctAnswer": "B",
+      "explanation": "P(A) es el prior: la probabilidad de A antes de observar ninguna evidencia. P(B|A) es el likelihood (verosimilitud). P(A|B) es el posterior: la probabilidad de A después de observar B. P(B) es la evidencia o normalizador."
+    },
+    {
+      "id": 45,
+      "topic": "Teorema de Bayes",
+      "difficulty": "hard",
+      "question": "En el teorema de Bayes: P(A=vi|B=vj) = P(B=vj|A=vi)·P(A=vi) / Σ_{vi'} P(B=vj|A=vi')·P(A=vi'), ¿qué representa el denominador?",
+      "options": [
+        "A) La probabilidad a priori de A",
+        "B) La probabilidad marginal P(B=vj)",
+        "C) La probabilidad del evento imposible",
+        "D) El número de valores posibles de A"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El denominador Σ_{vi'} P(B=vj|A=vi')·P(A=vi') = P(B=vj) por la ley de probabilidad total. Es el normalizador que garantiza que Σ_{vi} P(A=vi|B=vj) = 1."
+    },
+    {
+      "id": 46,
+      "topic": "Redes Bayesianas",
+      "difficulty": "easy",
+      "question": "¿Cuántas tablas de probabilidad condicional necesita la red M→A, M→B?",
+      "options": [
+        "A) 1 tabla",
+        "B) 2 tablas",
+        "C) 3 tablas",
+        "D) 4 tablas"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Se necesitan 3 tablas: P(M) para el nodo raíz M (sin padres), P(A|M) para el nodo A con padre M, y P(B|M) para el nodo B con padre M. Esto corresponde a la factorización P(A,B,M)=P(A|M)·P(B|M)·P(M)."
+    },
+    {
+      "id": 47,
+      "topic": "Independencia Condicional",
+      "difficulty": "hard",
+      "question": "De P(A,B,M)=P(A|M)·P(B|M)·P(M), ¿podemos deducir directamente que P(A|B,M) = P(A|M)?",
+      "options": [
+        "A) No, se necesita información adicional",
+        "B) Sí, usando que P(A,B,M)=P(A|B,M)·P(B|M)·P(M) e igualando",
+        "C) Solo si A y B tienen el mismo dominio",
+        "D) Solo si M es binaria"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La factorización alternativa P(A,B,M)=P(A|B,M)·P(B,M)=P(A|B,M)·P(B|M)·P(M) es siempre válida. Igualando con P(A|M)·P(B|M)·P(M) y simplificando P(B|M)·P(M) se obtiene P(A|B,M)=P(A|M). ✓"
+    },
+    {
+      "id": 48,
+      "topic": "Distribución conjunta y probabilidad marginal",
+      "difficulty": "easy",
+      "question": "En la distribución conjunta P(FO,DO), ¿cuántas entradas tiene la tabla y cuántas son independientes?",
+      "options": [
+        "A) 4 entradas, 4 independientes",
+        "B) 4 entradas, 3 independientes",
+        "C) 2 entradas, 1 independiente",
+        "D) 8 entradas, 7 independientes"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Con 2 variables binarias la tabla tiene 2²=4 entradas. Como deben sumar 1, solo 3 son parámetros independientes (el cuarto queda determinado). Igualmente, la factorización P(DO|FO)·P(FO) requiere exactamente 3 parámetros independientes."
+    },
+    {
+      "id": 49,
+      "topic": "Redes Bayesianas",
+      "difficulty": "medium",
+      "question": "¿Cuál es la principal ventaja de las Redes Bayesianas frente a la tabla completa de la distribución conjunta?",
+      "options": [
+        "A) Solo funcionan con variables binarias",
+        "B) Representan la distribución conjunta con tablas más pequeñas si cada variable tiene pocos padres",
+        "C) Siempre tienen complejidad polinomial para inferencia",
+        "D) No requieren probabilidades condicionales"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Si cada variable tiene como máximo k padres, el tamaño de cada CPT es O(r^k) donde r es el número de valores por variable. El tamaño total es O(n·r^k), polinomial en n si k es constante, frente a O(r^n) de la tabla completa."
+    },
+    {
+      "id": 50,
+      "topic": "Complejidad computacional",
+      "difficulty": "medium",
+      "question": "¿Bajo qué condición la complejidad espacial de ExpandProb es polinomial en n?",
+      "options": [
+        "A) Cuando todas las variables son binarias",
+        "B) Cuando el número de padres por variable está acotado por una constante",
+        "C) Cuando la red tiene estructura de árbol",
+        "D) Cuando la evidencia es vacía"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Si el número de padres de cada nodo está acotado por una constante k, cada CPT tiene tamaño O(r^k) acotado, y el tamaño total de la factorización es O(n·r^k), polinomial en n. Esto hace que el espacio de ExpandProb sea también polinomial."
+    },
+    {
+      "id": 51,
+      "topic": "Teorema de Bayes",
+      "difficulty": "medium",
+      "question": "Dado P(DO=1|FO=0)=0.5, P(FO=0)=0.5, y P(DO=1)=0.625, ¿cuánto vale P(FO=0|DO=1)?",
+      "options": [
+        "A) 0.5",
+        "B) 0.4",
+        "C) 0.6",
+        "D) 0.25"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Bayes: P(FO=0|DO=1)=P(DO=1|FO=0)·P(FO=0)/P(DO=1)=0.5·0.5/0.625=0.25/0.625=0.4. O bien: como P(FO=1|DO=1)=0.6, entonces P(FO=0|DO=1)=1-0.6=0.4."
+    },
+    {
+      "id": 52,
+      "topic": "Algoritmo de inferencia general (ExpandProb/QueryVar)",
+      "difficulty": "hard",
+      "question": "¿Con qué tipo de traversal del árbol de cómputo se asocia la función recursiva ExpandProb?",
+      "options": [
+        "A) Breadth-first (primero en anchura)",
+        "B) Depth-first (primero en profundidad)",
+        "C) Best-first (primero el mejor)",
+        "D) Iterative deepening"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La recursión de ExpandProb sigue un patrón depth-first: expande completamente una rama antes de pasar a la siguiente. Esto corresponde al traversal depth-first del árbol de cómputo asociado."
+    },
+    {
+      "id": 53,
+      "topic": "Ejemplos: FO/DO, Cáncer, Gemelos/Luna",
+      "difficulty": "hard",
+      "question": "¿Qué demuestra el ejemplo del cáncer sobre la importancia de la probabilidad a priori?",
+      "options": [
+        "A) Que el prior es irrelevante cuando tenemos muchos tests",
+        "B) Que un prior bajo (1%) hace que incluso 3 tests positivos den P(C=1)≈0.48, no cercano a 1",
+        "C) Que hay que ignorar el prior para obtener resultados realistas",
+        "D) Que los tests no tienen valor diagnóstico"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El prior P(C=1)=0.01 es tan bajo que aunque 3 tests den positivo (con 90% de sensibilidad), la probabilidad posterior solo llega a ≈0.48. Esto ilustra el papel fundamental del prior en el razonamiento bayesiano: la rareza de la enfermedad pesa mucho."
+    },
+    {
+      "id": 54,
+      "topic": "Independencia Condicional",
+      "difficulty": "medium",
+      "question": "En la red V1→V3←V2 (collider), ¿qué ocurre con V1 y V2 cuando condicionamos sobre V3?",
+      "options": [
+        "A) Se vuelven marginalmente independientes",
+        "B) Siguen siendo independientes dado V3",
+        "C) Se vuelven dependientes dado V3 (fenómeno 'explaining away')",
+        "D) Solo V1 se vuelve dependiente de V3"
+      ],
+      "correctAnswer": "C",
+      "explanation": "En un collider (v-structure) V1→V3←V2, V1 y V2 son marginalmente independientes. Pero al condicionar sobre V3 (o sus descendientes), se vuelven dependientes. Este fenómeno se llama 'explaining away' o 'Berkson's paradox'."
+    },
+    {
+      "id": 55,
+      "topic": "Redes Bayesianas",
+      "difficulty": "hard",
+      "question": "¿Cuántos parámetros independientes tiene la CPT de un nodo con ri valores y ki padres binarios?",
+      "options": [
+        "A) ri·ki",
+        "B) (ri-1)·2^ki",
+        "C) ri·2^ki",
+        "D) (ri-1)·ki"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Hay 2^ki filas en la CPT (una por cada combinación de valores de los ki padres binarios). Cada fila tiene ri valores que suman 1, por lo que solo (ri-1) son independientes. Total: (ri-1)·2^ki parámetros independientes."
+    }
+  ]
+}

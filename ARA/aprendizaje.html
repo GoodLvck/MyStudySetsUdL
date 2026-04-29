@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprendizaje Bayesiano — ARA</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #eff6ff;
+      --surface: #ffffff;
+      --surface2: #f8fafc;
+      --border: #dbeafe;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --accent-bg: rgba(37,99,235,0.08);
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --success-border: #86efac;
+      --error: #dc2626;
+      --error-bg: #fee2e2;
+      --error-border: #fca5a5;
+      --warning: #b45309;
+      --warning-bg: #fef3c7;
+      --warning-border: #fcd34d;
+      --lvl0-c: #64748b; --lvl0-bg: #f1f5f9;
+      --lvl1-c: #c2410c; --lvl1-bg: #ffedd5;
+      --lvl2-c: #a16207; --lvl2-bg: #fef9c3;
+      --lvl3-c: #15803d; --lvl3-bg: #dcfce7;
+      --radius: 12px; --radius-sm: 8px;
+      --shadow: 0 1px 4px rgba(0,0,0,0.07), 0 2px 12px rgba(0,0,0,0.05);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface2: #0f172a;
+      --border: #334155;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #60a5fa;
+      --accent-hover: #93c5fd;
+      --accent-bg: rgba(96,165,250,0.1);
+      --success: #4ade80;
+      --success-bg: #052e16;
+      --success-border: #166534;
+      --error: #f87171;
+      --error-bg: #2d0000;
+      --error-border: #7f1d1d;
+      --warning: #fbbf24;
+      --warning-bg: #1c0d00;
+      --warning-border: #78350f;
+      --lvl0-c: #94a3b8; --lvl0-bg: #1e293b;
+      --lvl1-c: #fb923c; --lvl1-bg: #1c0700;
+      --lvl2-c: #fbbf24; --lvl2-bg: #1c1000;
+      --lvl3-c: #4ade80; --lvl3-bg: #012710;
+      --shadow: 0 1px 4px rgba(0,0,0,0.3), 0 2px 12px rgba(0,0,0,0.2);
+    }
+
+    html { transition: background 0.2s, color 0.2s; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.85rem 1.25rem;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 20;
+      box-shadow: var(--shadow);
+    }
+    .back-btn {
+      color: var(--accent); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500; white-space: nowrap;
+      opacity: 0.8; transition: opacity 0.15s;
+    }
+    .back-btn:hover { opacity: 1; }
+    .header-center { flex: 1; text-align: center; }
+    header h1 { font-size: 1rem; font-weight: 700; }
+    header .subtitle { font-size: 0.7rem; color: var(--text-muted); margin-top: 1px; }
+    #theme-toggle {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 0.35rem 0.55rem;
+      cursor: pointer; font-size: 1rem; line-height: 1;
+      transition: background 0.15s;
+    }
+    #theme-toggle:hover { background: var(--border); }
+
+    /* ── Main ── */
+    main { max-width: 740px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
+
+    /* ── Tabs ── */
+    .mode-tabs {
+      display: flex; gap: 4px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 4px;
+      margin-bottom: 1rem;
+    }
+    .tab {
+      flex: 1; padding: 0.55rem 1rem;
+      border: none; border-radius: calc(var(--radius) - 3px);
+      background: transparent; color: var(--text-muted);
+      font-size: 0.875rem; font-weight: 500; cursor: pointer;
+      transition: all 0.15s;
+    }
+    .tab.active { background: var(--accent); color: #fff; }
+    .tab:not(.active):hover { background: var(--accent-bg); color: var(--accent); }
+
+    /* ── Controls ── */
+    .controls {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 0.75rem;
+      margin-bottom: 1rem; flex-wrap: wrap;
+    }
+    .controls-left { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .btn-ctrl {
+      display: flex; align-items: center; gap: 0.35rem;
+      padding: 0.4rem 0.85rem;
+      border: 1px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--surface); color: var(--text-muted);
+      font-size: 0.8rem; cursor: pointer; transition: all 0.15s;
+    }
+    .btn-ctrl:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-ctrl.active {
+      border-color: var(--accent); color: var(--accent);
+      background: var(--accent-bg);
+    }
+    .mastery-stats { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .mastery-stat {
+      padding: 0.25rem 0.6rem; border-radius: 999px;
+      font-size: 0.75rem; font-weight: 600; cursor: default;
+    }
+    .mastery-stat.lvl0 { background: var(--lvl0-bg); color: var(--lvl0-c); }
+    .mastery-stat.lvl1 { background: var(--lvl1-bg); color: var(--lvl1-c); }
+    .mastery-stat.lvl2 { background: var(--lvl2-bg); color: var(--lvl2-c); }
+    .mastery-stat.lvl3 { background: var(--lvl3-bg); color: var(--lvl3-c); }
+
+    /* ── Progress ── */
+    .progress-section { margin-bottom: 1rem; }
+    .progress-track {
+      height: 7px; background: var(--border);
+      border-radius: 999px; overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%; width: 0%;
+      background: linear-gradient(90deg, var(--accent), #8b5cf6);
+      border-radius: 999px; transition: width 0.35s ease;
+    }
+    .progress-label {
+      display: block; text-align: right;
+      font-size: 0.72rem; color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── Apuntes ── */
+    .apuntes-view { line-height: 1.7; }
+    .apuntes-view h1 { font-size: 1.4rem; font-weight: 700; margin: 0 0 1rem; }
+    .apuntes-view h2 { font-size: 1.15rem; font-weight: 700; margin: 1.5rem 0 0.6rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+    .apuntes-view h3 { font-size: 0.95rem; font-weight: 700; margin: 1.1rem 0 0.4rem; color: var(--accent); }
+    .apuntes-view p { margin-bottom: 0.7rem; }
+    .apuntes-view ul, .apuntes-view ol { margin: 0.4rem 0 0.7rem 1.4rem; }
+    .apuntes-view li { margin-bottom: 0.2rem; }
+    .apuntes-view code { font-family: 'Courier New', monospace; background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 0.1rem 0.35rem; font-size: 0.82em; }
+    .apuntes-view pre { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem; overflow-x: auto; margin: 0.7rem 0; }
+    .apuntes-view pre code { background: none; border: none; padding: 0; font-size: 0.82rem; }
+    .apuntes-view blockquote { border-left: 3px solid var(--accent); padding-left: 1rem; color: var(--text-muted); margin: 0.7rem 0; font-style: italic; }
+    .apuntes-view table { width: 100%; border-collapse: collapse; margin: 0.7rem 0; font-size: 0.85rem; }
+    .apuntes-view th { background: var(--accent-bg); color: var(--accent); font-weight: 600; padding: 0.45rem 0.7rem; border: 1px solid var(--border); text-align: left; }
+    .apuntes-view td { padding: 0.35rem 0.7rem; border: 1px solid var(--border); }
+    .apuntes-view tr:nth-child(even) td { background: var(--surface2); }
+    .apuntes-view hr { border: none; border-top: 1px solid var(--border); margin: 1rem 0; }
+    .apuntes-view a { color: var(--accent); text-decoration: none; }
+    .apuntes-view a:hover { text-decoration: underline; }
+    .card.apuntes-card { min-height: unset; }
+
+    /* ── Card ── */
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem;
+      box-shadow: var(--shadow); margin-bottom: 1rem; min-height: 280px;
+    }
+    .question-header {
+      display: flex; gap: 0.4rem; flex-wrap: wrap;
+      align-items: center; margin-bottom: 1.1rem;
+    }
+    .topic-badge {
+      padding: 0.18rem 0.65rem; border-radius: 999px;
+      background: var(--accent-bg); color: var(--accent);
+      font-size: 0.72rem; font-weight: 600;
+    }
+    .diff-badge {
+      padding: 0.18rem 0.65rem; border-radius: 999px;
+      font-size: 0.72rem; font-weight: 600;
+    }
+    .diff-badge.easy   { background: var(--lvl3-bg); color: var(--lvl3-c); }
+    .diff-badge.medium { background: var(--lvl2-bg); color: var(--lvl2-c); }
+    .diff-badge.hard   { background: var(--lvl1-bg); color: var(--lvl1-c); }
+    .mastery-badge {
+      padding: 0.18rem 0.65rem; border-radius: 999px;
+      font-size: 0.72rem; font-weight: 600; margin-left: auto;
+    }
+    .mastery-badge.lvl0 { background: var(--lvl0-bg); color: var(--lvl0-c); }
+    .mastery-badge.lvl1 { background: var(--lvl1-bg); color: var(--lvl1-c); }
+    .mastery-badge.lvl2 { background: var(--lvl2-bg); color: var(--lvl2-c); }
+    .mastery-badge.lvl3 { background: var(--lvl3-bg); color: var(--lvl3-c); }
+
+    .question-text {
+      font-size: 1rem; line-height: 1.65;
+      margin-bottom: 1.25rem; font-weight: 500;
+    }
+
+    /* ── Quiz options ── */
+    .options { display: flex; flex-direction: column; gap: 0.45rem; }
+    .option {
+      padding: 0.7rem 1rem; text-align: left;
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--surface2); color: var(--text);
+      font-size: 0.88rem; font-family: inherit;
+      cursor: pointer; transition: all 0.15s; line-height: 1.5;
+    }
+    .option:not(:disabled):hover {
+      border-color: var(--accent); background: var(--accent-bg);
+    }
+    .option.correct {
+      border-color: var(--success-border); background: var(--success-bg);
+      color: var(--success); font-weight: 600;
+    }
+    .option.wrong {
+      border-color: var(--error-border); background: var(--error-bg);
+      color: var(--error);
+    }
+    .option:disabled { cursor: default; }
+
+    /* ── Fill blanks ── */
+    .sentence {
+      font-size: 1rem; line-height: 2.4;
+      margin-bottom: 1rem;
+    }
+    .blank-input {
+      display: inline-block;
+      border: none; border-bottom: 2px solid var(--accent);
+      background: var(--accent-bg); color: var(--text);
+      padding: 0.1rem 0.5rem; border-radius: 4px 4px 0 0;
+      font-size: 0.9rem; font-family: inherit;
+      min-width: 100px; width: auto;
+      text-align: center; outline: none;
+      transition: all 0.15s;
+    }
+    .blank-input:focus {
+      border-bottom-color: var(--accent-hover);
+      background: rgba(37,99,235,0.12);
+    }
+    .blank-input.correct {
+      border-bottom-color: var(--success);
+      background: var(--success-bg); color: var(--success);
+    }
+    .blank-input.wrong {
+      border-bottom-color: var(--error);
+      background: var(--error-bg); color: var(--error);
+    }
+    .blank-input:disabled { cursor: default; }
+
+    .fill-controls {
+      display: flex; gap: 0.5rem;
+      margin-bottom: 0.75rem; flex-wrap: wrap;
+    }
+    .btn-primary {
+      padding: 0.5rem 1.2rem; background: var(--accent); color: #fff;
+      border: none; border-radius: var(--radius-sm);
+      font-size: 0.875rem; font-weight: 600;
+      cursor: pointer; transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-secondary {
+      padding: 0.5rem 1.1rem; background: var(--surface2);
+      color: var(--text-muted); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); font-size: 0.875rem;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hints-panel {
+      background: var(--warning-bg); border: 1px solid var(--warning-border);
+      border-radius: var(--radius-sm); padding: 0.75rem 1rem;
+      margin-bottom: 0.75rem; font-size: 0.83rem; line-height: 1.65;
+    }
+    .hints-panel p { margin-bottom: 0.2rem; }
+    .hints-panel p:last-child { margin: 0; }
+
+    .answer-reveal {
+      margin: 0.75rem 0; padding: 0.6rem 0.9rem;
+      background: var(--success-bg); border: 1px solid var(--success-border);
+      border-radius: var(--radius-sm); font-size: 0.83rem; line-height: 1.7;
+    }
+    .answer-reveal span.ok  { color: var(--success); }
+    .answer-reveal span.bad { color: var(--error); }
+
+    /* ── Explanation ── */
+    .explanation {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem; margin-top: 1rem;
+      font-size: 0.875rem; line-height: 1.65;
+      color: var(--text-muted);
+    }
+    .explanation .expl-header {
+      display: block; margin-bottom: 0.5rem;
+      font-size: 0.95rem; font-weight: 700; color: var(--text);
+    }
+
+    .hidden { display: none !important; }
+
+    /* ── Navigation ── */
+    .navigation {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 1rem;
+    }
+    .nav-btn {
+      padding: 0.6rem 1.3rem;
+      background: var(--surface); color: var(--accent);
+      border: 1.5px solid var(--accent); border-radius: var(--radius-sm);
+      font-size: 0.875rem; font-weight: 600;
+      cursor: pointer; transition: all 0.15s;
+    }
+    .nav-btn:hover:not(:disabled) { background: var(--accent); color: #fff; }
+    .nav-btn:disabled {
+      opacity: 0.3; cursor: default;
+      border-color: var(--border); color: var(--text-muted);
+    }
+    #question-counter {
+      font-size: 0.875rem; color: var(--text-muted);
+      font-weight: 600; white-space: nowrap;
+    }
+
+    /* ── Completion overlay ── */
+    .overlay {
+      position: fixed; inset: 0; z-index: 50;
+      background: rgba(0,0,0,0.55); backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1rem;
+    }
+    .overlay-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      max-width: 420px; width: 100%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+    .overlay-card h2 { font-size: 1.4rem; margin-bottom: 1.2rem; }
+    .completion-stats { margin-bottom: 1.5rem; }
+    .completion-stat-row {
+      display: flex; justify-content: space-between;
+      padding: 0.4rem 0; border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .completion-stat-row:last-child { border: none; }
+
+    /* ── Pseudocode block ── */
+    .pseudocode-block {
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 0.65rem 0.9rem;
+      margin-bottom: 1.25rem; overflow-x: auto;
+    }
+    .pseudo-line {
+      display: flex; gap: 0.75rem; padding: 0.1rem 0.35rem;
+      border-radius: 3px; white-space: pre;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+      font-size: 0.8rem; line-height: 1.8;
+    }
+    .pseudo-line.key {
+      background: var(--warning-bg);
+      border-left: 3px solid var(--warning-border);
+      padding-left: 0.25rem;
+    }
+    .line-num {
+      color: var(--text-muted); min-width: 1.4rem;
+      text-align: right; user-select: none; flex-shrink: 0;
+    }
+    .line-code { color: var(--text); }
+
+    /* ── Algo ID choices (checkboxes) ── */
+    .algo-choices { display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1rem; }
+    .algo-choice {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      padding: 0.65rem 1rem;
+      border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+      background: var(--surface2); color: var(--text);
+      cursor: pointer; transition: all 0.15s;
+      font-size: 0.88rem; line-height: 1.5;
+    }
+    .algo-choice:not(.disabled):hover { border-color: var(--accent); background: var(--accent-bg); }
+    .algo-choice.selected { border-color: var(--accent); background: var(--accent-bg); }
+    .algo-choice.correct  { border-color: var(--success-border); background: var(--success-bg); color: var(--success); font-weight: 600; }
+    .algo-choice.wrong    { border-color: var(--error-border);   background: var(--error-bg);   color: var(--error); }
+    .algo-choice.missed   { border-color: var(--warning-border); background: var(--warning-bg); color: var(--warning); }
+    .algo-choice.disabled { cursor: default; }
+    .choice-checkbox {
+      width: 1rem; height: 1rem; flex-shrink: 0; margin-top: 0.2rem;
+      accent-color: var(--accent); cursor: pointer;
+    }
+    .choice-checkbox:disabled { cursor: default; }
+
+    /* ── Algo score pill ── */
+    .algo-score {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.3rem 0.8rem; border-radius: 999px;
+      font-size: 0.8rem; font-weight: 600;
+    }
+    .algo-score.perfect { background: var(--success-bg); color: var(--success); }
+    .algo-score.partial { background: var(--warning-bg); color: var(--warning); }
+    .algo-score.zero    { background: var(--error-bg);   color: var(--error); }
+
+    /* ── Drag & Drop ── */
+    .dd-instruction {
+      font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.6rem;
+    }
+    .token-bank {
+      display: flex; flex-wrap: wrap; gap: 0.45rem;
+      padding: 0.75rem; margin-bottom: 0.85rem;
+      background: var(--surface2); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); min-height: 2.8rem;
+    }
+    .token-chip {
+      padding: 0.28rem 0.75rem;
+      background: var(--accent-bg); color: var(--accent);
+      border: 1.5px solid var(--accent); border-radius: 999px;
+      font-size: 0.8rem; font-family: 'SF Mono', 'Fira Code', ui-monospace, monospace;
+      cursor: grab; user-select: none; transition: all 0.15s; white-space: nowrap;
+    }
+    .token-chip:hover:not(.token-placed) { background: var(--accent); color: #fff; }
+    .token-chip.token-selected { background: var(--accent); color: #fff; box-shadow: 0 0 0 2px var(--accent-hover); }
+    .token-chip.token-placed { opacity: 0.28; cursor: default; pointer-events: none; }
+
+    .blank-zone {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 5.5rem; padding: 0.1rem 0.5rem;
+      background: var(--warning-bg); border: 1.5px dashed var(--warning-border);
+      border-radius: 4px; cursor: pointer;
+      font-family: inherit; font-size: inherit; line-height: 1.6;
+      transition: all 0.15s; vertical-align: middle;
+    }
+    .blank-zone.filled {
+      background: var(--accent-bg); border-color: var(--accent); border-style: solid; color: var(--accent);
+    }
+    .blank-zone.drag-over {
+      background: var(--accent-bg); border-color: var(--accent); border-style: solid;
+    }
+    .blank-zone.correct {
+      background: var(--success-bg); border-color: var(--success-border); border-style: solid;
+      color: var(--success); font-weight: 600; cursor: default;
+    }
+    .blank-zone.wrong {
+      background: var(--error-bg); border-color: var(--error-border); border-style: solid;
+      color: var(--error); cursor: default;
+    }
+    .blank-placeholder { color: var(--text-muted); font-style: italic; font-size: 0.78em; }
+
+    .dd-score {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.3rem 0.8rem; border-radius: 999px;
+      font-size: 0.8rem; font-weight: 600;
+    }
+    .dd-score.perfect { background: var(--success-bg); color: var(--success); }
+    .dd-score.partial { background: var(--warning-bg); color: var(--warning); }
+    .dd-score.zero    { background: var(--error-bg);   color: var(--error); }
+
+    /* ── Flashcards ── */
+    .fc-wrapper { display: flex; flex-direction: column; }
+    .fc-scene { perspective: 1100px; width: 100%; margin-bottom: 0; }
+    .fc-card {
+      display: grid; /* stack faces */
+      width: 100%; min-height: 190px;
+      transform-style: preserve-3d;
+      transition: transform 0.52s ease;
+      cursor: pointer;
+    }
+    .fc-card.flipped { transform: rotateY(180deg); }
+    .fc-face {
+      grid-area: 1/1;
+      backface-visibility: hidden; -webkit-backface-visibility: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 1.6rem 1.4rem; text-align: center;
+      border: 1.5px solid var(--border); border-radius: var(--radius);
+      background: var(--surface);
+    }
+    .fc-back {
+      transform: rotateY(180deg);
+      background: var(--surface2); text-align: left; align-items: flex-start;
+    }
+    .fc-front-text {
+      font-size: 1.05rem; font-weight: 500; line-height: 1.65; color: var(--text);
+    }
+    .fc-tap-hint {
+      margin-top: 1.1rem; font-size: 0.72rem; color: var(--text-muted); opacity: 0.7;
+    }
+    .fc-back-content {
+      font-size: 0.9rem; line-height: 1.7; color: var(--text); width: 100%;
+    }
+    .fc-back-content p { margin-bottom: 0.45rem; }
+    .fc-back-content ul { padding-left: 1.2rem; margin: 0.3rem 0; }
+    .fc-back-content li { margin-bottom: 0.25rem; }
+    .fc-actions {
+      display: none; gap: 0.75rem; margin-top: 1rem;
+    }
+    .fc-wrapper.flipped .fc-actions { display: flex; }
+    .btn-fc-yes, .btn-fc-no {
+      flex: 1; padding: 0.6rem 1rem;
+      border: 1.5px solid; border-radius: var(--radius-sm);
+      font-size: 0.88rem; font-weight: 600; cursor: pointer; font-family: inherit;
+      transition: all 0.15s;
+    }
+    .btn-fc-yes { background: var(--success-bg); color: var(--success); border-color: var(--success-border); }
+    .btn-fc-yes:hover { background: var(--success); color: #fff; }
+    .btn-fc-no  { background: var(--error-bg);   color: var(--error);   border-color: var(--error-border); }
+    .btn-fc-no:hover  { background: var(--error);   color: #fff; }
+    .fc-nav-hint {
+      text-align: center; font-size: 0.7rem; color: var(--text-muted);
+      margin-top: 0.55rem; opacity: 0.7;
+    }
+    @media (min-width: 600px) { .fc-nav-hint { display: none; } }
+
+    /* ── Loading / Error ── */
+    .loading, .error-msg {
+      text-align: center; padding: 3rem 1rem;
+      color: var(--text-muted); font-size: 0.9rem;
+    }
+    .error-msg { color: var(--error); }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      header h1 { font-size: 0.9rem; }
+      .card { padding: 1.1rem; }
+      .controls { gap: 0.5rem; }
+      .mastery-stats { gap: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="./" class="back-btn">← ARA</a>
+  <div class="header-center">
+    <h1>Aprendizaje Bayesiano</h1>
+    <span class="subtitle">Aprendizaje, Razonamiento y Agentes · ARA</span>
+  </div>
+  <button id="theme-toggle" title="Cambiar tema">🌙</button>
+</header>
+
+<main>
+  <div class="mode-tabs" role="tablist">
+    <button class="tab active" data-mode="quiz" role="tab">📝 Tipo Test</button>
+    <button class="tab" data-mode="fill" role="tab">✏️ Completar</button>
+    <button class="tab" data-mode="dragdrop" role="tab">↕ Arrastrar</button>
+    <button class="tab" data-mode="flashcard" role="tab">🃏 Flashcards</button>
+  </div>
+
+  <div class="controls">
+    <div class="controls-left">
+      <button id="random-toggle" class="btn-ctrl">🔀 Aleatorio</button>
+      <button id="reset-session" class="btn-ctrl">↺ Reiniciar</button>
+    </div>
+    <div id="mastery-stats" class="mastery-stats"></div>
+  </div>
+
+  <div class="progress-section">
+    <div class="progress-track">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <span class="progress-label" id="progress-label">0 / 0 respondidas</span>
+  </div>
+
+  <div class="card" id="question-card">
+    <div class="loading">Cargando preguntas…</div>
+  </div>
+
+  <div class="navigation">
+    <button id="prev-btn" class="nav-btn" disabled>← Anterior</button>
+    <span id="question-counter">— / —</span>
+    <button id="next-btn" class="nav-btn">Siguiente →</button>
+  </div>
+</main>
+
+<div class="overlay hidden" id="completion-overlay">
+  <div class="overlay-card">
+    <h2>🎉 ¡Sesión completada!</h2>
+    <div class="completion-stats" id="completion-stats"></div>
+    <button id="restart-btn" class="btn-primary">Nueva sesión</button>
+  </div>
+</div>
+
+<script>
+/* ── Constants ── */
+const MASTERY_KEY  = 'ara_learning_mastery';
+const THEME_KEY    = 'paia_theme';
+const SESSION_KEY  = 'ara_learning_session';
+
+const LEVELS = [
+  { label: 'Desconocido', icon: '❓', cls: 'lvl0' },
+  { label: 'Aprendiendo', icon: '📖', cls: 'lvl1' },
+  { label: 'Familiar',    icon: '💡', cls: 'lvl2' },
+  { label: 'Dominado',    icon: '✅', cls: 'lvl3' },
+];
+
+/* ── State ── */
+let quizData, fillData, algoIdData = {questions:[]}, apuntesText = '', dragdropData, flashcardData;
+let mode         = 'quiz';
+let isRandom     = false;
+let currentIdx   = 0;
+let questionOrder = [];
+let mastery      = {};
+let sessionAnswered = new Set();
+let sessionStates   = {};
+
+/* ── Init ── */
+async function init() {
+  loadTheme();
+  try {
+    [quizData, fillData, dragdropData, flashcardData] = await Promise.all([
+      fetch('studysets/bayesian_learning_quiz.json').then(r => r.json()),
+      fetch('studysets/bayesian_learning_fillblanks.json').then(r => r.json()),
+      fetch('studysets/bayesian_learning_dragdrop.json').then(r => r.json()),
+      fetch('studysets/bayesian_learning_flashcards.json').then(r => r.json()),
+    ]);
+  } catch (e) {
+    document.getElementById('question-card').innerHTML =
+      `<div class="error-msg">Error cargando los datos: ${e.message}</div>`;
+    return;
+  }
+  loadMastery();
+  restoreSession();
+  renderQuestion();
+  renderMasteryStats();
+  setupListeners();
+}
+
+/* ── Persistence ── */
+function loadMastery() {
+  try { mastery = JSON.parse(localStorage.getItem(MASTERY_KEY) || '{}'); }
+  catch { mastery = {}; }
+}
+function saveMastery() {
+  localStorage.setItem(MASTERY_KEY, JSON.stringify(mastery));
+}
+function getMastery(key)          { return mastery[key] ?? 0; }
+function setMastery(key, correct) {
+  const c = getMastery(key);
+  mastery[key] = correct ? Math.min(3, c + 1) : Math.max(0, c - 1);
+  saveMastery();
+}
+
+function saveSession() {
+  const data = {
+    mode, isRandom, currentIdx,
+    questionOrder,
+    sessionAnswered: [...sessionAnswered],
+    sessionStates,
+  };
+  localStorage.setItem(SESSION_KEY, JSON.stringify(data));
+}
+function restoreSession() {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    if (!raw) { setupOrder(); return; }
+    const d = JSON.parse(raw);
+    mode       = d.mode       || 'quiz';
+    isRandom   = d.isRandom   || false;
+    currentIdx = d.currentIdx || 0;
+    questionOrder    = d.questionOrder    || [];
+    sessionAnswered  = new Set(d.sessionAnswered || []);
+    sessionStates    = d.sessionStates    || {};
+    // Validate order length matches current data
+    const expected = getQuestions().length;
+    if (questionOrder.length !== expected) { setupOrder(); return; }
+    // Sync UI
+    document.querySelectorAll('.tab').forEach(t =>
+      t.classList.toggle('active', t.dataset.mode === mode)
+    );
+    document.getElementById('random-toggle').classList.toggle('active', isRandom);
+    updateProgress();
+  } catch { setupOrder(); }
+}
+
+function loadTheme() {
+  const saved = localStorage.getItem(THEME_KEY);
+  const theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  applyTheme(theme);
+}
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('theme-toggle').textContent = t === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem(THEME_KEY, t);
+}
+
+/* ── Order ── */
+function getQuestions() {
+  if (mode === 'quiz')      return quizData.questions;
+  if (mode === 'algoid')    return algoIdData.questions;
+  if (mode === 'dragdrop')  return dragdropData.questions;
+  if (mode === 'flashcard') return flashcardData.cards;
+  return fillData.questions;
+}
+function setupOrder() {
+  const qs = getQuestions();
+  questionOrder = qs.map((_, i) => i);
+  if (isRandom) shuffle(questionOrder);
+  currentIdx = 0;
+  sessionAnswered.clear();
+  sessionStates = {};
+  updateProgress();
+}
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+}
+function getCurrentQuestion() {
+  return getQuestions()[questionOrder[currentIdx]];
+}
+function modePrefix() {
+  if (mode === 'quiz')      return 'q_';
+  if (mode === 'algoid')    return 'a_';
+  if (mode === 'dragdrop')  return 'dd_';
+  if (mode === 'flashcard') return 'fc_';
+  return 'f_';
+}
+function masteryKey(q) { return modePrefix() + q.id; }
+function stateKey(q)   { return modePrefix() + q.id; }
+
+/* ── Apuntes ── */
+function toggleExerciseUI(show) {
+  const d = show ? '' : 'none';
+  document.querySelector('.controls').style.display = d;
+  document.querySelector('.progress-section').style.display = d;
+  document.querySelector('.navigation').style.display = d;
+  document.getElementById('question-card').classList.toggle('apuntes-card', !show);
+}
+
+function renderApuntes() {
+  const card = document.getElementById('question-card');
+  card.innerHTML = `<div class="apuntes-view">${marked.parse(apuntesText)}</div>`;
+}
+
+/* ── Render ── */
+function renderQuestion() {
+  const q     = getCurrentQuestion();
+  const total = questionOrder.length;
+  document.getElementById('question-counter').textContent = `${currentIdx + 1} / ${total}`;
+  document.getElementById('prev-btn').disabled = currentIdx === 0;
+  document.getElementById('next-btn').disabled = currentIdx === total - 1;
+  const card = document.getElementById('question-card');
+  if (mode === 'quiz')          renderQuiz(q, card);
+  else if (mode === 'algoid')   renderAlgoId(q, card);
+  else if (mode === 'dragdrop') renderDragDrop(q, card);
+  else if (mode === 'flashcard') renderFlashcard(q, card);
+  else                          renderFill(q, card);
+  saveSession();
+}
+
+function buildHeader(q) {
+  const ml  = LEVELS[getMastery(masteryKey(q))];
+  const dif = { easy: 'Fácil', medium: 'Medio', hard: 'Difícil' }[q.difficulty] || q.difficulty;
+  return `
+    <div class="question-header">
+      <span class="topic-badge">${esc(q.topic)}</span>
+      <span class="diff-badge ${q.difficulty}">${dif}</span>
+      <span class="mastery-badge ${ml.cls}" id="mastery-badge">${ml.icon} ${ml.label}</span>
+    </div>`;
+}
+
+/* Quiz */
+function renderQuiz(q, card) {
+  const prev = sessionStates[stateKey(q)];
+  let optHtml = q.options.map(opt => {
+    const k = opt[0];
+    let cls = 'option';
+    if (prev) {
+      if (k === q.correctAnswer) cls += ' correct';
+      else if (k === prev.selected) cls += ' wrong';
+    }
+    return `<button class="${cls}" data-key="${k}"${prev ? ' disabled' : ''}>${esc(opt)}</button>`;
+  }).join('');
+  const explHdr = prev ? (prev.correct ? '✅ ¡Correcto!' : '❌ Incorrecto') : '';
+  card.innerHTML = `
+    ${buildHeader(q)}
+    <p class="question-text">${esc(q.question)}</p>
+    <div class="options" id="opts">${optHtml}</div>
+    <div class="explanation${prev ? '' : ' hidden'}" id="expl">
+      <span class="expl-header">${explHdr}</span>
+      ${esc(q.explanation)}
+    </div>`;
+  if (!prev) {
+    card.querySelectorAll('.option').forEach(btn =>
+      btn.addEventListener('click', () => onQuizAnswer(q, btn.dataset.key))
+    );
+  }
+}
+
+function onQuizAnswer(q, sel) {
+  const correct = sel === q.correctAnswer;
+  sessionStates[stateKey(q)] = { correct, selected: sel };
+  sessionAnswered.add(stateKey(q));
+  setMastery(masteryKey(q), correct);
+  document.querySelectorAll('.option').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.key === q.correctAnswer) b.classList.add('correct');
+    else if (b.dataset.key === sel)         b.classList.add('wrong');
+  });
+  const expl = document.getElementById('expl');
+  expl.querySelector('.expl-header').textContent = correct ? '✅ ¡Correcto!' : '❌ Incorrecto';
+  expl.classList.remove('hidden');
+  refreshMasteryBadge(q);
+  updateProgress();
+  renderMasteryStats();
+  saveSession();
+}
+
+/* Fill */
+function renderFill(q, card) {
+  const prev  = sessionStates[stateKey(q)];
+  const parts = q.sentence.split('___');
+  let sentHtml = '';
+  parts.forEach((p, i) => {
+    sentHtml += esc(p);
+    if (i < parts.length - 1) {
+      const val     = prev ? esc(prev.inputs[i]) : '';
+      const cls     = prev ? (' ' + (prev.correct[i] ? 'correct' : 'wrong')) : '';
+      const dis     = prev ? ' disabled' : '';
+      const sz      = Math.max(8, (prev ? prev.inputs[i] : q.blanks[i]).length + 2);
+      sentHtml += `<input type="text" class="blank-input${cls}" data-idx="${i}" value="${val}"
+        size="${sz}" autocomplete="off" spellcheck="false"${dis}>`;
+    }
+  });
+  const hintsHtml = q.hints.map((h, i) =>
+    `<p><strong>Pista ${i + 1}:</strong> ${esc(h)}</p>`).join('');
+  let revealHtml = '';
+  if (prev) {
+    revealHtml = `<div class="answer-reveal">` +
+      q.blanks.map((b, i) => {
+        const ok = prev.correct[i];
+        const icon = ok ? '✓' : '✗';
+        return `<span class="${ok ? 'ok' : 'bad'}">${icon} Hueco ${i + 1}: <strong>${esc(b)}</strong>` +
+          (!ok ? ` <em>(escribiste: "${esc(prev.inputs[i])}")</em>` : '') + `</span>`;
+      }).join('<br>') + `</div>`;
+  }
+  const allOk   = prev && prev.correct.every(Boolean);
+  const explHdr = prev ? (allOk ? '✅ ¡Todo correcto!' :
+    `⚠️ ${prev.correct.filter(Boolean).length} / ${q.blanks.length} correctos`) : '';
+  card.innerHTML = `
+    ${buildHeader(q)}
+    <div class="sentence" id="sent">${sentHtml}</div>
+    <div class="fill-controls">
+      <button class="btn-secondary" id="hint-btn">💡 Pistas</button>
+      ${!prev ? '<button class="btn-primary" id="val-btn">✓ Validar</button>' : ''}
+    </div>
+    <div class="hints-panel hidden" id="hints">${hintsHtml}</div>
+    ${revealHtml}
+    <div class="explanation${prev ? '' : ' hidden'}" id="expl">
+      <span class="expl-header">${explHdr}</span>
+      ${esc(q.explanation)}
+    </div>`;
+  document.getElementById('hint-btn').addEventListener('click', () =>
+    document.getElementById('hints').classList.toggle('hidden')
+  );
+  if (!prev) {
+    document.getElementById('val-btn').addEventListener('click', () => onFillValidate(q));
+    // Enter key on last input submits
+    card.querySelectorAll('.blank-input').forEach(inp => {
+      inp.addEventListener('keydown', e => {
+        if (e.key === 'Enter') onFillValidate(q);
+      });
+    });
+  }
+}
+
+function onFillValidate(q) {
+  const inputs = [...document.querySelectorAll('.blank-input')];
+  const vals   = inputs.map(i => i.value);
+  const correct = vals.map((v, i) => norm(v) === norm(q.blanks[i]));
+  const allOk   = correct.every(Boolean);
+  sessionStates[stateKey(q)] = { correct, inputs: vals };
+  sessionAnswered.add(stateKey(q));
+  setMastery(masteryKey(q), allOk);
+  // Re-render so reveal section appears
+  const card = document.getElementById('question-card');
+  renderFill(q, card);
+  updateProgress();
+  renderMasteryStats();
+  saveSession();
+}
+
+/* Algo ID */
+function renderAlgoId(q, card) {
+  const prev   = sessionStates[stateKey(q)];
+  const keySet = new Set(q.key_lines || []);
+
+  // Pseudocode
+  const codeHtml = q.pseudocode.map((line, i) => {
+    const isKey = keySet.has(i);
+    return `<div class="pseudo-line${isKey ? ' key' : ''}">` +
+      `<span class="line-num">${i + 1}</span>` +
+      `<span class="line-code">${esc(line)}</span></div>`;
+  }).join('');
+
+  // Choices
+  const correct = q.answer.variants;
+  const choicesHtml = q.algorithm_choices.map(opt => {
+    const k = opt[0];
+    const isCorrect = correct.includes(k);
+    let cls = 'algo-choice';
+    let checked = '';
+    if (prev) {
+      cls += ' disabled';
+      const wasSel = prev.selected.includes(k);
+      if (wasSel && isCorrect)  cls += ' correct';
+      else if (wasSel)          cls += ' wrong';
+      else if (isCorrect)       cls += ' missed';
+      if (wasSel) checked = ' checked';
+    }
+    return `<label class="${cls}" data-key="${k}">` +
+      `<input type="checkbox" class="choice-checkbox" value="${k}"${checked}${prev ? ' disabled' : ''}>` +
+      esc(opt) + `</label>`;
+  }).join('');
+
+  // Score pill
+  let scoreHtml = '';
+  if (prev) {
+    const total   = correct.length;
+    const sc      = prev.score;
+    const scCls   = sc === total ? 'perfect' : sc > 0 ? 'partial' : 'zero';
+    const scIcon  = sc === total ? '✅' : sc > 0 ? '⚠️' : '❌';
+    const perfect = prev.perfect;
+    scoreHtml = `<span class="algo-score ${scCls}">${scIcon} ${sc} / ${total}</span>`;
+    if (perfect) scoreHtml += `&ensp;<strong style="font-size:0.85rem">¡Identificación perfecta!</strong>`;
+  }
+
+  // Hints
+  const hintsHtml = (q.hints || []).map((h, i) =>
+    `<p><strong>Pista ${i + 1}:</strong> ${esc(h)}</p>`).join('');
+  const hasHints = q.hints && q.hints.length > 0;
+
+  const explHdr = prev
+    ? (prev.perfect ? '✅ ¡Identificación perfecta!' : prev.score > 0 ? '⚠️ Parcialmente correcto' : '❌ Incorrecto')
+    : '';
+
+  card.innerHTML = `
+    ${buildHeader(q)}
+    <p class="question-text">${esc(q.question)}</p>
+    <div class="pseudocode-block">${codeHtml}</div>
+    <div class="algo-choices" id="choices">${choicesHtml}</div>
+    <div class="fill-controls">
+      ${hasHints ? '<button class="btn-secondary" id="hint-btn">💡 Pistas</button>' : ''}
+      ${!prev ? '<button class="btn-primary" id="val-btn">✓ Validar</button>' : scoreHtml}
+    </div>
+    ${hasHints ? `<div class="hints-panel hidden" id="hints">${hintsHtml}</div>` : ''}
+    <div class="explanation${prev ? '' : ' hidden'}" id="expl">
+      <span class="expl-header">${explHdr}</span>
+      ${esc(q.explanation)}
+    </div>`;
+
+  if (hasHints) {
+    document.getElementById('hint-btn').addEventListener('click', () =>
+      document.getElementById('hints').classList.toggle('hidden')
+    );
+  }
+  if (!prev) {
+    card.querySelectorAll('.choice-checkbox').forEach(cb => {
+      cb.addEventListener('change', () =>
+        cb.closest('.algo-choice').classList.toggle('selected', cb.checked)
+      );
+    });
+    document.getElementById('val-btn').addEventListener('click', () => onAlgoIdValidate(q));
+  }
+}
+
+function onAlgoIdValidate(q) {
+  const selected = [...document.querySelectorAll('.choice-checkbox')]
+    .filter(cb => cb.checked).map(cb => cb.value);
+  const correct = q.answer.variants;
+  const goodSel = selected.filter(k =>  correct.includes(k)).length;
+  const badSel  = selected.filter(k => !correct.includes(k)).length;
+  const score   = Math.max(0, goodSel - badSel);
+  const perfect = goodSel === correct.length && badSel === 0;
+
+  sessionStates[stateKey(q)] = { selected, score, perfect };
+  sessionAnswered.add(stateKey(q));
+  setMastery(masteryKey(q), perfect);
+
+  const card = document.getElementById('question-card');
+  renderAlgoId(q, card);
+  updateProgress();
+  renderMasteryStats();
+  saveSession();
+}
+
+/* DragDrop */
+let ddSelectedToken = null;
+
+function buildDDHeader(q) {
+  const ml  = LEVELS[getMastery(masteryKey(q))];
+  const dif = { easy: 'Fácil', medium: 'Medio', hard: 'Difícil' }[q.difficulty] || q.difficulty;
+  return `
+    <div class="question-header">
+      <span class="topic-badge">${esc(q.algorithm)}</span>
+      ${q.topic !== q.algorithm ? `<span class="topic-badge" style="opacity:0.72">${esc(q.topic)}</span>` : ''}
+      <span class="diff-badge ${q.difficulty}">${dif}</span>
+      <span class="mastery-badge ${ml.cls}" id="mastery-badge">${ml.icon} ${ml.label}</span>
+    </div>`;
+}
+
+function renderDragDrop(q, card) {
+  ddSelectedToken = null;
+  const key = stateKey(q);
+  if (!sessionStates[key]) {
+    sessionStates[key] = { placed: {}, validated: false };
+    saveSession();
+  }
+  const state     = sessionStates[key];
+  const validated = state.validated;
+  const placed    = state.placed;
+
+  // answers map: {B1: "answer", ...}
+  const answers = {};
+  q.blanks.forEach(b => { answers[b.id] = b.answer; });
+
+  // Code block — escape line then inject blank zones
+  const codeHtml = q.code.map(line => {
+    const withZones = esc(line).replace(/\[B(\d+)\]/g, (_, n) => {
+      const bid = 'B' + n;
+      const val = placed[bid] || '';
+      let cls = 'blank-zone';
+      if (validated) cls += val === answers[bid] ? ' correct' : ' wrong';
+      else if (val)  cls += ' filled';
+      const inner = val
+        ? esc(val)
+        : `<span class="blank-placeholder">${bid}</span>`;
+      return `<span class="${cls}" data-id="${bid}">${inner}</span>`;
+    });
+    return `<div class="pseudo-line"><span class="line-code">${withZones}</span></div>`;
+  }).join('');
+
+  // Token bank
+  const placedSet = new Set(Object.values(placed));
+  const tokensHtml = q.tokens.map(t => {
+    const isPlaced = placedSet.has(t);
+    return `<span class="token-chip${isPlaced ? ' token-placed' : ''}"` +
+      ` draggable="${!validated && !isPlaced}" data-token="${esc(t)}">${esc(t)}</span>`;
+  }).join('');
+
+  // Hints (per blank)
+  const hintsHtml = q.blanks.map(b =>
+    `<p><strong>${esc(b.id)}:</strong> ${esc(b.hint)}</p>`).join('');
+
+  // Score pill
+  const total = q.blanks.length;
+  let scoreHtml = '';
+  if (validated) {
+    const numOk = q.blanks.filter(b => placed[b.id] === b.answer).length;
+    const scCls  = numOk === total ? 'perfect' : numOk > 0 ? 'partial' : 'zero';
+    const scIcon = numOk === total ? '✅' : numOk > 0 ? '⚠️' : '❌';
+    scoreHtml = `<span class="dd-score ${scCls}">${scIcon} ${numOk} / ${total} correctos</span>`;
+    if (numOk === total) scoreHtml += `&ensp;<strong style="font-size:0.85rem">¡Perfecto!</strong>`;
+  }
+
+  const allFilled = q.blanks.every(b => placed[b.id]);
+  const explHdr = validated
+    ? (q.blanks.every(b => placed[b.id] === b.answer) ? '✅ ¡Perfecto!'
+      : q.blanks.some(b => placed[b.id] === b.answer) ? '⚠️ Parcialmente correcto'
+      : '❌ Incorrecto')
+    : '';
+
+  card.innerHTML = `
+    ${buildDDHeader(q)}
+    <p class="question-text">${esc(q.description)}</p>
+    <p class="dd-instruction">Arrastra los tokens al hueco correspondiente del pseudocódigo:</p>
+    <div class="token-bank" id="token-bank">${tokensHtml}</div>
+    <div class="pseudocode-block">${codeHtml}</div>
+    <div class="fill-controls">
+      <button class="btn-secondary" id="hint-btn">💡 Pistas</button>
+      ${!validated
+        ? `<button class="btn-primary" id="val-btn"${allFilled ? '' : ' disabled'}>✓ Validar</button>`
+        : scoreHtml}
+    </div>
+    <div class="hints-panel hidden" id="hints">${hintsHtml}</div>
+    <div class="explanation${validated ? '' : ' hidden'}" id="expl">
+      <span class="expl-header">${explHdr}</span>
+      ${esc(q.explanation)}
+    </div>`;
+
+  document.getElementById('hint-btn').addEventListener('click', () =>
+    document.getElementById('hints').classList.toggle('hidden')
+  );
+  if (!validated) {
+    setupDragDropTokens(q);
+    const valBtn = document.getElementById('val-btn');
+    if (valBtn && !valBtn.disabled)
+      valBtn.addEventListener('click', () => onDragDropValidate(q));
+  }
+}
+
+function placeToken(q, tokenText, blankId) {
+  const placed = sessionStates[stateKey(q)].placed;
+  // Remove token from any other blank it occupied
+  for (const bid of Object.keys(placed)) {
+    if (placed[bid] === tokenText) delete placed[bid];
+  }
+  placed[blankId] = tokenText;
+  saveSession();
+  renderDragDrop(q, document.getElementById('question-card'));
+}
+
+function removeFromBlank(q, blankId) {
+  delete sessionStates[stateKey(q)].placed[blankId];
+  saveSession();
+  renderDragDrop(q, document.getElementById('question-card'));
+}
+
+function setupDragDropTokens(q) {
+  const card = document.getElementById('question-card');
+
+  // Tokens in bank: drag + click-to-select
+  card.querySelectorAll('.token-chip:not(.token-placed)').forEach(chip => {
+    chip.addEventListener('dragstart', e => {
+      e.dataTransfer.setData('text/plain', chip.dataset.token);
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    chip.addEventListener('click', () => {
+      card.querySelectorAll('.token-chip').forEach(c => c.classList.remove('token-selected'));
+      if (ddSelectedToken && ddSelectedToken.text === chip.dataset.token) {
+        ddSelectedToken = null;
+      } else {
+        ddSelectedToken = chip.dataset.token;
+        chip.classList.add('token-selected');
+      }
+    });
+  });
+
+  // Blank zones: drop target + click-to-fill/remove
+  card.querySelectorAll('.blank-zone').forEach(zone => {
+    zone.addEventListener('dragover', e => {
+      e.preventDefault();
+      zone.classList.add('drag-over');
+    });
+    zone.addEventListener('dragleave', () => zone.classList.remove('drag-over'));
+    zone.addEventListener('drop', e => {
+      e.preventDefault();
+      zone.classList.remove('drag-over');
+      const token = e.dataTransfer.getData('text/plain');
+      if (token) placeToken(q, token, zone.dataset.id);
+    });
+    zone.addEventListener('click', () => {
+      if (ddSelectedToken) {
+        placeToken(q, ddSelectedToken, zone.dataset.id);
+        ddSelectedToken = null;
+      } else if (zone.classList.contains('filled')) {
+        removeFromBlank(q, zone.dataset.id);
+      }
+    });
+  });
+}
+
+function onDragDropValidate(q) {
+  const key   = stateKey(q);
+  const state = sessionStates[key];
+  const perfect = q.blanks.every(b => state.placed[b.id] === b.answer);
+  state.validated = true;
+  state.correct   = perfect;
+  sessionAnswered.add(key);
+  setMastery(masteryKey(q), perfect);
+  renderDragDrop(q, document.getElementById('question-card'));
+  updateProgress();
+  renderMasteryStats();
+  saveSession();
+}
+
+/* ── Flashcard ── */
+function formatBack(text) {
+  const lines = esc(text).split('\n');
+  let html = '', inList = false;
+  for (const line of lines) {
+    const bullet = line.match(/^•\s*(.*)/);
+    if (bullet) {
+      if (!inList) { html += '<ul>'; inList = true; }
+      html += `<li>${bullet[1]}</li>`;
+    } else {
+      if (inList) { html += '</ul>'; inList = false; }
+      if (line.trim()) html += `<p>${line}</p>`;
+    }
+  }
+  if (inList) html += '</ul>';
+  return html;
+}
+
+function renderFlashcard(q, card) {
+  const key      = stateKey(q);
+  const flipped  = sessionStates[key]?.flipped || false;
+  const ml       = LEVELS[getMastery(masteryKey(q))];
+
+  card.innerHTML = `
+    <div class="question-header">
+      <span class="topic-badge">${esc(q.topic)}</span>
+      <span class="mastery-badge ${ml.cls}" id="mastery-badge">${ml.icon} ${ml.label}</span>
+    </div>
+    <div class="fc-wrapper${flipped ? ' flipped' : ''}" id="fc-wrapper">
+      <div class="fc-scene">
+        <div class="fc-card${flipped ? ' flipped' : ''}" id="fc-inner">
+          <div class="fc-face fc-front">
+            <p class="fc-front-text">${esc(q.front)}</p>
+            <span class="fc-tap-hint">Toca / clic para ver la respuesta</span>
+          </div>
+          <div class="fc-face fc-back">
+            <div class="fc-back-content">${formatBack(q.back)}</div>
+          </div>
+        </div>
+      </div>
+      <div class="fc-actions">
+        <button class="btn-fc-no"  id="fc-no">✗ No lo sabía</button>
+        <button class="btn-fc-yes" id="fc-yes">✓ Lo sabía</button>
+      </div>
+    </div>
+    <p class="fc-nav-hint">← desliza para cambiar de tarjeta · toca para girar →</p>`;
+
+  // Flip on click (skip if clicking rating buttons)
+  const inner   = document.getElementById('fc-inner');
+  const wrapper = document.getElementById('fc-wrapper');
+  inner.addEventListener('click', () => {
+    const nowFlipped = inner.classList.toggle('flipped');
+    wrapper.classList.toggle('flipped', nowFlipped);
+    if (!sessionStates[key]) sessionStates[key] = {};
+    sessionStates[key].flipped = nowFlipped;
+    saveSession();
+  });
+
+  // Rating buttons (stop click propagation so they don't re-flip)
+  document.getElementById('fc-yes').addEventListener('click', e => {
+    e.stopPropagation();
+    onFlashcardRate(q, true);
+  });
+  document.getElementById('fc-no').addEventListener('click', e => {
+    e.stopPropagation();
+    onFlashcardRate(q, false);
+  });
+
+  // Swipe for mobile
+  let swipeX = 0, swipeY = 0;
+  card.addEventListener('touchstart', e => {
+    swipeX = e.touches[0].clientX;
+    swipeY = e.touches[0].clientY;
+  }, { passive: true });
+  card.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - swipeX;
+    const dy = e.changedTouches[0].clientY - swipeY;
+    if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+      if (dx < 0 && currentIdx < questionOrder.length - 1) { currentIdx++; renderQuestion(); }
+      else if (dx > 0 && currentIdx > 0)                   { currentIdx--; renderQuestion(); }
+    }
+  }, { passive: true });
+}
+
+function onFlashcardRate(q, knew) {
+  const key = stateKey(q);
+  const cur = getMastery(masteryKey(q));
+  // Adjust mastery: correct → level up (max 3), wrong → level down to min 1
+  const next = knew ? Math.min(3, cur + 1) : Math.max(1, cur - 1);
+  setMastery(masteryKey(q), next);
+  sessionAnswered.add(key);
+  if (!sessionStates[key]) sessionStates[key] = {};
+  sessionStates[key].correct = knew;
+  sessionStates[key].flipped = false;
+  updateProgress();
+  renderMasteryStats();
+  saveSession();
+  // Auto-advance to next card
+  if (currentIdx < questionOrder.length - 1) {
+    currentIdx++;
+    renderQuestion();
+  } else {
+    renderFlashcard(q, document.getElementById('question-card'));
+  }
+}
+
+/* ── Helpers ── */
+function esc(s) {
+  return String(s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function norm(s) {
+  return s.toLowerCase().trim()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ');
+}
+function updateProgress() {
+  const total = questionOrder.length;
+  const done  = sessionAnswered.size;
+  const pct   = total ? (done / total) * 100 : 0;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = `${done} / ${total} respondidas`;
+  if (done === total && total > 0) {
+    showCompletion();
+  }
+}
+function refreshMasteryBadge(q) {
+  const ml = LEVELS[getMastery(masteryKey(q))];
+  const badge = document.getElementById('mastery-badge');
+  if (badge) { badge.textContent = `${ml.icon} ${ml.label}`; badge.className = `mastery-badge ${ml.cls}`; }
+}
+function renderMasteryStats() {
+  const qs     = getQuestions();
+  const prefix = modePrefix();
+  const counts = [0, 0, 0, 0];
+  qs.forEach(q => counts[getMastery(prefix + q.id)]++);
+  const titles = ['Desconocido', 'Aprendiendo', 'Familiar', 'Dominado'];
+  document.getElementById('mastery-stats').innerHTML =
+    LEVELS.map((l, i) =>
+      `<span class="mastery-stat ${l.cls}" title="${titles[i]}: ${counts[i]}">${l.icon} ${counts[i]}</span>`
+    ).join('');
+}
+function showCompletion() {
+  const qs      = getQuestions();
+  const prefix  = modePrefix();
+  const counts  = [0, 0, 0, 0];
+  qs.forEach(q => counts[getMastery(prefix + q.id)]++);
+  let correct = 0;
+  Object.values(sessionStates).forEach(s => {
+    if (s.perfect !== undefined) { if (s.perfect) correct++; }
+    else if (Array.isArray(s.correct)) { if (s.correct.every(Boolean)) correct++; }
+    else if (s.correct) correct++;
+  });
+  document.getElementById('completion-stats').innerHTML =
+    `<div class="completion-stat-row"><span>✅ Respuestas correctas</span><strong>${correct} / ${qs.length}</strong></div>` +
+    LEVELS.map((l, i) =>
+      `<div class="completion-stat-row"><span>${l.icon} ${l.label}</span><strong>${counts[i]}</strong></div>`
+    ).join('');
+  document.getElementById('completion-overlay').classList.remove('hidden');
+}
+
+/* ── Event Listeners ── */
+function setupListeners() {
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    applyTheme(cur === 'dark' ? 'light' : 'dark');
+  });
+
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      if (tab.dataset.mode === mode) return;
+      mode = tab.dataset.mode;
+      document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
+      if (mode === 'apuntes') {
+        toggleExerciseUI(false);
+        renderApuntes();
+      } else {
+        toggleExerciseUI(true);
+        setupOrder();
+        renderQuestion();
+        renderMasteryStats();
+      }
+    });
+  });
+
+  document.getElementById('random-toggle').addEventListener('click', () => {
+    isRandom = !isRandom;
+    document.getElementById('random-toggle').classList.toggle('active', isRandom);
+    setupOrder();
+    renderQuestion();
+  });
+
+  document.getElementById('reset-session').addEventListener('click', () => {
+    if (!confirm('¿Reiniciar la sesión? Se perderá el progreso de esta sesión (el dominio se mantiene).')) return;
+    setupOrder();
+    renderQuestion();
+    renderMasteryStats();
+    document.getElementById('completion-overlay').classList.add('hidden');
+  });
+
+  document.getElementById('prev-btn').addEventListener('click', () => {
+    if (currentIdx > 0) { currentIdx--; renderQuestion(); }
+  });
+  document.getElementById('next-btn').addEventListener('click', () => {
+    if (currentIdx < questionOrder.length - 1) { currentIdx++; renderQuestion(); }
+  });
+
+  document.getElementById('restart-btn').addEventListener('click', () => {
+    document.getElementById('completion-overlay').classList.add('hidden');
+    setupOrder();
+    renderQuestion();
+    renderMasteryStats();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowLeft')  document.getElementById('prev-btn').click();
+    if (e.key === 'ArrowRight') document.getElementById('next-btn').click();
+  });
+}
+
+init();
+</script>
+</body>
+</html>

@@ -3,28 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mis Estudios</title>
+  <title>ARA — Aprendizaje, Razonamiento y Agentes</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #eff6ff;
+      --bg: #f0fdf4;
       --surface: #ffffff;
       --surface2: #f8fafc;
-      --border: #dbeafe;
+      --border: #bbf7d0;
       --text: #1e293b;
       --text-muted: #64748b;
-      --accent: #2563eb;
-      --accent-hover: #1d4ed8;
-      --accent-bg: rgba(37,99,235,0.08);
+      --accent: #16a34a;
+      --accent-hover: #15803d;
+      --accent-bg: rgba(22,163,74,0.08);
       --radius: 14px; --radius-sm: 8px;
       --shadow: 0 1px 4px rgba(0,0,0,0.07), 0 2px 12px rgba(0,0,0,0.05);
     }
     [data-theme="dark"] {
       --bg: #0f172a; --surface: #1e293b; --surface2: #0f172a;
-      --border: #334155; --text: #f1f5f9; --text-muted: #94a3b8;
-      --accent: #60a5fa; --accent-hover: #93c5fd;
-      --accent-bg: rgba(96,165,250,0.1);
+      --border: #166534; --text: #f1f5f9; --text-muted: #94a3b8;
+      --accent: #4ade80; --accent-hover: #86efac;
+      --accent-bg: rgba(74,222,128,0.1);
       --shadow: 0 1px 4px rgba(0,0,0,0.3), 0 2px 12px rgba(0,0,0,0.2);
     }
 
@@ -40,7 +40,14 @@
       background: var(--surface); border-bottom: 1px solid var(--border);
       box-shadow: var(--shadow);
     }
-    header h1 { font-size: 1.15rem; font-weight: 800; letter-spacing: -0.02em; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .back-btn {
+      color: var(--accent); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500; white-space: nowrap;
+      opacity: 0.8; transition: opacity 0.15s;
+    }
+    .back-btn:hover { opacity: 1; }
+    header h1 { font-size: 1.1rem; font-weight: 800; letter-spacing: -0.02em; }
     header h1 span { color: var(--accent); }
     #theme-toggle {
       background: var(--surface2); border: 1px solid var(--border);
@@ -49,13 +56,10 @@
     }
     #theme-toggle:hover { background: var(--border); }
 
-    main {
-      max-width: 720px; margin: 0 auto;
-      padding: 2.5rem 1rem 4rem;
-    }
+    main { max-width: 720px; margin: 0 auto; padding: 2.5rem 1rem 4rem; }
 
     .hero { text-align: center; margin-bottom: 2.5rem; }
-    .hero h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: 0.5rem; }
+    .hero h2 { font-size: 1.55rem; font-weight: 800; margin-bottom: 0.5rem; }
     .hero p { color: var(--text-muted); font-size: 0.95rem; }
 
     .section-label {
@@ -84,7 +88,7 @@
     }
     .project-card:hover {
       border-color: var(--accent);
-      box-shadow: 0 4px 20px rgba(37,99,235,0.15);
+      box-shadow: 0 4px 20px rgba(22,163,74,0.15);
       transform: translateY(-2px);
     }
     .project-card-header {
@@ -92,23 +96,15 @@
       justify-content: space-between; gap: 0.5rem;
       margin-bottom: 0.75rem;
     }
-    .project-icon {
-      font-size: 2rem; line-height: 1;
-    }
+    .project-icon { font-size: 2rem; line-height: 1; }
     .project-badge {
       font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.6rem;
       background: var(--accent-bg); color: var(--accent);
       border-radius: 999px; white-space: nowrap;
     }
-    .project-title {
-      font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem;
-    }
-    .project-subject {
-      font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;
-    }
-    .project-meta {
-      display: flex; gap: 0.75rem; flex-wrap: wrap;
-    }
+    .project-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .project-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+    .project-meta { display: flex; gap: 0.75rem; flex-wrap: wrap; }
     .project-stat {
       font-size: 0.75rem; color: var(--text-muted);
       display: flex; align-items: center; gap: 0.25rem;
@@ -120,6 +116,13 @@
     }
     .project-card:hover .project-arrow { opacity: 1; transform: translateX(3px); }
 
+    .info-banner {
+      background: var(--accent-bg); border: 1px solid var(--border);
+      border-radius: var(--radius-sm); padding: 0.75rem 1rem;
+      margin-bottom: 2rem; font-size: 0.82rem; color: var(--text-muted);
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+
     footer {
       text-align: center; padding: 2rem 1rem;
       color: var(--text-muted); font-size: 0.75rem;
@@ -130,45 +133,54 @@
 <body>
 
 <header>
-  <h1>Mis <span>Estudios</span></h1>
+  <div class="header-left">
+    <a href="../" class="back-btn">← Proyectos</a>
+    <h1><span>ARA</span> — Aprendizaje, Razonamiento y Agentes</h1>
+  </div>
   <button id="theme-toggle" title="Cambiar tema">🌙</button>
 </header>
 
 <main>
   <div class="hero">
-    <h2>Sets de estudio</h2>
-    <p>Selecciona un proyecto para empezar a repasar</p>
+    <h2>Sets de estudio · ARA</h2>
+    <p>Dos temas diferenciados. Selecciona uno para empezar a repasar.</p>
   </div>
 
-  <p class="section-label">Proyectos disponibles</p>
+  <div class="info-banner">
+    💡 Cada set incluye <strong>Tipo Test · Completar frases · Drag &amp; Drop · Flashcards</strong> — con seguimiento de dominio por pregunta.
+  </div>
+
+  <p class="section-label">Temas disponibles</p>
   <div class="projects-grid">
 
-    <a href="PAIA/" class="project-card">
+    <a href="inferencia.html" class="project-card">
       <div class="project-card-header">
-        <span class="project-icon">🔍</span>
-        <span class="project-badge">PAIA</span>
+        <span class="project-icon">🔮</span>
+        <span class="project-badge">Tema 1</span>
       </div>
-      <div class="project-title">Local Search &amp; SAT</div>
-      <div class="project-subject">Grau en Enginyeria Informàtica</div>
+      <div class="project-title">Inferencia Bayesiana</div>
+      <div class="project-desc">Variables aleatorias, distribuciones conjuntas, redes bayesianas, independencia condicional y algoritmo de inferencia general.</div>
       <div class="project-meta">
-        <span class="project-stat">📝 60 preguntas test</span>
-        <span class="project-stat">✏️ 55 completar frases</span>
+        <span class="project-stat">📝 55 preguntas test</span>
+        <span class="project-stat">✏️ 50 completar frases</span>
+        <span class="project-stat">↕ 18 drag &amp; drop</span>
+        <span class="project-stat">🃏 65 flashcards</span>
       </div>
       <span class="project-arrow">→</span>
     </a>
 
-    <a href="ARA/" class="project-card">
+    <a href="aprendizaje.html" class="project-card">
       <div class="project-card-header">
-        <span class="project-icon">🧬</span>
-        <span class="project-badge">ARA</span>
+        <span class="project-icon">🧠</span>
+        <span class="project-badge">Tema 2</span>
       </div>
-      <div class="project-title">Inferencia y Aprendizaje Bayesiano</div>
-      <div class="project-subject">Grau en Enginyeria Informàtica</div>
+      <div class="project-title">Aprendizaje Bayesiano</div>
+      <div class="project-desc">MLE, estimación de parámetros, scoring UPSM, algoritmo K2, penalización BIC/MDL y ejemplo Speed Dating.</div>
       <div class="project-meta">
-        <span class="project-stat">📝 105 preguntas test</span>
-        <span class="project-stat">✏️ 95 completar frases</span>
-        <span class="project-stat">↕ 33 drag &amp; drop</span>
-        <span class="project-stat">🃏 125 flashcards</span>
+        <span class="project-stat">📝 50 preguntas test</span>
+        <span class="project-stat">✏️ 45 completar frases</span>
+        <span class="project-stat">↕ 15 drag &amp; drop</span>
+        <span class="project-stat">🃏 60 flashcards</span>
       </div>
       <span class="project-arrow">→</span>
     </a>

@@ -1,0 +1,722 @@
+{
+  "metadata": {
+    "title": "Bayesian Learning — Quiz",
+    "subject": "Aprendizaje de Modelos Bayesianos",
+    "author": "",
+    "course": "Grau en Enginyeria Informàtica — ARA",
+    "totalQuestions": 50,
+    "topics": [
+      "Aprendizaje de parámetros vs. estructura",
+      "MLE (Maximum Likelihood Estimation)",
+      "Problemas con probabilidades cero",
+      "Scoring: UPSM",
+      "Mejor y peor caso UPSM",
+      "Penalización por complejidad: BIC/MDL",
+      "Algoritmo K2",
+      "Limitaciones del greedy search",
+      "Ejemplo: Speed Dating"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Aprendizaje de parámetros vs. estructura",
+      "difficulty": "easy",
+      "question": "¿Cuáles son los dos problemas básicos del aprendizaje de modelos bayesianos a partir de datos?",
+      "options": [
+        "A) Aprendizaje supervisado y no supervisado",
+        "B) Aprendizaje de parámetros y aprendizaje de estructura",
+        "C) Clasificación y regresión",
+        "D) Aprendizaje online y offline"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El aprendizaje bayesiano se divide en: (1) aprendizaje de parámetros (conocida la estructura, estimar las CPTs) y (2) aprendizaje de estructura (aprender tanto el grafo como los parámetros desde los datos)."
+    },
+    {
+      "id": 2,
+      "topic": "Aprendizaje de parámetros vs. estructura",
+      "difficulty": "easy",
+      "question": "¿Qué se conoce al inicio en el aprendizaje de parámetros?",
+      "options": [
+        "A) Solo los datos D",
+        "B) La estructura de la red y los datos D, pero no las CPTs",
+        "C) Las CPTs pero no la estructura",
+        "D) Nada: ni la estructura ni las CPTs ni los datos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En aprendizaje de parámetros, la estructura de la Red Bayesiana (qué arcos existen) es conocida. Lo que se desconoce son las tablas de probabilidad condicional (CPTs), que se estiman a partir de los datos D."
+    },
+    {
+      "id": 3,
+      "topic": "MLE (Maximum Likelihood Estimation)",
+      "difficulty": "easy",
+      "question": "¿Qué estima MLE (Maximum Likelihood Estimation) en el contexto de Redes Bayesianas?",
+      "options": [
+        "A) La estructura óptima de la red",
+        "B) Los parámetros de las CPTs que maximizan la probabilidad de los datos observados",
+        "C) El número de variables necesarias para el modelo",
+        "D) La complejidad computacional de la inferencia"
+      ],
+      "correctAnswer": "B",
+      "explanation": "MLE estima los parámetros θ = P(xi=k|πi=wi,j) como los valores que maximizan P(D|BN,θ), la probabilidad de los datos D dado el modelo BN con parámetros θ. El resultado es la estimación de frecuencias relativas."
+    },
+    {
+      "id": 4,
+      "topic": "MLE (Maximum Likelihood Estimation)",
+      "difficulty": "medium",
+      "question": "La estimación MLE de P(xi=k | πi=wi,j) es:",
+      "options": [
+        "A) N_{i,j} / N_{i,j,k}",
+        "B) N_{i,j,k} / |D|",
+        "C) N_{i,j,k} / N_{i,j}",
+        "D) 1 / ri"
+      ],
+      "correctAnswer": "C",
+      "explanation": "θ̂_{i,j,k} = N_{i,j,k} / N_{i,j}. N_{i,j,k} es el número de registros donde xi=k y los padres tienen valores wi,j. N_{i,j} es el total de registros donde los padres tienen valores wi,j (independiente del valor de xi). Es la frecuencia relativa."
+    },
+    {
+      "id": 5,
+      "topic": "MLE (Maximum Likelihood Estimation)",
+      "difficulty": "medium",
+      "question": "¿Qué significa N_{i,j,k} en la fórmula MLE?",
+      "options": [
+        "A) El número total de registros en D",
+        "B) El número de valores distintos de xi",
+        "C) El número de registros donde xi=k y los padres πi tienen los valores wi,j",
+        "D) El número de casos de padres de xi"
+      ],
+      "correctAnswer": "C",
+      "explanation": "N_{i,j,k} = |{r | r ∈ D, r[xi=k, πi=wi,j]}|: los registros donde la variable xi toma el valor k y sus padres πi están asignados con los valores wi,j. Es el conteo de co-ocurrencias necesario para la estimación MLE."
+    },
+    {
+      "id": 6,
+      "topic": "MLE (Maximum Likelihood Estimation)",
+      "difficulty": "medium",
+      "question": "¿Cuántos parámetros independientes tiene una CPT de xi con ri=2 valores y qi=2 casos de padres?",
+      "options": [
+        "A) 2",
+        "B) 4",
+        "C) 2",
+        "D) 3"
+      ],
+      "correctAnswer": "C",
+      "explanation": "(ri-1)·qi = (2-1)·2 = 2 parámetros independientes. Hay qi=2 filas en la CPT (una por caso de padres). En cada fila, con ri=2 valores que suman 1, solo 1 parámetro es independiente. Total: 1×2=2."
+    },
+    {
+      "id": 7,
+      "topic": "MLE (Maximum Likelihood Estimation)",
+      "difficulty": "hard",
+      "question": "En la red FO→DO con datos D={DO:0,FO:0; DO:0,FO:0; DO:1,FO:1; DO:1,FO:1; DO:0,FO:0; DO:1,FO:1; DO:1,FO:1; DO:1,FO:1}, ¿cuál es P̂(FO=0)?",
+      "options": [
+        "A) 3/8",
+        "B) 4/8 = 0.5",
+        "C) 2/8 = 0.25",
+        "D) 5/8"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Contando registros con FO=0: hay 3 (filas 1,2,5 aproximadamente). N(FO=0)/|D| = 3/8. MLE estima P(FO=0) como la frecuencia relativa de FO=0 en D."
+    },
+    {
+      "id": 8,
+      "topic": "Problemas con probabilidades cero",
+      "difficulty": "medium",
+      "question": "¿Qué problema genera una probabilidad estimada a 0 por MLE durante la inferencia?",
+      "options": [
+        "A) La inferencia se vuelve más rápida",
+        "B) Hace que todo el producto de probabilidades sea 0, independientemente de los demás factores",
+        "C) Solo afecta al nodo con probabilidad 0",
+        "D) La red bayesiana se vuelve inválida"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Si P(xi=k|πi=wi,j)=0 por MLE, cualquier inferencia que requiera multiplicar por este factor dará 0. El resultado final de inferencia es 0 aunque todos los demás factores sean positivos y el evento sea posible en la realidad."
+    },
+    {
+      "id": 9,
+      "topic": "Problemas con probabilidades cero",
+      "difficulty": "medium",
+      "question": "¿Cuál es la causa más común de probabilidades estimadas a 0 con MLE?",
+      "options": [
+        "A) La base de datos tiene muchos registros",
+        "B) La red tiene demasiados arcos",
+        "C) La base de datos es pequeña y no contiene ejemplos de alguna combinación de valores",
+        "D) El modelo es demasiado simple"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Si ningún registro en D tiene la combinación xi=k con padres=wi,j, entonces N_{i,j,k}=0 y MLE estima θ̂_{i,j,k}=0/N_{i,j}=0. Con bases de datos pequeñas es común que algunas combinaciones no aparezcan aunque sean posibles."
+    },
+    {
+      "id": 10,
+      "topic": "Problemas con probabilidades cero",
+      "difficulty": "medium",
+      "question": "¿Cómo se puede corregir el problema de probabilidades cero en MLE?",
+      "options": [
+        "A) Usar una red sin arcos (modelo independiente)",
+        "B) Añadir pseudocuentas o un factor de bias para que las probabilidades nunca sean exactamente 0",
+        "C) Eliminar los registros problemáticos de D",
+        "D) Usar inferencia aproximada en lugar de exacta"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La solución estándar es añadir pseudocuentas (Laplace smoothing): sustituir N_{i,j,k}=0 por un valor pequeño ε>0. Esto hace que todas las probabilidades estimadas sean positivas, evitando el problema de los ceros en el producto."
+    },
+    {
+      "id": 11,
+      "topic": "Scoring: UPSM",
+      "difficulty": "easy",
+      "question": "¿Qué significa que UPSM usa un 'prior uniforme' sobre el espacio de Redes Bayesianas?",
+      "options": [
+        "A) Que todas las variables tienen el mismo número de valores",
+        "B) Que todas las posibles estructuras de BN son igualmente plausibles a priori",
+        "C) Que todos los arcos tienen la misma probabilidad de ser positivos",
+        "D) Que los datos D se generan con distribución uniforme"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El prior uniforme de UPSM significa que en ausencia de datos, no hay razón para preferir una estructura sobre otra: todas son igualmente plausibles. P(BN) es una constante C para toda estructura posible."
+    },
+    {
+      "id": 12,
+      "topic": "Scoring: UPSM",
+      "difficulty": "medium",
+      "question": "¿Qué es la propiedad de 'local scoring' del UPSM?",
+      "options": [
+        "A) Que el score solo depende de los datos locales del nodo",
+        "B) Que el factor de un nodo xi en el score depende solo de xi y sus padres, no de los padres de otros nodos",
+        "C) Que el score se calcula solo para nodos locales de la red",
+        "D) Que el algoritmo K2 se aplica en cada nodo por separado"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Local scoring: el factor UPSM de xi es función solo de xi, πi (sus padres) y D. Cambiar los padres de otro nodo xj no afecta el factor de xi. Esto permite cálculo incremental en búsqueda greedy."
+    },
+    {
+      "id": 13,
+      "topic": "Scoring: UPSM",
+      "difficulty": "hard",
+      "question": "El factor UPSM para el nodo xi y el caso de padres j es:",
+      "options": [
+        "A) N_{i,j,k} / N_{i,j} para el k más frecuente",
+        "B) (ri-1)! / (N_{i,j}+ri-1)! · ∏_k N_{i,j,k}!",
+        "C) N_{i,j} / |D|",
+        "D) log(N_{i,j,k}) para el k más probable"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El factor UPSM para xi y caso de padres j es: (ri-1)!·∏_k N_{i,j,k}! / (N_{i,j}+ri-1)!. Se obtiene de la integración de Dirichlet sobre todos los parámetros consistentes con la estructura BN y los datos D."
+    },
+    {
+      "id": 14,
+      "topic": "Mejor y peor caso UPSM",
+      "difficulty": "medium",
+      "question": "¿Cuándo es máximo el factor UPSM de un nodo xi para el caso de padres j?",
+      "options": [
+        "A) Cuando todos los valores de xi son igualmente frecuentes",
+        "B) Cuando un único valor v de xi tiene todos los N_{i,j} registros (predicción perfecta)",
+        "C) Cuando N_{i,j}=0 (ningún registro con ese caso de padres)",
+        "D) Cuando xi tiene ri=2 valores"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El factor es máximo cuando N_{i,j,v}=N_{i,j} y todos los demás N_{i,j,k}=0. Esto significa predicción perfecta: dado el caso de padres j, xi siempre toma el mismo valor v. El modelo no tiene incertidumbre sobre xi."
+    },
+    {
+      "id": 15,
+      "topic": "Mejor y peor caso UPSM",
+      "difficulty": "medium",
+      "question": "¿Cuándo es mínimo el factor UPSM de un nodo xi para el caso de padres j?",
+      "options": [
+        "A) Cuando solo hay un registro en D",
+        "B) Cuando todos los valores de xi son igualmente frecuentes: N_{i,j,k}=N_{i,j}/ri",
+        "C) Cuando xi tiene muchos padres",
+        "D) Cuando el factor es negativo"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El factor es mínimo cuando hay máxima incertidumbre: N_{i,j,k}=N_{i,j}/ri para todo k (todos los valores de xi igualmente probables dado el caso de padres j). El modelo no puede predecir mejor que el azar."
+    },
+    {
+      "id": 16,
+      "topic": "Mejor y peor caso UPSM",
+      "difficulty": "medium",
+      "question": "¿Por qué UPSM puede llevar a overfitting si se añaden demasiados padres?",
+      "options": [
+        "A) Porque con muchos padres la red deja de ser un DAG",
+        "B) Porque añadir padres casi siempre mejora el score al dividir D en grupos más homogéneos",
+        "C) Porque MLE falla con demasiados parámetros",
+        "D) Porque UPSM no es una función local con muchos padres"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Más padres dividen D en subgrupos con mayor homogeneidad, mejorando el score al acercarse más a la predicción perfecta. Sin embargo, estos subgrupos pueden capturar ruido estadístico de D, llevando a overfitting: buen score en D pero mal desempeño con datos nuevos."
+    },
+    {
+      "id": 17,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "difficulty": "easy",
+      "question": "¿Cuál es el objetivo de los criterios BIC y MDL en aprendizaje de Redes Bayesianas?",
+      "options": [
+        "A) Maximizar el número de arcos en la red",
+        "B) Penalizar modelos demasiado complejos para evitar overfitting",
+        "C) Garantizar que la red sea un árbol",
+        "D) Acelerar el algoritmo K2"
+      ],
+      "correctAnswer": "B",
+      "explanation": "BIC/MDL añaden un término de penalización por complejidad al score UPSM. Esto desincentiva añadir más padres cuando la ganancia de score no compensa la penalización, favoreciendo modelos simples que generalicen mejor."
+    },
+    {
+      "id": 18,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "difficulty": "medium",
+      "question": "¿Qué término se resta al log-score UPSM para obtener el criterio BIC?",
+      "options": [
+        "A) n · log|D|",
+        "B) (log|D|/2) · Σ qi·(ri-1)",
+        "C) log(n) / |D|",
+        "D) Σ N_{i,j} / |D|"
+      ],
+      "correctAnswer": "B",
+      "explanation": "BIC = log P(D,BN) − (log|D|/2) · Σ_i qi·(ri-1). El término de penalización (log|D|/2)·Σ qi·(ri-1) crece con el número total de parámetros libres del modelo (qi·(ri-1) por nodo xi)."
+    },
+    {
+      "id": 19,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "difficulty": "medium",
+      "question": "¿Con qué principio filosófico general se relacionan BIC y MDL?",
+      "options": [
+        "A) El principio del máximo de entropía",
+        "B) La navaja de Occam: preferir la hipótesis más simple que explica bien los datos",
+        "C) El principio de incertidumbre de Heisenberg",
+        "D) El principio de parsimonia probabilística"
+      ],
+      "correctAnswer": "B",
+      "explanation": "BIC/MDL operacionalizan la navaja de Occam (Occam's Razor): entre modelos igualmente buenos para los datos, preferir el más simple. La penalización por complejidad desincentiva añadir parámetros sin justificación estadística suficiente."
+    },
+    {
+      "id": 20,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "difficulty": "hard",
+      "question": "¿Qué significa MDL (Minimum Description Length) en el contexto del aprendizaje bayesiano?",
+      "options": [
+        "A) Minimizar el número de variables del modelo",
+        "B) Minimizar la longitud total de descripción = código del modelo + código de los datos dado el modelo",
+        "C) Encontrar el modelo con menos arcos posibles",
+        "D) Minimizar el tiempo de computación del algoritmo"
+      ],
+      "correctAnswer": "B",
+      "explanation": "MDL: el mejor modelo comprime mejor los datos. La longitud total de descripción es: bits para describir el modelo + bits para describir D dado el modelo. Modelos simples son cortos de describir pero largos para los datos; modelos complejos al revés. MDL busca el equilibrio óptimo."
+    },
+    {
+      "id": 21,
+      "topic": "Algoritmo K2",
+      "difficulty": "easy",
+      "question": "¿Cuáles son los tres parámetros de entrada principales del algoritmo K2?",
+      "options": [
+        "A) La red inicial, el número de iteraciones y la temperatura",
+        "B) Los datos D, un orden entre nodos y el máximo de padres u",
+        "C) Las CPTs iniciales, el número de variables y el criterio de parada",
+        "D) La distribución a priori, el tamaño de la muestra y el número de variables"
+      ],
+      "correctAnswer": "B",
+      "explanation": "K2 necesita: (1) D (base de datos), (2) Ordering (un orden entre los nodos, que define cuáles pueden ser padres de cuáles), y (3) u (número máximo de padres por nodo). A partir de estos construye la red greedy usando UPSM."
+    },
+    {
+      "id": 22,
+      "topic": "Algoritmo K2",
+      "difficulty": "medium",
+      "question": "¿Qué garantía ofrece el orden (Ordering) en K2 respecto a la estructura de la red?",
+      "options": [
+        "A) Que la red tiene el mínimo número de arcos posible",
+        "B) Que la red resultante es un DAG (sin ciclos dirigidos)",
+        "C) Que la red encontrada es la óptima globalmente",
+        "D) Que todos los nodos tienen el mismo número de padres"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El Ordering garantiza que solo los nodos anteriores en el orden pueden ser padres de xi. Esto asegura que todos los arcos van de posiciones anteriores a posteriores, lo que impide la formación de ciclos y garantiza que la red es un DAG."
+    },
+    {
+      "id": 23,
+      "topic": "Algoritmo K2",
+      "difficulty": "medium",
+      "question": "¿Cómo selecciona K2 el siguiente padre a añadir al nodo xi?",
+      "options": [
+        "A) El nodo con más registros en D",
+        "B) El nodo que más mejora el score UPSM(xi, πi∪{z}, D) entre todos los candidatos",
+        "C) El nodo más cercano a xi en el orden",
+        "D) Un nodo aleatorio de los candidatos disponibles"
+      ],
+      "correctAnswer": "B",
+      "explanation": "K2 selecciona el nodo z de Prev(xi)\\πi que maximiza UPSM(xi, πi∪{z}, D). Si el mejor z mejora el score respecto a UPSM(xi, πi, D), se añade como padre. Si ninguno mejora, K2 termina para xi."
+    },
+    {
+      "id": 24,
+      "topic": "Algoritmo K2",
+      "difficulty": "medium",
+      "question": "¿Cuántos DAGs posibles hay con 5 nodos y un orden fijo?",
+      "options": [
+        "A) 5! = 120",
+        "B) 2^5 = 32",
+        "C) 2^{5·4/2} = 2^{10} = 1024",
+        "D) 5^2 = 25"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Con n nodos y orden fijo: para cada par (i,j) con i antes de j en el orden, puede haber un arco i→j o no. Hay n(n-1)/2 pares posibles. Para n=5: 5·4/2=10 pares, luego 2^{10}=1024 DAGs posibles con ese orden."
+    },
+    {
+      "id": 25,
+      "topic": "Algoritmo K2",
+      "difficulty": "hard",
+      "question": "¿Por qué usar un límite u en el número de padres en K2 ayuda a evitar overfitting?",
+      "options": [
+        "A) Porque garantiza que la red tiene estructura de árbol",
+        "B) Porque impide añadir padres cuando el score ya no mejora",
+        "C) Porque limita la complejidad del modelo aunque UPSM mejorase con más padres",
+        "D) Porque u controla el número de iteraciones del algoritmo"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Añadir más padres casi siempre mejora UPSM (mejor ajuste a D). El límite u impone un techo a la complejidad del modelo, evitando que la red se vuelva demasiado compleja para el tamaño de D. Es una forma de regularización."
+    },
+    {
+      "id": 26,
+      "topic": "Algoritmo K2",
+      "difficulty": "hard",
+      "question": "¿Puede K2 usarse con criterios de scoring distintos a UPSM?",
+      "options": [
+        "A) No, K2 fue diseñado exclusivamente para UPSM",
+        "B) Solo con BIC/MDL",
+        "C) Sí, con cualquier scoring que tenga la propiedad local (el factor de xi depende solo de xi y πi)",
+        "D) Solo si el scoring es una función logarítmica"
+      ],
+      "correctAnswer": "C",
+      "explanation": "K2 puede usarse con cualquier scoring local: UPSM, BIC, MDL u otros. La propiedad clave es que el factor del nodo xi dependa solo de xi y sus padres πi, no de los padres de otros nodos. Esto permite el cálculo incremental necesario para el greedy."
+    },
+    {
+      "id": 27,
+      "topic": "Limitaciones del greedy search",
+      "difficulty": "medium",
+      "question": "¿Puede K2 garantizar que encuentra el conjunto de padres globalmente óptimo para cada nodo?",
+      "options": [
+        "A) Sí, siempre encuentra el óptimo global",
+        "B) Solo si u = n-1 (sin límite de padres)",
+        "C) No, porque es un algoritmo greedy que puede quedar atrapado en óptimos locales",
+        "D) Sí, pero solo para redes con menos de 5 nodos"
+      ],
+      "correctAnswer": "C",
+      "explanation": "K2 es un algoritmo greedy: toma la mejor decisión local en cada paso pero no considera el futuro. Puede quedarse atrapado en un óptimo local, sin poder llegar al conjunto de padres globalmente óptimo si esto requiere añadir primero un padre que no mejora el score de forma aislada."
+    },
+    {
+      "id": 28,
+      "topic": "Limitaciones del greedy search",
+      "difficulty": "hard",
+      "question": "En el ejemplo de fallo greedy con xi y padres {p1,p2,p3}: UPSM(xi,{pj},D)<UPSM(xi,{},D) para todo pj, pero UPSM(xi,{p2,p3},D)>UPSM(xi,{},D). ¿Qué encontrará K2?",
+      "options": [
+        "A) El conjunto óptimo {p2,p3}",
+        "B) El conjunto {p1} como mejor solución individual",
+        "C) El conjunto vacío {} porque ningún padre individual mejora el score",
+        "D) El conjunto {p1,p2,p3} con todos los padres"
+      ],
+      "correctAnswer": "C",
+      "explanation": "K2 termina con {} porque UPSM(xi,{pj},D)<UPSM(xi,{},D) para todo pj. Al no encontrar ningún padre que mejore el score de forma individual, el algoritmo greedy para sin explorar combinaciones como {p2,p3} que podrían ser mejores. Es la limitación del greedy."
+    },
+    {
+      "id": 29,
+      "topic": "Limitaciones del greedy search",
+      "difficulty": "medium",
+      "question": "¿Qué estrategia usa el ejemplo del Speed Dating para mitigar las limitaciones de K2?",
+      "options": [
+        "A) Usar BIC en lugar de UPSM",
+        "B) Ejecutar K2 10 veces con órdenes aleatorios distintos y quedarse con la mejor red",
+        "C) Fijar el orden óptimo antes de ejecutar K2",
+        "D) Aumentar el límite u hasta n-1"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Se ejecuta K2 10 veces con órdenes aleatorios distintos. El orden afecta qué nodos pueden ser padres de cada uno, y por tanto qué estructura encuentra K2. Múltiples ejecuciones aumentan la probabilidad de encontrar una red de buen score."
+    },
+    {
+      "id": 30,
+      "topic": "Ejemplo: Speed Dating",
+      "difficulty": "easy",
+      "question": "¿Cuáles son las variables del problema Speed Dating?",
+      "options": [
+        "A) edad, peso, altura, ciudad, youlike",
+        "B) ideo, sex, talks, vege, blade, youlike",
+        "C) nombre, hobbies, profesión, youlike",
+        "D) salud, riqueza, educación, youlike"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Las variables son: ideo (ideología), sex (sexo), talks (conversación), vege (vegetariano), blade (gusto por Blade Runner) como atributos, y youlike (si el cliente le gusta la persona) como variable objetivo."
+    },
+    {
+      "id": 31,
+      "topic": "Ejemplo: Speed Dating",
+      "difficulty": "medium",
+      "question": "¿Cuál de las 10 ejecuciones de K2 da el mejor score en el Speed Dating?",
+      "options": [
+        "A) Ejecución #1 (Log=-52.22)",
+        "B) Ejecución #3 (Log=-51.52)",
+        "C) Ejecución #9 (Log=-54.92)",
+        "D) Ejecución #6 (Log=-57.32)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La ejecución #3 tiene el mejor (mayor) Log(BayesScore)=-51.52. En log, valores menos negativos son mejores: -51.52 > -51.78 > ... > -57.32. El run #3 encontró la red con mayor score UPSM."
+    },
+    {
+      "id": 32,
+      "topic": "Ejemplo: Speed Dating",
+      "difficulty": "hard",
+      "question": "En el Speed Dating, ¿cuál es la observación paradójica sobre los modelos con mayor score y la predicción?",
+      "options": [
+        "A) Los modelos con mayor score predicen mejor youlike",
+        "B) Los modelos con mayor score predicen peor youlike para el caso de prueba (overfitting)",
+        "C) Todos los modelos predicen exactamente lo mismo",
+        "D) Los modelos con menor score nunca predicen bien"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Las ejecuciones #3 y #10 (mejor score) predicen P(youlike=yes|E)≈0.08-0.16 (incorrecto). Las ejecuciones #9,#7,#8 (score peor) predicen P(youlike=yes|E)≈0.67-0.89 (correcto). Esto demuestra que mayor score en training no implica mejor predicción en test."
+    },
+    {
+      "id": 33,
+      "topic": "Ejemplo: Speed Dating",
+      "difficulty": "hard",
+      "question": "¿Por qué los mejores modelos (mayor score) del Speed Dating predicen incorrectamente youlike=no?",
+      "options": [
+        "A) Porque usaron un orden de nodos incorrecto",
+        "B) Porque en los datos de entrenamiento, para los atributos del caso de prueba casi siempre youlike=no",
+        "C) Porque K2 con u=3 siempre da predicciones incorrectas",
+        "D) Porque hay un error en la implementación de K2"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En el training set, con los atributos del caso de prueba (izquierdas, masculino, nada de conversación, sí vegano, no Blade Runner) la respuesta casi siempre es youlike=no. Los mejores modelos se ajustan bien a esta tendencia del training set, pero esta tendencia no generaliza al caso de prueba: es overfitting."
+    },
+    {
+      "id": 34,
+      "topic": "Scoring: UPSM",
+      "difficulty": "hard",
+      "question": "En la comparación UPSM entre FO→DO (BN1) y DO→FO (BN2) con los datos del ejemplo, ¿cuál tiene mayor score?",
+      "options": [
+        "A) BN1 (FO→DO) con score 0.000002646",
+        "B) BN2 (DO→FO) con score 0.000002756",
+        "C) Ambos tienen el mismo score exactamente",
+        "D) El score no puede calcularse sin conocer todas las CPTs"
+      ],
+      "correctAnswer": "B",
+      "explanation": "P(BN2,D)=0.000002756 > P(BN1,D)=0.000002646. BN2 (DO→FO) tiene ligeramente mejor score UPSM para los datos del ejemplo. Aunque la diferencia es pequeña, UPSM puede distinguir entre las dos factorizaciones."
+    },
+    {
+      "id": 35,
+      "topic": "Scoring: UPSM",
+      "difficulty": "medium",
+      "question": "¿Por qué UPSM usa P(D,BN) = P(BN)·∫P(D|BN,Bp)·f(Bp|BN)dBp en lugar de P(D|BN) directamente?",
+      "options": [
+        "A) Para simplificar los cálculos",
+        "B) Para integrar sobre todos los posibles parámetros Bp consistentes con BN, sin fijarse en estimaciones puntuales",
+        "C) Porque P(D|BN) no es calculable",
+        "D) Para poder usar el teorema de Bayes"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Integrar sobre todos los Bp es la perspectiva bayesiana completa: en lugar de estimar un único valor puntual de los parámetros (como MLE), se considera todos los parámetros posibles con sus probabilidades. El resultado es el score marginalizado sobre los parámetros, más robusto que MLE."
+    },
+    {
+      "id": 36,
+      "topic": "Aprendizaje de estructura",
+      "difficulty": "medium",
+      "question": "¿Por qué no se puede hacer búsqueda exhaustiva en el espacio de estructuras de BN?",
+      "options": [
+        "A) Porque las CPTs no se pueden estimar con búsqueda exhaustiva",
+        "B) Porque el espacio de DAGs tiene tamaño exponencial (superexponencial en n)",
+        "C) Porque la inferencia exacta en BN es NP-difícil",
+        "D) Porque UPSM no es calculable para todas las estructuras"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El número de DAGs posibles con n nodos es superexponencial. Con un orden fijo ya hay 2^{n(n-1)/2} estructuras; sin orden fijo aún más. Para n moderado (ej. 20 variables) la búsqueda exhaustiva es completamente impracticable."
+    },
+    {
+      "id": 37,
+      "topic": "MLE (Maximum Likelihood Estimation)",
+      "difficulty": "medium",
+      "question": "En el ejemplo del cáncer (red C→T1,T2) con solo 8 registros en D, P̂(T2=0|C=1)=0. ¿Por qué?",
+      "options": [
+        "A) Porque el cáncer siempre hace que T2=0 sea imposible",
+        "B) Porque N(T2=0,C=1)=0 en D: ningún registro tiene C=1 y T2=0",
+        "C) Porque T2 y C son independientes",
+        "D) Porque K2 eliminó ese parámetro"
+      ],
+      "correctAnswer": "B",
+      "explanation": "θ̂=N(T2=0,C=1)/N(C=1)=0/1=0 porque en los 8 registros de D, el único registro con C=1 tiene T2=1, no T2=0. MLE estima 0 aunque la probabilidad real no sea cero: es el problema de las bases de datos pequeñas."
+    },
+    {
+      "id": 38,
+      "topic": "Algoritmo K2",
+      "difficulty": "medium",
+      "question": "¿Qué ocurre en K2 si UPSM(xi, πi∪{z}, D) ≤ UPSM(xi, πi, D) para el mejor z candidato?",
+      "options": [
+        "A) Se añade z igualmente para explorar más",
+        "B) Se detiene la búsqueda de padres para xi y se pasa al siguiente nodo",
+        "C) Se reinicia el algoritmo con un orden diferente",
+        "D) Se reduce el límite u"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Si ningún padre z mejora el score, K2 establece 'improving=false' y termina el bucle para xi. El conjunto actual de padres πi es el resultado final para xi. K2 pasa al siguiente nodo del Ordering."
+    },
+    {
+      "id": 39,
+      "topic": "Penalización por complejidad: BIC/MDL",
+      "difficulty": "hard",
+      "question": "¿Bajo qué condición el término de penalización de BIC supera la ganancia del score UPSM al añadir un padre?",
+      "options": [
+        "A) Cuando el dataset D es grande",
+        "B) Cuando el padre añade muchos parámetros pero poca información sobre xi en D",
+        "C) Cuando xi tiene muchos valores distintos",
+        "D) Cuando el orden en K2 es aleatorio"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La penalización BIC crece con qi·(ri-1): número de parámetros del nuevo padre. Si el padre añade muchos parámetros pero su información sobre xi en D es limitada, la ganancia de UPSM puede ser inferior a la penalización. En ese caso BIC penaliza añadir ese padre."
+    },
+    {
+      "id": 40,
+      "topic": "Scoring: UPSM",
+      "difficulty": "hard",
+      "question": "En el ejemplo de los dos modelos del cáncer, ¿cuál tiene mejor score UPSM?",
+      "options": [
+        "A) BN2 = P(T1)·P(C|T1)·P(T2|C) con score 8.44·10^-7",
+        "B) BN1 = P(C)·P(T1|C)·P(T2|C) con score 11.07·10^-6",
+        "C) Ambos tienen el mismo score",
+        "D) El score no es comparable porque tienen estructuras distintas"
+      ],
+      "correctAnswer": "B",
+      "explanation": "P(BN1,D)=1/(9·83·72·4)=11.07·10^-6 > P(BN2,D)=1/(9·82·73·6)=8.44·10^-7. BN1 (C es raíz, tests son hijos de C) es mejor según UPSM, lo que es consistente con la estructura causal real del problema."
+    },
+    {
+      "id": 41,
+      "topic": "MLE (Maximum Likelihood Estimation)",
+      "difficulty": "easy",
+      "question": "¿Qué tipo de estimación produce MLE para las probabilidades condicionales?",
+      "options": [
+        "A) La media entre 0 y 1",
+        "B) Frecuencias relativas: proporción de veces que xi=k dado el caso de padres j en D",
+        "C) La moda de la distribución prior",
+        "D) Siempre 1/ri (distribución uniforme)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "MLE da estimaciones de frecuencia relativa: θ̂=N_{i,j,k}/N_{i,j}. Es la proporción de registros en D donde xi=k entre todos los registros donde los padres πi tienen valores wi,j. Intuitivo y fácil de calcular."
+    },
+    {
+      "id": 42,
+      "topic": "Aprendizaje de estructura",
+      "difficulty": "easy",
+      "question": "¿Qué tres ingredientes necesita un algoritmo de aprendizaje de estructura de Redes Bayesianas?",
+      "options": [
+        "A) Variables, datos y hardware",
+        "B) Scoring, espacio de búsqueda y estrategia de búsqueda",
+        "C) Prior, likelihood y posterior",
+        "D) MLE, MAP y MCMC"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los tres ingredientes son: (1) Scoring: cómo evaluar cuán buena es una red para D; (2) Espacio de búsqueda: qué estructuras se consideran; (3) Estrategia de búsqueda: cómo explorar el espacio (que es exponencial)."
+    },
+    {
+      "id": 43,
+      "topic": "Algoritmo K2",
+      "difficulty": "hard",
+      "question": "¿Por qué se dice que K2 puede fallar aunque u sea grande (muchos padres permitidos)?",
+      "options": [
+        "A) Porque el score UPSM decrece siempre con más de 2 padres",
+        "B) Porque la greedy puede empezar con un padre que lleva a un óptimo local, sin alcanzar la combinación óptima",
+        "C) Porque el Ordering siempre da estructuras subóptimas",
+        "D) Porque K2 no usa UPSM cuando u>3"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En el ejemplo: con p1 como primer padre, añadir p2 o p3 da peor score que solo p1. K2 termina con {p1}. Pero {p2,p3} sin p1 sería mucho mejor. Comenzar con p1 lleva a un óptimo local desde el que no se puede alcanzar el óptimo global {p2,p3}."
+    },
+    {
+      "id": 44,
+      "topic": "Ejemplo: Speed Dating",
+      "difficulty": "medium",
+      "question": "¿Cuántos arcos tiene la red del mejor modelo del Speed Dating (ejecución #3)?",
+      "options": [
+        "A) 3",
+        "B) 5",
+        "C) 7",
+        "D) 9"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Según los resultados del Speed Dating, la ejecución #3 (mejor score) tiene 7 arcos. Las diferentes ejecuciones producen redes con distinto número de arcos: desde 3 (run #6) hasta 9 (run #2)."
+    },
+    {
+      "id": 45,
+      "topic": "Scoring: UPSM",
+      "difficulty": "medium",
+      "question": "¿Cómo ayuda la propiedad de local scoring de UPSM a la eficiencia de K2?",
+      "options": [
+        "A) Permite paralelizar la evaluación de todos los nodos",
+        "B) Al cambiar los padres de xi, solo hay que recalcular el factor de xi, no el de toda la red",
+        "C) Reduce el número de parámetros a estimar",
+        "D) Garantiza que K2 termina en tiempo polinomial"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Con local scoring, el score total es el producto de factores locales independientes. Al añadir un padre z a xi, solo cambia el factor de xi. K2 puede calcular el nuevo score comparando solo UPSM(xi,πi∪{z}) con UPSM(xi,πi), sin recalcular el resto de la red."
+    },
+    {
+      "id": 46,
+      "topic": "Aprendizaje de parámetros vs. estructura",
+      "difficulty": "medium",
+      "question": "¿En qué se diferencia el aprendizaje de estructura del de parámetros en cuanto a la dificultad del problema?",
+      "options": [
+        "A) El aprendizaje de parámetros es NP-difícil; el de estructura es polinomial",
+        "B) Ambos son igualmente difíciles",
+        "C) El aprendizaje de estructura es más difícil porque requiere explorar un espacio exponencial de DAGs",
+        "D) El aprendizaje de parámetros requiere búsqueda exhaustiva; el de estructura no"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El aprendizaje de parámetros (dado el DAG) es directo con MLE: estimaciones de frecuencia relativa en tiempo lineal. El aprendizaje de estructura requiere explorar 2^{n(n-1)/2} DAGs posibles (dado un orden), lo que es computacionalmente intratable de forma exhaustiva."
+    },
+    {
+      "id": 47,
+      "topic": "Problemas con probabilidades cero",
+      "difficulty": "hard",
+      "question": "¿Cuál es el impacto práctico de P̂(T2=0|C=1)=0 al calcular P(C=1|T1=1,T2=0)?",
+      "options": [
+        "A) La inferencia da 0.5",
+        "B) La inferencia da exactamente 0, aunque otros factores sean positivos",
+        "C) La inferencia da undefined (indefinido)",
+        "D) Solo afecta si T1=0"
+      ],
+      "correctAnswer": "B",
+      "explanation": "P(C=1)·P(T1=1|C=1)·P(T2=0|C=1) = (1/8)·1·0 = 0. El factor P(T2=0|C=1)=0 anula todo el producto. El resultado P(C=1|T1=1,T2=0)=0 es un resultado crudo e incorrecto que oculta información real."
+    },
+    {
+      "id": 48,
+      "topic": "Algoritmo K2",
+      "difficulty": "easy",
+      "question": "¿Con qué estrategia de búsqueda funciona K2?",
+      "options": [
+        "A) Búsqueda sistemática exhaustiva",
+        "B) Búsqueda aleatoria",
+        "C) Búsqueda local greedy incremental",
+        "D) Backtracking con poda"
+      ],
+      "correctAnswer": "C",
+      "explanation": "K2 usa búsqueda local greedy incremental: para cada nodo, añade el mejor padre disponible uno a uno. En cada paso toma la decisión localmente óptima sin backtracking. Es una búsqueda incompleta (no garantiza el óptimo global)."
+    },
+    {
+      "id": 49,
+      "topic": "Limitaciones del greedy search",
+      "difficulty": "medium",
+      "question": "¿Qué tipo de algoritmo es K2 según la clasificación de algoritmos vista en el curso?",
+      "options": [
+        "A) Algoritmo sistemático (completo)",
+        "B) Algoritmo no sistemático (incompleto)",
+        "C) Algoritmo de búsqueda exhaustiva",
+        "D) Algoritmo determinista con garantía de optimalidad"
+      ],
+      "correctAnswer": "B",
+      "explanation": "K2 es un algoritmo no sistemático (incompleto): no garantiza encontrar la Red Bayesiana óptima globalmente. Es una búsqueda greedy local que puede quedar atrapada en óptimos locales. Es análogo a los algoritmos de búsqueda local vistos para otros problemas."
+    },
+    {
+      "id": 50,
+      "topic": "Ejemplo: Speed Dating",
+      "difficulty": "hard",
+      "question": "¿Qué solución metodológica correcta habría que aplicar para evaluar correctamente los modelos del Speed Dating?",
+      "options": [
+        "A) Usar solo el modelo con mayor score UPSM",
+        "B) Separar un conjunto de test independiente del training, y evaluar la predicción en datos no vistos",
+        "C) Ejecutar K2 con u=1 para evitar overfitting",
+        "D) Usar solo BIC sin UPSM"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La solución correcta es validación cruzada o separar train/test: entrenar en D y evaluar la precisión de predicción en un conjunto de datos no usado en el entrenamiento. El score UPSM mide ajuste al training, no generalización. El ejemplo muestra exactamente este problema de overfitting."
+    }
+  ]
+}

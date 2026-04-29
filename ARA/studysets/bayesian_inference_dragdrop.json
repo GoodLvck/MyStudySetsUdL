@@ -1,0 +1,736 @@
+{
+  "metadata": {
+    "title": "Bayesian Inference — Drag & Drop Pseudocode",
+    "subject": "Inferencia Bayesiana para Modelos Probabilísticos",
+    "course": "Grau en Enginyeria Informàtica — ARA",
+    "totalQuestions": 18,
+    "format": "drag-and-drop",
+    "formatDescription": "Cada pregunta muestra el pseudocódigo de un algoritmo o una fórmula con uno o más huecos marcados como [B1], [B2], etc. Arrastra los tokens correctos desde el banco de tokens a cada hueco. Se incluyen tokens correctos e incorrectos (distractores). El campo 'blanks' indica la respuesta correcta para cada hueco.",
+    "topics": [
+      "Probabilidad marginal (regla de la suma)",
+      "Probabilidad condicional",
+      "Teorema de Bayes",
+      "Factorización de Redes Bayesianas",
+      "Independencia condicional",
+      "Algoritmo ExpandProb",
+      "Algoritmo QueryVar"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "algorithm": "Regla de la suma (sum rule)",
+      "topic": "Probabilidad marginal (regla de la suma)",
+      "difficulty": "easy",
+      "description": "Completa la fórmula de la regla de la suma para obtener la probabilidad marginal P(X=v) a partir de la distribución conjunta P(X,Y).",
+      "code": [
+        "P(X=v) = [B1] P(X=v, Y=yi)",
+        "         yi"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "Σ",
+          "hint": "Símbolo de sumatorio sobre todos los valores yi de Y"
+        }
+      ],
+      "tokens": [
+        "Σ",
+        "∏",
+        "max",
+        "min",
+        "∫"
+      ],
+      "explanation": "La regla de la suma (marginalización) usa el sumatorio Σ: P(X=v) = Σ_{yi} P(X=v, Y=yi). Se suman todas las entradas conjuntas donde X=v, para todos los valores yi de Y."
+    },
+    {
+      "id": 2,
+      "algorithm": "Probabilidad condicional",
+      "topic": "Probabilidad condicional",
+      "difficulty": "easy",
+      "description": "Completa la definición de probabilidad condicional P(A|B).",
+      "code": [
+        "P(A|B) = [B1]",
+        "          [B2]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "P(A, B)",
+          "hint": "Numerador: probabilidad conjunta de A y B"
+        },
+        {
+          "id": "B2",
+          "answer": "P(B)",
+          "hint": "Denominador: probabilidad marginal de la condición"
+        }
+      ],
+      "tokens": [
+        "P(A, B)",
+        "P(B)",
+        "P(A)",
+        "P(A) · P(B)",
+        "P(A|B) · P(B)",
+        "P(B|A)"
+      ],
+      "explanation": "P(A|B) = P(A,B) / P(B). La probabilidad condicional es la probabilidad conjunta dividida entre la probabilidad marginal de la condición."
+    },
+    {
+      "id": 3,
+      "algorithm": "Factorización conjunta",
+      "topic": "Probabilidad condicional",
+      "difficulty": "easy",
+      "description": "Completa las dos factorizaciones equivalentes de la distribución conjunta P(A,B).",
+      "code": [
+        "P(A, B) = P(A|B) · [B1]",
+        "P(A, B) = P(B|A) · [B2]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "P(B)",
+          "hint": "Probabilidad marginal de B"
+        },
+        {
+          "id": "B2",
+          "answer": "P(A)",
+          "hint": "Probabilidad marginal de A"
+        }
+      ],
+      "tokens": [
+        "P(B)",
+        "P(A)",
+        "P(A|B)",
+        "P(B|A)",
+        "P(A,B)",
+        "1"
+      ],
+      "explanation": "P(A,B) = P(A|B)·P(B) = P(B|A)·P(A). Ambas factorizaciones se derivan de la definición de probabilidad condicional y son equivalentes para representar la distribución conjunta."
+    },
+    {
+      "id": 4,
+      "algorithm": "Teorema de Bayes (2 variables)",
+      "topic": "Teorema de Bayes",
+      "difficulty": "medium",
+      "description": "Completa la fórmula del teorema de Bayes para calcular P(A=vi|B=vj).",
+      "code": [
+        "P(A=vi | B=vj) =     P(B=vj | A=vi) · [B1]",
+        "                  ————————————————————————————",
+        "                  Σ  P(B=vj | A=vi') · [B2]",
+        "                  vi'"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "P(A=vi)",
+          "hint": "Probabilidad a priori (prior) del valor vi de A"
+        },
+        {
+          "id": "B2",
+          "answer": "P(A=vi')",
+          "hint": "Prior para cada valor vi' de A en el sumatorio del denominador"
+        }
+      ],
+      "tokens": [
+        "P(A=vi)",
+        "P(A=vi')",
+        "P(B=vj)",
+        "P(A|B)",
+        "P(B|A=vi)",
+        "1"
+      ],
+      "explanation": "Bayes: P(A=vi|B=vj) = P(B=vj|A=vi)·P(A=vi) / Σ_{vi'} P(B=vj|A=vi')·P(A=vi'). El denominador es P(B=vj), calculado marginalizando sobre todos los valores de A."
+    },
+    {
+      "id": 5,
+      "algorithm": "Cálculo con Bayes (FO/DO)",
+      "topic": "Teorema de Bayes",
+      "difficulty": "medium",
+      "description": "Aplica el teorema de Bayes para calcular P(FO=1|DO=1). Completa los numeradores de cada valor de FO.",
+      "code": [
+        "num(FO=1) = P(DO=1|FO=1) · P(FO=1) = 0.75 · [B1] = 0.375",
+        "num(FO=0) = P(DO=1|FO=0) · P(FO=0) = 0.5  · [B2] = 0.25",
+        "",
+        "P(FO=1|DO=1) = 0.375 / (0.375 + [B3]) = [B4]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "0.5",
+          "hint": "P(FO=1)"
+        },
+        {
+          "id": "B2",
+          "answer": "0.5",
+          "hint": "P(FO=0)"
+        },
+        {
+          "id": "B3",
+          "answer": "0.25",
+          "hint": "El segundo numerador"
+        },
+        {
+          "id": "B4",
+          "answer": "0.6",
+          "hint": "0.375/0.625"
+        }
+      ],
+      "tokens": [
+        "0.5",
+        "0.25",
+        "0.375",
+        "0.6",
+        "0.75",
+        "0.125",
+        "0.4",
+        "1.0"
+      ],
+      "explanation": "Aplicando Bayes: num(FO=1)=0.75·0.5=0.375, num(FO=0)=0.5·0.5=0.25. P(FO=1|DO=1)=0.375/(0.375+0.25)=0.375/0.625=0.6."
+    },
+    {
+      "id": 6,
+      "algorithm": "Independencia condicional",
+      "topic": "Independencia condicional",
+      "difficulty": "medium",
+      "description": "Completa la demostración de independencia condicional a partir de la factorización P(A,B,M)=P(A|M)·P(B|M)·P(M).",
+      "code": [
+        "P(A,B|M) = P(A,B,M) / [B1]",
+        "         = P(A|M)·P(B|M)·P(M) / [B2]",
+        "         = [B3] · P(B|M)",
+        "",
+        "⟹ A y B son [B4] dado M"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "P(M)",
+          "hint": "Definición de probabilidad condicional: dividir por la probabilidad de la condición"
+        },
+        {
+          "id": "B2",
+          "answer": "P(M)",
+          "hint": "Mismo denominador"
+        },
+        {
+          "id": "B3",
+          "answer": "P(A|M)",
+          "hint": "Término que queda tras cancelar P(M)"
+        },
+        {
+          "id": "B4",
+          "answer": "condicionalmente independientes",
+          "hint": "Relación probabilística que se establece"
+        }
+      ],
+      "tokens": [
+        "P(M)",
+        "P(A|M)",
+        "P(B|M)",
+        "P(A,B)",
+        "P(A)",
+        "condicionalmente independientes",
+        "marginalmente independientes",
+        "dependientes"
+      ],
+      "explanation": "P(A,B|M)=P(A,B,M)/P(M)=P(A|M)·P(B|M)·P(M)/P(M)=P(A|M)·P(B|M). Esto es exactamente la definición de independencia condicional de A y B dado M."
+    },
+    {
+      "id": 7,
+      "algorithm": "ExpandProb",
+      "topic": "Algoritmo ExpandProb",
+      "difficulty": "medium",
+      "description": "Completa el pseudocódigo de la función ExpandProb para el caso base y el caso de variable en la evidencia.",
+      "code": [
+        "Function ExpandProb(BNet, Vars, E):",
+        "  if Vars = [] then",
+        "    return [B1]",
+        "  Y := extractFirst(Vars, BNet)",
+        "  if Y = yi ∈ E then",
+        "    return P(Y=yi | Parents(Y,BNet,E)) × [B2]",
+        "  else",
+        "    return Σ_{yj} P(Y=yj|Parents(Y,BNet,E)) × ExpandProb(BNet, Vars\\{Y}, E∪{Y=yj})"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "1.0",
+          "hint": "Elemento neutro de la multiplicación (caso base)"
+        },
+        {
+          "id": "B2",
+          "answer": "ExpandProb(BNet, Vars\\{Y}, E)",
+          "hint": "Llamada recursiva con Y eliminado de Vars, evidencia sin cambios"
+        }
+      ],
+      "tokens": [
+        "1.0",
+        "0.0",
+        "ExpandProb(BNet, Vars\\{Y}, E)",
+        "ExpandProb(BNet, Vars, E∪{Y=yi})",
+        "P(Y=yi|Parents(Y,BNet,E))",
+        "QueryVar(BNet, Vars, E, Y)"
+      ],
+      "explanation": "Caso base: Vars=[] devuelve 1.0. Para Y en E: multiplica P(Y=yi|padres) por la llamada recursiva con el mismo E (Y ya tiene valor). Para Y libre: suma sobre todos los yj posibles extendiendo E."
+    },
+    {
+      "id": 8,
+      "algorithm": "ExpandProb (rama libre)",
+      "topic": "Algoritmo ExpandProb",
+      "difficulty": "hard",
+      "description": "Completa el caso de variable libre (Y ∉ E) en ExpandProb.",
+      "code": [
+        "// Y es libre (no está en E): marginalizar",
+        "return [B1] P(Y=yj | Parents(Y,BNet,E))",
+        "           yj",
+        "         × ExpandProb(BNet, Vars\\{Y}, [B2])"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "Σ",
+          "hint": "Sumar sobre todos los valores yj de Y"
+        },
+        {
+          "id": "B2",
+          "answer": "E∪{Y=yj}",
+          "hint": "La evidencia se extiende con el valor actual de Y en la iteración"
+        }
+      ],
+      "tokens": [
+        "Σ",
+        "∏",
+        "max",
+        "E∪{Y=yj}",
+        "E",
+        "E\\{Y}",
+        "E∪{Y=yi}"
+      ],
+      "explanation": "Para una variable libre Y, ExpandProb suma sobre todos sus valores yj posibles. En cada iteración, extiende la evidencia con {Y=yj} para que los descendientes de Y puedan usar este valor en su evaluación."
+    },
+    {
+      "id": 9,
+      "algorithm": "QueryVar",
+      "topic": "Algoritmo QueryVar",
+      "difficulty": "medium",
+      "description": "Completa el pseudocódigo de QueryVar que calcula P(Q=vj|E).",
+      "code": [
+        "Function QueryVar(BNet, Vars, E, Q=vj):",
+        "  totalQ := 0",
+        "  for each vi of Q do",
+        "    PQ_vi := ExpandProb(BNet, Vars, [B1])",
+        "    totalQ := totalQ + PQ_vi",
+        "  return [B2] / totalQ"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "E∪{Q=vi}",
+          "hint": "Se extiende la evidencia con el valor actual vi de Q"
+        },
+        {
+          "id": "B2",
+          "answer": "PQ_vj",
+          "hint": "El valor calculado para el valor vj específico que nos piden"
+        }
+      ],
+      "tokens": [
+        "E∪{Q=vi}",
+        "E",
+        "E∪{Q=vj}",
+        "PQ_vj",
+        "PQ_vi",
+        "totalQ",
+        "1 / totalQ"
+      ],
+      "explanation": "QueryVar llama a ExpandProb para cada valor vi de Q, extendiendo E con {Q=vi}. Suma todos los resultados (totalQ=P(E)). Normaliza dividiendo el valor para vj entre totalQ."
+    },
+    {
+      "id": 10,
+      "algorithm": "Factorización red bayesiana (FO/DO)",
+      "topic": "Factorización de Redes Bayesianas",
+      "difficulty": "easy",
+      "description": "Completa la factorización de la red FO→DO.",
+      "code": [
+        "P(FO, DO) = P(DO | [B1]) · [B2]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "FO",
+          "hint": "El padre de DO en la red"
+        },
+        {
+          "id": "B2",
+          "answer": "P(FO)",
+          "hint": "Distribución marginal del nodo raíz"
+        }
+      ],
+      "tokens": [
+        "FO",
+        "DO",
+        "P(FO)",
+        "P(DO)",
+        "P(FO,DO)",
+        "P(FO|DO)"
+      ],
+      "explanation": "En la red FO→DO, FO es el padre de DO. La factorización es P(FO,DO)=P(DO|FO)·P(FO). P(FO) es la distribución del nodo raíz (sin padres)."
+    },
+    {
+      "id": 11,
+      "algorithm": "Factorización red cáncer",
+      "topic": "Factorización de Redes Bayesianas",
+      "difficulty": "medium",
+      "description": "Completa la factorización de la red del cáncer (C→T1, C→T2, C→T3).",
+      "code": [
+        "P(C,T1,T2,T3) = P(T1|[B1]) · P(T2|[B2]) · P(T3|[B3]) · [B4]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "C",
+          "hint": "El padre de T1"
+        },
+        {
+          "id": "B2",
+          "answer": "C",
+          "hint": "El padre de T2"
+        },
+        {
+          "id": "B3",
+          "answer": "C",
+          "hint": "El padre de T3"
+        },
+        {
+          "id": "B4",
+          "answer": "P(C)",
+          "hint": "Distribución del nodo raíz C"
+        }
+      ],
+      "tokens": [
+        "C",
+        "T1",
+        "T2",
+        "T3",
+        "P(C)",
+        "P(T1)",
+        "P(C,T1,T2,T3)"
+      ],
+      "explanation": "En la red C→T1, C→T2, C→T3, todos los tests tienen C como único padre. La factorización es P(T1|C)·P(T2|C)·P(T3|C)·P(C), producto de las CPTs de cada nodo."
+    },
+    {
+      "id": 12,
+      "algorithm": "Factorización red gemelos/luna",
+      "topic": "Factorización de Redes Bayesianas",
+      "difficulty": "medium",
+      "description": "Completa la factorización de la red M→A, M→B (gemelos con luna).",
+      "code": [
+        "P(A,B,M) = P(A | [B1]) · P(B | [B2]) · [B3]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "M",
+          "hint": "El padre de A"
+        },
+        {
+          "id": "B2",
+          "answer": "M",
+          "hint": "El padre de B"
+        },
+        {
+          "id": "B3",
+          "answer": "P(M)",
+          "hint": "Distribución del nodo raíz M"
+        }
+      ],
+      "tokens": [
+        "M",
+        "A",
+        "B",
+        "P(M)",
+        "P(A)",
+        "P(B)",
+        "P(A,B)"
+      ],
+      "explanation": "En la red M→A, M→B, la luna M es la causa común de ambos gemelos. La factorización es P(A|M)·P(B|M)·P(M). Esto captura que dado M, A y B son condicionalmente independientes."
+    },
+    {
+      "id": 13,
+      "algorithm": "Cálculo cáncer 3 tests positivos",
+      "topic": "Teorema de Bayes",
+      "difficulty": "hard",
+      "description": "Completa el cálculo de P(C=1|T1=1,T2=1,T3=1) en el ejemplo del cáncer.",
+      "code": [
+        "P(C=1,T1=1,T2=1,T3=1)",
+        "  = 0.9 · 0.9 · 0.9 · [B1]",
+        "  = [B2]",
+        "",
+        "P(C=0,T1=1,T2=1,T3=1)",
+        "  = 0.2 · 0.2 · 0.2 · [B3]",
+        "  = [B4]",
+        "",
+        "P(C=1|T1=1,T2=1,T3=1)",
+        "  = [B2] / ([B2] + [B4])",
+        "  ≈ [B5]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "0.01",
+          "hint": "P(C=1)"
+        },
+        {
+          "id": "B2",
+          "answer": "0.00729",
+          "hint": "0.9³ · 0.01"
+        },
+        {
+          "id": "B3",
+          "answer": "0.99",
+          "hint": "P(C=0)"
+        },
+        {
+          "id": "B4",
+          "answer": "0.00792",
+          "hint": "0.2³ · 0.99"
+        },
+        {
+          "id": "B5",
+          "answer": "0.48",
+          "hint": "0.00729/0.01521 redondeado"
+        }
+      ],
+      "tokens": [
+        "0.01",
+        "0.99",
+        "0.00729",
+        "0.00792",
+        "0.48",
+        "0.17",
+        "0.90",
+        "0.10"
+      ],
+      "explanation": "P(C=1,all T=1)=0.9³·0.01=0.00729. P(C=0,all T=1)=0.2³·0.99=0.00792. P(C=1|all T=1)=0.00729/0.01521≈0.48. La baja prevalencia (prior=0.01) modera el resultado."
+    },
+    {
+      "id": 14,
+      "algorithm": "Regla de la suma (3 variables)",
+      "topic": "Probabilidad marginal (regla de la suma)",
+      "difficulty": "medium",
+      "description": "Completa la marginalización de la variable B para obtener P(A=1,M=1) en la red M→A,M→B.",
+      "code": [
+        "P(A=1, B, M=1)",
+        "  = P(A=1,B=1,M=1) + [B1]",
+        "  = P(A=1|M=1)·P(B=1|M=1)·P(M=1)",
+        "  + P(A=1|M=1)·[B2]·P(M=1)",
+        "  = (1·1·0.5) + (1·[B3]·0.5)",
+        "  = [B4]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "P(A=1,B=0,M=1)",
+          "hint": "Caso complementario de B"
+        },
+        {
+          "id": "B2",
+          "answer": "P(B=0|M=1)",
+          "hint": "La probabilidad de B=0 dado M=1"
+        },
+        {
+          "id": "B3",
+          "answer": "0",
+          "hint": "P(B=0|M=1) cuando M=1 implica B=1 en el ejemplo"
+        },
+        {
+          "id": "B4",
+          "answer": "0.5",
+          "hint": "(1·1·0.5)+(1·0·0.5)=0.5+0=0.5"
+        }
+      ],
+      "tokens": [
+        "P(A=1,B=0,M=1)",
+        "P(A=0,B=1,M=1)",
+        "P(B=0|M=1)",
+        "P(B=1|M=1)",
+        "0",
+        "1",
+        "0.5",
+        "0.25"
+      ],
+      "explanation": "Para P(A=1,B,M=1) se marginalizan todos los valores de B: P(A=1,B=1,M=1)+P(A=1,B=0,M=1). Con las CPTs del ejemplo (M=1→A=1,B=1), P(B=0|M=1)=0. Resultado: 0.5+0=0.5."
+    },
+    {
+      "id": 15,
+      "algorithm": "Inferencia con 3 variables",
+      "topic": "Algoritmo ExpandProb",
+      "difficulty": "hard",
+      "description": "Completa los pasos de ExpandProb para calcular P(V2=1,V1=1) en la red V1→V3, V2→V3.",
+      "code": [
+        "ExProb(BNet, [V1,V2,V3], {V2=1,V1=1})",
+        "= P(V1=1) · ExProb(BNet, [V2,V3], {V2=1,V1=1})",
+        "= P(V1=1) · P(V2=1) · ExProb(BNet, [V3], {V2=1,V1=1})",
+        "= P(V1=1) · P(V2=1) · ( [B1]",
+        "   + P(V3=1|V1=1,V2=1) · [B2] )"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "P(V3=0|V1=1,V2=1) · 1",
+          "hint": "Primer término de la suma sobre V3: V3=0 multiplica el caso base"
+        },
+        {
+          "id": "B2",
+          "answer": "1",
+          "hint": "Caso base ExpandProb([])=1"
+        }
+      ],
+      "tokens": [
+        "P(V3=0|V1=1,V2=1) · 1",
+        "P(V3=0|V1=1,V2=1) · 0",
+        "1",
+        "0",
+        "P(V3=1|V1=0,V2=0)",
+        "P(V3|V1,V2)"
+      ],
+      "explanation": "V3 es libre: ExpandProb suma sobre V3=0 y V3=1. El caso base retorna 1.0. La expansión es: P(V3=0|V1=1,V2=1)·1 + P(V3=1|V1=1,V2=1)·1 = P(V3=0|...) + P(V3=1|...) = 1."
+    },
+    {
+      "id": 16,
+      "algorithm": "Independencia condicional (deducción)",
+      "topic": "Independencia condicional",
+      "difficulty": "hard",
+      "description": "Completa la deducción de P(A|B,M)=P(A|M) a partir de la factorización P(A,B,M)=P(A|M)·P(B|M)·P(M).",
+      "code": [
+        "Factorización alternativa válida:",
+        "P(A,B,M) = P(A|B,M) · P(B|M) · [B1]",
+        "",
+        "Igualando con P(A|M)·P(B|M)·P(M):",
+        "P(A|B,M) · P(B|M) · P(M) = P(A|M) · [B2] · P(M)",
+        "",
+        "Simplificando P(B|M)·P(M):",
+        "P(A|B,M) = [B3]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "P(M)",
+          "hint": "El término de P(B,M) que se puede descomponer"
+        },
+        {
+          "id": "B2",
+          "answer": "P(B|M)",
+          "hint": "El factor que aparece en el lado derecho de la igualdad"
+        },
+        {
+          "id": "B3",
+          "answer": "P(A|M)",
+          "hint": "Resultado final tras simplificar los factores comunes"
+        }
+      ],
+      "tokens": [
+        "P(M)",
+        "P(B|M)",
+        "P(A|M)",
+        "P(A,B)",
+        "P(A)",
+        "P(B)"
+      ],
+      "explanation": "Usando P(A,B,M)=P(A|B,M)·P(B,M)=P(A|B,M)·P(B|M)·P(M) e igualando con P(A|M)·P(B|M)·P(M), cancelando P(B|M)·P(M) de ambos lados: P(A|B,M)=P(A|M). ✓"
+    },
+    {
+      "id": 17,
+      "algorithm": "Bayes theorem (normalization)",
+      "topic": "Teorema de Bayes",
+      "difficulty": "medium",
+      "description": "Completa el proceso de normalización en el teorema de Bayes para P(FO=vi|DO=1).",
+      "code": [
+        "num1 = P(DO=1|FO=1) · P(FO=1) = 0.375",
+        "num0 = P(DO=1|FO=0) · P(FO=0) = 0.25",
+        "total = num1 + num0 = [B1]",
+        "",
+        "P(FO=1|DO=1) = num1 / total = [B2]",
+        "P(FO=0|DO=1) = num0 / total = [B3]",
+        "",
+        "Verificación: P(FO=1|DO=1) + P(FO=0|DO=1) = [B4]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "0.625",
+          "hint": "0.375 + 0.25"
+        },
+        {
+          "id": "B2",
+          "answer": "0.6",
+          "hint": "0.375 / 0.625"
+        },
+        {
+          "id": "B3",
+          "answer": "0.4",
+          "hint": "0.25 / 0.625"
+        },
+        {
+          "id": "B4",
+          "answer": "1.0",
+          "hint": "Las probabilidades siempre suman 1"
+        }
+      ],
+      "tokens": [
+        "0.625",
+        "0.6",
+        "0.4",
+        "1.0",
+        "0.5",
+        "0.375",
+        "0.75",
+        "0.25"
+      ],
+      "explanation": "total=P(DO=1)=0.375+0.25=0.625. P(FO=1|DO=1)=0.375/0.625=0.6. P(FO=0|DO=1)=0.25/0.625=0.4. Verificación: 0.6+0.4=1.0. ✓ La normalización garantiza que la distribución posterior suma 1."
+    },
+    {
+      "id": 18,
+      "algorithm": "Factorización red 5 variables",
+      "topic": "Factorización de Redes Bayesianas",
+      "difficulty": "hard",
+      "description": "Completa la factorización de la red: V1→V3, V2→V3, V3→V4, V3→V5 (5 variables).",
+      "code": [
+        "P(V1,V2,V3,V4,V5)",
+        "= [B1] · [B2] · P(V3|V1,V2) · [B3] · [B4]"
+      ],
+      "blanks": [
+        {
+          "id": "B1",
+          "answer": "P(V1)",
+          "hint": "Distribución del nodo raíz V1"
+        },
+        {
+          "id": "B2",
+          "answer": "P(V2)",
+          "hint": "Distribución del nodo raíz V2"
+        },
+        {
+          "id": "B3",
+          "answer": "P(V4|V3)",
+          "hint": "CPT del nodo V4 con padre V3"
+        },
+        {
+          "id": "B4",
+          "answer": "P(V5|V3)",
+          "hint": "CPT del nodo V5 con padre V3"
+        }
+      ],
+      "tokens": [
+        "P(V1)",
+        "P(V2)",
+        "P(V4|V3)",
+        "P(V5|V3)",
+        "P(V3)",
+        "P(V4|V1,V2)",
+        "P(V1,V2)",
+        "P(V3|V4)"
+      ],
+      "explanation": "V1 y V2 son raíces → P(V1), P(V2). V3 tiene padres V1 y V2 → P(V3|V1,V2). V4 tiene padre V3 → P(V4|V3). V5 tiene padre V3 → P(V5|V3). La factorización completa es el producto de todas las CPTs."
+    }
+  ]
+}
