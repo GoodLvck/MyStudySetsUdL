@@ -1,0 +1,383 @@
+{
+  "metadata": {
+    "title": "Complete SAT Solving — Completar Frases",
+    "subject": "PAIA — Programació Avançada en Intel·ligència Artificial",
+    "format": "fill-in-the-blank",
+    "formatDescription": "Completa las frases con los términos correctos",
+    "totalQuestions": 40,
+    "topics": [
+      "Introducción a SAT",
+      "CNF y Codificación",
+      "Casos Especiales en P",
+      "Inferencia: Davis-Putnam",
+      "Bucket Elimination",
+      "Tableaux y Stålmarck",
+      "Búsqueda: DPLL",
+      "Heurísticas de Variable",
+      "CDCL y Aprendizaje",
+      "Técnicas Modernas"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Introducción a SAT",
+      "difficulty": "easy",
+      "sentence": "SAT fue demostrado NP-Complete por [B1] en el año [B2].",
+      "blanks": ["Cook", "1971"],
+      "hints": ["Apellido del investigador", "Año de publicación del teorema"],
+      "explanation": "Stephen Cook publicó 'The Complexity of Theorem Proving Procedures' en 1971, demostrando que SAT es el primer problema NP-Complete."
+    },
+    {
+      "id": 2,
+      "topic": "Introducción a SAT",
+      "difficulty": "easy",
+      "sentence": "Un algoritmo completo de SAT, si existe solución, devuelve un [B1]; si no existe, devuelve una prueba de [B2].",
+      "blanks": ["modelo", "insatisfactibilidad"],
+      "hints": ["Asignación que satisface la fórmula", "Demostración de que no hay solución"],
+      "explanation": "Los algoritmos completos son correctos en ambos sentidos, a diferencia de los algoritmos incompletos (como WalkSAT) que pueden no encontrar solución aunque exista."
+    },
+    {
+      "id": 3,
+      "topic": "CNF y Codificación",
+      "difficulty": "easy",
+      "sentence": "CNF es una [B1] de cláusulas, donde cada cláusula es una [B2] de literales.",
+      "blanks": ["conjunción", "disyunción"],
+      "hints": ["Operador AND", "Operador OR"],
+      "explanation": "CNF = Conjunctive Normal Form. Fórmula = C₁ ∧ C₂ ∧ … ∧ Cₘ, con cada cláusula Cᵢ = (l₁ ∨ l₂ ∨ … ∨ lₖ)."
+    },
+    {
+      "id": 4,
+      "topic": "CNF y Codificación",
+      "difficulty": "medium",
+      "sentence": "La codificación de [B1] (1983) introduce variables auxiliares para cada subfórmula, generando una CNF de tamaño [B2] en el tamaño de la fórmula original.",
+      "blanks": ["Tseitin", "lineal"],
+      "hints": ["Apellido del investigador ruso", "Opuesto a exponencial"],
+      "explanation": "Tseitin (1983) resuelve el problema de la conversión directa a CNF que puede generar fórmulas exponencialmente grandes. Introduce f ↔ subfórmula para cada subexpresión."
+    },
+    {
+      "id": 5,
+      "topic": "CNF y Codificación",
+      "difficulty": "medium",
+      "sentence": "La fórmula Tseitin es [B1] con la original (misma satisfactibilidad) pero no [B2] (puede tener modelos extra por las variables auxiliares).",
+      "blanks": ["equisatisfactible", "equivalente"],
+      "hints": ["Mismo resultado SAT/UNSAT", "Mismos modelos exactos"],
+      "explanation": "Equisatisfactible: SAT ↔ SAT, UNSAT ↔ UNSAT. No equivalente: los modelos de Tseitin incluyen valores para variables auxiliares que no existen en la original."
+    },
+    {
+      "id": 6,
+      "topic": "Casos Especiales en P",
+      "difficulty": "easy",
+      "sentence": "Una fórmula [B1] es aquella donde cada cláusula tiene a lo sumo un literal [B2].",
+      "blanks": ["Horn", "positivo"],
+      "hints": ["Tipo de fórmula resoluble en tiempo lineal", "No negado"],
+      "explanation": "Fórmulas Horn: máximo un literal positivo por cláusula. Ejemplo: (¬a ∨ ¬b ∨ c) es Horn (c es el único positivo). Resolubles en tiempo lineal con LTUR."
+    },
+    {
+      "id": 7,
+      "topic": "Casos Especiales en P",
+      "difficulty": "medium",
+      "sentence": "En 2-SAT, cada cláusula (l₁ ∨ l₂) genera dos implicaciones: [B1] y [B2].",
+      "blanks": ["¬l₁ → l₂", "¬l₂ → l₁"],
+      "hints": ["Si no l₁ entonces l₂", "Contrarrecíproca"],
+      "explanation": "La conversión de disyunciones a implicaciones permite construir el grafo de implicaciones y calcular SCCs para resolver 2-SAT en tiempo polinomial."
+    },
+    {
+      "id": 8,
+      "topic": "Casos Especiales en P",
+      "difficulty": "medium",
+      "sentence": "Una fórmula 2-SAT es UNSAT si y solo si alguna variable x y su negación ¬x pertenecen a la misma [B1] (Strongly Connected Component).",
+      "blanks": ["SCC"],
+      "hints": ["Componente fuertemente conexa del grafo de implicaciones"],
+      "explanation": "Si x y ¬x están en la misma SCC, existe una cadena de implicaciones x → … → ¬x y ¬x → … → x, creando una contradicción inevitable."
+    },
+    {
+      "id": 9,
+      "topic": "Casos Especiales en P",
+      "difficulty": "easy",
+      "sentence": "La [B1] elimina una variable x asignándola a true: se eliminan todas las cláusulas que contienen x y se elimina ¬x de las demás.",
+      "blanks": ["Unit Propagation"],
+      "hints": ["Técnica que propaga cláusulas unitarias"],
+      "explanation": "UP detecta cláusulas con un solo literal no asignado (literal unitario), lo fuerza a true, y propaga las consecuencias. Es la técnica más importante en solvers modernos."
+    },
+    {
+      "id": 10,
+      "topic": "Casos Especiales en P",
+      "difficulty": "medium",
+      "sentence": "La [B1] establece que si un literal l aparece con una sola polaridad, puede asignarse l=true y eliminar todas las cláusulas que lo contienen.",
+      "blanks": ["Pure Literal Rule"],
+      "hints": ["Regla que elimina literales puros"],
+      "explanation": "Un literal puro aparece solo positivo (o solo negativo) en la fórmula. Si l es puro, asignar l=true satisface todas sus cláusulas sin violar ninguna."
+    },
+    {
+      "id": 11,
+      "topic": "Inferencia: Davis-Putnam",
+      "difficulty": "medium",
+      "sentence": "El algoritmo Davis-Putnam (1960) aplica: (1) [B1], (2) [B2] y (3) Regla de Resolución para eliminar variables.",
+      "blanks": ["Unit Propagation", "Pure Literal Rule"],
+      "hints": ["Propaga cláusulas de un solo literal", "Elimina literales que aparecen con una sola polaridad"],
+      "explanation": "DP combina UP (subsumción + resolución unitaria), Pure Literal Rule, y resolución completa para demostrar SAT o UNSAT."
+    },
+    {
+      "id": 12,
+      "topic": "Inferencia: Davis-Putnam",
+      "difficulty": "medium",
+      "sentence": "El problema principal de Davis-Putnam es la explosión de [B1]: la resolución puede crear O([B2]) nuevas cláusulas por variable.",
+      "blanks": ["memoria", "n²"],
+      "hints": ["Recurso computacional que se agota", "Cuadrático"],
+      "explanation": "Para una variable x con n/2 cláusulas positivas y n/2 negativas, la resolución genera (n/2)×(n/2) = n²/4 resolventes. El tamaño crece como size(t) = size²(t−1), es decir, exponencialmente."
+    },
+    {
+      "id": 13,
+      "topic": "Inferencia: Davis-Putnam",
+      "difficulty": "easy",
+      "sentence": "Dados (A ∨ x) y (B ∨ ¬x), el resolvente por la variable x es [B1].",
+      "blanks": ["(A ∨ B)"],
+      "hints": ["Se elimina x y se unen los restos"],
+      "explanation": "La regla de resolución elimina una variable opuesta en dos cláusulas y produce la disyunción de los literales restantes. Es la operación central de DP y de la demostración de UNSAT."
+    },
+    {
+      "id": 14,
+      "topic": "Bucket Elimination",
+      "difficulty": "medium",
+      "sentence": "En Bucket Elimination, cada cláusula se almacena en el bucket de su variable más [B1] en el orden de eliminación.",
+      "blanks": ["prioritaria"],
+      "hints": ["Que aparece primero en el orden estático"],
+      "explanation": "El orden de eliminación es estático. La cláusula ¬x₃ ∨ x₅ ∨ ¬x₈ va al bucket de x₃ si el orden es x₁, x₂, x₃, … porque x₃ aparece antes que x₅ y x₈."
+    },
+    {
+      "id": 15,
+      "topic": "Tableaux",
+      "difficulty": "medium",
+      "sentence": "En un Clause Tableau, una rama está [B1] cuando contiene un literal l y su complementario ¬l, indicado con el símbolo [B2].",
+      "blanks": ["cerrada", "⊗"],
+      "hints": ["Ramificación que representa una contradicción", "Símbolo de contradicción"],
+      "explanation": "Una rama cerrada (⊗) contiene una contradicción — no puede ser parte de ningún modelo. Si todas las ramas están cerradas, la fórmula es UNSAT."
+    },
+    {
+      "id": 16,
+      "topic": "Tableaux y Stålmarck",
+      "difficulty": "hard",
+      "sentence": "El método de Stålmarck trabaja inicialmente con tripletes de la forma p ⟺ q [B1] r, donde [B1] puede ser ∧ o ⟺.",
+      "blanks": ["⊗"],
+      "hints": ["Operador genérico del triplete"],
+      "explanation": "Stålmarck descompone la negación de la fórmula en tripletes p ⟺ q ⊗ r donde ⊗ es ∧ o ⟺. Luego aplica saturación con reglas A9 y B12, y el dilema cuando no avanza."
+    },
+    {
+      "id": 17,
+      "topic": "Tableaux y Stålmarck",
+      "difficulty": "hard",
+      "sentence": "La regla del dilema de Stålmarck establece: model(φ) = model(φₓ) [B1] model(φ¬ₓ).",
+      "blanks": ["∩"],
+      "hints": ["Intersección de conjuntos"],
+      "explanation": "El dilema divide en dos ramas (x=true y x=false). Solo las asignaciones comunes a ambas ramas son consecuencias válidas de φ. Esto es la intersección de los modelos de cada rama."
+    },
+    {
+      "id": 18,
+      "topic": "Búsqueda: DPLL",
+      "difficulty": "medium",
+      "sentence": "DPLL fue propuesto por Davis, Logemann y [B1] en [B2] como mejora sobre Davis-Putnam.",
+      "blanks": ["Loveland", "1962"],
+      "hints": ["Tercer apellido del algoritmo", "Dos años después de DP"],
+      "explanation": "Davis, Logemann y Loveland (1962) propusieron reemplazar la resolución de DP por splitting (división del espacio de búsqueda), dando origen al algoritmo DPLL que es la base de todos los solvers modernos."
+    },
+    {
+      "id": 19,
+      "topic": "Búsqueda: DPLL",
+      "difficulty": "easy",
+      "sentence": "DPLL reemplaza la Regla III de DP (resolución) por [B1]: F ≡ (A ∧ R) ∨ (B ∧ R).",
+      "blanks": ["splitting"],
+      "hints": ["División del espacio de búsqueda"],
+      "explanation": "Splitting divide la fórmula en dos subproblemas: uno con l=true y otro con l=false, explorándolos por DFS. Cuando encuentra un modelo, para. No genera nuevas cláusulas."
+    },
+    {
+      "id": 20,
+      "topic": "Búsqueda: DPLL",
+      "difficulty": "easy",
+      "sentence": "En DPLL, si la fórmula queda vacía (∅) se devuelve [B1]; si aparece una cláusula vacía (□) se devuelve [B2].",
+      "blanks": ["SAT", "conflicto (backtrack)"],
+      "hints": ["Satisfactible", "Contradicción, hay que retroceder"],
+      "explanation": "Fórmula vacía ∅ → todas las cláusulas satisfechas → SAT. Cláusula vacía □ → cláusula insatisfactible bajo la asignación actual → conflicto → backtracking."
+    },
+    {
+      "id": 21,
+      "topic": "Búsqueda: DPLL",
+      "difficulty": "medium",
+      "sentence": "DPLL usa [B1] como estructura de búsqueda, lo que permite un uso de espacio [B2] (en vez de exponencial como DP).",
+      "blanks": ["DFS (Depth-First Search)", "lineal"],
+      "hints": ["Búsqueda en profundidad", "Proporcional a la profundidad, no exponencial"],
+      "explanation": "DFS con backtracking mantiene solo el camino actual en la pila de recursión, usando espacio O(n) (profundidad máxima = número de variables). DP usa espacio exponencial por la acumulación de resolventes."
+    },
+    {
+      "id": 22,
+      "topic": "Heurísticas de Variable",
+      "difficulty": "easy",
+      "sentence": "MOMS significa [B1] y fue propuesta por [B2] en 1993.",
+      "blanks": ["Most Often in Minimum Size", "Pretolani"],
+      "hints": ["Nombre completo de la heurística", "Apellido del investigador"],
+      "explanation": "MOMS prioriza variables que aparecen en cláusulas de menor tamaño (más restrictivas). Al propagar en las cláusulas más cortas, maximiza el impacto de cada decisión de branching."
+    },
+    {
+      "id": 23,
+      "topic": "Heurísticas de Variable",
+      "difficulty": "medium",
+      "sentence": "VSIDS significa [B1] y fue introducido por el solver [B2] (2001).",
+      "blanks": ["Variable State Independent Decaying Sum", "Chaff"],
+      "hints": ["Nombre completo de la heurística", "Solver de Moskewicz et al."],
+      "explanation": "VSIDS (Chaff, 2001): inicializa contadores a 0, incrementa al añadir cláusulas, selecciona el literal con mayor contador, divide periódicamente. Favorece variables involucradas en conflictos recientes."
+    },
+    {
+      "id": 24,
+      "topic": "Heurísticas de Variable",
+      "difficulty": "hard",
+      "sentence": "La heurística Jeroslow-Wang asigna puntuación J(l) = Σ [B1] sobre todas las cláusulas de longitud w que contienen l.",
+      "blanks": ["2⁻ʷ"],
+      "hints": ["Dos elevado a menos w"],
+      "explanation": "J(l) = Σ 2⁻ʷ. Las cláusulas cortas (pequeño w) contribuyen exponencialmente más que las largas. Favorece literales en cláusulas binarias (w=2, contribución 0.25) sobre cláusulas largas (w=10, contribución 0.001)."
+    },
+    {
+      "id": 25,
+      "topic": "CDCL y Aprendizaje",
+      "difficulty": "medium",
+      "sentence": "En CDCL, el grafo de [B1] es un DAG donde los nodos son literales unitarios y los arcos representan implicaciones por [B2].",
+      "blanks": ["implicaciones", "Unit Propagation"],
+      "hints": ["Tipo de grafo que analiza CDCL", "Técnica de propagación forzada"],
+      "explanation": "El grafo de implicaciones traza cómo la propagación unitaria forzó cada literal. Permite identificar las causas del conflicto y construir la cláusula aprendida."
+    },
+    {
+      "id": 26,
+      "topic": "CDCL y Aprendizaje",
+      "difficulty": "medium",
+      "sentence": "La cláusula aprendida en CDCL es: learnt clause = ¬([B1]).",
+      "blanks": ["razones del conflicto"],
+      "hints": ["Los antecedentes del conflicto en el grafo de implicaciones"],
+      "explanation": "Se identifican los 'conflictos causes' — los literales que causaron el conflicto. La negación de estos literales forma la cláusula aprendida, que es una consecuencia válida de la fórmula original."
+    },
+    {
+      "id": 27,
+      "topic": "CDCL y Aprendizaje",
+      "difficulty": "hard",
+      "sentence": "Un [B1] es un nodo del grafo de implicaciones que domina todos los caminos desde la última [B2] hasta el conflicto.",
+      "blanks": ["UIP (Unit Implication Point)", "decisión"],
+      "hints": ["Punto de implicación única", "Último punto de branching"],
+      "explanation": "El UIP permite definir la cláusula aprendida de forma que el backtrack salte directamente al nivel de decisión relevante. El 'first UIP' (más cercano al conflicto) es el más común."
+    },
+    {
+      "id": 28,
+      "topic": "CDCL y Aprendizaje",
+      "difficulty": "medium",
+      "sentence": "El backtracking [B1] salta al nivel de decisión que causó el conflicto, en vez de retroceder solo un nivel como hace el backtracking [B2].",
+      "blanks": ["no cronológico", "cronológico"],
+      "hints": ["Salto inteligente basado en la cláusula aprendida", "Retroceso paso a paso"],
+      "explanation": "Non-chronological backtracking (CBT vs NCB): NCB usa la cláusula aprendida para determinar el nivel exacto al que retroceder, evitando reexplorar subespacios ya demostrados conflictivos."
+    },
+    {
+      "id": 29,
+      "topic": "Técnicas Modernas",
+      "difficulty": "medium",
+      "sentence": "Los [B1] en SAT solving reinician la búsqueda desde cero tras un número de backtracks, pero mantienen las [B2] aprendidas.",
+      "blanks": ["reinicios (restarts)", "cláusulas"],
+      "hints": ["Técnica para evitar distribuciones de cola pesada", "Conocimiento acumulado que se preserva"],
+      "explanation": "Los reinicios evitan quedar atrapados en ramas costosas (Gomes et al., 1997). Las cláusulas aprendidas son conocimiento válido — conservarlas entre reinicios es clave para la eficiencia."
+    },
+    {
+      "id": 30,
+      "topic": "Técnicas Modernas",
+      "difficulty": "medium",
+      "sentence": "Las [B1] (2-watch literals) mantienen dos punteros por cláusula apuntando a literales no asignados, actualizándose solo cuando uno de ellos se vuelve [B2].",
+      "blanks": ["estructuras de datos perezosas (lazy)", "falso"],
+      "hints": ["Estructuras que evitan trabajo innecesario", "Cuando el literal es refutado"],
+      "explanation": "Las 2-watch literals (Chaff) son lazy: solo se actualiza una cláusula cuando uno de sus dos literales vigilados se asigna a false. La mayoría de pasos no requieren actualización, reduciendo drásticamente el trabajo de propagación."
+    },
+    {
+      "id": 31,
+      "topic": "Técnicas Modernas",
+      "difficulty": "medium",
+      "sentence": "[B1] (Marques-Silva, 1996) fue el primer solver DPLL con clause learning y backtracking no cronológico; [B2] (Moskewicz, 2001) introdujo 2-watch literals y VSIDS.",
+      "blanks": ["GRASP", "Chaff"],
+      "hints": ["Primer solver CDCL", "Solver que revolucionó la velocidad de resolución"],
+      "explanation": "GRASP estableció los fundamentos del CDCL moderno. Chaff demostró que con ingeniería adecuada (2-watch + VSIDS) los solvers podían manejar instancias industriales de cientos de miles de variables."
+    },
+    {
+      "id": 32,
+      "topic": "Casos Especiales en P",
+      "difficulty": "medium",
+      "sentence": "LTUR asigna inicialmente todas las variables a [B1], toma las cláusulas unitarias [B2] como cola de propagación, y detecta conflictos durante la propagación.",
+      "blanks": ["false", "positivas"],
+      "hints": ["Valor inicial de todas las variables", "Las que tienen el único literal positivo"],
+      "explanation": "LTUR: inicializa todo a false, las cláusulas unitarias positivas (que requieren su literal a true para satisfacerse) se añaden a Q. La propagación detecta conflictos si ¬l está en Q cuando se propaga l."
+    },
+    {
+      "id": 33,
+      "topic": "CNF y Codificación",
+      "difficulty": "medium",
+      "sentence": "En la codificación SAT de Graph Coloring, la restricción 'V₁ y V₂ (vecinos) no pueden ser ambos rojos' se codifica como la cláusula [B1].",
+      "blanks": ["(¬C₁ᵣ ∨ ¬C₂ᵣ)"],
+      "hints": ["Negación de cada variable de color, unidas por OR"],
+      "explanation": "¬(C₁ᵣ ∧ C₂ᵣ) ≡ (¬C₁ᵣ ∨ ¬C₂ᵣ). Esta es una cláusula de CNF que representa el no-good 'ambos rojos'. En CSP sería la restricción V₁ ≠ V₂."
+    },
+    {
+      "id": 34,
+      "topic": "Inferencia: Davis-Putnam",
+      "difficulty": "hard",
+      "sentence": "En DP, Unit Propagation es un caso especial de [B1]; Pure Literal Rule es un caso de [B2].",
+      "blanks": ["resolución", "factorización"],
+      "hints": ["Regla de inferencia que elimina una variable", "Combinación de cláusulas con un literal común"],
+      "explanation": "UP: (a∨b)∧(¬a) = resolución con cláusula vacía como uno de los resolventes. Pure Literal: (a∨φ₁)∧(a∨φ₂) ≡ a∨(φ₁∧φ₂) ≡ φ₃ = factorización de la variable a."
+    },
+    {
+      "id": 35,
+      "topic": "Heurísticas de Variable",
+      "difficulty": "medium",
+      "sentence": "La heurística del literal más equilibrado selecciona la variable que maximiza el [B1] de sus ocurrencias positivas y negativas: max(w(x) × w(¬x)).",
+      "blanks": ["producto"],
+      "hints": ["Operación matemática que mide equilibrio entre dos valores"],
+      "explanation": "El producto w(x)×w(¬x) favorece variables que aparecen frecuentemente con AMBAS polaridades. Una variable muy desequilibrada (w(x)=100, w(¬x)=1) tiene producto bajo pese a alta frecuencia."
+    },
+    {
+      "id": 36,
+      "topic": "Técnicas Modernas",
+      "difficulty": "hard",
+      "sentence": "Un [B1] es un subconjunto mínimo de cláusulas originales suficiente para demostrar [B2], obtenido rastreando la cadena de resolución.",
+      "blanks": ["core (unsatisfiable core)", "UNSAT"],
+      "hints": ["Núcleo de la prueba de insatisfactibilidad", "Insatisfactible"],
+      "explanation": "El core permite entender 'por qué' la fórmula es UNSAT — cuáles son las cláusulas responsables. Útil para debugging de especificaciones formales y optimización de fórmulas."
+    },
+    {
+      "id": 37,
+      "topic": "Búsqueda: DPLL",
+      "difficulty": "hard",
+      "sentence": "En el árbol de búsqueda DPLL, las líneas [B1] representan asignaciones de decisión; las [B2] representan propagaciones por Unit Propagation.",
+      "blanks": ["sólidas", "discontinuas"],
+      "hints": ["Tipo de línea que muestra la decisión de branching", "Tipo de línea que muestra la consecuencia forzada"],
+      "explanation": "Convenio gráfico estándar en árboles DPLL: líneas sólidas = decisiones de branching (el algoritmo elige el valor); líneas discontinuas = asignaciones monotónicas por UP (el valor está forzado)."
+    },
+    {
+      "id": 38,
+      "topic": "Bucket Elimination",
+      "difficulty": "medium",
+      "sentence": "Bucket Elimination toma un [B1] de variables; para cada variable, aplica [B2] entre las cláusulas de su bucket y pasa los resolventes al siguiente bucket.",
+      "blanks": ["orden estático", "resolución"],
+      "hints": ["Orden fijo que no cambia durante el algoritmo", "Regla de inferencia que elimina una variable"],
+      "explanation": "BE: orden estático → bucket de cada variable → resolución intra-bucket → resolventes al bucket de la variable más prioritaria. Mejora DP al controlar la explosión de memoria con el orden."
+    },
+    {
+      "id": 39,
+      "topic": "CDCL y Aprendizaje",
+      "difficulty": "easy",
+      "sentence": "Los cuatro componentes de un solver CDCL moderno son: UP con [B1], heurística de branching, [B2] con análisis de conflictos, y restarts.",
+      "blanks": ["2-watch literals", "Clause Learning"],
+      "hints": ["Estructura de datos para propagación eficiente", "Aprendizaje de nuevas cláusulas"],
+      "explanation": "CDCL moderno integra: (1) UP eficiente con 2-watch, (2) VSIDS u otra heurística de branching, (3) Clause learning con UIP, (4) Non-chronological backtracking + restarts para escapar de colas pesadas."
+    },
+    {
+      "id": 40,
+      "topic": "Técnicas Modernas",
+      "difficulty": "medium",
+      "sentence": "Las distribuciones de [B1] en problemas combinatorios fueron descubiertas por [B2] et al. (1997), motivando el uso de reinicios en SAT solving.",
+      "blanks": ["cola pesada (heavy-tailed)", "Gomes"],
+      "hints": ["Tipo de distribución con alta varianza y eventos extremos", "Apellido de la investigadora principal"],
+      "explanation": "Gomes, Selman y Crato (1997) observaron que el tiempo de resolución SAT tiene distribuciones de cola pesada: la varianza es tan alta que algunas ejecuciones son exponencialmente más lentas que la mediana. Los reinicios aleatorios cortan estas ejecuciones largas."
+    }
+  ]
+}

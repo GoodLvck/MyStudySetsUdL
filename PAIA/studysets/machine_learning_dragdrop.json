@@ -1,0 +1,264 @@
+[
+  {
+    "id": "ml_dd_001",
+    "topic": "Descenso de Gradiente",
+    "description": "Ordena los pasos del algoritmo de Descenso de Gradiente para minimizar f(x):",
+    "code": "Algoritmo: Descenso de Gradiente\n\nEntrada: f, α (learning rate), x₀, max_iter\n\n[A]\n[B]\n[C]\n[D]\n[E]",
+    "blanks": ["A", "B", "C", "D", "E"],
+    "tokens": [
+      "Inicializar x = x₀",
+      "Para k = 1 hasta max_iter:",
+      "  Calcular gradiente g = ∇f(x)",
+      "  Actualizar: x = x − α · g",
+      "Retornar x"
+    ],
+    "solution": ["Inicializar x = x₀", "Para k = 1 hasta max_iter:", "  Calcular gradiente g = ∇f(x)", "  Actualizar: x = x − α · g", "Retornar x"],
+    "explanation": "GD: inicializar, iterar calculando el gradiente y actualizando en dirección opuesta al gradiente escalado por α."
+  },
+  {
+    "id": "ml_dd_002",
+    "topic": "Backpropagation",
+    "description": "Completa el pseudocódigo de Backpropagation para una red con una capa oculta:",
+    "code": "Algoritmo: Backpropagation\n\nEntrada: red, (x, y), α\n\n// FORWARD PASS\n[A]\n[B]\n\n// CALCULAR PÉRDIDA\n[C]\n\n// BACKWARD PASS\n[D]\n[E]\n\n// ACTUALIZAR PARÁMETROS\n[F]",
+    "blanks": ["A", "B", "C", "D", "E", "F"],
+    "tokens": [
+      "h = f(W₁·x + b₁)  // activación capa oculta",
+      "ŷ = g(W₂·h + b₂)  // activación capa salida",
+      "L = loss(y, ŷ)     // ej. MSE o Cross-Entropy",
+      "δ₂ = ∂L/∂ŷ · g'(W₂·h + b₂)  // gradiente capa salida",
+      "δ₁ = (W₂ᵀ·δ₂) · f'(W₁·x + b₁)  // gradiente capa oculta",
+      "W₁ -= α·δ₁·xᵀ; W₂ -= α·δ₂·hᵀ; actualizar biases"
+    ],
+    "solution": [
+      "h = f(W₁·x + b₁)  // activación capa oculta",
+      "ŷ = g(W₂·h + b₂)  // activación capa salida",
+      "L = loss(y, ŷ)     // ej. MSE o Cross-Entropy",
+      "δ₂ = ∂L/∂ŷ · g'(W₂·h + b₂)  // gradiente capa salida",
+      "δ₁ = (W₂ᵀ·δ₂) · f'(W₁·x + b₁)  // gradiente capa oculta",
+      "W₁ -= α·δ₁·xᵀ; W₂ -= α·δ₂·hᵀ; actualizar biases"
+    ],
+    "explanation": "Backprop: forward pass (calcular activaciones) → pérdida → backward pass (regla de la cadena de salida a entrada) → actualizar pesos."
+  },
+  {
+    "id": "ml_dd_003",
+    "topic": "k-Means Clustering",
+    "description": "Ordena los pasos del algoritmo k-Means:",
+    "code": "Algoritmo: k-Means\n\nEntrada: datos X, número de clusters k\n\n[A]\n[B]\n  [C]\n  [D]\n  [E]\n[F]",
+    "blanks": ["A", "B", "C", "D", "E", "F"],
+    "tokens": [
+      "Inicializar k centroides μ₁,...,μₖ aleatoriamente",
+      "Repetir hasta convergencia:",
+      "  Asignar cada xᵢ al centroide más cercano: cᵢ = argminⱼ ||xᵢ − μⱼ||²",
+      "  Recalcular centroides: μⱼ = media de {xᵢ : cᵢ = j}",
+      "  Si centroides no cambian, terminar",
+      "Retornar asignaciones c₁,...,cₙ y centroides μ₁,...,μₖ"
+    ],
+    "solution": [
+      "Inicializar k centroides μ₁,...,μₖ aleatoriamente",
+      "Repetir hasta convergencia:",
+      "  Asignar cada xᵢ al centroide más cercano: cᵢ = argminⱼ ||xᵢ − μⱼ||²",
+      "  Recalcular centroides: μⱼ = media de {xᵢ : cᵢ = j}",
+      "  Si centroides no cambian, terminar",
+      "Retornar asignaciones c₁,...,cₙ y centroides μ₁,...,μₖ"
+    ],
+    "explanation": "k-Means alterna entre asignar puntos al centroide más cercano y recalcular centroides hasta que converge (los centroides no cambian)."
+  },
+  {
+    "id": "ml_dd_004",
+    "topic": "PyTorch Training Loop",
+    "description": "Completa el bucle de entrenamiento estándar en PyTorch:",
+    "code": "# Bucle de entrenamiento PyTorch\n\nmodel.train()\nfor epoch in range(num_epochs):\n    for x_batch, y_batch in dataloader:\n        [A]         # limpiar gradientes\n        [B]         # forward pass\n        [C]         # calcular pérdida\n        [D]         # backward pass\n        [E]         # actualizar pesos",
+    "blanks": ["A", "B", "C", "D", "E"],
+    "tokens": [
+      "optimizer.zero_grad()",
+      "y_pred = model(x_batch)",
+      "loss = criterion(y_pred, y_batch)",
+      "loss.backward()",
+      "optimizer.step()"
+    ],
+    "solution": [
+      "optimizer.zero_grad()",
+      "y_pred = model(x_batch)",
+      "loss = criterion(y_pred, y_batch)",
+      "loss.backward()",
+      "optimizer.step()"
+    ],
+    "explanation": "En PyTorch: zero_grad (limpiar gradientes acumulados) → forward (predicción) → calcular loss → backward (gradientes) → step (actualizar pesos)."
+  },
+  {
+    "id": "ml_dd_005",
+    "topic": "Funciones de Activación",
+    "description": "Asocia cada función de activación con su fórmula correcta:",
+    "code": "Función de Activación → Fórmula\n\n[A] → Sigmoid\n[B] → ReLU\n[C] → Tanh\n[D] → Softmax",
+    "blanks": ["A", "B", "C", "D"],
+    "tokens": [
+      "f(x) = 1 / (1 + e^(−x))",
+      "f(x) = max(0, x)",
+      "f(x) = (eˣ − e^(−x)) / (eˣ + e^(−x))",
+      "f(xᵢ) = e^(xᵢ) / Σⱼ e^(xⱼ)"
+    ],
+    "solution": [
+      "f(x) = 1 / (1 + e^(−x))",
+      "f(x) = max(0, x)",
+      "f(x) = (eˣ − e^(−x)) / (eˣ + e^(−x))",
+      "f(xᵢ) = e^(xᵢ) / Σⱼ e^(xⱼ)"
+    ],
+    "explanation": "Sigmoid: salida (0,1). ReLU: max(0,x) simple y eficiente. Tanh: salida (-1,1) centrada. Softmax: distribución de probabilidad para clasificación multiclase."
+  },
+  {
+    "id": "ml_dd_006",
+    "topic": "Train/Val/Test Split",
+    "description": "Ordena correctamente el pipeline completo de entrenamiento y evaluación de un modelo:",
+    "code": "Pipeline de ML\n\n[A]\n[B]\n[C]\n[D]\n[E]\n[F]",
+    "blanks": ["A", "B", "C", "D", "E", "F"],
+    "tokens": [
+      "Recopilar y preprocesar datos (normalización, codificación)",
+      "Dividir en conjuntos: train (70%), val (15%), test (15%)",
+      "Entrenar modelo en conjunto de train",
+      "Evaluar en val y ajustar hiperparámetros",
+      "Seleccionar mejor modelo según métricas de validación",
+      "Evaluar una sola vez en test para estimar generalización"
+    ],
+    "solution": [
+      "Recopilar y preprocesar datos (normalización, codificación)",
+      "Dividir en conjuntos: train (70%), val (15%), test (15%)",
+      "Entrenar modelo en conjunto de train",
+      "Evaluar en val y ajustar hiperparámetros",
+      "Seleccionar mejor modelo según métricas de validación",
+      "Evaluar una sola vez en test para estimar generalización"
+    ],
+    "explanation": "El pipeline garantiza evaluación imparcial: train para aprender, val para seleccionar modelo sin sesgo, test solo al final como evaluación definitiva."
+  },
+  {
+    "id": "ml_dd_007",
+    "topic": "Regresión Lineal",
+    "description": "Completa los pasos para obtener la solución de mínimos cuadrados de regresión lineal:",
+    "code": "Regresión Lineal: Solución Analítica\n\nDados X ∈ ℝⁿˣᵈ, y ∈ ℝⁿ\n\nMinimizamos: L(w) = ||Xw − y||²\n\nDerivando e igualando a cero:\n[A]\n[B]\n[C]",
+    "blanks": ["A", "B", "C"],
+    "tokens": [
+      "∂L/∂w = 2Xᵀ(Xw − y) = 0",
+      "XᵀXw = Xᵀy  →  Ecuación Normal",
+      "w* = (XᵀX)⁻¹ Xᵀy  →  Solución óptima"
+    ],
+    "solution": [
+      "∂L/∂w = 2Xᵀ(Xw − y) = 0",
+      "XᵀXw = Xᵀy  →  Ecuación Normal",
+      "w* = (XᵀX)⁻¹ Xᵀy  →  Solución óptima"
+    ],
+    "explanation": "Derivar MSE respecto a w, igualar a cero, reordenar para obtener la ecuación normal, e invertir XᵀX para hallar w*."
+  },
+  {
+    "id": "ml_dd_008",
+    "topic": "Historia de las Redes Neuronales",
+    "description": "Ordena cronológicamente los hitos del desarrollo de la IA y las redes neuronales:",
+    "code": "Cronología de la IA\n\n[A] → Primer hito\n[B]\n[C]\n[D]\n[E]\n[F]\n[G] → Hito más reciente",
+    "blanks": ["A", "B", "C", "D", "E", "F", "G"],
+    "tokens": [
+      "1958: Perceptrón (Rosenblatt)",
+      "1986: Backpropagation (Rumelhart et al.)",
+      "2012: AlexNet gana ImageNet con CNN profunda",
+      "2017: Transformer — 'Attention is All You Need'",
+      "2020: GPT-3 (175B parámetros, OpenAI)",
+      "2022: AlphaFold 2 — plegamiento de proteínas",
+      "2024: Nobel de Física y Química otorgados a IA"
+    ],
+    "solution": [
+      "1958: Perceptrón (Rosenblatt)",
+      "1986: Backpropagation (Rumelhart et al.)",
+      "2012: AlexNet gana ImageNet con CNN profunda",
+      "2017: Transformer — 'Attention is All You Need'",
+      "2020: GPT-3 (175B parámetros, OpenAI)",
+      "2022: AlphaFold 2 — plegamiento de proteínas",
+      "2024: Nobel de Física y Química otorgados a IA"
+    ],
+    "explanation": "La IA ha evolucionado desde el Perceptrón (1958) hasta ganar Nobeles (2024), con hitos clave en backprop, deep learning, transformers y LLMs."
+  },
+  {
+    "id": "ml_dd_009",
+    "topic": "Normalización de Datos",
+    "description": "Asocia cada técnica de normalización con su fórmula y caso de uso:",
+    "code": "Normalización → Fórmula → Cuándo usar\n\n[A] → x' = (x − x_min)/(x_max − x_min) → rango conocido [0,1]\n[B] → x' = (x − μ)/σ → distribución gaussiana\n[C] → x' = x/||x|| → similitud coseno, embeddings",
+    "blanks": ["A", "B", "C"],
+    "tokens": [
+      "Min-Max Scaling",
+      "Z-Score (Estandarización)",
+      "Normalización L2"
+    ],
+    "solution": [
+      "Min-Max Scaling",
+      "Z-Score (Estandarización)",
+      "Normalización L2"
+    ],
+    "explanation": "Min-Max para rangos conocidos, Z-Score cuando los datos son gaussianos (media 0, std 1), L2 para vectores de igual magnitud."
+  },
+  {
+    "id": "ml_dd_010",
+    "topic": "Tipos de ML",
+    "description": "Clasifica cada algoritmo en su categoría de aprendizaje automático:",
+    "code": "Algoritmo → Categoría\n\n[A] → Supervisado (Regresión)\n[B] → Supervisado (Clasificación)\n[C] → No supervisado (Clustering)\n[D] → No supervisado (Reducción dim.)\n[E] → Supervisado (Ensemble)\n[F] → Supervisado (Clasificación)",
+    "blanks": ["A", "B", "C", "D", "E", "F"],
+    "tokens": [
+      "Regresión Lineal",
+      "Regresión Logística",
+      "k-Means",
+      "PCA (Análisis de Componentes Principales)",
+      "Random Forest",
+      "Árbol de Decisión"
+    ],
+    "solution": [
+      "Regresión Lineal",
+      "Regresión Logística",
+      "k-Means",
+      "PCA (Análisis de Componentes Principales)",
+      "Random Forest",
+      "Árbol de Decisión"
+    ],
+    "explanation": "Supervisado (regresión/clasificación) usa etiquetas; no supervisado (clustering/dim-reduction) descubre estructura sin etiquetas; ensembles combinan múltiples modelos."
+  },
+  {
+    "id": "ml_dd_011",
+    "topic": "Descenso de Gradiente",
+    "description": "Ordena los pasos del cálculo del gradiente de MSE para regresión lineal:",
+    "code": "Gradiente de MSE: L(w) = (1/n)||Xw − y||²\n\n[A]  // Expandir\n[B]  // Derivar respecto a w\n[C]  // Simplificar\n[D]  // Regla de actualización",
+    "blanks": ["A", "B", "C", "D"],
+    "tokens": [
+      "L(w) = (1/n)(Xw − y)ᵀ(Xw − y)",
+      "∂L/∂w = (2/n)Xᵀ(Xw − y)",
+      "∇L = (2/n)Xᵀ(ŷ − y)  donde ŷ = Xw",
+      "w ← w − α · (2/n)Xᵀ(Xw − y)"
+    ],
+    "solution": [
+      "L(w) = (1/n)(Xw − y)ᵀ(Xw − y)",
+      "∂L/∂w = (2/n)Xᵀ(Xw − y)",
+      "∇L = (2/n)Xᵀ(ŷ − y)  donde ŷ = Xw",
+      "w ← w − α · (2/n)Xᵀ(Xw − y)"
+    ],
+    "explanation": "El gradiente del MSE respecto a w involucra el error residual (Xw−y) multiplicado por Xᵀ. La actualización de GD resta α veces este gradiente."
+  },
+  {
+    "id": "ml_dd_012",
+    "topic": "Tensores y PyTorch",
+    "description": "Completa el código PyTorch para definir, entrenar y evaluar un modelo de regresión lineal:",
+    "code": "import torch\nimport torch.nn as nn\n\n# Definir modelo\n[A]\n\n# Definir optimizador y pérdida\n[B]\n[C]\n\n# Una iteración de entrenamiento\n[D]\n[E]\n[F]\n[G]",
+    "blanks": ["A", "B", "C", "D", "E", "F", "G"],
+    "tokens": [
+      "model = nn.Linear(in_features=d, out_features=1)",
+      "optimizer = torch.optim.SGD(model.parameters(), lr=0.01)",
+      "criterion = nn.MSELoss()",
+      "optimizer.zero_grad()  # limpiar gradientes",
+      "y_pred = model(X_train)  # forward pass",
+      "loss = criterion(y_pred, y_train)  # calcular pérdida",
+      "loss.backward(); optimizer.step()  # backprop + actualizar"
+    ],
+    "solution": [
+      "model = nn.Linear(in_features=d, out_features=1)",
+      "optimizer = torch.optim.SGD(model.parameters(), lr=0.01)",
+      "criterion = nn.MSELoss()",
+      "optimizer.zero_grad()  # limpiar gradientes",
+      "y_pred = model(X_train)  # forward pass",
+      "loss = criterion(y_pred, y_train)  # calcular pérdida",
+      "loss.backward(); optimizer.step()  # backprop + actualizar"
+    ],
+    "explanation": "PyTorch workflow: definir modelo (nn.Linear), optimizador (SGD/Adam) y pérdida (MSELoss), luego el bucle: zero_grad → forward → loss → backward → step."
+  }
+]

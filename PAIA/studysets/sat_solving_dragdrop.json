@@ -1,0 +1,417 @@
+{
+  "metadata": {
+    "title": "Complete SAT Solving — Drag & Drop",
+    "subject": "PAIA — Programació Avançada en Intel·ligència Artificial",
+    "format": "drag-and-drop",
+    "totalQuestions": 15,
+    "topics": [
+      "Unit Propagation",
+      "LTUR",
+      "Davis-Putnam",
+      "DPLL",
+      "CDCL"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "algorithm": "Unit Propagation",
+      "topic": "Casos Especiales en P",
+      "difficulty": "easy",
+      "description": "Completa el pseudocódigo de Unit Propagation",
+      "code": [
+        "function UnitPropagation(F):",
+        "  U = { [B1] in F }",
+        "  while there is a unit clause l in U do",
+        "    Remove all clauses containing [B2] from F",
+        "    Remove all occurrences of [B3] from F",
+        "  return F"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "unit clauses", "hint": "Cláusulas con un solo literal"},
+        {"id": "B2", "answer": "l", "hint": "El literal unitario (satisface la cláusula)"},
+        {"id": "B3", "answer": "¬l", "hint": "La negación del literal unitario (lo hace falso)"}
+      ],
+      "tokens": ["unit clauses", "l", "¬l", "F", "all clauses", "true literals"],
+      "explanation": "UP: (1) inicializa con cláusulas unitarias; (2) para cada literal l, elimina cláusulas satisfechas (con l) y simplifica cláusulas refutadas (quita ¬l). Itera hasta punto fijo."
+    },
+    {
+      "id": 2,
+      "algorithm": "LTUR",
+      "topic": "Casos Especiales en P",
+      "difficulty": "medium",
+      "description": "Completa LTUR (Linear Time Unit Resolution) para fórmulas Horn",
+      "code": [
+        "function LTUR(F):",
+        "  Set all variables to [B1]",
+        "  Q ← { [B2] in F }",
+        "  while Q ≠ ∅ do",
+        "    l ← pop literal from Q",
+        "    Set l to [B3]",
+        "    foreach clause C containing ¬l do",
+        "      Remove ¬l from C",
+        "      if C is empty then return [B4]",
+        "      if C is unit then Q ← Q ∪ {C's literal}",
+        "  return [B5]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "false", "hint": "Valor inicial de todas las variables"},
+        {"id": "B2", "answer": "positive unit clauses", "hint": "Cláusulas unitarias con literal positivo"},
+        {"id": "B3", "answer": "true", "hint": "Se fuerza el literal a verdadero"},
+        {"id": "B4", "answer": "UNSAT", "hint": "Cláusula vacía → contradicción"},
+        {"id": "B5", "answer": "SAT", "hint": "No hay conflicto → satisfactible"}
+      ],
+      "tokens": ["false", "positive unit clauses", "true", "UNSAT", "SAT", "all clauses", "true", "unit clauses", "Q"],
+      "explanation": "LTUR para fórmulas Horn: inicializa todo a false, propaga las cláusulas unitarias positivas. Si una cláusula queda vacía al quitar ¬l, hay conflicto (UNSAT). Si Q se vacía sin conflicto, SAT."
+    },
+    {
+      "id": 3,
+      "algorithm": "Davis-Putnam",
+      "topic": "Inferencia: Davis-Putnam",
+      "difficulty": "medium",
+      "description": "Completa el algoritmo Davis-Putnam",
+      "code": [
+        "function DavisPutnam(φ):",
+        "  UnitPropagation(φ)",
+        "  PureLiteralRule(φ)",
+        "  if φ = [B1] then return true",
+        "  if □ ∈ φ then return [B2]",
+        "  ℓ ← literal in c ∈ φ with c having [B3]",
+        "  Rℓ ← all non-tautological resolvents between Cℓ and C¬ℓ",
+        "  return DavisPutnam(φ ∪ [B4] \\ (Cℓ ∪ C¬ℓ))"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "∅", "hint": "Fórmula vacía → satisfactible"},
+        {"id": "B2", "answer": "false", "hint": "Cláusula vacía → insatisfactible"},
+        {"id": "B3", "answer": "minimum length", "hint": "La cláusula más corta → más restrictiva"},
+        {"id": "B4", "answer": "Rℓ", "hint": "Los resolventes generados para ℓ"}
+      ],
+      "tokens": ["∅", "false", "minimum length", "Rℓ", "true", "maximum length", "C¬ℓ", "Cℓ"],
+      "explanation": "DP: (1) aplica UP y PLR; (2) si vacía → SAT, si cláusula vacía → UNSAT; (3) elige una variable, genera todos los resolventes y elimina las cláusulas originales que la contienen."
+    },
+    {
+      "id": 4,
+      "algorithm": "DPLL",
+      "topic": "Búsqueda: DPLL",
+      "difficulty": "medium",
+      "description": "Completa el algoritmo DPLL (Davis-Logemann-Loveland)",
+      "code": [
+        "function DPLL(φ):",
+        "  UnitPropagation(φ)",
+        "  PureLiteralRule(φ)",
+        "  if φ = [B1] then return true",
+        "  if □ ∈ φ then return [B2]",
+        "  ℓ ← SelectLiteral(φ)   // branching heuristic",
+        "  return DPLL(φ ∧ [B3]) ∨ DPLL(φ ∧ [B4])"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "∅", "hint": "Fórmula vacía → todas las cláusulas satisfechas"},
+        {"id": "B2", "answer": "false", "hint": "Cláusula vacía → conflicto"},
+        {"id": "B3", "answer": "ℓ", "hint": "Primera rama: asignar ℓ=true"},
+        {"id": "B4", "answer": "¬ℓ", "hint": "Segunda rama: asignar ℓ=false (negación)"}
+      ],
+      "tokens": ["∅", "false", "ℓ", "¬ℓ", "true", "□", "Rℓ", "true"],
+      "explanation": "DPLL usa splitting: explora φ ∧ ℓ y φ ∧ ¬ℓ por DFS. La diferencia clave con DP es que no genera nuevas cláusulas — solo divide el espacio de búsqueda. Esto evita la explosión de memoria."
+    },
+    {
+      "id": 5,
+      "algorithm": "Resolución",
+      "topic": "Inferencia: Davis-Putnam",
+      "difficulty": "easy",
+      "description": "Completa la regla de resolución binaria",
+      "code": [
+        "// Resolución: dadas dos cláusulas con variable x opuesta",
+        "Cláusula 1: ([B1] ∨ x)",
+        "Cláusula 2: ([B2] ∨ ¬x)",
+        "Resolvente: ([B3])"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "A", "hint": "Literales restantes de la primera cláusula"},
+        {"id": "B2", "answer": "B", "hint": "Literales restantes de la segunda cláusula"},
+        {"id": "B3", "answer": "A ∨ B", "hint": "Unión de los literales restantes sin x"}
+      ],
+      "tokens": ["A", "B", "A ∨ B", "A ∧ B", "¬x", "x", "A ∨ x ∨ B"],
+      "explanation": "La regla de resolución elimina el par x/¬x y produce la disyunción de todos los demás literales. Si A o B es vacío, el resolvente es la cláusula unitaria restante. Si ambos son vacíos, el resolvente es □ (contradicción)."
+    },
+    {
+      "id": 6,
+      "algorithm": "2-SAT via SCCs",
+      "topic": "Casos Especiales en P",
+      "difficulty": "medium",
+      "description": "Completa la transformación de 2-SAT a grafo de implicaciones",
+      "code": [
+        "// Para cada cláusula de 2-SAT: (l₁ ∨ l₂)",
+        "// Añadir al grafo las implicaciones:",
+        "Implicación 1: [B1] → [B2]",
+        "Implicación 2: [B3] → [B4]",
+        "",
+        "// Resultado: UNSAT si y solo si",
+        "∃x : x y [B5] están en la misma [B6]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "¬l₁", "hint": "Si el primero es falso..."},
+        {"id": "B2", "answer": "l₂", "hint": "...el segundo debe ser verdadero"},
+        {"id": "B3", "answer": "¬l₂", "hint": "Si el segundo es falso..."},
+        {"id": "B4", "answer": "l₁", "hint": "...el primero debe ser verdadero"},
+        {"id": "B5", "answer": "¬x", "hint": "La negación de x"},
+        {"id": "B6", "answer": "SCC", "hint": "Componente fuertemente conexa"}
+      ],
+      "tokens": ["¬l₁", "l₂", "¬l₂", "l₁", "¬x", "SCC", "l₁", "l₂", "componente"],
+      "explanation": "2-SAT: cada cláusula (l₁∨l₂) ≡ (¬l₁→l₂)∧(¬l₂→l₁). El grafo de implicaciones resultante se analiza con SCCs. UNSAT ↔ alguna variable y su negación en la misma SCC."
+    },
+    {
+      "id": 7,
+      "algorithm": "CDCL — Clause Learning",
+      "topic": "CDCL y Aprendizaje",
+      "difficulty": "hard",
+      "description": "Completa el proceso de análisis de conflictos en CDCL",
+      "code": [
+        "// Cuando se detecta un conflicto:",
+        "1. Construir el grafo de [B1]",
+        "2. Identificar el [B2] (nodo que domina todos los",
+        "   caminos desde la última decisión al conflicto)",
+        "3. Calcular: learnt_clause = ¬([B3])",
+        "4. Hacer [B4] al nivel indicado por la cláusula aprendida",
+        "5. Añadir [B5] a la fórmula"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "implicaciones", "hint": "DAG que traza cómo se propagaron los literales"},
+        {"id": "B2", "answer": "UIP (Unit Implication Point)", "hint": "Punto de corte en el grafo de implicaciones"},
+        {"id": "B3", "answer": "razones del conflicto", "hint": "Los antecedentes identificados en el grafo"},
+        {"id": "B4", "answer": "backtracking no cronológico", "hint": "Salto al nivel relevante, no al inmediatamente anterior"},
+        {"id": "B5", "answer": "learnt_clause", "hint": "La nueva cláusula aprendida del conflicto"}
+      ],
+      "tokens": ["implicaciones", "UIP (Unit Implication Point)", "razones del conflicto", "backtracking no cronológico", "learnt_clause", "decisión", "cláusula vacía", "resolución"],
+      "explanation": "CDCL al detectar conflicto: (1) analiza el grafo de implicaciones, (2) encuentra el UIP, (3) construye la learnt clause, (4) hace non-chronological backtrack al nivel del segundo literal más reciente de la learnt clause."
+    },
+    {
+      "id": 8,
+      "algorithm": "VSIDS",
+      "topic": "Heurísticas de Variable",
+      "difficulty": "medium",
+      "description": "Completa el funcionamiento de VSIDS",
+      "code": [
+        "// Inicialización:",
+        "for each literal l: score[l] = [B1]",
+        "",
+        "// Al añadir una cláusula C:",
+        "for each literal l in C: score[l] += [B2]",
+        "",
+        "// Selección de variable:",
+        "choose unassigned literal with [B3] score",
+        "",
+        "// Periódicamente:",
+        "for each literal l: score[l] /= [B4]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "0", "hint": "Valor inicial neutro"},
+        {"id": "B2", "answer": "1", "hint": "Incremento unitario"},
+        {"id": "B3", "answer": "highest", "hint": "El de mayor puntuación"},
+        {"id": "B4", "answer": "decay_factor", "hint": "Factor que reduce los contadores para favorecer conflictos recientes"}
+      ],
+      "tokens": ["0", "1", "highest", "decay_factor", "lowest", "2", "∞", "random"],
+      "explanation": "VSIDS: (0) inicializa contadores; (1) incrementa al añadir cláusulas; (2) selecciona el literal no asignado con mayor score; (3) divide periódicamente (decaying sum) para dar más peso a conflictos recientes."
+    },
+    {
+      "id": 9,
+      "algorithm": "2-watch Literals",
+      "topic": "Técnicas Modernas",
+      "difficulty": "hard",
+      "description": "Completa el funcionamiento de las estructuras 2-watch literals",
+      "code": [
+        "// Para cada cláusula C, mantener dos punteros:",
+        "H(C) → apunta al literal [B1] de C",
+        "T(C) → apunta al literal [B2] de C",
+        "",
+        "// Invariante: H y T siempre apuntan a literales [B3]",
+        "",
+        "// Cuando un literal vigilado l se asigna a false:",
+        "  Mover el puntero a otro literal [B4] en C",
+        "  Si no existe: C es [B5] → propagar"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "izquierdo (head)", "hint": "El puntero de cabeza"},
+        {"id": "B2", "answer": "derecho (tail)", "hint": "El puntero de cola"},
+        {"id": "B3", "answer": "no asignados", "hint": "Que aún no tienen valor"},
+        {"id": "B4", "answer": "no asignado", "hint": "Sin asignación actual"},
+        {"id": "B5", "answer": "unitaria", "hint": "Tiene un solo literal no asignado"}
+      ],
+      "tokens": ["izquierdo (head)", "derecho (tail)", "no asignados", "no asignado", "unitaria", "falso", "verdadero", "libre"],
+      "explanation": "2-watch: cada cláusula vigilada con dos punteros (H/T). Solo se actualiza una cláusula cuando uno de sus literales vigilados se hace false. Si no hay otro literal no asignado, la cláusula es unitaria → UP. Reduce drásticamente el trabajo de propagación."
+    },
+    {
+      "id": 10,
+      "algorithm": "Bucket Elimination",
+      "topic": "Bucket Elimination",
+      "difficulty": "medium",
+      "description": "Completa el proceso de Bucket Elimination",
+      "code": [
+        "// Dado orden de variables: x₁, x₂, ..., xₙ",
+        "// Inicializar buckets:",
+        "for each clause C:",
+        "  bucket[most_priority_var(C)] ← [B1]",
+        "",
+        "// Procesar buckets en orden:",
+        "for i = 1 to n do",
+        "  for each pair (C₁, C₂) in bucket[xᵢ] where C₁ has xᵢ, C₂ has ¬xᵢ:",
+        "    R = [B2](C₁, C₂)",
+        "    if R ≠ tautology:",
+        "      bucket[[B3](R)] ← R",
+        "if bucket[xₙ] contains □: return [B4]",
+        "return [B5]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "C", "hint": "La cláusula se añade al bucket"},
+        {"id": "B2", "answer": "resolve", "hint": "Operación de resolución entre las dos cláusulas"},
+        {"id": "B3", "answer": "most_priority_var", "hint": "El bucket del siguiente elemento del resolvente"},
+        {"id": "B4", "answer": "UNSAT", "hint": "Cláusula vacía → insatisfactible"},
+        {"id": "B5", "answer": "SAT", "hint": "Ningún conflicto → satisfactible"}
+      ],
+      "tokens": ["C", "resolve", "most_priority_var", "UNSAT", "SAT", "resolve", "first_var", "∅"],
+      "explanation": "BE: (1) asigna cláusulas a buckets por variable prioritaria; (2) resuelve pares por la variable del bucket; (3) añade resolventes no tautológicos al bucket de su siguiente variable prioritaria; (4) cláusula vacía → UNSAT, fin sin conflicto → SAT."
+    },
+    {
+      "id": 11,
+      "algorithm": "Tseitin Encoding",
+      "topic": "CNF y Codificación",
+      "difficulty": "medium",
+      "description": "Completa la codificación Tseitin para la subfórmula f₅ ≡ (f₃ ∨ f₄)",
+      "code": [
+        "// Para f₅ ⟺ (f₃ ∨ f₄), las cláusulas son:",
+        "// Si f₅=true, entonces f₃∨f₄ debe ser true:",
+        "Cláusula 1: (¬f₅ ∨ [B1] ∨ [B2])",
+        "// Si f₃=true, entonces f₅ debe ser true:",
+        "Cláusula 2: (¬[B3] ∨ f₅)",
+        "// Si f₄=true, entonces f₅ debe ser true:",
+        "Cláusula 3: (¬[B4] ∨ f₅)"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "f₃", "hint": "Primera subfórmula del OR"},
+        {"id": "B2", "answer": "f₄", "hint": "Segunda subfórmula del OR"},
+        {"id": "B3", "answer": "f₃", "hint": "Si f₃ es true..."},
+        {"id": "B4", "answer": "f₄", "hint": "Si f₄ es true..."}
+      ],
+      "tokens": ["f₃", "f₄", "f₅", "¬f₅", "¬f₃", "¬f₄", "f₃ ∨ f₄"],
+      "explanation": "Tseitin para f₅ ⟺ (f₃∨f₄): (1) ¬f₅∨f₃∨f₄ (si f₅ entonces f₃∨f₄); (2) ¬f₃∨f₅ (si f₃ entonces f₅); (3) ¬f₄∨f₅ (si f₄ entonces f₅). Estas 3 cláusulas codifican el bicondicional."
+    },
+    {
+      "id": 12,
+      "algorithm": "Stålmarck Saturación",
+      "topic": "Tableaux y Stålmarck",
+      "difficulty": "hard",
+      "description": "Aplica las reglas de saturación de Stålmarck",
+      "code": [
+        "// Triplete: p ⟺ q ∧ r",
+        "",
+        "// Regla A3: p ⟺ q ∧ r, q = r  ⊨",
+        "p = [B1]",
+        "",
+        "// Regla A8: p ⟺ q ∧ r, r = ⊤  ⊨",
+        "p = [B2]",
+        "",
+        "// Triplete: p ⟺ q ⟺ r",
+        "",
+        "// Regla B1: p ⟺ q ⟺ r, p = q  ⊨",
+        "r = [B3]",
+        "",
+        "// Regla B7: p ⟺ q ⟺ r, p = ⊤  ⊨",
+        "q = [B4]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "r (= q)", "hint": "Si q=r, el AND es el valor común"},
+        {"id": "B2", "answer": "q", "hint": "Si r es true, el AND reduce a q"},
+        {"id": "B3", "answer": "⊤", "hint": "Si p=q, el bicondicional p⟺q=⊤ fuerza r=⊤"},
+        {"id": "B4", "answer": "r", "hint": "Si p=⊤, entonces q⟺r debe ser ⊤, luego q=r"}
+      ],
+      "tokens": ["r (= q)", "q", "⊤", "r", "⊥", "p", "q ∧ r", "¬r"],
+      "explanation": "Reglas de saturación de Stålmarck: A3 (q=r implica p=r en p⟺q∧r), A8 (r=⊤ simplifica a p=q), B1 (p=q implica r=⊤ en bicondicional), B7 (p=⊤ implica q=r). Permiten simplificar sin branching."
+    },
+    {
+      "id": 13,
+      "algorithm": "DPLL con Heurísticas",
+      "topic": "Heurísticas de Variable",
+      "difficulty": "medium",
+      "description": "Ordena los pasos de selección de variable con MOMS",
+      "code": [
+        "// Cláusulas de la fórmula: (p₁∨p₅), (¬p₂∨¬p₄), (p₂∨p₄)",
+        "// Paso 1: Encontrar el [B1] (longitud mínima de las cláusulas)",
+        "min_size = [B2]",
+        "// Paso 2: Contar ocurrencias de cada variable en cláusulas de tamaño min_size",
+        "// Variables en (p₁∨p₅): p₁(1), p₅(1)",
+        "// Variables en (¬p₂∨¬p₄) y (p₂∨p₄): p₂(2), p₄(2)",
+        "// Paso 3: Seleccionar variable con más ocurrencias en min_size:",
+        "MOMS selecciona: [B3]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "tamaño mínimo de cláusula", "hint": "La longitud de las cláusulas más cortas"},
+        {"id": "B2", "answer": "2", "hint": "Todas las cláusulas tienen 2 literales"},
+        {"id": "B3", "answer": "p₂ o p₄ (empate)", "hint": "Las variables con más ocurrencias en binarias"}
+      ],
+      "tokens": ["tamaño mínimo de cláusula", "2", "p₂ o p₄ (empate)", "p₁", "3", "p₅", "1"],
+      "explanation": "MOMS: (1) identifica longitud mínima (2 aquí); (2) cuenta cada variable solo en cláusulas de ese tamaño; (3) selecciona la más frecuente. p₂ y p₄ aparecen en 2 cláusulas binarias cada una, mientras p₁ y p₅ solo en 1."
+    },
+    {
+      "id": 14,
+      "algorithm": "DP — Ejemplo",
+      "topic": "Inferencia: Davis-Putnam",
+      "difficulty": "medium",
+      "description": "Completa un paso de DP con la variable p₁",
+      "code": [
+        "// Fórmula inicial (simplificada):",
+        "// (p₁), (¬p₁∨p₃∨¬p₄), (p₃∨p₅), (¬p₁∨¬p₃∨¬p₅)",
+        "",
+        "// Paso 1: Unit Propagation con p₁:",
+        "// p₁ es unitaria → asignar p₁ = [B1]",
+        "// Eliminar cláusulas con p₁: [B2]",
+        "// Eliminar ¬p₁ de las demás → quedan:",
+        "(p₃∨¬p₄), (p₃∨p₅), (¬p₃∨¬p₅)",
+        "",
+        "// Paso 2: ¿Hay variables puras?",
+        "// ¬p₄ aparece solo negativa → [B3]",
+        "// Aplicar Pure Literal: eliminar cláusulas con ¬p₄",
+        "// Queda: (p₃∨p₅), (¬p₃∨¬p₅)",
+        "",
+        "// Paso 3: Resolver p₃:",
+        "Resolvente de (p₃∨p₅) y (¬p₃∨¬p₅): [B4]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "true", "hint": "La cláusula unitaria fuerza el literal a verdadero"},
+        {"id": "B2", "answer": "(p₁) y (¬p₁∨p₃∨¬p₄) y (¬p₁∨¬p₃∨¬p₅)", "hint": "Las que contienen p₁"},
+        {"id": "B3", "answer": "¬p₄ es puro", "hint": "Aparece solo con una polaridad"},
+        {"id": "B4", "answer": "(p₅∨¬p₅) — tautología, se elimina → fórmula vacía → SAT", "hint": "La cláusula resultante y su consecuencia"}
+      ],
+      "tokens": ["true", "(p₁) y (¬p₁∨p₃∨¬p₄) y (¬p₁∨¬p₃∨¬p₅)", "¬p₄ es puro", "(p₅∨¬p₅) — tautología, se elimina → fórmula vacía → SAT", "false", "(p₁)", "p₃ es puro", "(p₅)"],
+      "explanation": "Ejecución completa de DP: UP con p₁ simplifica la fórmula; Pure Literal con ¬p₄ simplifica más; la resolución de p₃ genera una tautología que se elimina, dejando la fórmula vacía → SAT."
+    },
+    {
+      "id": 15,
+      "algorithm": "CDCL — Restarts",
+      "topic": "Técnicas Modernas",
+      "difficulty": "medium",
+      "description": "Completa la estrategia de reinicios en CDCL",
+      "code": [
+        "// Esquema de reinicios en CDCL:",
+        "function CDCL_with_Restarts(φ):",
+        "  learned_clauses = [B1]",
+        "  restart_limit = initial_limit",
+        "  while true do",
+        "    result = CDCL(φ ∪ learned_clauses, restart_limit)",
+        "    if result = SAT: return [B2]",
+        "    if result = UNSAT: return [B3]",
+        "    // Timeout → reiniciar",
+        "    learned_clauses ← [B4]",
+        "    restart_limit ← [B5]",
+        "    // Reiniciar búsqueda manteniendo learned_clauses"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "∅", "hint": "Inicialmente sin cláusulas aprendidas"},
+        {"id": "B2", "answer": "SAT", "hint": "Se encontró un modelo"},
+        {"id": "B3", "answer": "UNSAT", "hint": "Se demostró insatisfactibilidad completa"},
+        {"id": "B4", "answer": "learned_clauses (mantener)", "hint": "Las cláusulas aprendidas se conservan entre reinicios"},
+        {"id": "B5", "answer": "increase(restart_limit)", "hint": "El límite suele aumentar con cada reinicio (Luby, geométrico)"}
+      ],
+      "tokens": ["∅", "SAT", "UNSAT", "learned_clauses (mantener)", "increase(restart_limit)", "∅", "decrease(restart_limit)", "UNKNOWN"],
+      "explanation": "Los reinicios permiten escapar de distribuciones de cola pesada. Las cláusulas aprendidas son el conocimiento acumulado — conservarlas entre reinicios es lo que hace los reinicios útiles. El límite de reinicios suele crecer (Luby o geométrico)."
+    }
+  ]
+}

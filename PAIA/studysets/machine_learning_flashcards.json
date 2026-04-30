@@ -1,0 +1,353 @@
+{
+  "metadata": {
+    "title": "Machine Learning & Neural Networks — Flashcards",
+    "subject": "PAIA — Programació Avançada en Intel·ligència Artificial",
+    "format": "flashcards",
+    "totalCards": 55,
+    "topics": [
+      "Introducción a Redes Neuronales",
+      "Historia",
+      "ML Clásico Supervisado",
+      "ML Clásico No Supervisado",
+      "Derivadas Parciales y Gradiente",
+      "Regresión Lineal",
+      "Descenso de Gradiente",
+      "Fundamentos Matemáticos",
+      "Entrenamiento de Redes",
+      "Tensores y PyTorch"
+    ],
+    "description": "Flashcards sobre redes neuronales, ML clásico, derivadas parciales, gradiente y operaciones con tensores en PyTorch."
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Introducción a Redes Neuronales",
+      "front": "¿Qué son las redes neuronales artificiales?",
+      "back": "Modelos computacionales inspirados en el cerebro humano. Consisten en capas de nodos interconectados (neuronas) que procesan información mediante pesos y funciones de activación. Usadas para clasificación, regresión y reconocimiento de patrones."
+    },
+    {
+      "id": 2,
+      "topic": "Introducción a Redes Neuronales",
+      "front": "¿Cuáles son los tres tipos de capas en una red neuronal?",
+      "back": "1. Capa de entrada (Input Layer): recibe los datos crudos. 2. Capas ocultas (Hidden Layers): realizan cálculos y extraen características. 3. Capa de salida (Output Layer): produce el resultado final."
+    },
+    {
+      "id": 3,
+      "topic": "Introducción a Redes Neuronales",
+      "front": "¿Cuál es el modelo matemático de una neurona artificial?",
+      "back": "y = f(Σᵢ wᵢxᵢ + b) donde xᵢ son las entradas, wᵢ los pesos, b el sesgo (bias) y f la función de activación. Computa una suma ponderada de entradas y aplica una no-linealidad."
+    },
+    {
+      "id": 4,
+      "topic": "Introducción a Redes Neuronales",
+      "front": "¿Cuáles son los 4 tipos principales de redes neuronales?",
+      "back": "1. Feedforward (FFNN): información fluye hacia adelante sin ciclos. 2. Convolucionales (CNN): para imágenes, con filtros locales. 3. Recurrentes (RNN): para secuencias temporales, con memoria. 4. Grafos (GNN): para datos estructurados en grafos."
+    },
+    {
+      "id": 5,
+      "topic": "Historia",
+      "front": "¿Qué hito del año 2012 marcó el inicio del deep learning moderno?",
+      "back": "AlexNet (Krizhevsky) ganó la competición ImageNet con un error de clasificación drásticamente menor que los métodos tradicionales. Demostró el poder de las CNNs profundas entrenadas en GPUs."
+    },
+    {
+      "id": 6,
+      "topic": "Historia",
+      "front": "¿Qué aportó el artículo de Vaswani et al. (2017)?",
+      "back": "Introdujo la arquitectura Transformer ('Attention is All You Need'), basada en mecanismos de atención sin recurrencia. Revolucionó el NLP y es la base de GPT, BERT y los LLMs modernos."
+    },
+    {
+      "id": 7,
+      "topic": "Historia",
+      "front": "¿Cuáles son los hitos históricos clave en redes neuronales?",
+      "back": "1958: Perceptrón (Rosenblatt) · 1986: Backpropagation (Rumelhart, Hinton, Williams) · 2012: AlexNet · 2017: Transformer · 2020: GPT-3 · 2022: AlphaFold · 2024: Nobel a Hinton y Hopfield."
+    },
+    {
+      "id": 8,
+      "topic": "ML Clásico Supervisado",
+      "front": "¿Qué diferencia ML supervisado de no supervisado?",
+      "back": "Supervisado: aprende de datos etiquetados (xᵢ, yᵢ), objetivo predecir y para nueva x. No supervisado: aprende de datos sin etiquetar {xᵢ}, objetivo descubrir estructura o reducir dimensionalidad."
+    },
+    {
+      "id": 9,
+      "topic": "ML Clásico Supervisado",
+      "front": "¿Cuál es la solución analítica de la Regresión Lineal?",
+      "back": "Ecuación Normal: w = (X⊤X)⁻¹X⊤y. Minimiza el MSE en una sola operación matricial, sin iteraciones. Complejidad O(n³) por la inversión de matriz — ineficiente para n grande."
+    },
+    {
+      "id": 10,
+      "topic": "ML Clásico Supervisado",
+      "front": "¿Para qué sirve la Regresión Logística?",
+      "back": "Clasificación binaria. Aplica la función sigmoid σ(w⊤x) = 1/(1+e⁻ʷᵀˣ) a la combinación lineal. Produce una probabilidad p̂ ∈ (0,1). Se entrena minimizando Cross-Entropy. Frontera de decisión: p̂ ≥ 0.5 → clase 1."
+    },
+    {
+      "id": 11,
+      "topic": "ML Clásico Supervisado",
+      "front": "¿Cómo construye un árbol de decisión sus splits?",
+      "back": "Divide el espacio de características con cortes axis-aligned. Usa información ganada (Gain) para clasificación o reducción de varianza para regresión. Gini impurity: Gini(t) = 1 - Σₖ pₖ². Ventaja: interpretable. Desventaja: overfitting en árboles profundos."
+    },
+    {
+      "id": 12,
+      "topic": "ML Clásico Supervisado",
+      "front": "¿Cómo funciona Random Forest?",
+      "back": "Ensemble de T árboles, cada uno entrenado con bootstrap sampling. En cada split, solo se consideran √p features aleatorias (feature bagging). Predicción = votación mayoritaria (clasificación) o promedio (regresión). ŷ = (1/T)Σₜ fₜ(x)."
+    },
+    {
+      "id": 13,
+      "topic": "ML Clásico No Supervisado",
+      "front": "¿Cómo funciona el algoritmo k-Means?",
+      "back": "1. Inicializa k centroides aleatoriamente. 2. Asigna cada punto al centroide más cercano. 3. Recomputa centroides como media del cluster. 4. Repite hasta convergencia. Minimiza la varianza intra-cluster: J = Σⱼ Σₓ∈Cⱼ ‖x−μⱼ‖²."
+    },
+    {
+      "id": 14,
+      "topic": "ML Clásico No Supervisado",
+      "front": "¿Cuál es la diferencia entre k-Means y Hierarchical Clustering?",
+      "back": "k-Means: requiere k predefinido, minimiza varianza intra-cluster, convergencia rápida. Hierarchical: no requiere k, construye un dendrograma (árbol jerárquico), puede cortarse a cualquier altura. Usa criterios de linkage (single, complete, Ward)."
+    },
+    {
+      "id": 15,
+      "topic": "ML Clásico No Supervisado",
+      "front": "¿Qué hace PCA (Principal Component Analysis)?",
+      "back": "Reducción dimensional lineal: proyecta datos en las direcciones de máxima varianza (eigenvectores de la matriz de covarianza). Pasos: (1) centrar datos, (2) calcular covarianza C=(1/m)X̃⊤X̃, (3) eigendecomposición, (4) proyectar en los d componentes principales."
+    },
+    {
+      "id": 16,
+      "topic": "ML Clásico No Supervisado",
+      "front": "¿Qué mide la Varianza Explicada en PCA?",
+      "back": "EV(d) = Σᵢ₌₁ᵈ λᵢ / Σᵢ₌₁ᵖ λᵢ donde λᵢ son los eigenvalores. Indica qué fracción de la varianza total es capturada por los d primeros componentes. Convenio común: elegir d tal que EV ≥ 95%."
+    },
+    {
+      "id": 17,
+      "topic": "Derivadas Parciales y Gradiente",
+      "front": "¿Qué es una derivada parcial?",
+      "back": "∂f/∂xᵢ = lim_{h→0} [f(…, xᵢ+h, …) − f(…, xᵢ, …)] / h. Mide la tasa de cambio de f cuando solo varía xᵢ, manteniendo el resto constantes. Aplica las reglas estándar de diferenciación a una variable a la vez."
+    },
+    {
+      "id": 18,
+      "topic": "Derivadas Parciales y Gradiente",
+      "front": "¿Qué es el vector gradiente?",
+      "back": "∇f = (∂f/∂x₁, ∂f/∂x₂, …, ∂f/∂xₙ). Vector de todas las derivadas parciales. Propiedades: (1) apunta en la dirección de máximo ascenso, (2) es perpendicular a las curvas de nivel, (3) su magnitud indica la tasa de cambio máxima."
+    },
+    {
+      "id": 19,
+      "topic": "Derivadas Parciales y Gradiente",
+      "front": "¿Cuáles son las derivadas parciales del MSE L(w₀, w₁) = (1/n)Σ(yᵢ − (w₀ + w₁xᵢ))²?",
+      "back": "∂L/∂w₀ = −(2/n)Σ(yᵢ − (w₀ + w₁xᵢ)) y ∂L/∂w₁ = −(2/n)Σ xᵢ(yᵢ − (w₀ + w₁xᵢ)). Estas derivadas son las que se usan en Gradient Descent para actualizar los pesos."
+    },
+    {
+      "id": 20,
+      "topic": "Descenso de Gradiente",
+      "front": "¿Cuál es la actualización de parámetros en Gradient Descent?",
+      "back": "xₖ₊₁ = xₖ − α·∇f(xₖ) donde α es el learning rate (tasa de aprendizaje). Se mueve en la dirección opuesta al gradiente (máximo descenso). Para cuando ‖∇f‖ < ε."
+    },
+    {
+      "id": 21,
+      "topic": "Descenso de Gradiente",
+      "front": "¿Qué efecto tiene un learning rate muy alto o muy bajo?",
+      "back": "Muy alto (α grande): puede divergir o oscilar sin converger. Muy bajo (α pequeño): converge muy lentamente. Optimal: converge suave y rápidamente. Técnicas modernas: schedules adaptativos (Adam, RMSProp)."
+    },
+    {
+      "id": 22,
+      "topic": "Fundamentos Matemáticos",
+      "front": "¿Qué establece el Teorema de Aproximación de Weierstrass?",
+      "back": "Cualquier función continua f en un intervalo cerrado [a, b] puede aproximarse con precisión arbitraria por un polinomio P(x). Justifica teóricamente que las redes neuronales con una capa oculta pueden aproximar cualquier función continua."
+    },
+    {
+      "id": 23,
+      "topic": "Fundamentos Matemáticos",
+      "front": "¿Qué es la Regresión Polinomial y para qué sirve?",
+      "back": "Ajusta un polinomio p(x) = a₀ + a₁x + a₂x² + … + aᵈxᵈ a los datos. Modela relaciones no lineales entre variables. Minimiza SSE = Σᵢ(yᵢ − p(xᵢ))². Los coeficientes se obtienen derivando la función de pérdida e igualando a 0."
+    },
+    {
+      "id": 24,
+      "topic": "Entrenamiento de Redes",
+      "front": "¿Cuáles son las funciones de activación más comunes?",
+      "back": "Sigmoid: σ(x) = 1/(1+e⁻ˣ) — salida (0,1), gradiente pequeño en extremos. ReLU: f(x) = max(0,x) — simple, evita vanishing gradient. Tanh: (eˣ−e⁻ˣ)/(eˣ+e⁻ˣ) — salida (−1,1), centrada en 0."
+    },
+    {
+      "id": 25,
+      "topic": "Entrenamiento de Redes",
+      "front": "¿Qué hace el algoritmo de Backpropagation?",
+      "back": "Calcula el gradiente de la función de pérdida respecto a todos los pesos usando la regla de la cadena. Propaga el error hacia atrás desde la capa de salida hasta la entrada. Permite actualizar todos los pesos de la red eficientemente."
+    },
+    {
+      "id": 26,
+      "topic": "Entrenamiento de Redes",
+      "front": "¿Cuáles son las funciones de pérdida más usadas?",
+      "back": "Regresión → MSE: L = (1/n)Σ(y−ŷ)². Clasificación → Cross-Entropy: L = −Σ y·log(ŷ). Cross-Entropy mide la divergencia entre la distribución predicha y la real. MSE es más sensible a outliers."
+    },
+    {
+      "id": 27,
+      "topic": "Entrenamiento de Redes",
+      "front": "¿Por qué dividir los datos en Train, Validation y Test?",
+      "back": "Train (60-70%): ajusta los pesos. Validation (15-20%): ajusta hiperparámetros y detecta overfitting. Test (15-20%): evaluación final del modelo. El test set NUNCA debe usarse durante el entrenamiento o validación."
+    },
+    {
+      "id": 28,
+      "topic": "Entrenamiento de Redes",
+      "front": "¿Por qué se normaliza los datos antes de entrenar?",
+      "back": "Los datos crudos tienen escalas muy diferentes. Normalizar mejora: (1) velocidad de convergencia, (2) estabilidad numérica, (3) inicialización de pesos. Métodos: Min-Max (escala a [0,1]) y Z-Score (media 0, std 1)."
+    },
+    {
+      "id": 29,
+      "topic": "Entrenamiento de Redes",
+      "front": "¿Cuál es el diseño típico de una red para MNIST?",
+      "back": "Entrada: 784 neuronas (28×28 píxeles). Capas ocultas: 128 → 64 neuronas (reducción gradual). Salida: 10 neuronas (dígitos 0-9). Activaciones: ReLU en ocultas, Softmax en salida. Pérdida: Cross-Entropy."
+    },
+    {
+      "id": 30,
+      "topic": "Entrenamiento de Redes",
+      "front": "¿Cuáles son los principales desafíos de las redes neuronales?",
+      "back": "Requieren grandes cantidades de datos. Computacionalmente costosas (GPUs). Prone to overfitting. Difíciles de interpretar (black-box). Sensibles a arquitectura e hiperparámetros. Vulnerables a ataques adversariales. Pueden heredar sesgos de los datos."
+    },
+    {
+      "id": 31,
+      "topic": "Tensores y PyTorch",
+      "front": "¿Qué es un tensor en PyTorch?",
+      "back": "Array multidimensional con un tipo de datos uniforme. 0D=scalar, 1D=vector, 2D=matriz, 3D=volumen, 4D+=datos de imágenes o videos. Soporta operaciones GPU y diferenciación automática. Creados con torch.tensor(), torch.zeros(), torch.rand(), etc."
+    },
+    {
+      "id": 32,
+      "topic": "Tensores y PyTorch",
+      "front": "¿Qué dimensiones tiene un batch de imágenes en PyTorch?",
+      "back": "(batch_size, channels, height, width). Ejemplo: 32 imágenes RGB de 224×224 → tensor de forma (32, 3, 224, 224). Para texto: (batch_size, sequence_length). Para vectores de features: (batch_size, features)."
+    },
+    {
+      "id": 33,
+      "topic": "Tensores y PyTorch",
+      "front": "¿Qué es Autograd en PyTorch?",
+      "back": "Sistema de diferenciación automática. Con requires_grad=True, PyTorch rastrea las operaciones sobre el tensor y construye un grafo de computación dinámico. z.backward() calcula los gradientes de z respecto a todos los tensores con requires_grad=True."
+    },
+    {
+      "id": 34,
+      "topic": "Tensores y PyTorch",
+      "front": "¿Cuál es la diferencia entre torch.view() y torch.reshape()?",
+      "back": "view() requiere que el tensor sea contiguo en memoria (comparte memoria con el original). reshape() puede crear una copia si el tensor no es contiguo. Ambos cambian la forma sin modificar los datos. Usar reshape() para mayor seguridad."
+    },
+    {
+      "id": 35,
+      "topic": "Tensores y PyTorch",
+      "front": "¿Qué es el broadcasting en PyTorch?",
+      "back": "Permite operar tensores de formas diferentes siguiendo reglas específicas. Ejemplo: matriz (3,4) + vector (4,) → el vector se 'broadcast' a (3,4). Las dimensiones se alinean desde la derecha y se expanden si alguna tiene tamaño 1."
+    },
+    {
+      "id": 36,
+      "topic": "Regresión Lineal",
+      "front": "¿Cuál es la diferencia entre la Ecuación Normal y Gradient Descent para Regresión Lineal?",
+      "back": "Ecuación Normal: w = (X⊤X)⁻¹X⊤y — solución exacta en O(n³), no iterativa. Gradient Descent: iterativo, O(n·d) por iteración — escalable a millones de parámetros. Para n pequeño: Ecuación Normal. Para n grande: Gradient Descent."
+    },
+    {
+      "id": 37,
+      "topic": "Regresión Lineal",
+      "front": "¿Cuál es la función de pérdida en Regresión Lineal?",
+      "back": "MSE (Mean Squared Error): L = (1/m)Σᵢ(yᵢ − ŷᵢ)² donde ŷᵢ = w₀ + w₁xᵢ₁ + … + wₙxᵢₙ. Es convexo respecto a w, garantizando un mínimo global único. Sensible a outliers (usa error cuadrático)."
+    },
+    {
+      "id": 38,
+      "topic": "ML Clásico Supervisado",
+      "front": "¿Qué métricas se usan para evaluación vs pérdida en entrenamiento?",
+      "back": "Pérdida (training): MSE para regresión, Cross-Entropy para clasificación — guían el entrenamiento. Métricas (evaluación): regresión → MAE, RMSE, R²; clasificación → Accuracy, Precision, Recall, F1. Las métricas son más interpretables."
+    },
+    {
+      "id": 39,
+      "topic": "Fundamentos Matemáticos",
+      "front": "¿Cuál es la interpretación geométrica de la derivada parcial?",
+      "back": "Para f(x,y): ∂f/∂x es la pendiente de f en la dirección x (manteniendo y fija). Geométricamente, es la pendiente de la curva de intersección de la superficie f con el plano y=constante. El gradiente completo da la dirección de máximo ascenso en la superficie."
+    },
+    {
+      "id": 40,
+      "topic": "Derivadas Parciales y Gradiente",
+      "front": "¿Cuál es la regla de la cadena para derivadas parciales?",
+      "back": "∂/∂x [f(g(x))] = (df/dg)·(∂g/∂x). Para funciones compuestas: ∂z/∂x = Σₖ (∂z/∂yₖ)·(∂yₖ/∂x). Backpropagation aplica la regla de la cadena hacia atrás para calcular ∂Loss/∂wᵢ en cada capa."
+    },
+    {
+      "id": 41,
+      "topic": "Entrenamiento de Redes",
+      "front": "¿Cuál es el proceso de Forward Pass en una red neuronal?",
+      "back": "Propagación de datos de entrada a la salida, capa por capa. Para cada capa: z = W·a + b, a_new = f(z). La pérdida se calcula al final. El Forward Pass construye el grafo de computación necesario para Backpropagation."
+    },
+    {
+      "id": 42,
+      "topic": "Entrenamiento de Redes",
+      "front": "¿Por qué usar ReLU en vez de Sigmoid en capas ocultas?",
+      "back": "Sigmoid sufre vanishing gradient: su gradiente → 0 para |x| grande, bloqueando el aprendizaje en capas profundas. ReLU = max(0,x): gradiente 1 para x>0, 0 para x<0. No satura para valores positivos → gradientes más fuertes en redes profundas."
+    },
+    {
+      "id": 43,
+      "topic": "ML Clásico Supervisado",
+      "front": "¿Cuándo se debe usar una red neuronal vs ML clásico?",
+      "back": "Redes neuronales: datasets grandes, relaciones no lineales complejas, imágenes/NLP, cuando interpretabilidad no es crítica. ML clásico: datos pequeños/tabulares, interpretabilidad requerida, rapidez de entrenamiento, baseline. Random Forest/XGBoost a menudo superan a NNs en datos tabulares."
+    },
+    {
+      "id": 44,
+      "topic": "Tensores y PyTorch",
+      "front": "¿Cómo se mueve un tensor de CPU a GPU en PyTorch?",
+      "back": "tensor.to(device) o tensor.cuda(). Para volver a CPU: tensor.cpu() (necesario antes de numpy()). Verificación: torch.cuda.is_available(). Tanto el modelo como los datos deben estar en el mismo dispositivo para operar."
+    },
+    {
+      "id": 45,
+      "topic": "ML Clásico No Supervisado",
+      "front": "¿Cuáles son las aplicaciones de PCA?",
+      "back": "Visualización (proyección 2D/3D), reducción de ruido, preprocesamiento antes de clasificación, compresión de datos. Ejemplo: reducir 784 dimensiones de MNIST a 50 componentes manteniendo 95% de varianza antes de clasificar."
+    },
+    {
+      "id": 46,
+      "topic": "Fundamentos Matemáticos",
+      "front": "¿Por qué la Regresión Polinomial puede causar overfitting?",
+      "back": "Con grado d muy alto, el polinomio pasa exactamente por todos los puntos de entrenamiento (SSE ≈ 0) pero tiene oscilaciones enormes entre puntos — mal en datos nuevos. Trade-off bias-varianza: grado bajo → bias alto; grado alto → varianza alta."
+    },
+    {
+      "id": 47,
+      "topic": "Entrenamiento de Redes",
+      "front": "¿Qué es Min-Max Scaling y Z-Score normalization?",
+      "back": "Min-Max: x̃ = (x−xₘᵢₙ)/(xₘₐₓ−xₘᵢₙ) → escala a [0,1]. Z-Score: x̃ = (x−μ)/σ → media 0, std 1. Min-Max preserva la distribución original; Z-Score es más robusto a outliers y útil cuando se conoce la distribución normal."
+    },
+    {
+      "id": 48,
+      "topic": "Tensores y PyTorch",
+      "front": "¿Cuáles son las operaciones matriciales básicas en PyTorch?",
+      "back": "Multiplicación matricial: torch.matmul(a, b) o a @ b. Multiplicación elemento a elemento: a * b. Transposición: a.T o a.transpose(0,1). Suma, media, min, max sobre dimensiones: torch.sum(a, dim=0). Reshape: a.reshape(m, n)."
+    },
+    {
+      "id": 49,
+      "topic": "ML Clásico Supervisado",
+      "front": "¿Cuáles son las ventajas de Random Forest sobre un árbol de decisión único?",
+      "back": "Reduce overfitting: cada árbol ve subconjunto de datos y features. Robusto al ruido: el promedio de muchos árboles imperfectos reduce varianza. Proporciona importancia de features. La desventaja: menos interpretable que un árbol único y más lento en predicción."
+    },
+    {
+      "id": 50,
+      "topic": "Historia",
+      "front": "¿Por qué recibieron el Nobel de Física 2024 Hinton y Hopfield?",
+      "back": "Hopfield: inventó las Hopfield Networks (1982), primeras redes con memoria asociativa. Hinton: co-desarrolló el algoritmo de backpropagation (1986) y ha sido pionero en deep learning durante décadas. El Nobel reconoció sus contribuciones a los fundamentos físicos del aprendizaje en redes."
+    },
+    {
+      "id": 51,
+      "topic": "Tensores y PyTorch",
+      "front": "¿Qué es requires_grad=True en PyTorch?",
+      "back": "Indica a PyTorch que rastree las operaciones sobre ese tensor para calcular gradientes. Al llamar z.backward(), PyTorch calcula ∂z/∂x para todos los tensores con requires_grad=True. Los parámetros de los modelos (nn.Parameter) lo tienen por defecto."
+    },
+    {
+      "id": 52,
+      "topic": "Regresión Lineal",
+      "front": "¿Cuál es la relación entre Regresión Lineal y redes neuronales?",
+      "back": "La Regresión Lineal es un caso especial de red neuronal: entrada → capa lineal sin activación → salida. Los conceptos de MSE, gradient descent y normal equation aparecen en forma simple antes de generalizarse a redes profundas. Es el mejor punto de partida para entender el entrenamiento."
+    },
+    {
+      "id": 53,
+      "topic": "Entrenamiento de Redes",
+      "front": "¿Qué información tiene la capa de entrada y cuántos nodos necesita?",
+      "back": "La capa de entrada tiene un nodo por feature del dato. Ejemplos: imágenes MNIST 28×28 = 784 nodos; texto codificado one-hot con vocabulario 10k = 10.000 nodos; datos tabulares = un nodo por columna. No realiza ningún cálculo, solo recibe los datos."
+    },
+    {
+      "id": 54,
+      "topic": "ML Clásico No Supervisado",
+      "front": "¿Para qué sirve el método del codo (elbow method) en k-Means?",
+      "back": "Determina el número óptimo de clusters k. Se grafica la inercia (J) vs k. Hay un 'codo' donde añadir más clusters reduce poco la inercia — ese es el k óptimo. Para k muy pequeño, la inercia es alta; para k = n, la inercia es 0 (cada punto es su propio cluster)."
+    },
+    {
+      "id": 55,
+      "topic": "Fundamentos Matemáticos",
+      "front": "¿Cuál es la importancia del Teorema de Aproximación Universal para redes neuronales?",
+      "back": "Una red con una capa oculta y suficientes neuronas puede aproximar cualquier función continua con precisión arbitraria. Justifica teóricamente por qué las redes neuronales son tan versátiles. En la práctica, redes profundas (múltiples capas) son más eficientes que redes anchas (una capa con muchas neuronas)."
+    }
+  ]
+}

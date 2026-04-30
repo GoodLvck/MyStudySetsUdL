@@ -1,0 +1,322 @@
+[
+  {
+    "id": "ml_fill_001",
+    "topic": "Historia de las Redes Neuronales",
+    "sentence": "El [BLANK] fue propuesto por Frank Rosenblatt en [BLANK], siendo el primer modelo de neurona artificial entrenada.",
+    "blanks": ["Perceptrón", "1958"],
+    "hints": ["Primer modelo de neurona artificial", "Año de su propuesta"],
+    "explanation": "El Perceptrón (1958) de Rosenblatt fue el primer modelo de red neuronal artificial con aprendizaje."
+  },
+  {
+    "id": "ml_fill_002",
+    "topic": "Historia de las Redes Neuronales",
+    "sentence": "El algoritmo de [BLANK] fue popularizado en [BLANK] por Rumelhart et al., permitiendo entrenar redes multicapa.",
+    "blanks": ["backpropagation", "1986"],
+    "hints": ["Método para propagar gradientes hacia atrás", "Año del paper de Rumelhart"],
+    "explanation": "Backpropagation (1986) permitió entrenar redes con capas ocultas calculando gradientes de forma eficiente."
+  },
+  {
+    "id": "ml_fill_003",
+    "topic": "Historia de las Redes Neuronales",
+    "sentence": "En [BLANK], la red [BLANK] ganó ImageNet con un error top-5 del 15.3%, marcando el inicio del deep learning moderno.",
+    "blanks": ["2012", "AlexNet"],
+    "hints": ["Año del hito del deep learning", "Red neuronal de Krizhevsky et al."],
+    "explanation": "AlexNet (2012) demostró que las CNNs profundas podían superar significativamente los métodos clásicos en visión por computador."
+  },
+  {
+    "id": "ml_fill_004",
+    "topic": "Historia de las Redes Neuronales",
+    "sentence": "La arquitectura [BLANK] fue introducida en el paper 'Attention is All You Need' en [BLANK], revolucionando el procesamiento de lenguaje natural.",
+    "blanks": ["Transformer", "2017"],
+    "hints": ["Arquitectura basada en mecanismo de atención", "Año del paper de Vaswani et al."],
+    "explanation": "El Transformer (2017) eliminó la recurrencia usando únicamente mecanismos de atención, siendo la base de GPT, BERT, etc."
+  },
+  {
+    "id": "ml_fill_005",
+    "topic": "Modelo de Neurona",
+    "sentence": "Una neurona artificial calcula su salida como y = f([BLANK]), donde f es la función de [BLANK].",
+    "blanks": ["Σwᵢxᵢ + b", "activación"],
+    "hints": ["Suma ponderada de entradas más bias", "Función que introduce no-linealidad"],
+    "explanation": "La neurona computa la combinación lineal de entradas con pesos más bias, luego aplica la función de activación no-lineal."
+  },
+  {
+    "id": "ml_fill_006",
+    "topic": "Modelo de Neurona",
+    "sentence": "En una neurona, el término [BLANK] (o sesgo) permite desplazar la función de activación, siendo un parámetro [BLANK] adicional.",
+    "blanks": ["bias", "entrenable"],
+    "hints": ["Término independiente que desplaza la activación", "El modelo aprende su valor"],
+    "explanation": "El bias b permite a la neurona activarse incluso cuando todas las entradas son cero, aumentando la flexibilidad del modelo."
+  },
+  {
+    "id": "ml_fill_007",
+    "topic": "Tipos de Redes Neuronales",
+    "sentence": "Las redes [BLANK] (FFNN) transmiten información en una sola dirección: de la entrada a la salida, sin [BLANK].",
+    "blanks": ["feedforward", "ciclos"],
+    "hints": ["Tipo más básico de red neuronal", "Conexiones que forman lazos"],
+    "explanation": "Las redes feedforward son acíclicas: la información fluye solo hacia adelante, de la capa de entrada a la de salida."
+  },
+  {
+    "id": "ml_fill_008",
+    "topic": "Tipos de Redes Neuronales",
+    "sentence": "Las [BLANK] (CNN) usan operaciones de convolución y son especialmente efectivas para datos con estructura [BLANK], como imágenes.",
+    "blanks": ["Convolutional Neural Networks", "espacial"],
+    "hints": ["Redes convolucionales para visión", "Tipo de estructura de datos 2D"],
+    "explanation": "Las CNNs explotan la localidad espacial de las imágenes mediante filtros convolucionales compartidos, reduciendo parámetros."
+  },
+  {
+    "id": "ml_fill_009",
+    "topic": "Tipos de Redes Neuronales",
+    "sentence": "Las [BLANK] (RNN) tienen conexiones que forman ciclos, permitiendo procesar secuencias de longitud [BLANK].",
+    "blanks": ["Recurrent Neural Networks", "variable"],
+    "hints": ["Redes con memoria temporal", "Las secuencias pueden tener cualquier tamaño"],
+    "explanation": "Las RNNs mantienen un estado oculto que captura información de pasos anteriores, ideal para texto, audio y series temporales."
+  },
+  {
+    "id": "ml_fill_010",
+    "topic": "ML Clásico Supervisado",
+    "sentence": "En [BLANK] supervisado, el algoritmo aprende una función f: X→Y a partir de pares [BLANK] de entrada-salida.",
+    "blanks": ["aprendizaje", "etiquetados"],
+    "hints": ["Tipo de aprendizaje con datos etiquetados", "Los datos tienen respuesta conocida"],
+    "explanation": "El aprendizaje supervisado requiere ejemplos de entrenamiento con etiquetas para aprender la función de mapeo."
+  },
+  {
+    "id": "ml_fill_011",
+    "topic": "ML Clásico Supervisado",
+    "sentence": "La [BLANK] Logística predice probabilidades usando la función [BLANK], que mapea valores reales al intervalo (0,1).",
+    "blanks": ["Regresión", "sigmoide"],
+    "hints": ["Modelo de clasificación binaria", "Función σ(z) = 1/(1+e^(-z))"],
+    "explanation": "La Regresión Logística usa la sigmoide para convertir la combinación lineal en una probabilidad de clase."
+  },
+  {
+    "id": "ml_fill_012",
+    "topic": "ML Clásico Supervisado",
+    "sentence": "Los [BLANK] de Decisión dividen el espacio de características en regiones usando [BLANK] binarias en cada nodo.",
+    "blanks": ["Árboles", "preguntas"],
+    "hints": ["Modelo basado en reglas jerárquicas", "Cada nodo evalúa una condición"],
+    "explanation": "Los Árboles de Decisión aprenden reglas jerárquicas: cada nodo interno hace una pregunta sobre una característica."
+  },
+  {
+    "id": "ml_fill_013",
+    "topic": "ML Clásico Supervisado",
+    "sentence": "Los [BLANK] Forests combinan múltiples árboles entrenados en subconjuntos aleatorios, usando [BLANK] para la predicción final.",
+    "blanks": ["Random", "votación"],
+    "hints": ["Ensemble de árboles de decisión", "Cada árbol vota y se toma la mayoría"],
+    "explanation": "Random Forests reducen el overfitting combinando muchos árboles con bootstrap aggregating (bagging) y votación por mayoría."
+  },
+  {
+    "id": "ml_fill_014",
+    "topic": "ML Clásico No Supervisado",
+    "sentence": "El algoritmo [BLANK] agrupa los datos en k grupos, minimizando la distancia [BLANK] de cada punto a su centroide.",
+    "blanks": ["k-Means", "euclidiana"],
+    "hints": ["Algoritmo de clustering por centroides", "Distancia en espacio n-dimensional"],
+    "explanation": "k-Means itera: asigna cada punto al centroide más cercano, luego actualiza los centroides como media de los puntos asignados."
+  },
+  {
+    "id": "ml_fill_015",
+    "topic": "ML Clásico No Supervisado",
+    "sentence": "El [BLANK] Jerárquico construye un dendrograma fusionando (aglomerativo) o dividiendo (divisivo) grupos de forma [BLANK].",
+    "blanks": ["Clustering", "iterativa"],
+    "hints": ["Método de agrupamiento con árbol de jerarquía", "El proceso se repite en pasos"],
+    "explanation": "El clustering jerárquico no requiere especificar k de antemano; el dendrograma permite elegir el nivel de corte a posteriori."
+  },
+  {
+    "id": "ml_fill_016",
+    "topic": "ML Clásico No Supervisado",
+    "sentence": "El [BLANK] (PCA) reduce la dimensionalidad proyectando los datos en las direcciones de máxima [BLANK], llamadas componentes principales.",
+    "blanks": ["Análisis de Componentes Principales", "varianza"],
+    "hints": ["Técnica de reducción de dimensionalidad", "Las direcciones con mayor dispersión de datos"],
+    "explanation": "PCA encuentra las direcciones ortogonales de mayor varianza (autovectores de la matriz de covarianza) para reducir dimensiones."
+  },
+  {
+    "id": "ml_fill_017",
+    "topic": "Derivadas Parciales y Gradiente",
+    "sentence": "La derivada parcial ∂f/∂xᵢ mide cómo cambia f cuando varía [BLANK] manteniendo las demás variables [BLANK].",
+    "blanks": ["xᵢ", "constantes"],
+    "hints": ["La variable respecto a la que derivamos", "Las otras variables no cambian"],
+    "explanation": "La derivada parcial mide la sensibilidad de f a cambios infinitesimales en una sola variable, fijando el resto."
+  },
+  {
+    "id": "ml_fill_018",
+    "topic": "Derivadas Parciales y Gradiente",
+    "sentence": "El vector gradiente ∇f = ([BLANK], ..., ∂f/∂xₙ) apunta en la dirección de [BLANK] crecimiento de f.",
+    "blanks": ["∂f/∂x₁", "máximo"],
+    "hints": ["Primera componente del gradiente", "Dirección de mayor ascenso"],
+    "explanation": "El gradiente es el vector de derivadas parciales y apunta hacia el máximo crecimiento local de la función."
+  },
+  {
+    "id": "ml_fill_019",
+    "topic": "Derivadas Parciales y Gradiente",
+    "sentence": "Para descender por la función de pérdida, nos movemos en la dirección [BLANK] del gradiente, es decir, -[BLANK]f.",
+    "blanks": ["opuesta", "∇"],
+    "hints": ["El gradiente apunta a subir, así que para bajar...", "Símbolo nabla para el gradiente"],
+    "explanation": "El descenso de gradiente usa -∇f porque queremos minimizar la pérdida, moviéndonos en la dirección de máximo descenso."
+  },
+  {
+    "id": "ml_fill_020",
+    "topic": "Descenso de Gradiente",
+    "sentence": "La regla de actualización del descenso de gradiente es: xₖ₊₁ = xₖ − [BLANK] · [BLANK]f(xₖ).",
+    "blanks": ["α", "∇"],
+    "hints": ["Hiperparámetro que controla el tamaño del paso (learning rate)", "Operador nabla/gradiente"],
+    "explanation": "La actualización xₖ₊₁ = xₖ − α·∇f mueve el punto en la dirección de máximo descenso con paso α (learning rate)."
+  },
+  {
+    "id": "ml_fill_021",
+    "topic": "Descenso de Gradiente",
+    "sentence": "Si el [BLANK] rate α es demasiado grande, el descenso de gradiente puede [BLANK] en lugar de converger.",
+    "blanks": ["learning", "divergir"],
+    "hints": ["Hiperparámetro de paso", "El opuesto de converger"],
+    "explanation": "Un learning rate muy alto causa oscilaciones o divergencia; uno muy pequeño causa convergencia lenta."
+  },
+  {
+    "id": "ml_fill_022",
+    "topic": "Descenso de Gradiente",
+    "sentence": "El [BLANK] Descenso de Gradiente (SGD) actualiza los pesos usando un solo [BLANK] (o mini-batch) en cada iteración.",
+    "blanks": ["Estocástico", "ejemplo"],
+    "hints": ["Variante aleatoria del GD", "Unidad mínima de datos"],
+    "explanation": "SGD es más rápido por iteración pero más ruidoso; el mini-batch SGD equilibra velocidad y estabilidad."
+  },
+  {
+    "id": "ml_fill_023",
+    "topic": "Fundamentos Matemáticos",
+    "sentence": "El Teorema de Aproximación de [BLANK] establece que cualquier función continua puede aproximarse arbitrariamente bien por un [BLANK].",
+    "blanks": ["Weierstrass", "polinomio"],
+    "hints": ["Matemático que demostró el teorema de aproximación universal", "Función algebraica básica"],
+    "explanation": "El teorema de Weierstrass garantiza que los polinomios son aproximadores universales de funciones continuas en intervalos compactos."
+  },
+  {
+    "id": "ml_fill_024",
+    "topic": "Fundamentos Matemáticos",
+    "sentence": "La regresión polinomial de grado [BLANK] puede ajustar exactamente cualquier conjunto de [BLANK] puntos distintos.",
+    "blanks": ["n-1", "n"],
+    "hints": ["El grado mínimo para interpolación exacta", "El número de puntos de datos"],
+    "explanation": "Un polinomio de grado n-1 tiene n coeficientes, suficientes para pasar exactamente por n puntos (interpolación de Lagrange)."
+  },
+  {
+    "id": "ml_fill_025",
+    "topic": "Regresión Lineal",
+    "sentence": "La función de pérdida [BLANK] (MSE) para regresión lineal es: L = (1/n)·Σ(yᵢ − [BLANK])².",
+    "blanks": ["Error Cuadrático Medio", "ŷᵢ"],
+    "hints": ["Mean Squared Error en inglés", "Predicción del modelo para el ejemplo i"],
+    "explanation": "El MSE penaliza errores grandes cuadráticamente, promediando el cuadrado de las diferencias entre predicciones y valores reales."
+  },
+  {
+    "id": "ml_fill_026",
+    "topic": "Regresión Lineal",
+    "sentence": "La solución analítica (ecuación normal) para regresión lineal es: w = ([BLANK])⁻¹ · Xᵀ · y.",
+    "blanks": ["XᵀX"],
+    "hints": ["Matriz de Gram: producto de X traspuesta por X"],
+    "explanation": "La ecuación normal w = (XᵀX)⁻¹Xᵀy da la solución exacta de mínimos cuadrados, pero requiere invertir la matriz XᵀX."
+  },
+  {
+    "id": "ml_fill_027",
+    "topic": "Funciones de Activación",
+    "sentence": "La función de activación [BLANK] se define como f(x) = max(0, x), siendo actualmente la más usada en [BLANK] ocultas.",
+    "blanks": ["ReLU", "capas"],
+    "hints": ["Rectified Linear Unit", "Partes intermedias de la red"],
+    "explanation": "ReLU (Rectified Linear Unit) es simple, eficiente computacionalmente y mitiga el problema del vanishing gradient en redes profundas."
+  },
+  {
+    "id": "ml_fill_028",
+    "topic": "Funciones de Activación",
+    "sentence": "La función [BLANK] mapea cualquier valor real al intervalo [BLANK], siendo útil para probabilidades en clasificación binaria.",
+    "blanks": ["sigmoide", "(0, 1)"],
+    "hints": ["σ(x) = 1/(1+e^(-x))", "Intervalo abierto entre 0 y 1"],
+    "explanation": "La sigmoide convierte la salida en una probabilidad, pero sufre de vanishing gradient en sus extremos (saturación)."
+  },
+  {
+    "id": "ml_fill_029",
+    "topic": "Funciones de Activación",
+    "sentence": "La función [BLANK] tiene rango (-1, 1) y es similar a la sigmoide pero [BLANK], siendo más usada en capas ocultas.",
+    "blanks": ["tanh", "centrada en cero"],
+    "hints": ["Tangente hiperbólica", "La media de la función es 0"],
+    "explanation": "Tanh tiene gradientes más fuertes que sigmoide cerca del origen y sus salidas centradas en cero facilitan el entrenamiento."
+  },
+  {
+    "id": "ml_fill_030",
+    "topic": "Entrenamiento de Redes",
+    "sentence": "El [BLANK] divide los datos en tres subconjuntos: entrenamiento, [BLANK] y test, para evaluar la generalización del modelo.",
+    "blanks": ["proceso de entrenamiento", "validación"],
+    "hints": ["Cómo se organiza el aprendizaje", "Subconjunto para ajustar hiperparámetros"],
+    "explanation": "Train/val/test split: train para aprender, val para seleccionar hiperparámetros/modelo, test para estimación final sin sesgo."
+  },
+  {
+    "id": "ml_fill_031",
+    "topic": "Entrenamiento de Redes",
+    "sentence": "La normalización [BLANK] transforma los datos al rango [0,1] usando: x' = (x − x_min) / ([BLANK] − x_min).",
+    "blanks": ["Min-Max", "x_max"],
+    "hints": ["Tipo de normalización al rango unitario", "Valor máximo de la característica"],
+    "explanation": "Min-Max scaling garantiza que todas las características estén en [0,1], evitando que valores grandes dominen el aprendizaje."
+  },
+  {
+    "id": "ml_fill_032",
+    "topic": "Entrenamiento de Redes",
+    "sentence": "La normalización [BLANK] (Z-Score) transforma los datos restando la [BLANK] y dividiendo por la desviación estándar.",
+    "blanks": ["estándar", "media"],
+    "hints": ["Normalización que resulta en media 0 y std 1", "Valor central de la distribución"],
+    "explanation": "Z-Score: x' = (x−μ)/σ produce datos con media 0 y desviación estándar 1, ideal cuando los datos siguen distribución normal."
+  },
+  {
+    "id": "ml_fill_033",
+    "topic": "Backpropagation",
+    "sentence": "La [BLANK] aplica la regla de la cadena para calcular gradientes de la función de pérdida respecto a cada [BLANK] de la red.",
+    "blanks": ["backpropagation", "parámetro"],
+    "hints": ["Algoritmo de propagación hacia atrás", "Pesos y biases de la red"],
+    "explanation": "Backpropagation usa la regla de la cadena del cálculo diferencial para propagar el error desde la salida hacia las capas anteriores."
+  },
+  {
+    "id": "ml_fill_034",
+    "topic": "Backpropagation",
+    "sentence": "En backpropagation, primero se hace el paso [BLANK] para calcular las activaciones, luego el paso [BLANK] para los gradientes.",
+    "blanks": ["forward", "backward"],
+    "hints": ["Propagación de entrada a salida", "Propagación de salida a entrada"],
+    "explanation": "Forward pass: calcular predicciones. Backward pass: calcular gradientes usando la regla de la cadena de salida a entrada."
+  },
+  {
+    "id": "ml_fill_035",
+    "topic": "Backpropagation",
+    "sentence": "La pérdida de [BLANK] (Cross-Entropy) para clasificación multiclase es: L = −Σ yᵢ · log([BLANK]ᵢ).",
+    "blanks": ["entropía cruzada", "ŷ"],
+    "hints": ["Función de pérdida estándar para clasificación", "Probabilidades predichas por el modelo"],
+    "explanation": "La cross-entropy mide la divergencia entre la distribución predicha ŷ y la verdadera y, penalizando predicciones incorrectas."
+  },
+  {
+    "id": "ml_fill_036",
+    "topic": "Tensores y PyTorch",
+    "sentence": "En PyTorch, un [BLANK] es una estructura de datos multidimensional similar a un array de NumPy, pero con soporte para [BLANK] en GPU.",
+    "blanks": ["tensor", "computación"],
+    "hints": ["Estructura de datos fundamental en PyTorch", "Aceleración mediante unidades de procesamiento gráfico"],
+    "explanation": "Los tensores de PyTorch son como arrays NumPy pero pueden ejecutarse en GPU y soportan diferenciación automática (autograd)."
+  },
+  {
+    "id": "ml_fill_037",
+    "topic": "Tensores y PyTorch",
+    "sentence": "PyTorch usa [BLANK] para calcular automáticamente los gradientes, habilitado cuando se crea un tensor con [BLANK]=True.",
+    "blanks": ["autograd", "requires_grad"],
+    "hints": ["Sistema de diferenciación automática", "Parámetro para activar seguimiento de gradientes"],
+    "explanation": "Autograd rastrea todas las operaciones sobre tensores con requires_grad=True y calcula gradientes automáticamente en backward()."
+  },
+  {
+    "id": "ml_fill_038",
+    "topic": "Tensores y PyTorch",
+    "sentence": "Después de llamar a loss.[BLANK](), los gradientes acumulados en cada parámetro se acceden mediante tensor.[BLANK].",
+    "blanks": ["backward", "grad"],
+    "hints": ["Método para computar gradientes", "Atributo donde se almacena el gradiente"],
+    "explanation": "loss.backward() computa ∂loss/∂w para cada parámetro w con requires_grad=True, acumulando el resultado en w.grad."
+  },
+  {
+    "id": "ml_fill_039",
+    "topic": "Historia de las Redes Neuronales",
+    "sentence": "AlphaFold (2022) de [BLANK] resolvió el problema del [BLANK] de proteínas, prediciendo estructuras 3D con alta precisión.",
+    "blanks": ["DeepMind", "plegamiento"],
+    "hints": ["Empresa de IA filial de Google", "Proceso de formación de la estructura 3D de proteínas"],
+    "explanation": "AlphaFold2 predice la estructura 3D de proteínas a partir de su secuencia de aminoácidos, revolucionando la biología estructural."
+  },
+  {
+    "id": "ml_fill_040",
+    "topic": "Tipos de Redes Neuronales",
+    "sentence": "Las [BLANK] Neuronales en Grafos (GNN) operan sobre datos estructurados como [BLANK], siendo útiles para moléculas y redes sociales.",
+    "blanks": ["Redes", "grafos"],
+    "hints": ["Tipo de red para datos no euclidianos", "Estructura matemática de nodos y aristas"],
+    "explanation": "Las GNNs aprenden representaciones de nodos y aristas en grafos, aplicándose a química computacional, recomendación y más."
+  }
+]

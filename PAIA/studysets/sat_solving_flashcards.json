@@ -1,0 +1,354 @@
+{
+  "metadata": {
+    "title": "Complete SAT Solving — Flashcards",
+    "subject": "PAIA — Programació Avançada en Intel·ligència Artificial",
+    "format": "flashcards",
+    "totalCards": 55,
+    "topics": [
+      "Introducción a SAT",
+      "CNF y Codificación",
+      "Casos Especiales en P",
+      "Inferencia: Davis-Putnam",
+      "Bucket Elimination",
+      "Tableaux",
+      "Stålmarck",
+      "Búsqueda: DPLL",
+      "Heurísticas de Variable",
+      "CDCL y Aprendizaje",
+      "Técnicas Modernas"
+    ],
+    "description": "Flashcards sobre algoritmos completos de SAT Solving: inferencia, búsqueda y técnicas modernas."
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Introducción a SAT",
+      "front": "¿Qué significa SAT y qué problema resuelve?",
+      "back": "SAT (Boolean SATisfiability) determina si existe una asignación de verdad que satisfaga una fórmula booleana en CNF. Es el primer problema demostrado NP-Complete (Cook, 1971)."
+    },
+    {
+      "id": 2,
+      "topic": "Introducción a SAT",
+      "front": "¿Qué propiedad tienen los algoritmos completos de SAT?",
+      "back": "Si existe una solución, el algoritmo da un modelo (asignación satisfactoria). Si no existe, da una prueba de insatisfactibilidad (UNSAT). Nunca mienten."
+    },
+    {
+      "id": 3,
+      "topic": "Introducción a SAT",
+      "front": "¿Qué significa que SAT sea NP-Complete?",
+      "back": "Todo problema NP puede reducirse a SAT en tiempo polinomial. Una solución SAT puede verificarse en tiempo polinomial. Encontrar un algoritmo eficiente para SAT resolvería todos los problemas NP."
+    },
+    {
+      "id": 4,
+      "topic": "CNF y Codificación",
+      "front": "¿Qué es la Forma Normal Conjuntiva (CNF)?",
+      "back": "Una conjunción (AND) de cláusulas, donde cada cláusula es una disyunción (OR) de literales. F = C₁ ∧ C₂ ∧ … ∧ Cₘ, Cᵢ = (l₁ ∨ l₂ ∨ … ∨ lₖ)."
+    },
+    {
+      "id": 5,
+      "topic": "CNF y Codificación",
+      "front": "¿Cuál es el problema de la conversión directa a CNF por álgebra booleana?",
+      "back": "Puede generar fórmulas exponencialmente grandes. Por eso se usa la codificación de Tseitin (1983), que introduce variables auxiliares para cada subfórmula."
+    },
+    {
+      "id": 6,
+      "topic": "CNF y Codificación",
+      "front": "¿En qué consiste la codificación de Tseitin?",
+      "back": "Para cada subfórmula φ se introduce una variable auxiliar f con cláusulas que codifican f ↔ φ. Produce una fórmula de tamaño lineal en el tamaño de la fórmula original (equisatisfactible, no equivalente)."
+    },
+    {
+      "id": 7,
+      "topic": "CNF y Codificación",
+      "front": "¿Qué es un literal en CNF?",
+      "back": "Una variable booleana xᵢ (literal positivo) o su negación ¬xᵢ (literal negativo)."
+    },
+    {
+      "id": 8,
+      "topic": "Casos Especiales en P",
+      "front": "¿Qué casos de SAT son resolubles en tiempo polinomial?",
+      "back": "Fórmulas Horn o dual-Horn (Unit Propagation / LTUR), 2-CNF (componentes fuertemente conexas), asignar todas las variables a true/false, fórmulas con solo literales puros."
+    },
+    {
+      "id": 9,
+      "topic": "Casos Especiales en P",
+      "front": "¿Qué es una fórmula Horn?",
+      "back": "Una fórmula CNF donde cada cláusula tiene a lo sumo un literal positivo. Ejemplos: (¬a ∨ ¬b ∨ c) es Horn; (a ∨ b) no lo es. Resoluble en tiempo lineal con LTUR."
+    },
+    {
+      "id": 10,
+      "topic": "Casos Especiales en P",
+      "front": "¿Cómo se resuelve 2-SAT en tiempo polinomial?",
+      "back": "Cada cláusula (l₁ ∨ l₂) se convierte en dos implicaciones (¬l₁ → l₂) y (¬l₂ → l₁). Se construye el grafo de implicaciones y se calculan las SCC (Strongly Connected Components). UNSAT si alguna variable y su negación están en la misma SCC."
+    },
+    {
+      "id": 11,
+      "topic": "Casos Especiales en P",
+      "front": "¿Qué es la Unit Propagation?",
+      "back": "Si una cláusula es unitaria (tiene un solo literal l), ese literal debe ser verdadero. Se eliminan todas las cláusulas que contienen l y se elimina ¬l de todas las cláusulas restantes. Proceso iterativo hasta punto fijo."
+    },
+    {
+      "id": 12,
+      "topic": "Casos Especiales en P",
+      "front": "¿Qué es la Pure Literal Rule?",
+      "back": "Si un literal l aparece solo con una polaridad (siempre positivo o siempre negativo) en la fórmula, se puede asignar l=true y eliminar todas las cláusulas que lo contienen."
+    },
+    {
+      "id": 13,
+      "topic": "Casos Especiales en P",
+      "front": "¿Qué es LTUR (Linear Time Unit Resolution)?",
+      "back": "Algoritmo para fórmulas Horn: inicializa todas las variables a false, toma las cláusulas unitarias positivas como cola, propaga cada literal y detecta conflictos. Decide satisfactibilidad de Horn en tiempo lineal."
+    },
+    {
+      "id": 14,
+      "topic": "Inferencia: Davis-Putnam",
+      "front": "¿En qué se basa el algoritmo Davis-Putnam (DP, 1960)?",
+      "back": "Combina: (1) Unit Propagation, (2) Pure Literal Rule, (3) Regla de Resolución — para cada variable x, genera todos los resolventes entre cláusulas con x y cláusulas con ¬x, luego elimina x."
+    },
+    {
+      "id": 15,
+      "topic": "Inferencia: Davis-Putnam",
+      "front": "¿Cuál es el principal problema de Davis-Putnam?",
+      "back": "Explosión de memoria: la resolución puede generar O(n²) nuevas cláusulas por variable eliminada. El tamaño de la fórmula crece exponencialmente: size(t) = size²(t−1)."
+    },
+    {
+      "id": 16,
+      "topic": "Inferencia: Davis-Putnam",
+      "front": "¿Cuál es la diferencia entre DP y DPLL?",
+      "back": "DP usa resolución (genera nuevas cláusulas, no da modelo, explosión de memoria). DPLL usa splitting (divide la búsqueda, puede dar un modelo, no genera nuevas cláusulas). DPLL es el estándar moderno."
+    },
+    {
+      "id": 17,
+      "topic": "Inferencia: Davis-Putnam",
+      "front": "¿Qué es la resolución en SAT?",
+      "back": "Dado (A ∨ x) y (B ∨ ¬x), el resolvente es (A ∨ B). Es una regla de inferencia correcta y completa. Unit Propagation es un caso especial de resolución."
+    },
+    {
+      "id": 18,
+      "topic": "Bucket Elimination",
+      "front": "¿Qué es Bucket Elimination?",
+      "back": "Mejora sobre DP con orden estático de variables. Cada variable tiene un bucket donde se almacenan sus cláusulas. Se aplica resolución en cada bucket por orden, eliminando variables una a una sin expansión caótica."
+    },
+    {
+      "id": 19,
+      "topic": "Bucket Elimination",
+      "front": "¿Cómo se asigna una cláusula a un bucket en Bucket Elimination?",
+      "back": "La cláusula se almacena en el bucket de su variable más prioritaria (la que aparece primero en el orden de eliminación). Por ejemplo, ¬x₃ ∨ x₅ ∨ ¬x₈ va al bucket de x₃."
+    },
+    {
+      "id": 20,
+      "topic": "Tableaux",
+      "front": "¿Qué es un Clause Tableau?",
+      "back": "Un árbol donde los nodos están etiquetados con cláusulas. Se expande eligiendo una cláusula y una rama, y añadiendo sus literales como subárboles. Una rama está cerrada (⊗) si contiene un literal y su complementario."
+    },
+    {
+      "id": 21,
+      "topic": "Tableaux",
+      "front": "¿Cuándo es completo/cerrado un Clause Tableau?",
+      "back": "El tableau es una prueba de insatisfactibilidad cuando todas las ramas están cerradas (cada rama tiene un literal y su negación). Una rama abierta da una asignación satisfactoria."
+    },
+    {
+      "id": 22,
+      "topic": "Stålmarck",
+      "front": "¿En qué se basa el método de Stålmarck (1990)?",
+      "back": "Prover de tautologías basado en tripletes de la forma p ⟺ q ⊗ r (⊗ es ∧ o ⟺). Aplica reglas de saturación (A9 + B12) para simplificar, y una regla de dilema (splitting) cuando no avanza más."
+    },
+    {
+      "id": 23,
+      "topic": "Stålmarck",
+      "front": "¿Qué hace la regla del dilema en Stålmarck?",
+      "back": "Divide el problema en dos ramas: asigna x=true y x=false. El modelo de la fórmula es la intersección de los modelos de ambas ramas: model(φ) = model(φₓ) ∩ model(φ¬ₓ)."
+    },
+    {
+      "id": 24,
+      "topic": "Stålmarck",
+      "front": "Ejemplo de regla de saturación en Stålmarck: Regla A8",
+      "back": "Regla A8: si p ⟺ q ∧ r y r = ⊤, entonces p = q. Simplifica el triplete usando la asignación conocida de uno de los literales."
+    },
+    {
+      "id": 25,
+      "topic": "Búsqueda: DPLL",
+      "front": "¿Qué propone Davis-Logemann-Loveland (DLL/DPLL, 1962) respecto a DP?",
+      "back": "En vez de aplicar resolución (Regla III de DP), usa splitting: divide la fórmula F ≡ (A ∧ R) ∨ (B ∧ R) explorando ambas ramas por DFS. Para cuando encuentra un modelo. Backtracking cuando hay conflicto."
+    },
+    {
+      "id": 26,
+      "topic": "Búsqueda: DPLL",
+      "front": "¿Cómo detecta conflictos el algoritmo DPLL?",
+      "back": "Durante la propagación unitaria. Si aparece una cláusula vacía (□), hay conflicto — se hace backtracking. Si la fórmula queda vacía (∅), la asignación actual es satisfactoria."
+    },
+    {
+      "id": 27,
+      "topic": "Búsqueda: DPLL",
+      "front": "¿Qué es el backtracking cronológico en DPLL?",
+      "back": "Cuando se detecta un conflicto, se deshace la última decisión de branching y se prueba el valor opuesto. Si ya se probaron ambos valores, se sube al nivel anterior (backtrack cronológico)."
+    },
+    {
+      "id": 28,
+      "topic": "Búsqueda: DPLL",
+      "front": "¿Cuál es el papel de la Unit Propagation en DPLL?",
+      "back": "Es la técnica clave. Después de cada decisión de branching, UP propaga todas las consecuencias forzadas. Detecta conflictos anticipadamente evitando explorar ramas inútiles. Sin ella, DPLL sería pura búsqueda ciega."
+    },
+    {
+      "id": 29,
+      "topic": "Heurísticas de Variable",
+      "front": "¿Qué heurística de selección de variable es MAX?",
+      "back": "Selecciona la variable con más ocurrencias en la fórmula (positivas + negativas). Simple pero efectiva para instancias pequeñas."
+    },
+    {
+      "id": 30,
+      "topic": "Heurísticas de Variable",
+      "front": "¿Qué heurística es MOMS?",
+      "back": "Most Often in Minimum Size: selecciona la variable que aparece más frecuentemente en las cláusulas de menor tamaño (normalmente cláusulas binarias). Propuesta por Pretolani (1993). Prioriza las cláusulas más restrictivas."
+    },
+    {
+      "id": 31,
+      "topic": "Heurísticas de Variable",
+      "front": "¿Qué es VSIDS?",
+      "back": "Variable State Independent Decaying Sum (usado en Chaff). Inicializa contadores a 0. Cuando se añade una cláusula, incrementa el contador de sus literales. El literal no asignado con mayor contador se elige. Los contadores se dividen periódicamente."
+    },
+    {
+      "id": 32,
+      "topic": "Heurísticas de Variable",
+      "front": "¿Qué función de puntuación usa la heurística Jeroslow-Wang?",
+      "back": "J(l) = Σ 2⁻ʷ donde la suma es sobre todas las cláusulas de longitud w que contienen el literal l. Favorece los literales que aparecen en cláusulas más cortas (más restrictivas)."
+    },
+    {
+      "id": 33,
+      "topic": "Heurísticas de Variable",
+      "front": "¿Qué es la heurística Satz?",
+      "back": "Inspirada en MOMS. Usa la fórmula H(x) = w(x)×w(¬x)×2¹⁰ + w(x) + w(¬x), donde w(x) es el peso del literal x en cláusulas mínimas. Combina equilibrio (producto) y frecuencia (suma). Se basa en Failed Literal detection."
+    },
+    {
+      "id": 34,
+      "topic": "CDCL y Aprendizaje",
+      "front": "¿Qué es el Conflict-Driven Clause Learning (CDCL)?",
+      "back": "Extensión de DPLL que analiza los conflictos para aprender nuevas cláusulas (learnt clauses). Permite backtracking no cronológico: en lugar de deshacer una decisión, salta directamente al nivel que causó el conflicto."
+    },
+    {
+      "id": 35,
+      "topic": "CDCL y Aprendizaje",
+      "front": "¿Qué es el grafo de implicaciones en CDCL?",
+      "back": "Un DAG donde cada nodo es una literal unitaria (inferida o de decisión) y cada arco representa que un literal fue implicado por otros via propagación unitaria. Permite rastrear las causas de un conflicto."
+    },
+    {
+      "id": 36,
+      "topic": "CDCL y Aprendizaje",
+      "front": "¿Cómo se genera la cláusula aprendida en CDCL?",
+      "back": "La cláusula aprendida es la negación de las causas del conflicto rastreadas en el grafo de implicaciones: learnt clause = ¬(razones del conflicto). Es una cláusula de cobertura sobre la cláusula vacía."
+    },
+    {
+      "id": 37,
+      "topic": "CDCL y Aprendizaje",
+      "front": "¿Qué es un UIP (Unit Implication Point)?",
+      "back": "Un nodo en el grafo de implicaciones que domina todos los caminos desde la última decisión hasta el conflicto. Se elige el UIP para definir la cláusula aprendida, minimizando el salto de backtrack."
+    },
+    {
+      "id": 38,
+      "topic": "CDCL y Aprendizaje",
+      "front": "¿Qué ventaja tiene el backtracking no cronológico (non-chronological)?",
+      "back": "En vez de retroceder al nivel inmediatamente anterior, salta directamente al nivel que causó el conflicto (indicado por la cláusula aprendida). Evita repetir búsqueda en espacios ya demostrados inútiles."
+    },
+    {
+      "id": 39,
+      "topic": "Técnicas Modernas",
+      "front": "¿Qué son los reinicios (restarts) en SAT solving?",
+      "back": "Reiniciar la búsqueda desde cero después de cierto número de backtracks. Evita quedarse atrapado en distribuciones de cola pesada (heavy-tailed distributions). Se mantienen las cláusulas aprendidas entre reinicios."
+    },
+    {
+      "id": 40,
+      "topic": "Técnicas Modernas",
+      "front": "¿Qué son las distribuciones de cola pesada (heavy-tailed) en SAT?",
+      "back": "Fenómeno observado por Gomes, Selman y Crato (1997): el tiempo de búsqueda tiene alta varianza — algunas ejecuciones son muy rápidas, otras muy lentas. Los reinicios aleatorios evitan los casos extremadamente lentos."
+    },
+    {
+      "id": 41,
+      "topic": "Técnicas Modernas",
+      "front": "¿Qué son las 2-watch literals?",
+      "back": "Estructura de datos perezosa (lazy): cada cláusula tiene dos punteros (H/T) apuntando a literales no asignados. Solo se actualiza una cláusula cuando uno de sus literales vigilados se vuelve falso. Evita recorrer todas las cláusulas."
+    },
+    {
+      "id": 42,
+      "topic": "Técnicas Modernas",
+      "front": "¿Cuál es la ventaja de las 2-watch literals frente a listas de cláusulas completas?",
+      "back": "Reduce drásticamente el trabajo por paso de propagación. En vez de recorrer todas las cláusulas, solo se actualizan las cláusulas donde un literal vigilado cambió. Usadas en Chaff y todos los solvers modernos."
+    },
+    {
+      "id": 43,
+      "topic": "Técnicas Modernas",
+      "front": "¿Qué es el solver GRASP?",
+      "back": "Primer solver DPLL con clause learning y non-chronological backtracking. Propuesto por Marques-Silva y Sakallah (1996). Estableció los fundamentos de los solvers CDCL modernos."
+    },
+    {
+      "id": 44,
+      "topic": "Técnicas Modernas",
+      "front": "¿Qué aportó el solver Chaff?",
+      "back": "Propuesto por Moskewicz et al. (2001). Introdujo las 2-watch literals y VSIDS. Fue el primer solver en resolver instancias industriales de cientos de miles de variables en segundos."
+    },
+    {
+      "id": 45,
+      "topic": "Inferencia: Davis-Putnam",
+      "front": "¿Qué es una cláusula tautológica y cómo la trata DP?",
+      "back": "Una cláusula que contiene tanto un literal como su negación (ej. x ∨ ¬x). Es siempre verdadera y se elimina del conjunto de cláusulas durante la resolución, ya que no aporta información."
+    },
+    {
+      "id": 46,
+      "topic": "Búsqueda: DPLL",
+      "front": "¿Cuál es la complejidad en espacio de DPLL respecto a DP?",
+      "back": "DPLL usa espacio lineal (solo guarda la rama actual de la búsqueda en la pila de recursión), mientras que DP puede usar espacio exponencial por la generación de resolventes."
+    },
+    {
+      "id": 47,
+      "topic": "Introducción a SAT",
+      "front": "¿Qué diferencia hay entre SAT y MAX-SAT?",
+      "back": "SAT pregunta si existe una asignación que satisfaga TODAS las cláusulas. MAX-SAT busca la asignación que MAXIMIZA el número de cláusulas satisfechas. MAX-SAT es NP-hard de optimización."
+    },
+    {
+      "id": 48,
+      "topic": "Casos Especiales en P",
+      "front": "¿Qué relación hay entre Unit Propagation y resolución?",
+      "back": "UP es un caso especial de resolución: (a ∨ b) ∧ (¬a) ≡ (a ∨ b) ∧ (¬a ∨ □). La cláusula unitaria ¬a actúa como uno de los resolventes. La Pure Literal Rule es un caso de factorización."
+    },
+    {
+      "id": 49,
+      "topic": "CNF y Codificación",
+      "front": "¿Qué es la codificación de un problema como SAT?",
+      "back": "Traducir un problema de satisfacción de restricciones (CSP, Graph Coloring, N-Queens, Sudoku) a una fórmula CNF. En CNF se codifican los 'no-goods' (combinaciones prohibidas de valores)."
+    },
+    {
+      "id": 50,
+      "topic": "CNF y Codificación",
+      "front": "¿Diferencia entre CSP y SAT en representación de restricciones?",
+      "back": "CSP usa 'goods' (valores permitidos, ej. V₁ ≠ V₂). CNF usa 'no-goods' (valores prohibidos, ej. ¬(x=1 ∧ y=2) ≡ (x≠1 ∨ y≠2) → cláusula). Variable Elimination también aplica a CSP vía operaciones join y project."
+    },
+    {
+      "id": 51,
+      "topic": "Heurísticas de Variable",
+      "front": "¿Cuál es la heurística del literal más equilibrado?",
+      "back": "Selecciona la variable que maximiza el producto de ocurrencias positivas y negativas: max(w(x) × w(¬x)). Favorece variables que aparecen con ambas polaridades frecuentemente, maximizando el impacto del branching."
+    },
+    {
+      "id": 52,
+      "topic": "CDCL y Aprendizaje",
+      "front": "¿Qué necesita el solver para generar una prueba de insatisfactibilidad (core)?",
+      "back": "Almacenar qué cláusulas participaron en cada paso de propagación. Un 'core' es un subconjunto de cláusulas originales suficiente para demostrar UNSAT, derivado rastreando la cadena de resolución hasta la cláusula vacía."
+    },
+    {
+      "id": 53,
+      "topic": "Técnicas Modernas",
+      "front": "¿Por qué se mantienen las cláusulas aprendidas entre reinicios?",
+      "back": "Las cláusulas aprendidas son lógicamente válidas y representan conocimiento acumulado sobre el problema. Descartarlas perdería el aprendizaje. Sin embargo, se gestionan con políticas de descarte (LRU, actividad) para evitar explosión de memoria."
+    },
+    {
+      "id": 54,
+      "topic": "Búsqueda: DPLL",
+      "front": "¿Puede DPLL eliminar la Pure Literal Rule?",
+      "back": "Sí. En la práctica, la detección de literales puros tiene un coste alto y su beneficio es marginal comparado con la Unit Propagation. La mayoría de solvers modernos omiten la Pure Literal Rule."
+    },
+    {
+      "id": 55,
+      "topic": "Inferencia: Davis-Putnam",
+      "front": "¿Qué esquema general siguen los algoritmos de inferencia SAT?",
+      "back": "1. Aplicar todas las técnicas en tiempo polinomial (UP, Pure Literal). 2. Si no está resuelto, aplicar técnica NP (branching o resolución). 3. Volver al paso 1 hasta encontrar una cláusula vacía o fórmula vacía."
+    }
+  ]
+}
