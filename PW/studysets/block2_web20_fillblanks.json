@@ -1,0 +1,283 @@
+{
+  "metadata": {
+    "title": "Web 2.0 — Completar Frases",
+    "subject": "Proyecto Web — Computer Engineering Degree",
+    "professor": "Roberto García",
+    "university": "Universitat de Lleida (UdL)",
+    "format": "fill-in-the-blank",
+    "totalQuestions": 30,
+    "topics": ["Historia y Fundamentos Web", "AJAX", "REST/ROA", "Diseño de APIs RESTful"]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Historia y Fundamentos Web",
+      "difficulty": "easy",
+      "sentence": "La idea del ___ fue propuesta por Vannevar Bush en 1945 como un dispositivo para almacenar y acceder a información en microfilms.",
+      "blanks": ["Memex"],
+      "hints": ["Nombre del dispositivo conceptual de Vannevar Bush, abreviatura de 'memory extender'"],
+      "explanation": "El Memex (memory extender) fue descrito por Bush en su artículo 'As We May Think' de 1945 como precursor conceptual de la hipertextualidad."
+    },
+    {
+      "id": 2,
+      "topic": "Historia y Fundamentos Web",
+      "difficulty": "easy",
+      "sentence": "Tim Berners-Lee presentó su propuesta para el World Wide Web al CERN en ___, y el primer sitio web apareció en 1990 en http://info.cern.ch.",
+      "blanks": ["1989"],
+      "hints": ["Año de la propuesta original al CERN"],
+      "explanation": "La propuesta de Berners-Lee fue en 1989, y en 1990 puso en marcha el primer sitio web con el objetivo de gestionar el conocimiento del CERN."
+    },
+    {
+      "id": 3,
+      "topic": "Historia y Fundamentos Web",
+      "difficulty": "easy",
+      "sentence": "La Web se basa en tres fundamentos: identificadores (___ que incluyen URNs y URLs), protocolo de comunicación (___) y lenguaje de representación (___).",
+      "blanks": ["URIs", "HTTP", "HTML"],
+      "hints": ["Uniform Resource Identifiers", "HyperText Transfer Protocol", "HyperText Markup Language"],
+      "explanation": "Berners-Lee definió la Web sobre estas tres bases tecnológicas que siguen siendo los pilares fundamentales de la World Wide Web."
+    },
+    {
+      "id": 4,
+      "topic": "Historia y Fundamentos Web",
+      "difficulty": "easy",
+      "sentence": "Web 2.0 se define como la segunda generación de servicios web que permite a los usuarios ___ y ___ información en línea.",
+      "blanks": ["colaborar", "compartir"],
+      "hints": ["Acción de trabajar juntos", "Acción de difundir contenidos con otros"],
+      "explanation": "La definición de Web 2.0 enfatiza el paso de la Web pasiva (solo lectura) a la Web participativa donde los usuarios crean y comparten contenido."
+    },
+    {
+      "id": 5,
+      "topic": "Historia y Fundamentos Web",
+      "difficulty": "medium",
+      "sentence": "En la comparativa Web 1.0 vs Web 2.0, 'Ofoto' corresponde a ___ y 'DoubleClick' corresponde a ___ en Web 2.0.",
+      "blanks": ["Flickr", "AdSense"],
+      "hints": ["Plataforma de fotos colaborativa de Yahoo", "Sistema de publicidad contextual de Google"],
+      "explanation": "Ofoto era una tienda de fotos online (Web 1.0) mientras Flickr permite compartir y etiquetar colaborativamente. DoubleClick vendía banners; AdSense permite publicidad contextual de larga cola."
+    },
+    {
+      "id": 6,
+      "topic": "Historia y Fundamentos Web",
+      "difficulty": "medium",
+      "sentence": "El patrón ___ describe cómo en Web 2.0 los nichos de mercado acumulados pueden superar el valor del mercado masivo convencional.",
+      "blanks": ["Long Tail"],
+      "hints": ["Nombre tomado de la estadística; en inglés 'larga cola'"],
+      "explanation": "La Larga Cola (Long Tail) explica cómo plataformas como Amazon o Spotify obtienen más valor de sus miles de productos/canciones de nicho que de sus best-sellers."
+    },
+    {
+      "id": 7,
+      "topic": "Historia y Fundamentos Web",
+      "difficulty": "medium",
+      "sentence": "En Web 2.0, los ___ son aplicaciones que combinan datos de múltiples fuentes para crear nuevos servicios con valor añadido.",
+      "blanks": ["Mashups"],
+      "hints": ["Término inglés para mezclas; combinaciones de APIs de terceros"],
+      "explanation": "Los Mashups combinan APIs y datos de distintas fuentes (ej. Google Maps + datos propios) para crear nuevas aplicaciones. Son habilitados por las Web APIs abiertas."
+    },
+    {
+      "id": 8,
+      "topic": "Historia y Fundamentos Web",
+      "difficulty": "hard",
+      "sentence": "En Web 2.0, el valor ___ lo añaden los usuarios de forma consciente (como escribir en Wikipedia), mientras que el valor ___ se obtiene de datos agregados de uso sin intención directa del usuario.",
+      "blanks": ["explícito", "implícito"],
+      "hints": ["Directo, intencionado", "Indirecto, sin intención, obtenido de patrones de comportamiento"],
+      "explanation": "Amazon usa valor implícito (historial de compras) para sus recomendaciones. Wikipedia usa valor explícito (los usuarios escriben artículos conscientemente)."
+    },
+    {
+      "id": 9,
+      "topic": "AJAX",
+      "difficulty": "easy",
+      "sentence": "AJAX son las siglas de ___ ___ and XML, y permite actualizar partes de una página HTML sin recargar la página completa.",
+      "blanks": ["Asynchronous", "JavaScript"],
+      "hints": ["Modo de ejecución no bloqueante", "Lenguaje de programación del navegador"],
+      "explanation": "AJAX = Asynchronous JavaScript and XML. Aunque el nombre menciona XML, actualmente también se usa JSON y otros formatos de datos."
+    },
+    {
+      "id": 10,
+      "topic": "AJAX",
+      "difficulty": "easy",
+      "sentence": "El objeto ___ permite realizar peticiones HTTP asíncronas desde JavaScript. Apareció por primera vez en Internet Explorer 5.",
+      "blanks": ["XMLHttpRequest"],
+      "hints": ["Objeto base de AJAX, también llamado XHR"],
+      "explanation": "XMLHttpRequest fue introducido por Microsoft en IE5 como componente ActiveX, luego estandarizado. Es la base tecnológica de AJAX."
+    },
+    {
+      "id": 11,
+      "topic": "AJAX",
+      "difficulty": "easy",
+      "sentence": "En AJAX, cuando readyState es ___ significa que la petición ha finalizado y la respuesta está lista; el estado HTTP 200 indica que fue ___.",
+      "blanks": ["4", "exitosa"],
+      "hints": ["Valor numérico máximo de readyState", "Que no hubo error"],
+      "explanation": "La condición xhr.readyState == 4 && xhr.status == 200 es la verificación estándar para procesar la respuesta AJAX con éxito."
+    },
+    {
+      "id": 12,
+      "topic": "AJAX",
+      "difficulty": "medium",
+      "sentence": "Los cinco valores de readyState son: 0=___, 1=conexión establecida, 2=petición recibida, 3=procesando, 4=___.",
+      "blanks": ["no inicializado", "finalizado/listo"],
+      "hints": ["Estado inicial antes de llamar a open()", "Estado cuando la respuesta está disponible"],
+      "explanation": "Los cinco estados de readyState documentan el ciclo de vida de una petición AJAX desde su creación hasta la disponibilidad de la respuesta."
+    },
+    {
+      "id": 13,
+      "topic": "AJAX",
+      "difficulty": "medium",
+      "sentence": "Para crear un XMLHttpRequest en IE5/6 se usaba new ___('Microsoft.XMLHTTP'), mientras que en IE7+ y navegadores modernos se usa new ___().",
+      "blanks": ["ActiveXObject", "XMLHttpRequest"],
+      "hints": ["Objeto COM de Microsoft", "Constructor estándar W3C"],
+      "explanation": "La compatibilidad cross-browser requería detectar cuál constructor usar. IE5/6 usaba ActiveXObject; los navegadores modernos usan el constructor nativo XMLHttpRequest."
+    },
+    {
+      "id": 14,
+      "topic": "AJAX",
+      "difficulty": "medium",
+      "sentence": "El método ___ de jQuery carga el resultado de una petición AJAX directamente en el elemento seleccionado, mientras que ___ permite serializar los campos de un formulario como query string.",
+      "blanks": [".load(url)", ".serialize()"],
+      "hints": ["Método que combina petición y actualización del DOM", "Método que convierte inputs de formulario a formato URL"],
+      "explanation": ".load(url) es el método AJAX más simple de jQuery. .serialize() convierte los campos del formulario en formato 'campo=valor&campo2=valor2' para enviar con AJAX."
+    },
+    {
+      "id": 15,
+      "topic": "AJAX",
+      "difficulty": "hard",
+      "sentence": "Para enviar datos con POST en AJAX, se debe establecer la cabecera ___ con valor 'application/x-www-form-urlencoded' y pasar los datos como argumento a ___().",
+      "blanks": ["Content-Type", "send"],
+      "hints": ["Cabecera HTTP que indica el tipo de contenido enviado", "Método que envía la petición con los datos"],
+      "explanation": "xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); seguido de xhr.send('param=value&param2=value2') es la forma correcta de hacer un POST con AJAX nativo."
+    },
+    {
+      "id": 16,
+      "topic": "REST/ROA",
+      "difficulty": "easy",
+      "sentence": "REST es un estilo arquitectónico para sistemas distribuidos. Un sistema ___ es aquel cuya arquitectura sigue todos los patrones REST.",
+      "blanks": ["RESTful"],
+      "hints": ["Adjetivo que indica conformidad total con REST"],
+      "explanation": "RESTful es el calificativo para sistemas que implementan todos los principios REST. ROA (Resource-Oriented Architecture) es una implementación RESTful usando tecnologías Web (HTTP, URI, XML)."
+    },
+    {
+      "id": 17,
+      "topic": "REST/ROA",
+      "difficulty": "easy",
+      "sentence": "Los cuatro componentes de ROA son: ___, URIs, ___ y Links.",
+      "blanks": ["Resources", "Representations"],
+      "hints": ["Los elementos que se exponen en la API", "Cómo se transmite el estado de los recursos (bytes en formato específico)"],
+      "explanation": "ROA define: Resources (lo que se expone), URIs (cómo se nombran/localizan), Representations (cómo se transmiten) y Links (cómo se conectan entre sí)."
+    },
+    {
+      "id": 18,
+      "topic": "REST/ROA",
+      "difficulty": "medium",
+      "sentence": "El principio de ___ dice que cada petición HTTP es aislada y contiene toda la información necesaria. Sus ventajas son: no hay ___ de sesión, facilita el balanceo de carga y el cacheo.",
+      "blanks": ["Statelessness", "timeouts"],
+      "hints": ["Sin estado en el servidor", "Expiración de la sesión por inactividad"],
+      "explanation": "La ausencia de estado en el servidor simplifica la arquitectura: cualquier instancia puede atender cualquier petición, facilitando escalabilidad y recuperación de fallos."
+    },
+    {
+      "id": 19,
+      "topic": "REST/ROA",
+      "difficulty": "medium",
+      "sentence": "Los métodos HTTP ___ y ___ son seguros (no modifican el servidor) e idempotentes. ___ es idempotente pero no seguro. ___ no es ni seguro ni idempotente.",
+      "blanks": ["GET", "HEAD", "PUT/DELETE", "POST"],
+      "hints": ["Obtener recurso", "Obtener solo cabeceras", "Reemplazar recurso / Eliminar recurso", "Crear recurso subordinado"],
+      "explanation": "Seguridad = no modificar estado. Idempotencia = mismo resultado aplicado 1 o N veces. Esta clasificación es clave para el diseño de APIs RESTful correctas."
+    },
+    {
+      "id": 20,
+      "topic": "REST/ROA",
+      "difficulty": "medium",
+      "sentence": "HATEOAS significa ___ As The Engine of Application State. Implica que el servidor guía al cliente mediante ___ y formularios en sus respuestas.",
+      "blanks": ["Hypermedia", "enlaces/links"],
+      "hints": ["Tipo de media que incluye hiperlinks (hipermedia)", "Elementos HTML/JSON que conectan recursos"],
+      "explanation": "HATEOAS es el principio de Conectividad de REST: el cliente no necesita conocer la API de antemano; navega siguiendo los enlaces que el servidor incluye en cada respuesta."
+    },
+    {
+      "id": 21,
+      "topic": "REST/ROA",
+      "difficulty": "medium",
+      "sentence": "En REST, los ___ transmiten los bytes en un formato específico. El servidor envía ___, no los recursos en sí. La negociación de contenido se realiza mediante las cabeceras ___ y Accept-Language.",
+      "blanks": ["representaciones", "representaciones", "Accept"],
+      "hints": ["Cómo se codifica el estado de un recurso para transmisión", "Igual que el primer blank", "Cabecera HTTP del cliente que indica formatos aceptados"],
+      "explanation": "La distinción recurso/representación es fundamental: el recurso existe conceptualmente en el servidor; el cliente recibe una representación (JSON, XML, HTML...) según la negociación de contenido."
+    },
+    {
+      "id": 22,
+      "topic": "REST/ROA",
+      "difficulty": "hard",
+      "sentence": "El uso de ___ en las URLs REST (como GET /getDog) es un anti-patrón; se deben usar ___ (como GET /dogs). La información del método debe ir en la ___ HTTP, no en la URL.",
+      "blanks": ["verbos", "sustantivos/nombres", "operación/método"],
+      "hints": ["Palabras que expresan acción", "Palabras que nombran recursos", "GET, POST, PUT, DELETE"],
+      "explanation": "Este es el principio de Interfaz Uniforme de ROA: la operación va en el método HTTP, la identidad del recurso en la URI. Usar verbos en URLs es típico de REST-RPC, no de REST puro."
+    },
+    {
+      "id": 23,
+      "topic": "REST/ROA",
+      "difficulty": "hard",
+      "sentence": "Cuando un recurso tiene múltiples URIs válidas, se recomienda designar una como ___ y usar HTTP ___ para redirigir las otras a esta.",
+      "blanks": ["URI canónica", "303 (See Other)"],
+      "hints": ["La URI 'oficial' o preferida del recurso", "Código de redirección HTTP para recursos alternativos"],
+      "explanation": "El uso de 303 See Other respeta el principio de addressability (una URI por recurso) sin eliminar alias útiles. El cliente es redirigido automáticamente a la URI canónica."
+    },
+    {
+      "id": 24,
+      "topic": "Diseño de APIs RESTful",
+      "difficulty": "easy",
+      "sentence": "Para diseñar una API RESTful sistemáticamente se usa una ___ donde las filas representan tipos de recursos con una URL ejemplo y las columnas representan los ___ métodos HTTP.",
+      "blanks": ["tabla", "4"],
+      "hints": ["Estructura de filas y columnas", "Número de métodos principales de HTTP en REST"],
+      "explanation": "La tabla de diseño de APIs RESTful es una herramienta que fuerza a definir explícitamente el comportamiento de cada combinación recurso-método, evitando inconsistencias."
+    },
+    {
+      "id": 25,
+      "topic": "Diseño de APIs RESTful",
+      "difficulty": "easy",
+      "sentence": "Cuando se crea un recurso con POST y el servidor asigna la URI, responde con código ___ y la cabecera ___ indica la URL del nuevo recurso creado.",
+      "blanks": ["201 Created", "Location"],
+      "hints": ["Código HTTP de creación exitosa", "Cabecera que contiene la URL del recurso nuevo"],
+      "explanation": "201 Created + Location header es el patrón estándar REST para responder a un POST que crea un recurso. El cliente puede entonces acceder al nuevo recurso usando la URL del Location."
+    },
+    {
+      "id": 26,
+      "topic": "Diseño de APIs RESTful",
+      "difficulty": "medium",
+      "sentence": "En la API de tareas del ejemplo, GET /tasks/2024-06-09 devuelve ___, POST /tasks/2024-06-09 ___ una nueva tarea, y DELETE /tasks/2024-06-09/1 ___ una tarea específica.",
+      "blanks": ["la lista de tareas del día", "crea", "elimina"],
+      "hints": ["Operación de lectura de colección", "Operación de creación", "Operación de borrado"],
+      "explanation": "Este es el ejemplo de la API de tareas del curso. La combinación de URL con jerarquía {date}/{id} y los métodos HTTP mapea perfectamente a las operaciones CRUD."
+    },
+    {
+      "id": 27,
+      "topic": "Diseño de APIs RESTful",
+      "difficulty": "medium",
+      "sentence": "La representación JSON de una tarea incluye el campo 'id' con valor '___, el campo 'title' con el título y el campo 'state' que puede ser '___ o completada.",
+      "blanks": ["/tasks/2024-06-09/1\"", "pending\""],
+      "hints": ["La URI completa del recurso como identificador", "Estado inicial de una tarea nueva"],
+      "explanation": "Usar la URI como valor del campo 'id' sigue el principio HATEOAS: el cliente sabe exactamente la URL para futuras operaciones sobre ese recurso."
+    },
+    {
+      "id": 28,
+      "topic": "Diseño de APIs RESTful",
+      "difficulty": "medium",
+      "sentence": "La diferencia entre ___ y ___ en REST es que PUT reemplaza la representación completa del recurso mientras el segundo aplica solo los cambios especificados (actualización parcial).",
+      "blanks": ["PUT", "PATCH"],
+      "hints": ["Reemplazar completo", "Modificación parcial, HTTP patch como parche"],
+      "explanation": "PUT es idempotente y requiere enviar la representación completa. PATCH permite enviar solo los campos que cambian, siendo más eficiente para actualizaciones parciales."
+    },
+    {
+      "id": 29,
+      "topic": "Diseño de APIs RESTful",
+      "difficulty": "hard",
+      "sentence": "El 'overloaded ___' es un anti-patrón REST donde se usa POST para todas las operaciones (al estilo RPC), violando el principio de ___ de REST.",
+      "blanks": ["POST", "Interfaz Uniforme"],
+      "hints": ["Método HTTP sobrecargado para todo", "Principio que exige usar los métodos HTTP según su semántica"],
+      "explanation": "El overloaded POST es típico de SOAP/RPC: POST /service?action=delete. Viola la interfaz uniforme porque la operación real no está en el método HTTP sino en el cuerpo o parámetros."
+    },
+    {
+      "id": 30,
+      "topic": "REST/ROA",
+      "difficulty": "hard",
+      "sentence": "ROA es la combinación de REST con tecnologías Web: toda la información de ___ está en la URI (addressability) y toda la información de ___ está en la operación HTTP (interfaz uniforme).",
+      "blanks": ["routing/enrutamiento", "método/acción"],
+      "hints": ["Información sobre qué recurso se accede", "Información sobre qué se hace con el recurso"],
+      "explanation": "Esta es la definición precisa de ROA: addressability pone la identidad del recurso en la URI; la interfaz uniforme pone la intención de la operación en el método HTTP. Juntos hacen la API predecible y auto-documentada."
+    }
+  ]
+}

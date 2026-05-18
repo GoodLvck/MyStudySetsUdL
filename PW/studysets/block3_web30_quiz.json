@@ -1,0 +1,581 @@
+{
+  "metadata": {
+    "title": "Web 3.0 — Preguntas Test",
+    "subject": "Proyecto Web — Computer Engineering Degree",
+    "professor": "Roberto García — Universitat de Lleida (UdL)",
+    "format": "quiz",
+    "totalQuestions": 40,
+    "topics": [
+      "Introducción a Web 3.0",
+      "RDFa",
+      "Schema.org",
+      "JSON-LD",
+      "Facebook Open Graph",
+      "Integración de Datos Semánticos",
+      "Descentralización",
+      "DApps"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "easy",
+      "question": "¿Qué describe mejor la Web 3.0 en términos de interacción?",
+      "options": [
+        "A) Personas a aplicaciones",
+        "B) Personas a personas",
+        "C) Aplicaciones a aplicaciones",
+        "D) Máquinas a máquinas"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Web 1.0 = personas a aplicaciones, Web 2.0 = personas a personas, Web 3.0 = aplicaciones a aplicaciones (y por tanto también entre personas de forma indirecta)."
+    },
+    {
+      "id": 2,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "easy",
+      "question": "¿Quién propuso en 2007 el modelo de las tres dimensiones de Web 3.0?",
+      "options": [
+        "A) Tim Berners-Lee",
+        "B) Nova Spivack",
+        "C) Tim O'Reilly",
+        "D) Mark Zuckerberg"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Nova Spivack (2007) describió Web 3.0 como la combinación de Información + Conexiones + Semántica."
+    },
+    {
+      "id": 3,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "easy",
+      "question": "¿Cuáles son las tres dimensiones del modelo de Web 3.0 según Nova Spivack?",
+      "options": [
+        "A) Datos, Algoritmos y Velocidad",
+        "B) Información, Conexiones y Semántica",
+        "C) Social, Móvil y Cloud",
+        "D) HTML, CSS y JavaScript"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El modelo de Nova Spivack describe Web 3.0 como la combinación de Información + Conexiones + Semántica (también expresado como Social + Conexiones + Semántica)."
+    },
+    {
+      "id": 4,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "medium",
+      "question": "¿Qué técnica representa la semántica implícita en la Web?",
+      "options": [
+        "A) Datos enlazados en DBpedia",
+        "B) Páginas de desambiguación de Wikipedia y NLP",
+        "C) Anotaciones RDFa en HTML",
+        "D) Esquemas JSON-LD"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La semántica implícita usa contexto estadístico y NLP, como las páginas de desambiguación de Wikipedia. La semántica explícita usa datos estructurados como DBpedia."
+    },
+    {
+      "id": 5,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "medium",
+      "question": "¿Qué diferencia hay entre Web of Documents y Web of Data?",
+      "options": [
+        "A) Web of Documents usa XML y Web of Data usa HTML",
+        "B) Web of Documents son páginas HTML enlazadas, Web of Data son datos estructurados enlazados",
+        "C) Web of Documents es más nueva que Web of Data",
+        "D) No hay diferencia, son sinónimos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Web of Documents conecta páginas HTML (y permite mashups de APIs). Web of Data conecta datos estructurados: Proveedor → Producto → Pedido → Cliente."
+    },
+    {
+      "id": 6,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "easy",
+      "question": "¿Cuál es el caso de uso principal de la Web Semántica en HTML?",
+      "options": [
+        "A) Acelerar la carga de páginas web",
+        "B) Anotación semántica de HTML para mejorar la búsqueda y el SEO",
+        "C) Cifrar el contenido de las páginas web",
+        "D) Eliminar la necesidad de CSS"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El caso de uso principal es la anotación semántica de HTML, que permite a los motores de búsqueda entender el contenido y ofrecer resultados enriquecidos (rich snippets)."
+    },
+    {
+      "id": 7,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "medium",
+      "question": "¿Cuáles son los cuatro formatos de anotación semántica de HTML más utilizados?",
+      "options": [
+        "A) XML, JSON, CSV, YAML",
+        "B) RDFa, Microformats, JSON-LD, Microdata",
+        "C) OWL, SPARQL, Turtle, N-Triples",
+        "D) HTML5, CSS3, JavaScript, WebGL"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los formatos de anotación semántica de HTML son: RDFa, Microformats, JSON-LD y Microdata. Pueden consultarse estadísticas de adopción en w3techs.com."
+    },
+    {
+      "id": 8,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "hard",
+      "question": "Un motor de búsqueda puede realizar búsqueda semántica (semantic search) solo si existe:",
+      "options": [
+        "A) Semántica implícita suficiente mediante NLP",
+        "B) Semántica explícita en forma de datos estructurados",
+        "C) Un índice de páginas muy grande",
+        "D) Algoritmos PageRank actualizados"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La búsqueda semántica requiere semántica explícita (datos estructurados). Sin ella, solo se puede aplicar estadística y NLP, que ofrecen semántica implícita pero no verdadera comprensión semántica."
+    },
+    {
+      "id": 9,
+      "topic": "RDFa",
+      "difficulty": "easy",
+      "question": "¿Qué significa RDFa?",
+      "options": [
+        "A) Resource Data Format for Applications",
+        "B) RDF in Attributes (RDF con atributos HTML)",
+        "C) Relational Database Framework for APIs",
+        "D) Rich Document Format for Analytics"
+      ],
+      "correctAnswer": "B",
+      "explanation": "RDFa significa RDF in Attributes — permite incluir anotaciones RDF directamente como atributos en documentos HTML, SVG, MathML, etc."
+    },
+    {
+      "id": 10,
+      "topic": "RDFa",
+      "difficulty": "easy",
+      "question": "¿Qué atributo RDFa se usa para definir el vocabulario base de un bloque HTML?",
+      "options": [
+        "A) prefix",
+        "B) typeof",
+        "C) vocab",
+        "D) property"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El atributo 'vocab' define el vocabulario base. Ejemplo: <p vocab=\"http://xmlns.com/foaf/0.1/\">. Es el primer paso al añadir anotaciones RDFa."
+    },
+    {
+      "id": 11,
+      "topic": "RDFa",
+      "difficulty": "easy",
+      "question": "¿Qué atributo RDFa especifica el tipo de entidad descrita (por ejemplo, 'Person')?",
+      "options": [
+        "A) property",
+        "B) typeof",
+        "C) resource",
+        "D) vocab"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El atributo 'typeof' especifica el tipo de la entidad descrita. Ejemplo: typeof=\"Person\" indica que el elemento describe una Persona según el vocabulario activo."
+    },
+    {
+      "id": 12,
+      "topic": "RDFa",
+      "difficulty": "easy",
+      "question": "¿Qué atributo RDFa se usa para describir las propiedades de un recurso?",
+      "options": [
+        "A) vocab",
+        "B) typeof",
+        "C) property",
+        "D) resource"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El atributo 'property' describe las propiedades del recurso. Ejemplo: <span property=\"name\">Manu Sporny</span> indica que 'Manu Sporny' es el nombre del recurso."
+    },
+    {
+      "id": 13,
+      "topic": "RDFa",
+      "difficulty": "medium",
+      "question": "¿Para qué sirve el atributo 'resource' en RDFa?",
+      "options": [
+        "A) Para definir el vocabulario base",
+        "B) Para especificar el identificador URI del recurso descrito",
+        "C) Para listar los recursos externos usados",
+        "D) Para indicar el tipo de recurso multimedia"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El atributo 'resource' define el identificador URI del recurso. Ejemplo: resource=\"#manu\" establece que el recurso tiene el identificador '#manu' dentro del documento."
+    },
+    {
+      "id": 14,
+      "topic": "RDFa",
+      "difficulty": "medium",
+      "question": "¿Cuándo se usa el atributo 'prefix' en RDFa?",
+      "options": [
+        "A) Para definir el vocabulario principal de la página",
+        "B) Para combinar múltiples vocabularios usando prefijos abreviados",
+        "C) Para indicar el idioma del contenido",
+        "D) Para señalar propiedades obligatorias"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El atributo 'prefix' permite combinar múltiples vocabularios. Ejemplo: prefix=\"ov: http://open.vocab.org/terms/\" define el prefijo 'ov' para el vocabulario de Open Vocab."
+    },
+    {
+      "id": 15,
+      "topic": "RDFa",
+      "difficulty": "easy",
+      "question": "¿Para qué sirve el vocabulario FOAF en el contexto de RDFa?",
+      "options": [
+        "A) Para describir productos y servicios",
+        "B) Para describir personas y sus relaciones sociales",
+        "C) Para describir eventos y reservas",
+        "D) Para describir documentos y publicaciones"
+      ],
+      "correctAnswer": "B",
+      "explanation": "FOAF (Friend Of A Friend) es un vocabulario ubicado en http://xmlns.com/foaf/0.1/ diseñado para describir personas y sus relaciones sociales en la Web Semántica."
+    },
+    {
+      "id": 16,
+      "topic": "RDFa",
+      "difficulty": "hard",
+      "question": "¿Qué atributos HTML preexistentes puede reutilizar RDFa para expresar semántica?",
+      "options": [
+        "A) class y id solamente",
+        "B) href y src (además de añadir nuevos atributos semánticos)",
+        "C) data-* attributes solamente",
+        "D) alt y title solamente"
+      ],
+      "correctAnswer": "B",
+      "explanation": "RDFa reutiliza atributos HTML existentes como href y src para expresar relaciones semánticas, además de añadir nuevos atributos: vocab, typeof, property, resource y prefix."
+    },
+    {
+      "id": 17,
+      "topic": "RDFa",
+      "difficulty": "medium",
+      "question": "¿Qué herramienta ofrece Google para validar las anotaciones semánticas de una página web?",
+      "options": [
+        "A) Google Analytics",
+        "B) Google Search Console Rich Results Test (search.google.com/test/rich-results)",
+        "C) Google PageSpeed Insights",
+        "D) Google Lighthouse"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Google ofrece el Rich Results Test en search.google.com/test/rich-results para validar anotaciones semánticas. También existe rdfa.info/play/ para visualizar RDFa."
+    },
+    {
+      "id": 18,
+      "topic": "Schema.org",
+      "difficulty": "easy",
+      "question": "¿Qué es Schema.org?",
+      "options": [
+        "A) Un lenguaje de programación para web semántica",
+        "B) Un vocabulario para la anotación semántica de HTML promovido por los principales motores de búsqueda",
+        "C) Una base de datos de conocimiento abierta",
+        "D) Un protocolo de comunicación entre aplicaciones web"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Schema.org es un vocabulario para la anotación semántica de HTML promovido por Google, Yahoo, Bing y Yandex. Permite a los motores de búsqueda entender el contenido de las páginas."
+    },
+    {
+      "id": 19,
+      "topic": "Schema.org",
+      "difficulty": "easy",
+      "question": "¿Qué motores de búsqueda promueven Schema.org?",
+      "options": [
+        "A) Solo Google",
+        "B) Google, Yahoo, Bing y Yandex",
+        "C) Google, Facebook y Twitter",
+        "D) Bing y DuckDuckGo"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Schema.org fue creado conjuntamente y es promovido por los cuatro principales motores de búsqueda: Google, Yahoo, Bing y Yandex."
+    },
+    {
+      "id": 20,
+      "topic": "Schema.org",
+      "difficulty": "medium",
+      "question": "¿Qué son los 'Rich Results' en el contexto de Schema.org?",
+      "options": [
+        "A) Páginas web con mucho contenido multimedia",
+        "B) Resultados de búsqueda enriquecidos con información semántica adicional (reseñas, precios, eventos...)",
+        "C) Anuncios de pago en Google",
+        "D) Resultados de búsqueda con más de 10 enlaces"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los Rich Results (o rich snippets) son resultados de búsqueda enriquecidos con datos semánticos: estrellas de valoración, precios, disponibilidad, fechas de eventos, etc."
+    },
+    {
+      "id": 21,
+      "topic": "Schema.org",
+      "difficulty": "medium",
+      "question": "¿Qué formatos de serialización soporta Schema.org?",
+      "options": [
+        "A) Solo XML",
+        "B) RDFa, Microdata y JSON-LD",
+        "C) Turtle y N-Triples solamente",
+        "D) CSV y Excel"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Schema.org soporta tres formatos de serialización: RDFa, Microdata y JSON-LD. Los tres permiten incluir anotaciones semánticas en documentos HTML."
+    },
+    {
+      "id": 22,
+      "topic": "JSON-LD",
+      "difficulty": "easy",
+      "question": "¿Qué significa JSON-LD?",
+      "options": [
+        "A) JavaScript Object Notation — Large Data",
+        "B) JSON for Linked Data (serialización RDF como JSON)",
+        "C) JavaScript Object Notation — Linked Documents",
+        "D) JSON with Logical Definitions"
+      ],
+      "correctAnswer": "B",
+      "explanation": "JSON-LD significa JSON for Linked Data. Es una serialización de RDF en formato JSON que permite representar datos enlazados de forma sencilla."
+    },
+    {
+      "id": 23,
+      "topic": "JSON-LD",
+      "difficulty": "easy",
+      "question": "¿Cómo se incluye JSON-LD en un documento HTML?",
+      "options": [
+        "A) <link rel=\"json-ld\" href=\"data.jsonld\">",
+        "B) <script type=\"application/ld+json\">...</script>",
+        "C) <meta name=\"json-ld\" content=\"...\">",
+        "D) <json-ld src=\"data.json\"></json-ld>"
+      ],
+      "correctAnswer": "B",
+      "explanation": "JSON-LD se incluye en HTML dentro de un elemento <script type=\"application/ld+json\">. Esto permite incluir datos semánticos sin modificar el marcado HTML visible."
+    },
+    {
+      "id": 24,
+      "topic": "JSON-LD",
+      "difficulty": "medium",
+      "question": "¿Qué propiedad JSON-LD especifica el tipo de entidad descrita?",
+      "options": [
+        "A) \"@vocab\"",
+        "B) \"@type\"",
+        "C) \"@entity\"",
+        "D) \"@class\""
+      ],
+      "correctAnswer": "B",
+      "explanation": "La propiedad \"@type\" especifica el tipo de entidad en JSON-LD. Por ejemplo: \"@type\": \"EventReservation\" indica que el objeto es una reserva de evento."
+    },
+    {
+      "id": 25,
+      "topic": "JSON-LD",
+      "difficulty": "medium",
+      "question": "¿Qué propiedad JSON-LD define el vocabulario o contexto de los términos usados?",
+      "options": [
+        "A) \"@vocab\"",
+        "B) \"@namespace\"",
+        "C) \"@context\"",
+        "D) \"@schema\""
+      ],
+      "correctAnswer": "C",
+      "explanation": "La propiedad \"@context\" define el vocabulario o contexto. Por ejemplo: \"@context\": \"http://schema.org\" indica que los términos usados pertenecen al vocabulario de schema.org."
+    },
+    {
+      "id": 26,
+      "topic": "JSON-LD",
+      "difficulty": "medium",
+      "question": "¿En qué servicio de Google se usa JSON-LD para anotar emails y mejorar su visualización?",
+      "options": [
+        "A) Google Drive",
+        "B) Gmail (Google Mail Markup)",
+        "C) Google Calendar",
+        "D) Google Meet"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Google Gmail usa JSON-LD para el markup de emails, permitiendo destacarlos en la bandeja de entrada, mostrar previsualizaciones enriquecidas y añadir botones de acción."
+    },
+    {
+      "id": 27,
+      "topic": "JSON-LD",
+      "difficulty": "hard",
+      "question": "En una anotación JSON-LD para una reserva de evento, ¿cuál es la propiedad que contiene los detalles del evento (nombre, fecha, lugar)?",
+      "options": [
+        "A) \"eventDetails\"",
+        "B) \"reservationFor\"",
+        "C) \"underName\"",
+        "D) \"reservationStatus\""
+      ],
+      "correctAnswer": "B",
+      "explanation": "En el esquema de EventReservation de schema.org, la propiedad \"reservationFor\" contiene el objeto Event con nombre, fecha de inicio y ubicación."
+    },
+    {
+      "id": 28,
+      "topic": "Facebook Open Graph",
+      "difficulty": "easy",
+      "question": "¿Cuál es la URL oficial del protocolo Facebook Open Graph?",
+      "options": [
+        "A) http://facebook.com/opengraph",
+        "B) http://ogp.me/",
+        "C) http://graph.facebook.com/",
+        "D) http://openprotocol.fb.com/"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El protocolo Open Graph de Facebook está documentado en http://ogp.me/. Es una alternativa a schema.org para metadatos de redes sociales."
+    },
+    {
+      "id": 29,
+      "topic": "Facebook Open Graph",
+      "difficulty": "medium",
+      "question": "¿Para qué se utiliza principalmente el protocolo Open Graph?",
+      "options": [
+        "A) Para indexar páginas en Google",
+        "B) Para metadatos de compartición social (título, imagen, descripción, tipo)",
+        "C) Para autenticación OAuth",
+        "D) Para análisis de redes sociales"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Open Graph se usa principalmente para metadatos de compartición en redes sociales: cuando se comparte una URL en Facebook o similar, usa og:title, og:image, og:description, og:type."
+    },
+    {
+      "id": 30,
+      "topic": "Integración de Datos Semánticos",
+      "difficulty": "medium",
+      "question": "¿Cuántos triples (hechos) integra la plataforma OpenPHACTS?",
+      "options": [
+        "A) 300 millones",
+        "B) 1 billón",
+        "C) 3 billones (3 billion)",
+        "D) 10 millones"
+      ],
+      "correctAnswer": "C",
+      "explanation": "OpenPHACTS (Open Pharmacological Data) integra 3 billion (3.000 millones) de triples RDF de múltiples fuentes de datos biomédicos."
+    },
+    {
+      "id": 31,
+      "topic": "Integración de Datos Semánticos",
+      "difficulty": "medium",
+      "question": "¿Qué es FIBO en el contexto de la Web Semántica?",
+      "options": [
+        "A) Un formato de intercambio de datos financieros basado en XML",
+        "B) Financial Industry Business Ontology — ontología semántica para el sector bancario",
+        "C) Un algoritmo de cifrado para transacciones financieras",
+        "D) Un estándar ISO para contabilidad digital"
+      ],
+      "correctAnswer": "B",
+      "explanation": "FIBO (Financial Industry Business Ontology) es una ontología semántica para el sector financiero y bancario, ejemplo de aplicación industrial de la Web Semántica."
+    },
+    {
+      "id": 32,
+      "topic": "Descentralización",
+      "difficulty": "easy",
+      "question": "¿Cuál es la diferencia clave entre descentralización y distribución en sistemas informáticos?",
+      "options": [
+        "A) Son sinónimos en el contexto de blockchain",
+        "B) Descentralización = control compartido entre entidades independientes; Distribución = partes en ubicaciones separadas",
+        "C) Descentralización = partes en ubicaciones separadas; Distribución = control compartido",
+        "D) Distribución implica mayor seguridad que descentralización"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Descentralización significa que el control está repartido entre entidades independientes (ningún actor controla el sistema). Distribución significa que los componentes están en ubicaciones separadas. Bitcoin es ambas cosas."
+    },
+    {
+      "id": 33,
+      "topic": "Descentralización",
+      "difficulty": "medium",
+      "question": "¿Cómo garantiza la blockchain la integridad de los datos?",
+      "options": [
+        "A) Mediante una base de datos central cifrada",
+        "B) Cada bloque contiene datos más el hash del bloque anterior, formando una cadena inalterable",
+        "C) Mediante firmas digitales RSA independientes por bloque",
+        "D) Usando un árbol Merkle centralizado"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La blockchain garantiza la integridad porque cada bloque contiene el hash del bloque anterior. Alterar un bloque invalida todos los bloques posteriores, lo que hace la cadena prácticamente inalterable."
+    },
+    {
+      "id": 34,
+      "topic": "Descentralización",
+      "difficulty": "medium",
+      "question": "¿Qué es el 'halving' de Bitcoin?",
+      "options": [
+        "A) La división de Bitcoin en dos criptomonedas diferentes",
+        "B) La reducción a la mitad de la recompensa por bloque minado, que ocurre periódicamente",
+        "C) La reducción de la velocidad de la red a la mitad",
+        "D) El proceso de dividir un bloque en dos bloques más pequeños"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El halving de Bitcoin es la reducción periódica a la mitad de la recompensa que reciben los mineros por cada bloque. En el momento del curso la recompensa era de 6.25 BTC."
+    },
+    {
+      "id": 35,
+      "topic": "Descentralización",
+      "difficulty": "easy",
+      "question": "¿Qué es Ethereum en el contexto de la Web 3.0 descentralizada?",
+      "options": [
+        "A) Una alternativa descentralizada a HTTP",
+        "B) Una blockchain que soporta smart contracts (contratos inteligentes)",
+        "C) Un protocolo de almacenamiento descentralizado",
+        "D) Una red social descentralizada"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Ethereum es una blockchain que, además de criptomoneda (Ether), permite ejecutar smart contracts (contratos inteligentes), lo que habilita las aplicaciones descentralizadas (DApps)."
+    },
+    {
+      "id": 36,
+      "topic": "DApps",
+      "difficulty": "easy",
+      "question": "¿Qué es una DApp?",
+      "options": [
+        "A) Una aplicación distribuida en múltiples servidores",
+        "B) Una aplicación descentralizada que corre sobre una blockchain",
+        "C) Una aplicación de escritorio multiplataforma",
+        "D) Una aplicación con diseño adaptativo (responsive)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Una DApp (Decentralized Application) es una aplicación que corre sobre una blockchain, aprovechando su naturaleza descentralizada y los smart contracts."
+    },
+    {
+      "id": 37,
+      "topic": "DApps",
+      "difficulty": "medium",
+      "question": "¿Qué combina la DApp CopyrightLY para la gestión de derechos de autor?",
+      "options": [
+        "A) Inteligencia Artificial y bases de datos relacionales",
+        "B) Blockchain y Web Semántica",
+        "C) Cloud computing y criptografía simétrica",
+        "D) P2P y machine learning"
+      ],
+      "correctAnswer": "B",
+      "explanation": "CopyrightLY es un ejemplo de DApp que combina blockchain (para reclamaciones de autoría con tokens CLY) y Web Semántica (para metadatos semánticos de licencias NFT)."
+    },
+    {
+      "id": 38,
+      "topic": "DApps",
+      "difficulty": "medium",
+      "question": "¿Qué mecanismo usa CopyrightLY para la curación de reclamaciones de derechos de autor?",
+      "options": [
+        "A) Votación por mayoría simple de usuarios",
+        "B) Token-curated claims usando staking de tokens CLY en una bonding curve",
+        "C) Revisión manual por abogados especializados",
+        "D) Validación automática por IA"
+      ],
+      "correctAnswer": "B",
+      "explanation": "CopyrightLY usa un sistema de token-curated claims: los usuarios hacen staking de tokens CLY con una bonding curve para validar o impugnar reclamaciones de autoría."
+    },
+    {
+      "id": 39,
+      "topic": "DApps",
+      "difficulty": "medium",
+      "question": "¿En qué marketplaces se pueden intercambiar los NFTs de licencias de CopyrightLY?",
+      "options": [
+        "A) Amazon y eBay",
+        "B) OpenSea y Rarible",
+        "C) Coinbase y Binance",
+        "D) Steam y Epic Games Store"
+      ],
+      "correctAnswer": "B",
+      "explanation": "CopyrightLY permite licenciar contenido como NFTs con metadatos semánticos y estos NFTs pueden intercambiarse en los principales marketplaces: OpenSea y Rarible."
+    },
+    {
+      "id": 40,
+      "topic": "DApps",
+      "difficulty": "easy",
+      "question": "¿Qué plataforma es un directorio de DApps que permite explorar aplicaciones descentralizadas?",
+      "options": [
+        "A) GitHub",
+        "B) DappRadar",
+        "C) ProductHunt",
+        "D) AppStore"
+      ],
+      "correctAnswer": "B",
+      "explanation": "DappRadar es el principal directorio de DApps donde se pueden explorar, comparar y descubrir aplicaciones descentralizadas en múltiples blockchains."
+    }
+  ]
+}

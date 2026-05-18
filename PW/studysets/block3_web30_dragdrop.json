@@ -1,0 +1,268 @@
+{
+  "metadata": {
+    "title": "Web 3.0 — Drag & Drop",
+    "subject": "Proyecto Web — Computer Engineering Degree",
+    "professor": "Roberto García — Universitat de Lleida (UdL)",
+    "format": "drag-and-drop",
+    "totalQuestions": 10,
+    "topics": ["RDFa", "JSON-LD", "Schema.org", "Descentralización", "DApps"]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "algorithm": "RDFa Annotation — Person (FOAF)",
+      "topic": "RDFa",
+      "difficulty": "medium",
+      "description": "Completa la anotación RDFa para describir una persona usando el vocabulario FOAF:",
+      "code": [
+        "<p [B1]=\"http://xmlns.com/foaf/0.1/\"",
+        "   [B2]=\"#manu\" [B3]=\"Person\">",
+        "  My name is",
+        "  <span [B4]=\"name\">Manu Sporny</span>",
+        "  and you can call me at",
+        "  <span [B5]=\"phone\">1-800-555-0527</span>.",
+        "</p>"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "vocab", "hint": "Atributo RDFa para definir el vocabulario base"},
+        {"id": "B2", "answer": "resource", "hint": "Atributo para el identificador URI del recurso"},
+        {"id": "B3", "answer": "typeof", "hint": "Atributo para el tipo de entidad descrita"},
+        {"id": "B4", "answer": "property", "hint": "Atributo para las propiedades del recurso"},
+        {"id": "B5", "answer": "property", "hint": "Mismo atributo para otra propiedad"}
+      ],
+      "tokens": ["vocab", "resource", "typeof", "property", "prefix", "href", "src", "content", "rel"],
+      "explanation": "En RDFa: vocab define el vocabulario base, resource el identificador URI del recurso, typeof el tipo (clase), y property las propiedades del recurso. Los atributos href y src son HTML estándar que RDFa reutiliza; vocab, resource, typeof y property son nuevos atributos semánticos."
+    },
+    {
+      "id": 2,
+      "algorithm": "RDFa — Multiple Vocabularies with Prefix",
+      "topic": "RDFa",
+      "difficulty": "hard",
+      "description": "Completa la anotación RDFa que combina los vocabularios FOAF y Open Vocab usando prefijos:",
+      "code": [
+        "<div [B1]=\"foaf: http://xmlns.com/foaf/0.1/",
+        "          ov: http://open.vocab.org/terms/\"",
+        "     [B2]=\"#alice\" [B3]=\"foaf:Person\">",
+        "  <span [B4]=\"foaf:name\">Alice</span>",
+        "  <span [B5]=\"ov:codeRepository\">https://github.com/alice</span>",
+        "</div>"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "prefix", "hint": "Atributo para definir múltiples prefijos de vocabulario"},
+        {"id": "B2", "answer": "resource", "hint": "Identificador URI del recurso descrito"},
+        {"id": "B3", "answer": "typeof", "hint": "Tipo de entidad, usando el prefijo foaf:"},
+        {"id": "B4", "answer": "property", "hint": "Propiedad del vocabulario FOAF"},
+        {"id": "B5", "answer": "property", "hint": "Propiedad del vocabulario Open Vocab"}
+      ],
+      "tokens": ["prefix", "resource", "typeof", "property", "vocab", "href", "src", "content", "about"],
+      "explanation": "El atributo 'prefix' permite declarar múltiples prefijos de vocabulario en un solo atributo. Cada prefijo actúa como abreviatura de una URI de vocabulario, permitiendo mezclar tipos y propiedades de distintos vocabularios."
+    },
+    {
+      "id": 3,
+      "algorithm": "JSON-LD — EventReservation",
+      "topic": "JSON-LD",
+      "difficulty": "medium",
+      "description": "Coloca las claves JSON-LD en el orden correcto para una reserva de evento de schema.org:",
+      "code": [
+        "{",
+        "  [B1]: \"http://schema.org\",",
+        "  [B2]: \"EventReservation\",",
+        "  \"reservationNumber\": \"E123456789\",",
+        "  \"reservationStatus\": \"http://schema.org/Confirmed\",",
+        "  \"underName\": {[B3]: \"Person\", \"name\": \"John Smith\"},",
+        "  \"reservationFor\": {",
+        "    [B4]: \"Event\",",
+        "    \"name\": \"Foo Fighters Concert\",",
+        "    \"startDate\": \"2027-03-06T19:30:00-08:00\",",
+        "    \"location\": {[B5]: \"Place\", \"name\": \"AT&T Park\"}",
+        "  }",
+        "}"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "@context", "hint": "Clave JSON-LD que define el vocabulario"},
+        {"id": "B2", "answer": "@type", "hint": "Clave JSON-LD que define el tipo de entidad principal"},
+        {"id": "B3", "answer": "@type", "hint": "Tipo del objeto incrustado (Person)"},
+        {"id": "B4", "answer": "@type", "hint": "Tipo del objeto Event"},
+        {"id": "B5", "answer": "@type", "hint": "Tipo del objeto Place"}
+      ],
+      "tokens": ["@context", "@type", "@id", "@vocab", "@graph", "@base", "@language", "@set"],
+      "explanation": "@context define el vocabulario base (aquí schema.org). @type especifica el tipo de entidad en cada objeto. Estos son los dos tokens @ más importantes en JSON-LD para describir recursos semánticos."
+    },
+    {
+      "id": 4,
+      "algorithm": "JSON-LD — Script Tag in HTML",
+      "topic": "JSON-LD",
+      "difficulty": "easy",
+      "description": "Completa la forma correcta de incluir un bloque JSON-LD en un documento HTML:",
+      "code": [
+        "<!DOCTYPE html>",
+        "<html>",
+        "<head>",
+        "  <title>Mi Página</title>",
+        "  <[B1] [B2]=\"[B3]\">",
+        "  {",
+        "    \"@context\": \"http://schema.org\",",
+        "    \"@type\": \"WebPage\",",
+        "    \"name\": \"Mi Página\"",
+        "  }",
+        "  </[B4]>",
+        "</head>",
+        "<body>...</body>",
+        "</html>"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "script", "hint": "Elemento HTML para incluir scripts y datos"},
+        {"id": "B2", "answer": "type", "hint": "Atributo que especifica el tipo de contenido del script"},
+        {"id": "B3", "answer": "application/ld+json", "hint": "Tipo MIME específico de JSON-LD"},
+        {"id": "B4", "answer": "script", "hint": "Cierre del mismo elemento HTML"}
+      ],
+      "tokens": ["script", "type", "application/ld+json", "link", "meta", "rel", "application/json", "text/javascript", "data"],
+      "explanation": "JSON-LD se incluye en HTML usando <script type=\"application/ld+json\">. El tipo MIME 'application/ld+json' es específico de JSON-LD y permite a rastreadores como Googlebot identificar y procesar los datos semánticos."
+    },
+    {
+      "id": 5,
+      "algorithm": "Schema.org Product — JSON-LD",
+      "topic": "Schema.org",
+      "difficulty": "hard",
+      "description": "Ordena los tipos schema.org correctos para anotar un producto con oferta y valoración:",
+      "code": [
+        "{",
+        "  \"@context\": \"http://schema.org\",",
+        "  \"@type\": [B1],",
+        "  \"name\": \"Auriculares Bluetooth\",",
+        "  \"description\": \"Auriculares de alta calidad\",",
+        "  \"offers\": {",
+        "    \"@type\": [B2],",
+        "    \"price\": \"49.99\",",
+        "    \"priceCurrency\": \"EUR\"",
+        "  },",
+        "  \"aggregateRating\": {",
+        "    \"@type\": [B3],",
+        "    \"ratingValue\": \"4.5\",",
+        "    \"reviewCount\": \"120\"",
+        "  },",
+        "  \"manufacturer\": {",
+        "    \"@type\": [B4],",
+        "    \"name\": \"AudioTech S.A.\"",
+        "  }",
+        "}"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "\"Product\"", "hint": "Tipo schema.org para un producto"},
+        {"id": "B2", "answer": "\"Offer\"", "hint": "Tipo schema.org para una oferta de venta"},
+        {"id": "B3", "answer": "\"AggregateRating\"", "hint": "Tipo schema.org para una valoración media"},
+        {"id": "B4", "answer": "\"Organization\"", "hint": "Tipo schema.org para una empresa u organización"}
+      ],
+      "tokens": ["\"Product\"", "\"Offer\"", "\"AggregateRating\"", "\"Organization\"", "\"Person\"", "\"Review\"", "\"ItemAvailability\"", "\"Brand\"", "\"PriceSpecification\""],
+      "explanation": "Schema.org tiene tipos específicos para cada entidad: Product para el artículo, Offer para detalles de venta, AggregateRating para la valoración media, Organization para la empresa fabricante."
+    },
+    {
+      "id": 6,
+      "algorithm": "Blockchain — Block Structure",
+      "topic": "Descentralización",
+      "difficulty": "medium",
+      "description": "Ordena los componentes de un bloque de la blockchain en la secuencia correcta de validación:",
+      "items": [
+        "Transacciones pendientes del mempool",
+        "Minero las agrupa en un nuevo bloque",
+        "Calcula el hash del bloque anterior",
+        "Añade datos del bloque + hash anterior",
+        "Realiza prueba de trabajo (Proof of Work)",
+        "Bloque validado y añadido a la cadena",
+        "Minero recibe recompensa (block reward)",
+        "Nodos de la red aceptan el nuevo bloque"
+      ],
+      "correctOrder": [1, 2, 3, 4, 5, 6, 7, 8],
+      "explanation": "El proceso de minado en Bitcoin: (1) Las transacciones esperan en el mempool → (2) El minero las selecciona y agrupa → (3) Obtiene el hash del bloque anterior → (4) Construye el bloque con datos + hash anterior → (5) Realiza el Proof of Work (encuentra el nonce) → (6) El bloque es validado por la red → (7) El minero recibe la recompensa (6.25 BTC en el período del curso) → (8) Los nodos actualizan su copia del blockchain."
+    },
+    {
+      "id": 7,
+      "algorithm": "Web Evolution Labels",
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "easy",
+      "description": "Arrastra cada característica a la versión de Web (1.0, 2.0 o 3.0) a la que corresponde:",
+      "categories": [
+        {"id": "web1", "label": "Web 1.0"},
+        {"id": "web2", "label": "Web 2.0"},
+        {"id": "web3", "label": "Web 3.0"}
+      ],
+      "items": [
+        {"id": "i1", "text": "Páginas estáticas, solo lectura", "correctCategory": "web1"},
+        {"id": "i2", "text": "Redes sociales y contenido generado por usuarios", "correctCategory": "web2"},
+        {"id": "i3", "text": "Aplicaciones a aplicaciones (semántica)", "correctCategory": "web3"},
+        {"id": "i4", "text": "Blogs y wikis colaborativas", "correctCategory": "web2"},
+        {"id": "i5", "text": "Personas a Aplicaciones", "correctCategory": "web1"},
+        {"id": "i6", "text": "DBpedia y datos enlazados (Linked Data)", "correctCategory": "web3"},
+        {"id": "i7", "text": "Mashups de APIs web", "correctCategory": "web2"},
+        {"id": "i8", "text": "Schema.org y Rich Results", "correctCategory": "web3"},
+        {"id": "i9", "text": "Páginas HTML individuales sin interacción", "correctCategory": "web1"}
+      ],
+      "explanation": "Web 1.0: consumo pasivo, páginas estáticas, personas usando aplicaciones. Web 2.0: participación activa, redes sociales, mashups, personas interactuando entre sí. Web 3.0: semántica formal, datos enlazados, aplicaciones comunicándose automáticamente con significado."
+    },
+    {
+      "id": 8,
+      "algorithm": "RDFa vs Microdata vs JSON-LD",
+      "topic": "Schema.org",
+      "difficulty": "medium",
+      "description": "Asigna cada característica al formato de anotación semántica correcto (RDFa, Microdata o JSON-LD):",
+      "categories": [
+        {"id": "rdfa", "label": "RDFa"},
+        {"id": "microdata", "label": "Microdata"},
+        {"id": "jsonld", "label": "JSON-LD"}
+      ],
+      "items": [
+        {"id": "i1", "text": "Usa atributos vocab, typeof, property, resource", "correctCategory": "rdfa"},
+        {"id": "i2", "text": "Usa atributos itemscope, itemtype, itemprop (HTML5 nativo)", "correctCategory": "microdata"},
+        {"id": "i3", "text": "Se incluye en <script type=\"application/ld+json\">", "correctCategory": "jsonld"},
+        {"id": "i4", "text": "Recomendado por Google para Schema.org actualmente", "correctCategory": "jsonld"},
+        {"id": "i5", "text": "Permite combinar múltiples vocabularios con prefix", "correctCategory": "rdfa"},
+        {"id": "i6", "text": "Separa los datos semánticos del HTML visible", "correctCategory": "jsonld"},
+        {"id": "i7", "text": "Soportado en HTML, SVG y MathML", "correctCategory": "rdfa"},
+        {"id": "i8", "text": "Serialización de RDF como JSON", "correctCategory": "jsonld"}
+      ],
+      "explanation": "RDFa: flexibilidad con múltiples vocabularios, inline en HTML. Microdata: más simple, HTML5 nativo. JSON-LD: separado del HTML, sintaxis JSON familiar, preferido por Google. Los tres soportan Schema.org."
+    },
+    {
+      "id": 9,
+      "algorithm": "CopyrightLY DApp — Process Flow",
+      "topic": "DApps",
+      "difficulty": "hard",
+      "description": "Ordena los pasos del proceso de reclamación de derechos de autor en CopyrightLY:",
+      "items": [
+        "Creador sube evidencia (ej: vídeo de YouTube)",
+        "Creador reclama autoría y hace staking de tokens CLY",
+        "La reclamación entra en período de impugnación",
+        "Impugnador hace staking de tokens CLY en contra",
+        "Bonding curve determina el precio según el soporte",
+        "Reclamación aceptada o rechazada por el mecanismo TCR",
+        "Creador emite licencia como NFT con metadatos semánticos",
+        "NFT se puede intercambiar en OpenSea o Rarible"
+      ],
+      "correctOrder": [1, 2, 3, 4, 5, 6, 7, 8],
+      "explanation": "El flujo de CopyrightLY: (1) Subida de evidencia → (2) Staking de tokens para reclamar → (3) Período de impugnación → (4) Posible impugnación con más staking → (5) La bonding curve evalúa el soporte → (6) Resolución del TCR → (7) Emisión de NFT de licencia con metadatos semánticos → (8) Trading del NFT en marketplace."
+    },
+    {
+      "id": 10,
+      "algorithm": "Open Graph Meta Tags",
+      "topic": "Facebook Open Graph",
+      "difficulty": "medium",
+      "description": "Completa las metaetiquetas Open Graph correctas para optimizar la compartición social de una página de artículo:",
+      "code": [
+        "<head>",
+        "  <meta [B1]=\"og:title\" [B2]=\"Título del Artículo\" />",
+        "  <meta [B1]=\"og:type\" [B2]=\"article\" />",
+        "  <meta [B1]=\"og:url\" [B2]=\"https://example.com/articulo\" />",
+        "  <meta [B1]=\"og:image\" [B2]=\"https://example.com/img.jpg\" />",
+        "  <meta [B1]=\"og:description\" [B2]=\"Descripción breve\" />",
+        "  <meta [B1]=\"og:site_name\" [B2]=\"Mi Blog\" />",
+        "</head>"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "property", "hint": "Atributo HTML que contiene el nombre de la propiedad Open Graph"},
+        {"id": "B2", "answer": "content", "hint": "Atributo HTML que contiene el valor de la propiedad"}
+      ],
+      "tokens": ["property", "content", "name", "value", "data", "rel", "href", "type", "itemprop"],
+      "explanation": "Las metaetiquetas Open Graph usan el atributo 'property' para el nombre (ej: og:title) y el atributo 'content' para el valor. Este patrón es diferente al de las metaetiquetas HTML estándar que usan 'name' en lugar de 'property'."
+    }
+  ]
+}

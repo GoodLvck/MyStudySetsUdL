@@ -1,0 +1,291 @@
+{
+  "metadata": {
+    "title": "Web 3.0 — Completar Frases",
+    "subject": "Proyecto Web — Computer Engineering Degree",
+    "professor": "Roberto García — Universitat de Lleida (UdL)",
+    "format": "fill-in-the-blank",
+    "totalQuestions": 30,
+    "topics": [
+      "Introducción a Web 3.0",
+      "RDFa",
+      "Schema.org",
+      "JSON-LD",
+      "Facebook Open Graph",
+      "Integración de Datos Semánticos",
+      "Descentralización",
+      "DApps"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "easy",
+      "sentence": "Según la clasificación de Nova Spivack (2007), la Web 3.0 combina ___, Conexiones y ___.",
+      "blanks": ["Información", "Semántica"],
+      "hints": ["Primera dimensión del modelo (lo que existe en la web)", "Tercera dimensión — da significado a los datos"],
+      "explanation": "El modelo de Nova Spivack describe Web 3.0 como la combinación de Información + Conexiones + Semántica (también expresado como Social + Conexiones + Semántica)."
+    },
+    {
+      "id": 2,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "easy",
+      "sentence": "En la evolución de la Web: Web 1.0 = personas a ___, Web 2.0 = personas a ___, Web 3.0 = ___ a ___.",
+      "blanks": ["aplicaciones", "personas", "aplicaciones", "aplicaciones"],
+      "hints": ["Tipo de interacción básica con páginas estáticas", "Redes sociales, colaboración", "Agentes software", "Comunicación máquina a máquina"],
+      "explanation": "La evolución de la Web refleja cómo cambia el modelo de interacción: Web 1.0 (personas consumen aplicaciones), Web 2.0 (personas interactúan entre sí), Web 3.0 (aplicaciones se comunican entre sí semánticamente)."
+    },
+    {
+      "id": 3,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "medium",
+      "sentence": "La semántica ___ usa desambiguación estadística y NLP, mientras que la semántica ___ usa datos estructurados como DBpedia.",
+      "blanks": ["implícita", "explícita"],
+      "hints": ["Inferida del contexto, no declarada formalmente", "Declarada explícitamente en los datos"],
+      "explanation": "La semántica implícita se infiere mediante NLP/estadística (ej: páginas de desambiguación de Wikipedia). La semántica explícita está declarada en datos estructurados (ej: http://dbpedia.org/resource/Ronaldo)."
+    },
+    {
+      "id": 4,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "easy",
+      "sentence": "Los cuatro formatos de anotación semántica de HTML más usados son: ___, Microformats, ___ y Microdata.",
+      "blanks": ["RDFa", "JSON-LD"],
+      "hints": ["RDF in Attributes", "JSON for Linked Data"],
+      "explanation": "Los cuatro formatos principales son RDFa, Microformats, JSON-LD y Microdata. Las estadísticas de adopción se pueden consultar en w3techs.com."
+    },
+    {
+      "id": 5,
+      "topic": "Introducción a Web 3.0",
+      "difficulty": "medium",
+      "sentence": "En la Web of Data, los datos se conectan siguiendo la estructura: ___ → Producto → ___ → Cliente.",
+      "blanks": ["Proveedor", "Pedido/Order"],
+      "hints": ["Entidad que ofrece productos", "Transacción de compra"],
+      "explanation": "La Web of Data conecta entidades con datos estructurados enlazados: Proveedor → Producto → Pedido → Cliente, a diferencia de la Web of Documents que enlaza páginas HTML."
+    },
+    {
+      "id": 6,
+      "topic": "RDFa",
+      "difficulty": "easy",
+      "sentence": "RDFa significa ___ in ___ y permite incluir anotaciones RDF directamente en documentos HTML.",
+      "blanks": ["RDF", "Attributes"],
+      "hints": ["Resource Description Framework", "Atributos HTML"],
+      "explanation": "RDFa = RDF in Attributes. Extiende HTML con atributos semánticos nuevos (vocab, typeof, property, resource, prefix) reutilizando también href y src."
+    },
+    {
+      "id": 7,
+      "topic": "RDFa",
+      "difficulty": "easy",
+      "sentence": "Para añadir anotaciones RDFa, el primer paso es definir el vocabulario con el atributo ___, por ejemplo: <p ___=\"http://xmlns.com/foaf/0.1/\">.",
+      "blanks": ["vocab", "vocab"],
+      "hints": ["Atributo que define el vocabulario base", "Mismo atributo en el ejemplo HTML"],
+      "explanation": "El atributo 'vocab' define el vocabulario base para las anotaciones RDFa dentro de ese elemento y sus descendientes."
+    },
+    {
+      "id": 8,
+      "topic": "RDFa",
+      "difficulty": "easy",
+      "sentence": "En RDFa, el atributo ___ especifica el tipo de entidad (por ejemplo, \"Person\") y el atributo ___ describe sus propiedades.",
+      "blanks": ["typeof", "property"],
+      "hints": ["El 'tipo' o 'clase' de la entidad descrita", "Las 'propiedades' o atributos de la entidad"],
+      "explanation": "typeof=\"Person\" declara el tipo de entidad; property=\"name\" declara que un elemento HTML contiene el valor de una propiedad del recurso."
+    },
+    {
+      "id": 9,
+      "topic": "RDFa",
+      "difficulty": "medium",
+      "sentence": "Para identificar un recurso en RDFa se usa el atributo ___, y para combinar múltiples vocabularios se usa el atributo ___.",
+      "blanks": ["resource", "prefix"],
+      "hints": ["Define el URI del recurso descrito", "Permite abreviar URIs de vocabularios adicionales"],
+      "explanation": "resource=\"#manu\" establece el identificador del recurso; prefix=\"ov: http://open.vocab.org/terms/\" define prefijos para usar múltiples vocabularios."
+    },
+    {
+      "id": 10,
+      "topic": "RDFa",
+      "difficulty": "easy",
+      "sentence": "El vocabulario ___ (Friend Of A Friend), disponible en http://xmlns.com/foaf/0.1/, se usa en RDFa para describir personas y sus relaciones.",
+      "blanks": ["FOAF"],
+      "hints": ["Acrónimo de Friend Of A Friend"],
+      "explanation": "FOAF (Friend Of A Friend) es un vocabulario RDF estándar para describir personas, sus propiedades (nombre, email, etc.) y sus relaciones sociales."
+    },
+    {
+      "id": 11,
+      "topic": "RDFa",
+      "difficulty": "medium",
+      "sentence": "La herramienta online ___.info/play/ permite visualizar anotaciones RDFa, mientras que ___.google.com/test/rich-results valida los rich results.",
+      "blanks": ["rdfa", "search"],
+      "hints": ["Nombre del formato de anotación", "Motor de búsqueda de Google"],
+      "explanation": "rdfa.info/play/ es la herramienta de visualización de RDFa; search.google.com/test/rich-results permite validar las anotaciones semánticas para Google."
+    },
+    {
+      "id": 12,
+      "topic": "Schema.org",
+      "difficulty": "easy",
+      "sentence": "Schema.org es un vocabulario para la anotación semántica de HTML promovido por ___, Yahoo, ___ y Yandex.",
+      "blanks": ["Google", "Bing"],
+      "hints": ["Motor de búsqueda de Alphabet", "Motor de búsqueda de Microsoft"],
+      "explanation": "Schema.org fue creado y es mantenido conjuntamente por los cuatro principales motores de búsqueda: Google, Yahoo, Bing y Yandex."
+    },
+    {
+      "id": 13,
+      "topic": "Schema.org",
+      "difficulty": "easy",
+      "sentence": "Las anotaciones Schema.org en páginas web permiten a los motores de búsqueda mostrar ___ (también llamados rich snippets) en los resultados de búsqueda.",
+      "blanks": ["Rich Results"],
+      "hints": ["Resultados enriquecidos con datos adicionales como estrellas, precios, etc."],
+      "explanation": "Los Rich Results o rich snippets son los resultados de búsqueda enriquecidos con información adicional (valoraciones, precios, fechas de eventos, etc.) extraída de las anotaciones semánticas."
+    },
+    {
+      "id": 14,
+      "topic": "Schema.org",
+      "difficulty": "medium",
+      "sentence": "Schema.org soporta tres formatos de serialización: ___, ___ y JSON-LD.",
+      "blanks": ["RDFa", "Microdata"],
+      "hints": ["RDF in Attributes", "Formato de anotación semántica nativo de HTML5"],
+      "explanation": "Schema.org es compatible con RDFa, Microdata y JSON-LD. Los tres formatos permiten anotar el mismo contenido HTML con vocabulario schema.org."
+    },
+    {
+      "id": 15,
+      "topic": "JSON-LD",
+      "difficulty": "easy",
+      "sentence": "JSON-LD significa JSON for ___ Data y es una serialización de ___ en formato JSON.",
+      "blanks": ["Linked", "RDF"],
+      "hints": ["Datos enlazados", "Resource Description Framework"],
+      "explanation": "JSON-LD (JSON for Linked Data) es una serialización de RDF que usa la sintaxis JSON, facilitando la adopción por desarrolladores ya familiarizados con JSON."
+    },
+    {
+      "id": 16,
+      "topic": "JSON-LD",
+      "difficulty": "easy",
+      "sentence": "En JSON-LD, la propiedad ___ define el vocabulario o contexto, y la propiedad ___ especifica el tipo de entidad.",
+      "blanks": ["@context", "@type"],
+      "hints": ["Empieza con @ y define el vocabulario", "Empieza con @ e indica la clase de la entidad"],
+      "explanation": "\"@context\" define el vocabulario (ej: \"http://schema.org\") y \"@type\" especifica el tipo de entidad (ej: \"EventReservation\")."
+    },
+    {
+      "id": 17,
+      "topic": "JSON-LD",
+      "difficulty": "medium",
+      "sentence": "En HTML, el JSON-LD se incluye dentro de un elemento <script type=\"___\">...</script>.",
+      "blanks": ["application/ld+json"],
+      "hints": ["Tipo MIME específico para JSON-LD"],
+      "explanation": "El tipo MIME application/ld+json identifica el contenido del script como JSON-LD, permitiendo a los navegadores y rastreadores procesarlo como datos semánticos."
+    },
+    {
+      "id": 18,
+      "topic": "JSON-LD",
+      "difficulty": "medium",
+      "sentence": "Google ___ usa JSON-LD para anotar correos electrónicos, permitiendo destacarlos en la bandeja de entrada y añadir botones de acción.",
+      "blanks": ["Gmail"],
+      "hints": ["Servicio de correo electrónico de Google"],
+      "explanation": "Google Gmail usa JSON-LD markup para enriquecer los emails con información estructurada: reservas de vuelos, eventos, pedidos, etc., que se muestran directamente en la bandeja de entrada."
+    },
+    {
+      "id": 19,
+      "topic": "JSON-LD",
+      "difficulty": "hard",
+      "sentence": "En el esquema EventReservation de schema.org, la propiedad ___ contiene los datos del titular de la reserva, y la propiedad ___ contiene los detalles del evento.",
+      "blanks": ["underName", "reservationFor"],
+      "hints": ["La persona a cuyo nombre está la reserva", "El objeto al que hace referencia la reserva"],
+      "explanation": "underName contiene el objeto Person con el nombre del titular; reservationFor contiene el objeto Event con nombre, fecha y lugar del evento."
+    },
+    {
+      "id": 20,
+      "topic": "Facebook Open Graph",
+      "difficulty": "easy",
+      "sentence": "El protocolo Open Graph de Facebook es una alternativa a schema.org para metadatos de ___ social, y está documentado en ___.",
+      "blanks": ["compartición", "http://ogp.me/"],
+      "hints": ["Acción de compartir contenido en redes sociales", "URL oficial del protocolo"],
+      "explanation": "Open Graph (ogp.me) define metadatos para la compartición social: og:title, og:image, og:description y og:type son los más comunes."
+    },
+    {
+      "id": 21,
+      "topic": "Integración de Datos Semánticos",
+      "difficulty": "medium",
+      "sentence": "___ es una plataforma de datos farmacológicos abiertos que integra ___ billones de triples RDF de múltiples fuentes biomédicas.",
+      "blanks": ["OpenPHACTS", "3"],
+      "hints": ["Open PHArmacological Concept Triple Store", "Número de miles de millones de hechos"],
+      "explanation": "OpenPHACTS (Open Pharmacological Data) integra datos de múltiples fuentes biomédicas en un grafo de conocimiento con 3 billion (3.000 millones) de triples RDF."
+    },
+    {
+      "id": 22,
+      "topic": "Integración de Datos Semánticos",
+      "difficulty": "medium",
+      "sentence": "___ (Financial Industry Business Ontology) es un ejemplo de aplicación de Web Semántica en la industria ___ y bancaria.",
+      "blanks": ["FIBO", "financiera"],
+      "hints": ["Acrónimo de Financial Industry Business Ontology", "Sector económico principal de esta ontología"],
+      "explanation": "FIBO es una ontología semántica para el sector financiero que permite la interoperabilidad semántica de datos entre instituciones bancarias y financieras."
+    },
+    {
+      "id": 23,
+      "topic": "Descentralización",
+      "difficulty": "easy",
+      "sentence": "En un sistema ___izado, el control está repartido entre entidades independientes sin un único controlador, mientras que en un sistema distribuido, los componentes están en ___ separadas.",
+      "blanks": ["descentraliz", "ubicaciones"],
+      "hints": ["Tipo de sistema donde nadie tiene el control total", "Localizaciones físicas o lógicas"],
+      "explanation": "Descentralización = control compartido sin autoridad central. Distribución = componentes en múltiples ubicaciones. Bitcoin es ambas: descentralizado Y distribuido."
+    },
+    {
+      "id": 24,
+      "topic": "Descentralización",
+      "difficulty": "medium",
+      "sentence": "En una blockchain, cada bloque contiene los datos de las transacciones más el ___ del bloque anterior, formando una cadena que hace los datos prácticamente inalterables.",
+      "blanks": ["hash"],
+      "hints": ["Función criptográfica de resumen que identifica un bloque"],
+      "explanation": "El hash del bloque anterior crea la 'cadena' (chain) de bloques (blocks). Modificar cualquier bloque cambiaría su hash, invalidando todos los bloques posteriores."
+    },
+    {
+      "id": 25,
+      "topic": "Descentralización",
+      "difficulty": "medium",
+      "sentence": "El ___ de Bitcoin es el proceso por el cual la recompensa por bloque minado se reduce a la mitad periódicamente; en el momento del curso era de ___ BTC.",
+      "blanks": ["halving", "6.25"],
+      "hints": ["Nombre del evento de reducción de recompensa", "Número de bitcoins por bloque en el momento del curso"],
+      "explanation": "El halving de Bitcoin ocurre aproximadamente cada 4 años (cada 210.000 bloques). En el período del curso la recompensa era 6.25 BTC por bloque."
+    },
+    {
+      "id": 26,
+      "topic": "Descentralización",
+      "difficulty": "easy",
+      "sentence": "___ es una blockchain que, además de criptomoneda, permite ejecutar ___ ___ (contratos inteligentes) para crear aplicaciones descentralizadas.",
+      "blanks": ["Ethereum", "smart", "contracts"],
+      "hints": ["Blockchain creada por Vitalik Buterin", "Adjetivo en inglés de 'inteligente'", "Contratos en inglés"],
+      "explanation": "Ethereum introdujo los smart contracts, programas que se ejecutan automáticamente en la blockchain cuando se cumplen ciertas condiciones, habilitando las DApps."
+    },
+    {
+      "id": 27,
+      "topic": "DApps",
+      "difficulty": "easy",
+      "sentence": "Una DApp es una aplicación ___ que se ejecuta sobre una ___, aprovechando sus propiedades de inmutabilidad y descentralización.",
+      "blanks": ["descentralizada", "blockchain"],
+      "hints": ["Tipo de aplicación sin servidor central", "Tecnología de registro distribuido"],
+      "explanation": "DApp = Decentralized Application. Se ejecuta sobre una blockchain usando smart contracts, sin depender de servidores centralizados."
+    },
+    {
+      "id": 28,
+      "topic": "DApps",
+      "difficulty": "medium",
+      "sentence": "CopyrightLY combina ___ y ___ Semántica para permitir reclamar la autoría de contenidos con evidencias como vídeos de YouTube.",
+      "blanks": ["blockchain", "Web"],
+      "hints": ["Tecnología de registro distribuido e inmutable", "Capa semántica de la web"],
+      "explanation": "CopyrightLY es un ejemplo paradigmático que fusiona blockchain (para reclamaciones inmutables con tokens CLY) y Web Semántica (para metadatos de licencias en NFTs)."
+    },
+    {
+      "id": 29,
+      "topic": "DApps",
+      "difficulty": "hard",
+      "sentence": "En CopyrightLY, los usuarios hacen ___ de tokens ___ usando una bonding curve para validar o impugnar reclamaciones de derechos de autor.",
+      "blanks": ["staking", "CLY"],
+      "hints": ["Bloquear tokens como garantía", "Nombre del token nativo de CopyrightLY"],
+      "explanation": "El mecanismo de token-curated claims usa staking de tokens CLY: quien reclama y quien impugna bloquean tokens, con la bonding curve determinando el precio según el soporte acumulado."
+    },
+    {
+      "id": 30,
+      "topic": "DApps",
+      "difficulty": "medium",
+      "sentence": "___ es un directorio de DApps donde se pueden explorar aplicaciones descentralizadas, y ___ es una plataforma de financiación de desarrollo open source mediante blockchain.",
+      "blanks": ["DappRadar", "Gitcoin"],
+      "hints": ["Plataforma de ranking y descubrimiento de DApps", "Plataforma de financiación del ecosistema open source con crypto"],
+      "explanation": "DappRadar agrega y clasifica DApps de múltiples blockchains. Gitcoin usa mecanismos blockchain para financiar proyectos de código abierto de forma descentralizada."
+    }
+  ]
+}
