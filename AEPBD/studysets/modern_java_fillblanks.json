@@ -1,0 +1,282 @@
+{
+  "metadata": {
+    "title": "Modern Java — Completar Frases",
+    "subject": "AEPBD — Ampliació BBDD i Enginyeria del Software",
+    "professor": "Juan Manuel Gimeno Illa",
+    "format": "fill-in-the-blank",
+    "totalQuestions": 30,
+    "topics": ["Evolución de Java", "Default Methods", "Lambdas", "Interfaces Funcionales", "Method References", "Optional", "Streams"]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Default Methods",
+      "difficulty": "easy",
+      "sentence": "Desde Java 8, las interfaces pueden declarar métodos con implementación usando la palabra clave ___.",
+      "blanks": ["default"],
+      "hints": ["Palabra clave que permite implementar métodos en interfaces"],
+      "explanation": "Los default methods permiten añadir métodos con implementación a interfaces existentes sin romper las implementaciones existentes."
+    },
+    {
+      "id": 2,
+      "topic": "Evolución de Java",
+      "difficulty": "easy",
+      "sentence": "Java 8 introdujo las expresiones ___, los Streams y los default methods en interfaces.",
+      "blanks": ["lambda"],
+      "hints": ["Expresiones que representan funciones anónimas"],
+      "explanation": "Java 8 (marzo 2014) fue la versión que introdujo las expresiones lambda, Streams y default methods."
+    },
+    {
+      "id": 3,
+      "topic": "Evolución de Java",
+      "difficulty": "easy",
+      "sentence": "Desde Java 9, se publica una nueva versión de Java cada ___ meses.",
+      "blanks": ["6"],
+      "hints": ["Número que indica el intervalo entre versiones"],
+      "explanation": "El ciclo de lanzamiento de Java desde Java 9 es de 6 meses (marzo y septiembre)."
+    },
+    {
+      "id": 4,
+      "topic": "Evolución de Java",
+      "difficulty": "medium",
+      "sentence": "Las versiones ___ de Java reciben soporte extendido y se publican aproximadamente cada 2 años. Java 11, 17 y 21 son ejemplos.",
+      "blanks": ["LTS"],
+      "hints": ["Siglas en inglés para 'Long-Term Support'"],
+      "explanation": "Las versiones LTS (Long-Term Support) de Java reciben actualizaciones de seguridad y correcciones durante varios años."
+    },
+    {
+      "id": 5,
+      "topic": "Evolución de Java",
+      "difficulty": "medium",
+      "sentence": "Java 21 introdujo los hilos virtuales mediante el proyecto ___, permitiendo alta concurrencia con hilos ligeros gestionados por la JVM.",
+      "blanks": ["Loom"],
+      "hints": ["Nombre del proyecto de JDK para concurrencia ligera"],
+      "explanation": "Project Loom introdujo los virtual threads en Java 21, permitiendo miles o millones de hilos concurrentes sin el overhead de los hilos del sistema operativo."
+    },
+    {
+      "id": 6,
+      "topic": "Default Methods",
+      "difficulty": "medium",
+      "sentence": "Cuando una clase y una interfaz proporcionan el mismo método, la regla de resolución establece que ___ siempre gana sobre los default methods.",
+      "blanks": ["la clase"],
+      "hints": ["Elemento de la jerarquía de tipos que tiene mayor prioridad"],
+      "explanation": "Primera regla de resolución de conflictos: las clases (y métodos declarados en clases) siempre tienen prioridad sobre los default methods de las interfaces."
+    },
+    {
+      "id": 7,
+      "topic": "Default Methods",
+      "difficulty": "medium",
+      "sentence": "Si dos interfaces proporcionan el mismo default method y una extiende a la otra, gana la ___, ya que es más específica.",
+      "blanks": ["sub-interfaz"],
+      "hints": ["La interfaz derivada/hija"],
+      "explanation": "Segunda regla de resolución: entre dos interfaces, la sub-interfaz (la más específica/derivada) gana sobre la más general."
+    },
+    {
+      "id": 8,
+      "topic": "Default Methods",
+      "difficulty": "hard",
+      "sentence": "Para resolver explícitamente un conflicto de default methods ambiguos, la clase debe ___ el método y llamar al deseado con la sintaxis `Interfaz.super.método()`.",
+      "blanks": ["sobrescribir (override)"],
+      "hints": ["Acción que realiza la clase para resolver el conflicto"],
+      "explanation": "Tercera regla: si el conflicto es ambiguo, la clase debe explícitamente sobrescribir el método y usar la sintaxis NombreInterfaz.super.método() para delegar."
+    },
+    {
+      "id": 9,
+      "topic": "Lambdas",
+      "difficulty": "easy",
+      "sentence": "Una expresión lambda es una representación concisa de una ___ anónima que puede pasarse como argumento.",
+      "blanks": ["función"],
+      "hints": ["Concepto de programación funcional"],
+      "explanation": "Una lambda representa una función anónima: no tiene nombre, pero tiene parámetros, cuerpo y tipo de retorno."
+    },
+    {
+      "id": 10,
+      "topic": "Lambdas",
+      "difficulty": "easy",
+      "sentence": "La sintaxis de una lambda con múltiples sentencias es: (parámetros) -> ___ sentencias; ___.",
+      "blanks": ["{", "}"],
+      "hints": ["Delimitadores de bloque en Java"],
+      "explanation": "Cuando el cuerpo de la lambda tiene múltiples sentencias, se usan llaves: (params) -> { sentencia1; sentencia2; return x; }"
+    },
+    {
+      "id": 11,
+      "topic": "Lambdas",
+      "difficulty": "medium",
+      "sentence": "Las lambdas solo pueden capturar variables locales del entorno que sean ___ ___ (que no se reasignan).",
+      "blanks": ["effectively", "final"],
+      "hints": ["El adverbio inglés para 'de manera efectiva'", "Modificador que indica que no cambia"],
+      "explanation": "Las lambdas capturan variables locales del ámbito léxico externo, pero solo si son effectively final (no se reasignan aunque no lleven la palabra clave final)."
+    },
+    {
+      "id": 12,
+      "topic": "Lambdas",
+      "difficulty": "medium",
+      "sentence": "La evolución del código para filtrar manzanas fue: clase explícita → clase anónima → ___ → referencia a método.",
+      "blanks": ["lambda"],
+      "hints": ["La simplificación intermedia entre clases anónimas y referencias a método"],
+      "explanation": "La progresión hacia código más conciso: implementación de clase explícita → clase anónima interna → expresión lambda → referencia a método."
+    },
+    {
+      "id": 13,
+      "topic": "Interfaces Funcionales",
+      "difficulty": "easy",
+      "sentence": "Una interfaz funcional tiene exactamente ___ método abstracto.",
+      "blanks": ["un (1)"],
+      "hints": ["Número cardinal"],
+      "explanation": "La definición de interfaz funcional es: exactamente un método abstracto (Single Abstract Method - SAM). Puede tener defaults y estáticos adicionales."
+    },
+    {
+      "id": 14,
+      "topic": "Interfaces Funcionales",
+      "difficulty": "easy",
+      "sentence": "La anotación ___ no es obligatoria, pero es buena práctica porque el compilador verifica que la interfaz tenga exactamente un método abstracto.",
+      "blanks": ["@FunctionalInterface"],
+      "hints": ["Anotación del paquete java.lang"],
+      "explanation": "@FunctionalInterface es opcional pero útil: el compilador lanza error si la interfaz tiene más (o ningún) método abstracto."
+    },
+    {
+      "id": 15,
+      "topic": "Interfaces Funcionales",
+      "difficulty": "medium",
+      "sentence": "La interfaz funcional `___<T>` representa una función de tipo T → void, útil para operaciones con efectos secundarios.",
+      "blanks": ["Consumer"],
+      "hints": ["Verbo que describe consumir/procesar algo sin devolver resultado"],
+      "explanation": "Consumer<T> acepta un T y no devuelve nada. Su método abstracto es void accept(T t)."
+    },
+    {
+      "id": 16,
+      "topic": "Interfaces Funcionales",
+      "difficulty": "medium",
+      "sentence": "Para evitar el autoboxing de int a Integer en lambdas sobre enteros, se usa la especialización primitiva ___ en lugar de `Predicate<Integer>`.",
+      "blanks": ["IntPredicate"],
+      "hints": ["Prefijo del tipo primitivo + nombre de la interfaz funcional"],
+      "explanation": "Las especializaciones primitivas (IntPredicate, LongConsumer, DoubleFunction, etc.) operan directamente sobre tipos primitivos, evitando el coste del boxing."
+    },
+    {
+      "id": 17,
+      "topic": "Interfaces Funcionales",
+      "difficulty": "hard",
+      "sentence": "La interfaz funcional `BinaryOperator<T>` representa la función ___, tomando dos argumentos del mismo tipo y devolviendo el mismo tipo.",
+      "blanks": ["(T, T) → T"],
+      "hints": ["Notación funcional con dos argumentos del mismo tipo"],
+      "explanation": "BinaryOperator<T> extiende BiFunction<T,T,T>. Su método es T apply(T t1, T t2). Útil para operaciones de reducción."
+    },
+    {
+      "id": 18,
+      "topic": "Method References",
+      "difficulty": "easy",
+      "sentence": "La referencia a método `System.out::println` es equivalente a la lambda ___.",
+      "blanks": ["(String s) -> System.out.println(s)"],
+      "hints": ["Lambda que llama a println con un String"],
+      "explanation": "System.out::println es una referencia a un método de instancia de un objeto específico (System.out). Equivale a s -> System.out.println(s)."
+    },
+    {
+      "id": 19,
+      "topic": "Method References",
+      "difficulty": "medium",
+      "sentence": "La lambda `(str, i) -> str.substring(i)` se puede reescribir como referencia a método: ___.",
+      "blanks": ["String::substring"],
+      "hints": ["Clase::método donde el primer parámetro es la instancia receptora"],
+      "explanation": "String::substring es una referencia a método de instancia de tipo arbitrario. El primer parámetro lambda (str) es el objeto receptor."
+    },
+    {
+      "id": 20,
+      "topic": "Method References",
+      "difficulty": "medium",
+      "sentence": "Una referencia a constructor para `(w) -> new Apple(w)` se escribe como ___ y tiene tipo funcional `Function<Integer, Apple>`.",
+      "blanks": ["Apple::new"],
+      "hints": ["Clase seguida de :: y la palabra clave de construcción"],
+      "explanation": "Las referencias a constructores usan la sintaxis Clase::new. El tipo funcional depende del constructor: si acepta Integer, el tipo es Function<Integer, Apple>."
+    },
+    {
+      "id": 21,
+      "topic": "Optional",
+      "difficulty": "easy",
+      "sentence": "Para crear un Optional que contiene con certeza un valor no nulo, se usa `Optional.___( value )`.",
+      "blanks": ["of"],
+      "hints": ["Método de fábrica para valor no nulo"],
+      "explanation": "Optional.of(value) crea un Optional con el valor. Si value es null, lanza NullPointerException en tiempo de ejecución."
+    },
+    {
+      "id": 22,
+      "topic": "Optional",
+      "difficulty": "easy",
+      "sentence": "El método `___.orElse(\"Unknown\")` devuelve el valor del Optional si está presente, o \"Unknown\" en caso contrario.",
+      "blanks": ["optional"],
+      "hints": ["Variable que contiene un Optional"],
+      "explanation": "orElse(defaultValue) es una operación de extracción: devuelve el valor si está presente, o el valor por defecto indicado."
+    },
+    {
+      "id": 23,
+      "topic": "Optional",
+      "difficulty": "medium",
+      "sentence": "Para encadenar Optionals con métodos que también devuelven Optional, se usa ___ en lugar de map para evitar `Optional<Optional<T>>`.",
+      "blanks": ["flatMap"],
+      "hints": ["Operación que aplana el resultado de map"],
+      "explanation": "flatMap en Optional es análogo al flatMap en Streams: aplana el Optional<Optional<T>> que produciría map cuando la función ya devuelve Optional."
+    },
+    {
+      "id": 24,
+      "topic": "Optional",
+      "difficulty": "hard",
+      "sentence": "La cadena `optPerson.flatMap(Person::getCar).flatMap(Car::getInsurance).___(Insurance::getName).orElse(\"Unknown\")` obtiene el nombre de la aseguradora.",
+      "blanks": ["map"],
+      "hints": ["Operación que transforma el valor cuando el método devuelve String (no Optional)"],
+      "explanation": "Se usa map (no flatMap) para el último paso porque Insurance::getName devuelve String directamente, no Optional<String>."
+    },
+    {
+      "id": 25,
+      "topic": "Streams",
+      "difficulty": "easy",
+      "sentence": "Para obtener un Stream a partir de una Collection, se llama al método ___ sobre la colección.",
+      "blanks": ["stream()"],
+      "hints": ["Método de instancia de Collection"],
+      "explanation": "collection.stream() obtiene un Stream secuencial. collection.parallelStream() obtiene un Stream paralelo."
+    },
+    {
+      "id": 26,
+      "topic": "Streams",
+      "difficulty": "easy",
+      "sentence": "La operación terminal ___ recopila los elementos de un Stream en una colección u otra estructura de datos.",
+      "blanks": ["collect()"],
+      "hints": ["La operación que termina el pipeline y acumula resultados"],
+      "explanation": "collect() es la operación terminal más versátil. Con Collectors.toList() produce una lista, con Collectors.joining() produce un String, etc."
+    },
+    {
+      "id": 27,
+      "topic": "Streams",
+      "difficulty": "medium",
+      "sentence": "Para ordenar los elementos de un Stream de personas por edad y luego por nombre se usa: `.sorted(___(Person::age).___(Person::name))`.",
+      "blanks": ["comparing", "thenComparing"],
+      "hints": ["Método estático de Comparator", "Método de instancia de Comparator para criterio secundario"],
+      "explanation": "Comparator.comparing(Person::age).thenComparing(Person::name) crea un Comparator compuesto: ordena por edad y, si hay empate, por nombre."
+    },
+    {
+      "id": 28,
+      "topic": "Streams",
+      "difficulty": "medium",
+      "sentence": "Para unir los elementos de un Stream de Strings en una cadena separada por comas, se usa `collect(Collectors.___(\", \"))`.",
+      "blanks": ["joining"],
+      "hints": ["Collector para concatenar strings con separador"],
+      "explanation": "Collectors.joining(\", \") concatena todos los elementos del Stream separándolos con \", \". Sin argumento, los concatena directamente."
+    },
+    {
+      "id": 29,
+      "topic": "Streams",
+      "difficulty": "hard",
+      "sentence": "Los Parallel Streams utilizan el framework ___ y el mecanismo ___ para dividir y procesar datos concurrentemente.",
+      "blanks": ["Fork/Join", "SplitIterator"],
+      "hints": ["Framework de paralelismo de Java 7", "Interfaz que permite dividir iteradores"],
+      "explanation": "Los Parallel Streams se apoyan en Fork/Join framework (introducido en Java 7) y en los Spliterators para dividir el Stream en partes procesables en paralelo."
+    },
+    {
+      "id": 30,
+      "topic": "Streams",
+      "difficulty": "hard",
+      "sentence": "Para activar el procesamiento paralelo en un pipeline de Stream ya existente, se añade la operación ___() al pipeline.",
+      "blanks": ["parallel"],
+      "hints": ["Método que convierte un Stream secuencial en paralelo"],
+      "explanation": ".parallel() convierte un Stream secuencial en paralelo usando el ForkJoinPool common. También se puede usar .parallelStream() directamente sobre la Collection."
+    }
+  ]
+}

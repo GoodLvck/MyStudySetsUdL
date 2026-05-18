@@ -1,0 +1,532 @@
+{
+  "metadata": {
+    "title": "Modern Java — Preguntas Test",
+    "subject": "AEPBD — Ampliació BBDD i Enginyeria del Software",
+    "professor": "Juan Manuel Gimeno Illa",
+    "format": "quiz",
+    "totalQuestions": 40,
+    "topics": ["Evolución de Java", "Default Methods", "Lambdas", "Interfaces Funcionales", "Method References", "Optional", "Streams"]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Evolución de Java",
+      "difficulty": "easy",
+      "question": "¿En qué versión de Java se introdujeron las expresiones lambda y los Streams?",
+      "options": ["A) Java 7", "B) Java 8", "C) Java 9", "D) Java 11"],
+      "correctAnswer": "B",
+      "explanation": "Java 8 (marzo 2014) introdujo las expresiones lambda, Streams y los default methods en interfaces."
+    },
+    {
+      "id": 2,
+      "topic": "Evolución de Java",
+      "difficulty": "easy",
+      "question": "¿Cuál es el ciclo de lanzamiento de versiones de Java desde Java 9?",
+      "options": ["A) Cada año", "B) Cada 6 meses", "C) Cada 3 meses", "D) Cada 2 años"],
+      "correctAnswer": "B",
+      "explanation": "Desde Java 9, Oracle lanza una nueva versión de Java cada 6 meses (marzo y septiembre)."
+    },
+    {
+      "id": 3,
+      "topic": "Evolución de Java",
+      "difficulty": "easy",
+      "question": "¿Con qué frecuencia se publica una versión LTS (Long-Term Support) de Java?",
+      "options": ["A) Cada 6 meses", "B) Cada año", "C) Cada 2 años", "D) Cada 3 años"],
+      "correctAnswer": "C",
+      "explanation": "Las versiones LTS de Java se publican aproximadamente cada 2 años. Java 11, 17 y 21 son versiones LTS."
+    },
+    {
+      "id": 4,
+      "topic": "Evolución de Java",
+      "difficulty": "medium",
+      "question": "¿Qué características importantes se introdujeron en Java 5?",
+      "options": ["A) Lambdas y Streams", "B) Generics, Annotations y Autoboxing", "C) Módulos y REPL", "D) Virtual Threads y Pattern Matching"],
+      "correctAnswer": "B",
+      "explanation": "Java 5 introdujo Generics, Annotations, Autoboxing/Unboxing y el bucle for-each mejorado."
+    },
+    {
+      "id": 5,
+      "topic": "Evolución de Java",
+      "difficulty": "medium",
+      "question": "¿Cuál de las siguientes es una versión LTS de Java?",
+      "options": ["A) Java 9", "B) Java 10", "C) Java 13", "D) Java 21"],
+      "correctAnswer": "D",
+      "explanation": "Java 21 (septiembre 2023) es una versión LTS. Otras LTS son Java 8, 11 y 17."
+    },
+    {
+      "id": 6,
+      "topic": "Evolución de Java",
+      "difficulty": "medium",
+      "question": "¿Qué característica principal se introdujo en Java 9?",
+      "options": ["A) Lambdas", "B) Generics", "C) Sistema de módulos (Project Jigsaw) y REPL (jshell)", "D) Sealed classes"],
+      "correctAnswer": "C",
+      "explanation": "Java 9 introdujo el sistema de módulos (Project Jigsaw) y el REPL interactivo jshell."
+    },
+    {
+      "id": 7,
+      "topic": "Evolución de Java",
+      "difficulty": "hard",
+      "question": "¿Qué es Project Loom y en qué versión de Java se incorporó?",
+      "options": ["A) Sistema de módulos, Java 9", "B) Virtual threads (hilos virtuales), Java 21", "C) Pattern matching, Java 17", "D) Records, Java 14"],
+      "correctAnswer": "B",
+      "explanation": "Project Loom introdujo los virtual threads (hilos virtuales) en Java 21 como LTS, permitiendo alta concurrencia con hilos ligeros gestionados por la JVM."
+    },
+    {
+      "id": 8,
+      "topic": "Evolución de Java",
+      "difficulty": "hard",
+      "question": "Ordenando cronológicamente la evolución de la concurrencia en Java, ¿cuál es el orden correcto?",
+      "options": [
+        "A) Thread → Fork/Join → j.u.concurrent → Parallel Streams → Virtual Threads",
+        "B) Thread → j.u.concurrent → Fork/Join → Parallel Streams/CompletableFuture → Virtual Threads",
+        "C) j.u.concurrent → Thread → Fork/Join → Virtual Threads → Parallel Streams",
+        "D) Thread → Parallel Streams → j.u.concurrent → Fork/Join → Virtual Threads"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Thread (1.0) → java.util.concurrent (Java 5/6) → Fork/Join (Java 7) → Parallel Streams / CompletableFuture (Java 8) → Virtual Threads / Project Loom (Java 21)."
+    },
+    {
+      "id": 9,
+      "topic": "Default Methods",
+      "difficulty": "easy",
+      "question": "¿Cuál es el problema principal que resuelven los default methods en Java 8?",
+      "options": [
+        "A) Permiten múltiples herencias de estado",
+        "B) Permiten añadir métodos a interfaces existentes sin romper implementaciones anteriores",
+        "C) Permiten definir métodos privados en interfaces",
+        "D) Eliminan la necesidad de clases abstractas"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Antes de Java 8, añadir un nuevo método a una interfaz rompía todas sus implementaciones existentes. Los default methods ofrecen una implementación por defecto."
+    },
+    {
+      "id": 10,
+      "topic": "Default Methods",
+      "difficulty": "easy",
+      "question": "¿Qué palabra clave se usa para declarar un default method en una interfaz?",
+      "options": ["A) abstract", "B) static", "C) default", "D) override"],
+      "correctAnswer": "C",
+      "explanation": "Se usa la palabra clave 'default' antes del tipo de retorno para declarar un método con implementación en una interfaz."
+    },
+    {
+      "id": 11,
+      "topic": "Default Methods",
+      "difficulty": "medium",
+      "question": "¿Cuál es la primera regla de resolución de conflictos cuando una clase hereda el mismo default method de múltiples interfaces?",
+      "options": [
+        "A) Las sub-interfaces siempre ganan",
+        "B) Las clases siempre ganan sobre los default methods",
+        "C) El método más específico siempre gana",
+        "D) El compilador lanza un error siempre"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Primera regla: las clases (y su jerarquía) siempre tienen prioridad sobre los default methods de las interfaces."
+    },
+    {
+      "id": 12,
+      "topic": "Default Methods",
+      "difficulty": "medium",
+      "question": "Si una interfaz B extiende la interfaz A, y ambas declaran un default method con el mismo nombre, ¿cuál prevalece?",
+      "options": [
+        "A) El de la interfaz A (más general)",
+        "B) El de la interfaz B (más específica, sub-interfaz)",
+        "C) El compilador lanza un error",
+        "D) El programador debe elegir explícitamente siempre"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Segunda regla de resolución: las sub-interfaces ganan sobre las interfaces más generales. B es más específica que A."
+    },
+    {
+      "id": 13,
+      "topic": "Default Methods",
+      "difficulty": "hard",
+      "question": "¿En qué se diferencian ahora las clases abstractas de las interfaces en Java 8?",
+      "options": [
+        "A) No hay diferencia, son equivalentes",
+        "B) Una clase puede extender múltiples clases abstractas; una interfaz no puede tener variables de instancia",
+        "C) Una clase solo puede extender UNA clase abstracta, pero implementar MÚLTIPLES interfaces; además las clases abstractas pueden tener variables de instancia",
+        "D) Las interfaces ya no pueden tener métodos abstractos"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Diferencias clave: (1) herencia simple para clases vs. múltiple implementación de interfaces; (2) las clases abstractas pueden tener variables de instancia y constructores, las interfaces no."
+    },
+    {
+      "id": 14,
+      "topic": "Default Methods",
+      "difficulty": "hard",
+      "question": "¿Cuál es el método `Collection.removeIf` en el contexto de los default methods?",
+      "options": [
+        "A) Un método abstracto añadido en Java 8",
+        "B) Un ejemplo de default method añadido a Collection sin romper implementaciones existentes",
+        "C) Un método estático de utilidad de la clase Collections",
+        "D) Un método que reemplaza al Iterator"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Collection.removeIf(Predicate<? super E> filter) fue añadido como default method en Java 8. Sin default methods, añadirlo habría roto todas las implementaciones de Collection."
+    },
+    {
+      "id": 15,
+      "topic": "Lambdas",
+      "difficulty": "easy",
+      "question": "¿Cuál es la sintaxis correcta de una expresión lambda en Java?",
+      "options": [
+        "A) [params] => expresión",
+        "B) (params) -> expresión",
+        "C) lambda(params): expresión",
+        "D) function(params) { return expresión; }"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La sintaxis de una lambda en Java es: (parámetros) -> expresión  o  (parámetros) -> { sentencias; }"
+    },
+    {
+      "id": 16,
+      "topic": "Lambdas",
+      "difficulty": "easy",
+      "question": "¿Cuál de las siguientes es una expresión lambda válida en Java?",
+      "options": [
+        "A) (Apple a1, Apple a2) -> Integer.compare(a1.getWeight(), a2.getWeight())",
+        "B) Apple a -> a.getWeight()",
+        "C) -> a.getWeight()",
+        "D) (a) => a.getWeight()"
+      ],
+      "correctAnswer": "A",
+      "explanation": "La opción A es una lambda válida. B requiere paréntesis si hay tipo explícito, C no tiene parámetros y D usa => que no es Java."
+    },
+    {
+      "id": 17,
+      "topic": "Lambdas",
+      "difficulty": "medium",
+      "question": "¿Qué es la 'parametrización del comportamiento' (behaviour parameterization)?",
+      "options": [
+        "A) Pasar tipos genéricos como parámetros de tipo",
+        "B) La capacidad de pasar múltiples comportamientos (código) como parámetros a un método",
+        "C) Usar parámetros con valores por defecto",
+        "D) El uso de anotaciones para parametrizar métodos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Behaviour parameterization es la habilidad de tomar múltiples comportamientos (código) como parámetros, lo que hace el código más adaptable a cambios de requisitos."
+    },
+    {
+      "id": 18,
+      "topic": "Lambdas",
+      "difficulty": "medium",
+      "question": "¿Qué variable puede capturar una lambda de su entorno léxico externo?",
+      "options": [
+        "A) Cualquier variable local, incluso si se modifica después",
+        "B) Solo variables de instancia de la clase",
+        "C) Solo variables locales efectivamente finales (effectively final)",
+        "D) Ninguna variable externa"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Las lambdas solo pueden capturar variables locales efectivamente finales (que no se reasignan después de su inicialización). Sí pueden acceder a variables de instancia y estáticas."
+    },
+    {
+      "id": 19,
+      "topic": "Interfaces Funcionales",
+      "difficulty": "easy",
+      "question": "¿Qué es una interfaz funcional en Java?",
+      "options": [
+        "A) Una interfaz que hereda de java.util.function.Function",
+        "B) Una interfaz que especifica exactamente UN método abstracto",
+        "C) Una interfaz que solo tiene métodos default",
+        "D) Una interfaz que implementa el patrón Strategy"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Una interfaz funcional tiene exactamente un método abstracto. Puede tener default methods y métodos estáticos adicionales. La anotación @FunctionalInterface lo verifica."
+    },
+    {
+      "id": 20,
+      "topic": "Interfaces Funcionales",
+      "difficulty": "easy",
+      "question": "¿Cuál es la firma del método abstracto de la interfaz funcional `Predicate<T>`?",
+      "options": [
+        "A) T apply(T t)",
+        "B) void accept(T t)",
+        "C) boolean test(T t)",
+        "D) T get()"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Predicate<T> tiene el método boolean test(T t). Representa una función T → boolean, útil para filtrar elementos."
+    },
+    {
+      "id": 21,
+      "topic": "Interfaces Funcionales",
+      "difficulty": "medium",
+      "question": "¿Qué interfaz funcional se usa para representar una función que acepta un argumento de tipo T y produce un resultado de tipo R?",
+      "options": [
+        "A) Consumer<T>",
+        "B) Supplier<T>",
+        "C) Function<T,R>",
+        "D) UnaryOperator<T>"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Function<T,R> representa una función T → R. Su método abstracto es R apply(T t)."
+    },
+    {
+      "id": 22,
+      "topic": "Interfaces Funcionales",
+      "difficulty": "medium",
+      "question": "¿Por qué existen especializaciones primitivas como `IntPredicate` además de `Predicate<Integer>`?",
+      "options": [
+        "A) Por razones de compatibilidad con Java 1.0",
+        "B) Para evitar el boxing/unboxing automático y mejorar el rendimiento",
+        "C) Porque Predicate<Integer> no compila con enteros",
+        "D) Para poder usar métodos adicionales que Predicate no tiene"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Las especializaciones primitivas (IntPredicate, LongConsumer, etc.) evitan el autoboxing de int → Integer, mejorando el rendimiento al no crear objetos wrapper innecesarios."
+    },
+    {
+      "id": 23,
+      "topic": "Interfaces Funcionales",
+      "difficulty": "hard",
+      "question": "¿Qué problema tienen las excepciones comprobadas (checked exceptions) con las interfaces funcionales de java.util.function?",
+      "options": [
+        "A) Las interfaces funcionales no soportan lambdas con excepciones comprobadas",
+        "B) Ninguna interfaz funcional estándar declara excepciones comprobadas, por lo que hay que definir la propia o envolver en try/catch",
+        "C) Las excepciones comprobadas se convierten automáticamente en unchecked",
+        "D) Solo Callable<V> puede lanzar excepciones comprobadas"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Ninguna de las interfaces funcionales estándar (Predicate, Function, etc.) declara excepciones comprobadas. Si el código puede lanzarlas, hay que definir una interfaz funcional propia o capturarlas dentro del cuerpo lambda."
+    },
+    {
+      "id": 24,
+      "topic": "Interfaces Funcionales",
+      "difficulty": "medium",
+      "question": "¿Cuál de las siguientes interfaces funcionales NO requiere ningún argumento de entrada?",
+      "options": [
+        "A) Consumer<T>",
+        "B) Predicate<T>",
+        "C) Supplier<T>",
+        "D) Function<T,R>"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Supplier<T> representa una función () → T: no acepta argumentos y devuelve un valor de tipo T. Su método abstracto es T get()."
+    },
+    {
+      "id": 25,
+      "topic": "Method References",
+      "difficulty": "easy",
+      "question": "¿Qué es una referencia a método (method reference) en Java?",
+      "options": [
+        "A) Una forma de llamar a métodos en tiempo de compilación",
+        "B) Un atajo para lambdas que llaman a un método específico",
+        "C) Un puntero a función al estilo C",
+        "D) Una anotación para marcar métodos como funcionales"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Una referencia a método es una forma más legible y concisa de escribir una lambda cuando esta se limita a invocar un método existente."
+    },
+    {
+      "id": 26,
+      "topic": "Method References",
+      "difficulty": "easy",
+      "question": "¿Cómo se expresa `(Apple a) -> a.getWeight()` como referencia a método?",
+      "options": [
+        "A) Apple.getWeight()",
+        "B) Apple::getWeight",
+        "C) a::getWeight",
+        "D) getWeight::Apple"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La sintaxis es Clase::método. (Apple a) -> a.getWeight() se convierte en Apple::getWeight."
+    },
+    {
+      "id": 27,
+      "topic": "Method References",
+      "difficulty": "medium",
+      "question": "¿Cómo se expresa la referencia a constructor `() -> new Apple()` usando referencia a método?",
+      "options": [
+        "A) Apple.new()",
+        "B) new::Apple",
+        "C) Apple::new",
+        "D) Apple::Apple"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Las referencias a constructores usan la sintaxis Clase::new. () -> new Apple() es Apple::new y tiene tipo Supplier<Apple>."
+    },
+    {
+      "id": 28,
+      "topic": "Method References",
+      "difficulty": "hard",
+      "question": "¿Qué tipo funcional tiene la referencia a constructor `Apple::new` cuando Apple tiene un constructor que acepta un Integer de peso?",
+      "options": [
+        "A) Supplier<Apple>",
+        "B) Consumer<Integer>",
+        "C) Function<Integer, Apple>",
+        "D) BiFunction<Integer, Integer, Apple>"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Si el constructor acepta un Integer, la referencia Apple::new se usa como Function<Integer, Apple>: recibe un Integer y devuelve una Apple."
+    },
+    {
+      "id": 29,
+      "topic": "Optional",
+      "difficulty": "easy",
+      "question": "¿Quién introdujo el concepto de null y cómo lo llamó retrospectivamente?",
+      "options": [
+        "A) James Gosling, 'mi gran error'",
+        "B) Tony Hoare en 1965, 'my billion dollar mistake'",
+        "C) Bjarne Stroustrup, 'el puntero nulo'",
+        "D) Guido van Rossum, 'None error'"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Tony Hoare introdujo null en 1965 en ALGOL W y más tarde lo calificó como 'my billion dollar mistake' por los incontables errores que ha causado."
+    },
+    {
+      "id": 30,
+      "topic": "Optional",
+      "difficulty": "easy",
+      "question": "¿Cuál de los siguientes métodos crea un Optional para un valor que podría ser null?",
+      "options": [
+        "A) Optional.of(value)",
+        "B) Optional.empty()",
+        "C) Optional.ofNullable(value)",
+        "D) Optional.nullable(value)"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Optional.ofNullable(value) crea un Optional con el valor si no es null, o un Optional vacío si es null. Optional.of() lanzaría NullPointerException si el valor es null."
+    },
+    {
+      "id": 31,
+      "topic": "Optional",
+      "difficulty": "medium",
+      "question": "¿Por qué hay que usar `flatMap` en lugar de `map` al encadenar Optionals con métodos que ya devuelven Optional?",
+      "options": [
+        "A) flatMap es más rápido que map",
+        "B) map devolvería Optional<Optional<T>>, flatMap aplana el resultado a Optional<T>",
+        "C) map no funciona con Optionals",
+        "D) flatMap permite manejar excepciones"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Si getCar() devuelve Optional<Car>, usar optPerson.map(Person::getCar) devuelve Optional<Optional<Car>>. flatMap aplana el resultado a Optional<Car>."
+    },
+    {
+      "id": 32,
+      "topic": "Optional",
+      "difficulty": "hard",
+      "question": "¿Por qué no se recomienda usar Optional como campo de una clase?",
+      "options": [
+        "A) Optional no se puede serializar (no implementa Serializable)",
+        "B) Optional usa demasiada memoria",
+        "C) Los frameworks no soportan Optional",
+        "D) Optional solo funciona en streams"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Optional no implementa java.io.Serializable, por lo que usarlo como campo haría que la clase no fuera serializable. Se diseñó para ser valor de retorno, no para modelar campos opcionales."
+    },
+    {
+      "id": 33,
+      "topic": "Streams",
+      "difficulty": "easy",
+      "question": "¿Cuál es la diferencia principal entre Collections y Streams respecto a la iteración?",
+      "options": [
+        "A) Collections usan iteración interna; Streams usan iteración externa",
+        "B) Streams usan iteración interna; Collections usan iteración externa",
+        "C) Ambos usan el mismo tipo de iteración",
+        "D) Collections son más eficientes que Streams"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los Streams usan iteración interna (la biblioteca gestiona la iteración internamente), mientras que las Collections requieren iteración externa (el programador escribe el bucle)."
+    },
+    {
+      "id": 34,
+      "topic": "Streams",
+      "difficulty": "easy",
+      "question": "¿Cuál de las siguientes es una operación TERMINAL en un Stream?",
+      "options": [
+        "A) filter()",
+        "B) map()",
+        "C) sorted()",
+        "D) collect()"
+      ],
+      "correctAnswer": "D",
+      "explanation": "collect() es una operación terminal que produce un resultado (como una lista). Las operaciones intermedias (filter, map, sorted) son lazy y no se ejecutan hasta que hay una operación terminal."
+    },
+    {
+      "id": 35,
+      "topic": "Streams",
+      "difficulty": "medium",
+      "question": "¿Qué significa que los Streams son 'lazy' (perezosos)?",
+      "options": [
+        "A) Los Streams son más lentos que los bucles for",
+        "B) Las operaciones intermedias no se ejecutan hasta que se llama a una operación terminal",
+        "C) Los Streams no pueden procesar datos grandes",
+        "D) Los Streams consumen menos memoria siempre"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los Streams son lazy: las operaciones intermedias (filter, map, etc.) no se ejecutan inmediatamente. Solo cuando se llama a una operación terminal (collect, forEach, etc.) se procesa el pipeline completo."
+    },
+    {
+      "id": 36,
+      "topic": "Streams",
+      "difficulty": "medium",
+      "question": "¿Qué estructura de datos tiene mejor 'decomposability' para procesamiento paralelo con Streams?",
+      "options": [
+        "A) LinkedList",
+        "B) Stream.iterate",
+        "C) ArrayList e IntStream.range",
+        "D) Queue"
+      ],
+      "correctAnswer": "C",
+      "explanation": "ArrayList e IntStream.range tienen descomposabilidad 'Excellent' para paralelismo. LinkedList y Stream.iterate tienen 'Poor' porque no pueden dividirse eficientemente."
+    },
+    {
+      "id": 37,
+      "topic": "Streams",
+      "difficulty": "medium",
+      "question": "¿Cuál es la operación de Stream que transforma cada elemento en potencialmente múltiples elementos y los aplana en un solo Stream?",
+      "options": [
+        "A) map()",
+        "B) reduce()",
+        "C) flatMap()",
+        "D) collect()"
+      ],
+      "correctAnswer": "C",
+      "explanation": "flatMap() transforma cada elemento en un Stream y aplana todos los Streams resultantes en uno solo. Por ejemplo, puede convertir una lista de listas en un único Stream de elementos."
+    },
+    {
+      "id": 38,
+      "topic": "Streams",
+      "difficulty": "hard",
+      "question": "¿Qué framework subyacente utilizan los Parallel Streams para distribuir el trabajo?",
+      "options": [
+        "A) ExecutorService",
+        "B) Fork/Join framework y SplitIterator",
+        "C) Thread pool personalizado",
+        "D) CompletableFuture"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los Parallel Streams usan el Fork/Join framework (introducido en Java 7) junto con SplitIterator para dividir y procesar datos en paralelo usando el common ForkJoinPool."
+    },
+    {
+      "id": 39,
+      "topic": "Streams",
+      "difficulty": "hard",
+      "question": "¿Cómo se puede leer un archivo de texto como un Stream de líneas en Java 8+?",
+      "options": [
+        "A) new FileStream(path).lines()",
+        "B) Files.lines(path)",
+        "C) FileReader.stream(path)",
+        "D) BufferedReader.toStream(path)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Files.lines(path) devuelve un Stream<String> con una entrada por línea del archivo. Es una forma declarativa y eficiente de procesar archivos de texto."
+    },
+    {
+      "id": 40,
+      "topic": "Streams",
+      "difficulty": "hard",
+      "question": "¿Cuál es la expresión equivalente en Java 8 Streams para calcular la longitud total de una lista de nombres?",
+      "options": [
+        "A) names.stream().count(name -> name.length())",
+        "B) names.stream().mapToInt(name -> name.length()).sum()",
+        "C) names.stream().reduce(0, String::length)",
+        "D) names.stream().collect(Collectors.summing())"
+      ],
+      "correctAnswer": "B",
+      "explanation": "mapToInt(name -> name.length()) crea un IntStream con las longitudes, y .sum() las suma. También se puede escribir como .mapToInt(String::length).sum()."
+    }
+  ]
+}
