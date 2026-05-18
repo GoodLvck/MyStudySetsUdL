@@ -1,0 +1,253 @@
+{
+  "metadata": {
+    "title": "Web 2.0 — Flashcards",
+    "subject": "Proyecto Web — Computer Engineering Degree",
+    "professor": "Roberto García",
+    "university": "Universitat de Lleida (UdL)",
+    "format": "flashcards",
+    "totalCards": 40,
+    "topics": ["Historia y Fundamentos Web", "AJAX", "REST/ROA", "Diseño de APIs RESTful"]
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Historia y Fundamentos Web",
+      "front": "¿Cuáles son los tres fundamentos tecnológicos de la Web según Berners-Lee?",
+      "back": "1. Identificadores (URIs): nombres (URNs) y localizadores (URLs)\n2. Protocolo de comunicación (HTTP)\n3. Lenguaje de representación (HTML)"
+    },
+    {
+      "id": 2,
+      "topic": "Historia y Fundamentos Web",
+      "front": "¿Qué es el Memex y quién lo propuso?",
+      "back": "El Memex (MEMory EXtender) fue propuesto por Vannevar Bush en 1945 en su artículo 'As We May Think'. Era un dispositivo conceptual para almacenar y acceder a información en microfilms, precursor de la idea de hipertexto."
+    },
+    {
+      "id": 3,
+      "topic": "Historia y Fundamentos Web",
+      "front": "¿Qué es la diferencia entre URN y URL?",
+      "back": "URN (Uniform Resource Name): nombre permanente del recurso, no indica dónde está (ej: ISBN de un libro).\nURL (Uniform Resource Locator): localización del recurso en la red, incluye protocolo y dirección (ej: https://ejemplo.com/pagina).\nAmbos son tipos de URI (Uniform Resource Identifier)."
+    },
+    {
+      "id": 4,
+      "topic": "Historia y Fundamentos Web",
+      "front": "¿Qué define Web 2.0 y cuál es su principio clave?",
+      "back": "Definición: Segunda generación de servicios web que permite a los usuarios colaborar y compartir información en línea.\n\nPrincipio clave: La Web como plataforma que se beneficia del efecto de red — cuantos más usuarios, mayor valor genera para todos."
+    },
+    {
+      "id": 5,
+      "topic": "Historia y Fundamentos Web",
+      "front": "Nombra 4 pares de la comparativa Web 1.0 → Web 2.0",
+      "back": "• DoubleClick → AdSense\n• Ofoto → Flickr\n• Britannica Online → Wikipedia\n• Páginas personales → Blogs\n• Directorios/Taxonomía → Tagging/Folksonomy\n• Publicar → Participar"
+    },
+    {
+      "id": 6,
+      "topic": "Historia y Fundamentos Web",
+      "front": "¿Qué es la Folksonomy y en qué se diferencia de la Taxonomía?",
+      "back": "Folksonomy (folk + taxonomy): sistema de clasificación colaborativo y emergente donde los propios usuarios etiquetan el contenido libremente (ej: tags en Flickr, del.icio.us).\n\nTaxonomía: clasificación jerárquica y predefinida por expertos (ej: Yahoo! Directory).\n\nAmbas son Web 1.0 vs Web 2.0 respectivamente."
+    },
+    {
+      "id": 7,
+      "topic": "Historia y Fundamentos Web",
+      "front": "¿Qué son los patrones de Web 2.0? Nombra al menos 4.",
+      "back": "1. Long Tail: nicho acumulado > mercado masivo\n2. Web APIs/Mashups: combinar servicios de terceros\n3. Cooperación: sindicación, reutilización\n4. Creative Commons: licencias abiertas\n5. Usuarios añaden valor explícito (Wikipedia)\n6. Efecto de red / valor implícito (Amazon)"
+    },
+    {
+      "id": 8,
+      "topic": "Historia y Fundamentos Web",
+      "front": "¿Cuál es la diferencia entre el efecto de red y el valor añadido por el usuario en Web 2.0?",
+      "back": "Valor explícito: usuario añade valor conscientemente (escribe en Wikipedia, sube foto a Flickr, escribe una reseña).\n\nEfecto de red / valor implícito: valor obtenido de datos agregados de uso sin intención del usuario (Amazon sabe qué recomendar basándose en compras colectivas, Google mejora búsquedas con los clics)."
+    },
+    {
+      "id": 9,
+      "topic": "AJAX",
+      "front": "¿Cuáles son los 4 pasos principales de una petición AJAX?",
+      "back": "1. Crear instancia XMLHttpRequest\n   var xhr = new XMLHttpRequest();\n2. Abrir conexión\n   xhr.open('GET', 'url', true);\n3. Definir callback onreadystatechange\n   xhr.onreadystatechange = function() { if(readyState==4 && status==200) {...} }\n4. Enviar petición\n   xhr.send(); // GET\n   xhr.send(datos); // POST/PUT/DELETE"
+    },
+    {
+      "id": 10,
+      "topic": "AJAX",
+      "front": "¿Cuáles son los 5 valores de readyState y qué significan?",
+      "back": "0 = No inicializado (open() no llamado aún)\n1 = Conexión establecida (open() llamado)\n2 = Petición recibida (send() llamado, cabeceras disponibles)\n3 = Procesando (descargando respuesta)\n4 = Finalizado/Listo (respuesta completa disponible)"
+    },
+    {
+      "id": 11,
+      "topic": "AJAX",
+      "front": "¿Cuál es la diferencia entre el modelo síncrono (Web 1.0) y asíncrono (Web 2.0/AJAX)?",
+      "back": "Web 1.0 Síncrono: cada acción del usuario dispara una petición → espera → página completa se recarga. Ciclo discontinuo, usuario bloqueado.\n\nWeb 2.0 AJAX Asíncrono: el motor AJAX actúa de intermediario. El usuario sigue interactuando mientras las peticiones se procesan en segundo plano. Solo se actualizan partes del DOM. (Modelo de Jesse James Garrett)"
+    },
+    {
+      "id": 12,
+      "topic": "AJAX",
+      "front": "¿Cómo se crea el XMLHttpRequest de forma compatible con IE5/6 e IE7+?",
+      "back": "// IE7+ y navegadores modernos:\nvar xhr = new XMLHttpRequest();\n\n// IE5/IE6 (ActiveX):\nvar xhr = new ActiveXObject('Microsoft.XMLHTTP');\n\n// Compatibilidad total:\nvar xhr;\nif (window.XMLHttpRequest) {\n  xhr = new XMLHttpRequest();\n} else {\n  xhr = new ActiveXObject('Microsoft.XMLHTTP');\n}"
+    },
+    {
+      "id": 13,
+      "topic": "AJAX",
+      "front": "¿Qué cabeceras HTTP son relevantes en AJAX y para qué sirven?",
+      "back": "Content-Type: tipo del cuerpo enviado\n  → 'application/x-www-form-urlencoded' para formularios\n  → 'application/json' para JSON\n\nAccept: formatos aceptados en la respuesta\n  → 'application/json' para JSON\n  → 'text/xml' para XML\n\nSe establecen con: xhr.setRequestHeader('nombre', 'valor')"
+    },
+    {
+      "id": 14,
+      "topic": "AJAX",
+      "front": "¿Cuáles son los métodos AJAX principales de jQuery y qué hace cada uno?",
+      "back": "$(\"#id\").load(url): petición GET y carga resultado en el elemento\n$.get(url, data, callback): petición GET con callback\n$.post(url, data, callback): petición POST con callback\n$(form).serialize(): serializa campos del formulario como query string\nencodeURIComponent(str): codifica caracteres especiales en valores URL"
+    },
+    {
+      "id": 15,
+      "topic": "AJAX",
+      "front": "¿Qué propiedades del objeto XMLHttpRequest contienen la respuesta del servidor?",
+      "back": "xhr.responseText: respuesta como texto plano/string\nxhr.responseXML: respuesta como documento XML parseado (solo si Content-Type es XML)\nxhr.status: código de estado HTTP (200, 404, 500...)\nxhr.statusText: texto del estado HTTP ('OK', 'Not Found'...)\nxhr.readyState: estado de la petición (0-4)"
+    },
+    {
+      "id": 16,
+      "topic": "REST/ROA",
+      "front": "¿Qué es REST y qué es ROA?",
+      "back": "REST (Representational State Transfer): estilo arquitectónico para sistemas distribuidos — conjunto de patrones que restringen roles y relaciones entre componentes.\n\nROA (Resource-Oriented Architecture): implementación RESTful usando tecnologías Web (HTTP, URI, XML/JSON). Especifica que: routing info → en URI; method info → en operación HTTP."
+    },
+    {
+      "id": 17,
+      "topic": "REST/ROA",
+      "front": "¿Cuáles son los 4 principios de ROA?",
+      "back": "1. Addressability (Direccionabilidad): cada pieza de información tiene su URI\n2. Statelessness (Sin Estado): cada petición es independiente y contiene toda la info necesaria\n3. Uniform Interface (Interfaz Uniforme): GET/POST/PUT/DELETE con semántica definida\n4. Connectedness/HATEOAS: el servidor guía al cliente con enlaces y formularios en las respuestas"
+    },
+    {
+      "id": 18,
+      "topic": "REST/ROA",
+      "front": "¿Qué es un recurso en REST y qué puede ser?",
+      "back": "Un recurso es cualquier cosa suficientemente relevante como para ser referenciada:\n• Documentos (página web, imagen, PDF)\n• Servicios (pronóstico del tiempo)\n• Colecciones de otros recursos\n• Objetos de negocio (pedido, cliente, producto)\n• Conceptos abstractos (precio actual, estado de un proceso)\n\nPuede ser físico o completamente abstracto."
+    },
+    {
+      "id": 19,
+      "topic": "REST/ROA",
+      "front": "¿Qué son las representaciones en ROA y cómo funciona la negociación de contenido?",
+      "back": "Representación: bytes en un formato y lenguaje específico que transmiten el estado del recurso. El servidor envía representaciones, no los recursos en sí.\n\nNegociación de contenido:\n• Cliente envía cabecera Accept (ej: application/json)\n• Cliente envía cabecera Accept-Language (ej: es, en)\n• Servidor responde con la representación apropiada\n• Una URI canónica puede redirigir (303) a representaciones específicas"
+    },
+    {
+      "id": 20,
+      "topic": "REST/ROA",
+      "front": "¿Cuáles son las ventajas de la Statelessness (sin estado) en REST?",
+      "back": "1. No hay timeouts de sesión\n2. Facilita el balanceo de carga (cualquier servidor puede atender cualquier petición)\n3. Facilita el cacheo (peticiones iguales = respuestas iguales)\n4. Mayor simplicidad y recuperación de fallos\n5. Mejor escalabilidad horizontal\n\nEmulación de sesiones: session ID en cookie o en la URI"
+    },
+    {
+      "id": 21,
+      "topic": "REST/ROA",
+      "front": "¿Qué significa que un método HTTP sea 'seguro' vs 'idempotente'?",
+      "back": "Seguro: no modifica el estado del servidor\n→ GET y HEAD son seguros\n\nIdempotente: el mismo efecto aplicado 1 o N veces\n→ GET, HEAD, PUT, DELETE son idempotentes\n→ POST NO es idempotente\n\nResumen:\n• GET: seguro + idempotente\n• PUT: idempotente (no seguro)\n• DELETE: idempotente (no seguro)\n• POST: ni seguro ni idempotente"
+    },
+    {
+      "id": 22,
+      "topic": "REST/ROA",
+      "front": "¿Cuáles son los 3 usos válidos de POST en REST?",
+      "back": "1. Crear recurso subordinado cuando el servidor asigna la URI\n   → Responde 201 Created + Location header con la nueva URI\n\n2. Añadir datos a un recurso existente (ej: añadir comentario a un post)\n\n3. Overloaded POST (anti-patrón): operaciones no estándar/RPC que no encajan en los otros métodos. Viola la interfaz uniforme."
+    },
+    {
+      "id": 23,
+      "topic": "REST/ROA",
+      "front": "¿Qué es HATEOAS y por qué es importante?",
+      "back": "HATEOAS = Hypermedia As The Engine of Application State\n\nConcepto: el servidor incluye en sus respuestas enlaces y formularios que guían al cliente sobre las acciones disponibles y cómo navegar.\n\nImportancia:\n• El cliente no necesita conocer la API de antemano\n• El estado de la aplicación se mantiene siguiendo enlaces\n• La API es auto-descriptiva y evolucionable\n• Reduce el acoplamiento cliente-servidor"
+    },
+    {
+      "id": 24,
+      "topic": "REST/ROA",
+      "front": "¿Cuál es la diferencia entre REST y REST-RPC?",
+      "back": "REST (RESTful):\n• Sustantivos en URLs (GET /dogs, PUT /dogs/brian)\n• Operación en el método HTTP\n• Cumple interfaz uniforme y addressability\n\nREST-RPC:\n• Verbos en URLs (GET /getDog, POST /saveDog)\n• Operación en la URL o cuerpo\n• No cumple interfaz uniforme ni addressability\n• Estilo procedural/RPC sobre HTTP"
+    },
+    {
+      "id": 25,
+      "topic": "REST/ROA",
+      "front": "¿Por qué es un anti-patrón exponer operaciones no seguras mediante GET?",
+      "back": "GET debe ser seguro (no modifica el servidor) e idempotente. Si se usa GET para operaciones como eliminar, crear o actualizar:\n\n• Los crawlers/bots web pueden invocar la operación accidentalmente\n• Los proxies y cachés asumen que GET es idempotente y pueden repetir peticiones\n• El navegador puede precargar URLs de GET\n\nEjemplo anti-patrón: GET /deleteUser?id=5\nCorrecto: DELETE /users/5"
+    },
+    {
+      "id": 26,
+      "topic": "Diseño de APIs RESTful",
+      "front": "¿Cómo se diseña una API RESTful sistemáticamente?",
+      "back": "Se usa una tabla donde:\n• Filas = tipos de recursos con URL de ejemplo\n• Columnas = 4 métodos HTTP (GET, POST, PUT, DELETE)\n\nCada celda define la operación o indica N/A.\n\nEjemplo (API de Tareas):\n         GET          POST           PUT/PATCH  DELETE\n/tasks   listar todo  -              -          -\n/t/{d}   listar día   crear tarea    -          -\n/t/{d}/n detalle      -              actualizar eliminar"
+    },
+    {
+      "id": 27,
+      "topic": "Diseño de APIs RESTful",
+      "front": "¿Cuál es la API RESTful completa del ejemplo de Tareas del curso?",
+      "back": "GET /tasks → lista todas las tareas\n\nGET /tasks/2024-06-09 → lista tareas del día\nPOST /tasks/2024-06-09 → crea nueva tarea (servidor asigna ID)\n\nGET /tasks/2024-06-09/1 → detalles de tarea específica\nPUT /tasks/2024-06-09/1 → reemplaza tarea completa\nPATCH /tasks/2024-06-09/1 → actualiza/cambia estado\nDELETE /tasks/2024-06-09/1 → elimina tarea"
+    },
+    {
+      "id": 28,
+      "topic": "Diseño de APIs RESTful",
+      "front": "¿Cuál es la representación JSON de una tarea en la API del curso?",
+      "back": "{\n  \"id\": \"/tasks/2024-06-09/1\",\n  \"title\": \"buy some fruit\",\n  \"state\": \"pending\"\n}\n\nNota: el campo 'id' es la propia URI del recurso, lo que facilita HATEOAS — el cliente sabe cómo acceder a la tarea."
+    },
+    {
+      "id": 29,
+      "topic": "Diseño de APIs RESTful",
+      "front": "¿Qué responde el servidor al crear exitosamente una tarea con POST?",
+      "back": "Código de estado: 201 Created\n\nCabecera Location: /tasks/2024-06-09/3 (URI del nuevo recurso)\n\nCuerpo (opcional): la representación del recurso creado\n\nEsto permite al cliente:\n1. Saber que la creación fue exitosa (201)\n2. Conocer la URL del nuevo recurso (Location)\n3. Acceder al recurso sin necesidad de otra petición"
+    },
+    {
+      "id": 30,
+      "topic": "Diseño de APIs RESTful",
+      "front": "¿Cuál es la alternativa de diseño /dates/{date}/tasks vs /tasks/{date}? ¿Cuándo usar cada una?",
+      "back": "/tasks/{date}: trata la fecha como parte del identificador de las tareas. Más centrado en las tareas.\n\n/dates/{date}/tasks: convierte las fechas en recursos de primer nivel con colecciones de tareas. Más rico en recursos.\n\nUsar /dates/ cuando:\n• Las fechas tienen propiedades propias (descripción, eventos del día)\n• Se quiere listar/buscar fechas\n\nUsar /tasks/ cuando:\n• El foco es en las tareas\n• Las fechas son solo filtros de agrupación"
+    },
+    {
+      "id": 31,
+      "topic": "REST/ROA",
+      "front": "¿Qué significa la Addressability en ROA y por qué es importante?",
+      "back": "Addressability: la aplicación expone sus datos como recursos y cada 'pieza' de información significativa tiene su propia URI.\n\nImportante porque:\n• Los recursos son bookmarkable (se puede guardar/compartir la URL)\n• Son cacheables (proxies pueden cachear por URL)\n• Son linkable (otras páginas/apps pueden enlazar)\n• Son indexables (los motores de búsqueda pueden indexarlos)\n• Hace la API predecible y auto-documentada"
+    },
+    {
+      "id": 32,
+      "topic": "REST/ROA",
+      "front": "¿Cuándo y por qué se usa HTTP 303 en REST?",
+      "back": "HTTP 303 See Other se usa cuando un recurso tiene múltiples URIs:\n\nEjemplo: Un usuario puede ser accedido por:\n• /users/42 (por ID)\n• /users/juan.garcia (por username)\n• /employees/marketing/juan (por departamento)\n\nSolución: designar una URI canónica (/users/42) y hacer que las otras respondan 303 → /users/42.\n\nAsí el recurso no se duplica pero tiene múltiples aliases válidos."
+    },
+    {
+      "id": 33,
+      "topic": "AJAX",
+      "front": "¿Cuál es el flujo completo de un POST con AJAX nativo para enviar datos de formulario?",
+      "back": "var xhr = new XMLHttpRequest();\nxhr.open('POST', '/endpoint', true);\nxhr.setRequestHeader(\n  'Content-Type',\n  'application/x-www-form-urlencoded'\n);\nxhr.onreadystatechange = function() {\n  if (xhr.readyState == 4 && xhr.status == 200) {\n    // procesar xhr.responseText\n  }\n};\nxhr.send('param1=valor1&param2=valor2');"
+    },
+    {
+      "id": 34,
+      "topic": "REST/ROA",
+      "front": "¿Cuáles son los 4 componentes principales de ROA?",
+      "back": "1. Resources (Recursos): las 'cosas' que se exponen; pueden ser físicas o abstractas\n\n2. URIs: nombres y direcciones de los recursos; deben ser descriptivos y predecibles\n\n3. Representations (Representaciones): bytes en formato específico que transmiten el estado del recurso (JSON, XML, HTML...)\n\n4. Links (Enlaces): conectan los recursos entre sí, habilitando la navegación (HATEOAS)"
+    },
+    {
+      "id": 35,
+      "topic": "Diseño de APIs RESTful",
+      "front": "¿Qué principio de REST se viola cuando se incluye información de la operación en la URI?",
+      "back": "Se viola el principio de Interfaz Uniforme (Uniform Interface).\n\nEn ROA: la información del método va en la operación HTTP, NO en la URI.\n\nViolación: GET /deleteUser?id=5 (operación en URI)\nCorrecto: DELETE /users/5 (operación en método HTTP)\n\nViolación: POST /tasks/create\nCorrecto: POST /tasks (el POST ya implica crear)\n\nTambién se viola indirectamente la Addressability cuando las URIs contienen verbos."
+    },
+    {
+      "id": 36,
+      "topic": "Historia y Fundamentos Web",
+      "front": "¿Cuáles son las licencias Creative Commons y para qué sirven en Web 2.0?",
+      "back": "Creative Commons son licencias de derechos de autor que permiten a los creadores especificar qué usos permiten de su obra sin renunciar a todos sus derechos.\n\nEn Web 2.0 son importantes porque:\n• Permiten la cooperación y reutilización de contenido (sindicación)\n• Facilitan los Mashups al clarificar qué datos se pueden combinar\n• Habilitan el modelo de 'datos como el nuevo Intel Inside'\n• Son un patrón clave de Web 2.0 junto con las Web APIs"
+    },
+    {
+      "id": 37,
+      "topic": "AJAX",
+      "front": "¿Qué diferencia hay entre $.get(), $.post() y $.ajax() en jQuery?",
+      "back": "$.get(url, data, callback, type):\n  Atajo para peticiones GET simples\n\n$.post(url, data, callback, type):\n  Atajo para peticiones POST simples\n\n$.ajax(settings):\n  Método completo con todas las opciones:\n  • method: 'GET'/'POST'/'PUT'/'DELETE'\n  • headers: cabeceras personalizadas\n  • success/error/complete callbacks\n  • beforeSend, timeout, etc.\n  Útil cuando se necesita control total"
+    },
+    {
+      "id": 38,
+      "topic": "REST/ROA",
+      "front": "¿Cuál es la diferencia entre un sistema RESTful y uno que 'parece REST' pero no lo es?",
+      "back": "Sistema realmente RESTful:\n✓ URLs con sustantivos (/dogs, /dogs/brian)\n✓ Operación en el método HTTP\n✓ GET no modifica estado\n✓ Respuestas incluyen enlaces (HATEOAS)\n✓ Sin estado de sesión en servidor\n\nSistema 'falso REST' (REST-RPC):\n✗ Verbos en URLs (/getDog, /saveDog)\n✗ Toda operación por POST\n✗ GET puede modificar datos\n✗ Identificación por parámetros (?action=delete)\n✗ Estado de sesión en servidor"
+    },
+    {
+      "id": 39,
+      "topic": "Diseño de APIs RESTful",
+      "front": "¿Cómo se aplica el principio de 'nombres no verbos' al diseñar URLs RESTful?",
+      "back": "Regla: las URLs identifican recursos (cosas), no acciones.\n\nAnti-patrón (verbos):\n• GET /getDog\n• POST /saveDog\n• DELETE /deleteDog\n• POST /updateDogOwner\n\nCorrecto (sustantivos):\n• GET /dogs\n• POST /dogs (crear)\n• DELETE /dogs/{id}\n• PUT /dogs/{id}/owner\n\nLa acción se expresa con el método HTTP (GET/POST/PUT/DELETE), no con la URL."
+    },
+    {
+      "id": 40,
+      "topic": "REST/ROA",
+      "front": "¿Qué es la conectividad (Connectedness) en REST y cómo se implementa?",
+      "back": "Connectedness es el 4º principio de ROA: el servidor guía al cliente mediante hipermedia.\n\nImplementación:\n• Las respuestas incluyen enlaces a recursos relacionados\n• Las respuestas incluyen formularios/templates para operaciones disponibles\n• El cliente mantiene el estado de la aplicación siguiendo enlaces\n• El cliente no necesita conocer las URLs de antemano\n\nEjemplo: al GET /tasks, la respuesta incluye la URL de cada tarea para que el cliente pueda navegar a /tasks/2024-06-09/1 sin 'hardcodear' la URL."
+    }
+  ]
+}

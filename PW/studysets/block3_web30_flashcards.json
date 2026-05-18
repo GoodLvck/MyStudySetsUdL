@@ -1,0 +1,261 @@
+{
+  "metadata": {
+    "title": "Web 3.0 — Flashcards",
+    "subject": "Proyecto Web — Computer Engineering Degree",
+    "professor": "Roberto García — Universitat de Lleida (UdL)",
+    "format": "flashcards",
+    "totalCards": 40,
+    "topics": [
+      "Introducción a Web 3.0",
+      "RDFa",
+      "Schema.org",
+      "JSON-LD",
+      "Facebook Open Graph",
+      "Integración de Datos Semánticos",
+      "Descentralización",
+      "DApps"
+    ]
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Introducción a Web 3.0",
+      "front": "¿Cuáles son los tres modelos de interacción que definen la evolución Web 1.0, 2.0 y 3.0?",
+      "back": "Web 1.0 = Personas a Aplicaciones (consumo unidireccional)\nWeb 2.0 = Personas a Personas (redes sociales, colaboración)\nWeb 3.0 = Aplicaciones a Aplicaciones (y por tanto entre personas de forma indirecta, mediante agentes semánticos)"
+    },
+    {
+      "id": 2,
+      "topic": "Introducción a Web 3.0",
+      "front": "¿Cuál es la diferencia entre semántica implícita y explícita en la Web?",
+      "back": "Semántica implícita: desambiguación mediante contexto estadístico/NLP (ej: página de desambiguación de Wikipedia para 'Ronaldo').\nSemántica explícita: datos estructurados enlazados directamente con propiedades formales (ej: DBpedia http://dbpedia.org/resource/Ronaldo con tipo, nacimiento, club, etc.).\nSin semántica explícita no es posible la búsqueda semántica real."
+    },
+    {
+      "id": 3,
+      "topic": "Introducción a Web 3.0",
+      "front": "¿Qué modelo propuso Nova Spivack en 2007 para describir Web 3.0?",
+      "back": "Nova Spivack (2007) describió Web 3.0 como la convergencia de tres dimensiones:\n1. Información (Social)\n2. Conexiones\n3. Semántica\nLas tres dimensiones juntas permiten a las aplicaciones intercambiar y procesar datos con significado."
+    },
+    {
+      "id": 4,
+      "topic": "Introducción a Web 3.0",
+      "front": "¿Qué es la Web of Data y en qué se diferencia de la Web of Documents?",
+      "back": "Web of Documents: páginas HTML enlazadas; permite mashups combinando APIs web.\nWeb of Data: datos estructurados enlazados entre sí (ej: Proveedor → Producto → Pedido → Cliente con propiedades formales y URIs únicos).\nLa Web of Data hace posible que las aplicaciones procesen y combinen datos automáticamente."
+    },
+    {
+      "id": 5,
+      "topic": "Introducción a Web 3.0",
+      "front": "¿Cuáles son los cuatro formatos estándar de anotación semántica de HTML?",
+      "back": "1. RDFa — RDF in Attributes (atributos HTML adicionales)\n2. Microformats — clases CSS con semántica predefinida\n3. JSON-LD — JSON for Linked Data (bloque <script> separado)\n4. Microdata — atributos HTML5 nativos (itemscope, itemprop)\nEstadísticas de adopción: w3techs.com/technologies/history_overview/structured_data/all"
+    },
+    {
+      "id": 6,
+      "topic": "RDFa",
+      "front": "¿Qué es RDFa y qué documentos lo soportan?",
+      "back": "RDFa = RDF in Attributes. Permite incluir anotaciones RDF directamente como atributos en documentos:\n- HTML (principal uso)\n- SVG\n- MathML\nReutiliza atributos HTML existentes (href, src) y añade nuevos: vocab, typeof, property, resource, prefix."
+    },
+    {
+      "id": 7,
+      "topic": "RDFa",
+      "front": "¿Cuáles son los 5 nuevos atributos que introduce RDFa y para qué sirve cada uno?",
+      "back": "1. vocab — Define el vocabulario base (ej: http://xmlns.com/foaf/0.1/)\n2. typeof — Declara el tipo de entidad (ej: typeof=\"Person\")\n3. property — Declara una propiedad del recurso (ej: property=\"name\")\n4. resource — Define el identificador URI del recurso (ej: resource=\"#manu\")\n5. prefix — Define prefijos para múltiples vocabularios (ej: prefix=\"ov: http://open.vocab.org/terms/\")"
+    },
+    {
+      "id": 8,
+      "topic": "RDFa",
+      "front": "¿Cuáles son los pasos para añadir anotaciones RDFa a un elemento HTML?",
+      "back": "Paso 1 — Añadir vocabulario: vocab=\"http://xmlns.com/foaf/0.1/\"\nPaso 2 — Añadir tipo: typeof=\"Person\"\nPaso 3 — Describir propiedades reutilizando HTML: <span property=\"name\">Manu Sporny</span>\nPaso 4 — Mejor definir un identificador: resource=\"#manu\"\nPaso 5 — Combinar vocabularios con prefijos: prefix=\"ov: http://open.vocab.org/terms/\""
+    },
+    {
+      "id": 9,
+      "topic": "RDFa",
+      "front": "¿Qué es el vocabulario FOAF y para qué se usa?",
+      "back": "FOAF = Friend Of A Friend\nURL: http://xmlns.com/foaf/0.1/\nVocabulario RDF para describir personas y sus relaciones sociales.\nPropiedades principales: foaf:name, foaf:phone, foaf:email, foaf:knows, foaf:homepage, foaf:img.\nEs uno de los vocabularios más usados con RDFa para describir personas en la web."
+    },
+    {
+      "id": 10,
+      "topic": "RDFa",
+      "front": "¿Qué herramientas existen para trabajar con RDFa?",
+      "back": "1. rdfa.info/play/ — Herramienta visual para escribir y previsualizar anotaciones RDFa en tiempo real.\n2. search.google.com/test/rich-results — Herramienta de Google para validar anotaciones semánticas y ver cómo las interpreta el buscador (Rich Results Test).\nAmbas son esenciales para depurar anotaciones semánticas."
+    },
+    {
+      "id": 11,
+      "topic": "Schema.org",
+      "front": "¿Qué es Schema.org y quién lo promueve?",
+      "back": "Schema.org es un vocabulario colaborativo para la anotación semántica de HTML.\nPromovido conjuntamente por los 4 principales motores de búsqueda:\n- Google\n- Yahoo\n- Bing\n- Yandex\nURL del catálogo: http://schema.org/docs/schemas.html\nSoporta RDFa, Microdata y JSON-LD."
+    },
+    {
+      "id": 12,
+      "topic": "Schema.org",
+      "front": "¿Qué son los Rich Results y qué propiedades de Schema.org los habilitan?",
+      "back": "Rich Results = resultados de búsqueda enriquecidos con información semántica visual.\nEjemplo para un producto: dc:description, media:image, product:manufacturer, product:salePrice, product:currency, vcal:date, review:text, review:rating.\nBeneficios: mayor visibilidad en resultados, aumento del CTR (click-through rate), mejor SEO."
+    },
+    {
+      "id": 13,
+      "topic": "Schema.org",
+      "front": "¿Qué formatos de serialización soporta Schema.org y cuál es la diferencia entre ellos?",
+      "back": "1. RDFa — Atributos adicionales en el HTML existente (inline)\n2. Microdata — Atributos itemscope/itemprop en el HTML (inline, HTML5 nativo)\n3. JSON-LD — Bloque <script type=\"application/ld+json\"> separado del HTML (recomendado por Google)\nJSON-LD es el formato preferido actualmente porque no requiere modificar el HTML visible."
+    },
+    {
+      "id": 14,
+      "topic": "JSON-LD",
+      "front": "¿Qué es JSON-LD y cuál es su relación con RDF?",
+      "back": "JSON-LD = JSON for Linked Data.\nEs una serialización de RDF en formato JSON.\nCaracterísticas:\n- Usa la sintaxis familiar de JSON\n- Se incluye en HTML como: <script type=\"application/ld+json\">\n- Propiedades especiales: @context (vocabulario), @type (tipo), @id (identificador URI)\n- No requiere modificar el HTML visible\n- Recomendado por Google para Schema.org"
+    },
+    {
+      "id": 15,
+      "topic": "JSON-LD",
+      "front": "¿Cuáles son las propiedades especiales de JSON-LD (las que empiezan con @)?",
+      "back": "@context — Define el vocabulario base (ej: \"http://schema.org\")\n@type — Especifica el tipo de entidad (ej: \"EventReservation\", \"Person\", \"Event\", \"Place\")\n@id — Identificador URI único del recurso\nEstas propiedades permiten que los datos JSON sean interpretados como RDF con semántica formal."
+    },
+    {
+      "id": 16,
+      "topic": "JSON-LD",
+      "front": "¿Cómo se estructura una anotación JSON-LD para una reserva de evento en schema.org?",
+      "back": "{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"EventReservation\",\n  \"reservationNumber\": \"E123456789\",\n  \"reservationStatus\": \"http://schema.org/Confirmed\",\n  \"underName\": {\"@type\": \"Person\", \"name\": \"John Smith\"},\n  \"reservationFor\": {\n    \"@type\": \"Event\",\n    \"name\": \"Foo Fighters Concert\",\n    \"startDate\": \"2027-03-06T19:30:00-08:00\",\n    \"location\": {\"@type\": \"Place\", \"name\": \"AT&T Park\"}\n  }\n}"
+    },
+    {
+      "id": 17,
+      "topic": "JSON-LD",
+      "front": "¿Para qué usa Google Gmail el markup JSON-LD?",
+      "back": "Google Gmail usa JSON-LD markup para enriquecer los emails:\n1. Destacar emails en la bandeja de entrada (con iconos visuales)\n2. Mostrar previsualizaciones de reservas de vuelos, hoteles, eventos\n3. Añadir botones de acción directos (Check in, View booking, etc.)\n4. Mostrar información estructurada de pedidos y reservas\nEl JSON-LD se incluye en el cuerpo del email como script oculto."
+    },
+    {
+      "id": 18,
+      "topic": "Facebook Open Graph",
+      "front": "¿Qué es el protocolo Open Graph y en qué se diferencia de Schema.org?",
+      "back": "Open Graph (ogp.me) es un protocolo desarrollado por Facebook para metadatos de compartición social.\nDiferencias con Schema.org:\n- Open Graph: pensado para redes sociales (Facebook, Twitter, LinkedIn)\n- Schema.org: pensado para motores de búsqueda (Google, Bing, etc.)\nAmbos se implementan en HTML, pero con propósitos complementarios.\nEtiquetas principales: og:title, og:type, og:image, og:url, og:description."
+    },
+    {
+      "id": 19,
+      "topic": "Facebook Open Graph",
+      "front": "¿Cuáles son las principales metaetiquetas Open Graph y para qué sirve cada una?",
+      "back": "og:title — Título del contenido al compartir\nog:type — Tipo de contenido (website, article, video, music, etc.)\nog:image — URL de la imagen que se muestra al compartir\nog:url — URL canónica del contenido\nog:description — Descripción breve del contenido\nEstas metaetiquetas controlan cómo se ve un enlace cuando se comparte en redes sociales."
+    },
+    {
+      "id": 20,
+      "topic": "Integración de Datos Semánticos",
+      "front": "¿Qué es OpenPHACTS y por qué es relevante para la Web Semántica?",
+      "back": "OpenPHACTS = Open Pharmacological Data\nPlataforma de integración de datos biomédicos y farmacológicos.\nDatos: 3 billion (3.000 millones) de triples RDF\nIntegra múltiples datasets: ChEMBL, UniProt, DrugBank, etc.\nEjemplo de Knowledge Graph industrial con datos enlazados (Linked Data) a escala real."
+    },
+    {
+      "id": 21,
+      "topic": "Integración de Datos Semánticos",
+      "front": "¿Qué es FIBO y en qué sector se aplica?",
+      "back": "FIBO = Financial Industry Business Ontology\nOntología semántica para el sector financiero y bancario.\nDesarrollada por EDM Council y Object Management Group (OMG).\nPropósito: interoperabilidad semántica de datos entre instituciones financieras.\nEjemplo: definición formal de conceptos como 'préstamo', 'contrato', 'activo financiero' que todas las entidades entienden igual."
+    },
+    {
+      "id": 22,
+      "topic": "Integración de Datos Semánticos",
+      "front": "¿Qué empresas tienen Knowledge Graphs a escala industrial?",
+      "back": "Las principales empresas tecnológicas tienen Knowledge Graphs propios:\n- Google Knowledge Graph (búsqueda semántica, asistente)\n- Amazon Product Graph (recomendaciones, búsqueda de productos)\n- Facebook Social Graph (relaciones entre usuarios y entidades)\nEstos grafos de conocimiento son la base de sus sistemas de recomendación, búsqueda semántica e inteligencia artificial."
+    },
+    {
+      "id": 23,
+      "topic": "Descentralización",
+      "front": "¿Cuáles son las diferencias entre centralización, descentralización y distribución?",
+      "back": "Centralización: control por una única entidad (servidor único).\nDescentralización: control compartido entre entidades independientes; ningún actor tiene control absoluto.\nDistribución: componentes físicamente separados en múltiples ubicaciones.\nBitcoin es un ejemplo de sistema DESCENTRALIZADO Y DISTRIBUIDO: los nodos están en muchos lugares (distribuido) y ninguno controla el sistema (descentralizado)."
+    },
+    {
+      "id": 24,
+      "topic": "Descentralización",
+      "front": "¿Cómo funciona la estructura básica de una blockchain?",
+      "back": "Una blockchain es una cadena de bloques donde:\n- Cada bloque contiene: datos (transacciones) + hash del bloque anterior\n- El hash del bloque anterior crea la 'cadena' y garantiza la integridad\n- Alterar un bloque cambia su hash, invalidando todos los siguientes\n- La cadena es mantenida por múltiples nodos independientes\nResultado: registro inmutable, transparente y descentralizado de transacciones."
+    },
+    {
+      "id": 25,
+      "topic": "Descentralización",
+      "front": "¿Qué es el halving de Bitcoin y qué implica económicamente?",
+      "back": "El halving de Bitcoin es la reducción a la mitad de la recompensa por bloque que reciben los mineros.\nFrecuencia: aproximadamente cada 4 años (cada 210.000 bloques).\nEjemplo de progresión: 50 → 25 → 12.5 → 6.25 → 3.125 BTC por bloque.\nEn el período del curso: 6.25 BTC/bloque.\nImplicación económica: reduce la oferta nueva de Bitcoin, diseño deflacionario con máximo de 21 millones de BTC."
+    },
+    {
+      "id": 26,
+      "topic": "Descentralización",
+      "front": "¿Qué son los smart contracts y en qué blockchain se ejecutan principalmente?",
+      "back": "Smart contracts = contratos inteligentes.\nSon programas que se ejecutan automáticamente en la blockchain cuando se cumplen condiciones predefinidas.\nBlockchain principal: Ethereum (también Solana, Polygon, etc.)\nCaracterísticas:\n- Inmutables una vez desplegados\n- Ejecutados por todos los nodos de la red\n- Sin intermediarios\n- Base de las DApps (aplicaciones descentralizadas)"
+    },
+    {
+      "id": 27,
+      "topic": "DApps",
+      "front": "¿Qué es una DApp y qué la diferencia de una aplicación web tradicional?",
+      "back": "DApp = Decentralized Application.\nDiferencias con aplicaciones web tradicionales:\n- Backend: smart contracts en blockchain (en lugar de servidores centralizados)\n- Datos: almacenados en blockchain o IPFS (en lugar de bases de datos centralizadas)\n- Control: ninguna entidad controla la aplicación completamente\n- Transparencia: código y transacciones públicamente verificables\nDirectorio de DApps: DappRadar"
+    },
+    {
+      "id": 28,
+      "topic": "DApps",
+      "front": "¿Qué es CopyrightLY y cómo combina blockchain y Web Semántica?",
+      "back": "CopyrightLY es una DApp para gestión de derechos de autor que combina:\nBLOCKCHAIN:\n- Reclamaciones de autoría con evidencias (vídeos YouTube, etc.)\n- Token-curated claims con staking de tokens CLY (bonding curve)\n- Licencias como NFTs\nWEB SEMÁNTICA:\n- Metadatos semánticos en los NFTs de licencia\n- Datos estructurados interoperables\nMARKETPLACES: los NFTs se intercambian en OpenSea y Rarible."
+    },
+    {
+      "id": 29,
+      "topic": "DApps",
+      "front": "¿Qué es un NFT y cómo se usa en CopyrightLY?",
+      "back": "NFT = Non-Fungible Token.\nToken único en blockchain que representa la propiedad de un activo digital.\nEn CopyrightLY:\n- Las licencias de contenido se emiten como NFTs\n- Cada NFT incluye metadatos semánticos (Web Semántica)\n- Los NFTs se pueden intercambiar en marketplaces (OpenSea, Rarible)\n- La propiedad del NFT representa la licencia de uso del contenido\nCombinación innovadora: NFT + metadatos semánticos = licencia digital interoperable."
+    },
+    {
+      "id": 30,
+      "topic": "DApps",
+      "front": "¿Qué es Gitcoin y cómo usa blockchain?",
+      "back": "Gitcoin es una plataforma de financiación de desarrollo open source que usa blockchain.\nFuncionalidades:\n- Bounties: recompensas cripto para resolver issues de GitHub\n- Grants: donaciones colectivas para proyectos open source (financiación cuadrática)\n- Hackathons: competiciones de desarrollo con premios en cripto\nUsando mecanismos blockchain garantiza transparencia en la distribución de fondos y alinea incentivos económicos con el desarrollo de software libre."
+    },
+    {
+      "id": 31,
+      "topic": "RDFa",
+      "front": "Escribe el ejemplo básico de RDFa para describir una persona con FOAF:",
+      "back": "<p vocab=\"http://xmlns.com/foaf/0.1/\"\n   resource=\"#manu\" typeof=\"Person\">\n  My name is\n  <span property=\"name\">Manu Sporny</span>\n  and you can call me at\n  <span property=\"phone\">1-800-555-0527</span>.\n</p>\n\nvocab → vocabulario base\nresource → URI del recurso\ntypeof → tipo de entidad\nproperty → propiedad del recurso"
+    },
+    {
+      "id": 32,
+      "topic": "JSON-LD",
+      "front": "¿Qué ventaja tiene JSON-LD frente a RDFa/Microdata para los desarrolladores?",
+      "back": "Ventajas de JSON-LD:\n1. No modifica el HTML visible — los datos semánticos van en un <script> separado\n2. Sintaxis familiar — cualquier desarrollador que conozca JSON puede escribirlo\n3. Fácil de generar dinámicamente desde el servidor\n4. Recomendado por Google — mejor soporte en Rich Results\n5. Fácil de mantener y actualizar sin tocar el HTML\nDesventaja: los datos semánticos están desacoplados del HTML, por lo que pueden desincronizarse."
+    },
+    {
+      "id": 33,
+      "topic": "Introducción a Web 3.0",
+      "front": "¿Qué es DBpedia y cómo se relaciona con la Web Semántica?",
+      "back": "DBpedia es una versión estructurada de Wikipedia como datos enlazados (Linked Data).\nEjemplo: http://dbpedia.org/resource/Ronaldo tiene propiedades formales: tipo (Footballer), nacimiento, nacionalidad, clubes, etc.\nEs un ejemplo paradigmático de semántica EXPLÍCITA.\nPermite búsquedas semánticas tipo: 'todos los futbolistas brasileños nacidos en los 90' usando SPARQL.\nForma parte del núcleo del Linked Open Data Cloud."
+    },
+    {
+      "id": 34,
+      "topic": "Schema.org",
+      "front": "¿Cómo se estructura una anotación Schema.org con JSON-LD para un producto?",
+      "back": "{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"Product\",\n  \"name\": \"Nombre del Producto\",\n  \"description\": \"Descripción del producto\",\n  \"image\": \"http://example.com/product.jpg\",\n  \"manufacturer\": {\"@type\": \"Organization\", \"name\": \"Fabricante\"},\n  \"offers\": {\n    \"@type\": \"Offer\",\n    \"price\": \"29.99\",\n    \"priceCurrency\": \"EUR\"\n  },\n  \"aggregateRating\": {\n    \"@type\": \"AggregateRating\",\n    \"ratingValue\": \"4.5\",\n    \"reviewCount\": \"89\"\n  }\n}"
+    },
+    {
+      "id": 35,
+      "topic": "Descentralización",
+      "front": "¿Por qué se dice que Bitcoin es tanto descentralizado como distribuido?",
+      "back": "Bitcoin es DISTRIBUIDO porque:\n- Los nodos de la red están en múltiples ubicaciones físicas alrededor del mundo\n- No hay un servidor central que almacene el blockchain\n\nBitcoin es DESCENTRALIZADO porque:\n- Ninguna entidad controla la red (ni el gobierno, ni una empresa, ni ninguna persona)\n- Las transacciones son validadas por consenso de los nodos mineros\n- Las reglas del protocolo solo cambian por consenso de la comunidad\n\nEsta combinación es lo que lo hace resistente a la censura y a los ataques."
+    },
+    {
+      "id": 36,
+      "topic": "DApps",
+      "front": "¿Qué mecanismo de 'token-curation' usa CopyrightLY y cómo funciona?",
+      "back": "Token-Curated Registry (TCR) con bonding curve:\n1. Un creador reclama autoría de un contenido y hace staking de tokens CLY\n2. Cualquiera puede impugnar la reclamación haciendo staking de más tokens CLY\n3. La bonding curve determina el precio del token según el soporte acumulado\n4. Si la reclamación es aceptada: el reclamante gana los tokens del impugnador\n5. Si se rechaza: el impugnador gana los tokens del reclamante\nEste mecanismo alinea incentivos económicos para que solo se validen reclamaciones legítimas."
+    },
+    {
+      "id": 37,
+      "topic": "Introducción a Web 3.0",
+      "front": "¿Qué es un mashup web y en qué contexto surge?",
+      "back": "Un mashup web es una aplicación que combina datos o funcionalidades de múltiples fuentes externas.\nContexto: Web of Documents / Web 2.0\nEjemplo clásico: mapa de Google Maps + datos de anuncios inmobiliarios = mapa de pisos en alquiler.\nEn términos semánticos: Factura (Invoice) + API Web = Mashup de Aplicaciones.\nLos mashups representan el paso intermedio entre Web 2.0 y Web 3.0: conectan aplicaciones pero sin semántica formal."
+    },
+    {
+      "id": 38,
+      "topic": "RDFa",
+      "front": "¿Por qué RDFa es ampliamente usada para SEO?",
+      "back": "RDFa mejora el SEO porque:\n1. Permite a los motores de búsqueda entender el significado del contenido (no solo palabras)\n2. Habilita Rich Results (rich snippets) con estrellas, precios, disponibilidad\n3. Mejora el CTR en resultados de búsqueda\n4. Permite la indexación semántica del contenido\n5. Facilita la aparición en Knowledge Panels y Featured Snippets\nSchema.org con RDFa es el combo más potente para SEO semántico."
+    },
+    {
+      "id": 39,
+      "topic": "Facebook Open Graph",
+      "front": "¿Cómo se incluyen los metadatos Open Graph en una página HTML?",
+      "back": "Los metadatos Open Graph se incluyen como metaetiquetas en el <head> del HTML:\n\n<meta property=\"og:title\" content=\"Título de la página\" />\n<meta property=\"og:type\" content=\"website\" />\n<meta property=\"og:url\" content=\"https://example.com/page\" />\n<meta property=\"og:image\" content=\"https://example.com/image.jpg\" />\n<meta property=\"og:description\" content=\"Descripción breve\" />\n\nEstas etiquetas controlan cómo se muestra el enlace cuando se comparte en Facebook, Twitter, LinkedIn, WhatsApp, etc."
+    },
+    {
+      "id": 40,
+      "topic": "DApps",
+      "front": "¿Qué diferencias fundamentales existen entre el ecosistema Web 2.0 y Web 3.0 descentralizado?",
+      "back": "Web 2.0 (centralizado):\n- Servidores controlados por empresas (Google, Facebook, Amazon)\n- Datos del usuario propios de la plataforma\n- Censura posible por la plataforma\n- Intermediarios en transacciones\n\nWeb 3.0 descentralizado:\n- Smart contracts en blockchain sin servidor central\n- Usuario propietario de sus datos y activos (NFTs, tokens)\n- Sin censura (código inmutable)\n- Transacciones peer-to-peer sin intermediarios\n- Mayor transparencia (código auditable)\n\nPlataformas Web 3.0: Ethereum DApps, Gitcoin, CopyrightLY, OpenSea."
+    }
+  ]
+}

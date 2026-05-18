@@ -1,0 +1,343 @@
+{
+  "metadata": {
+    "title": "Web 2.0 — Drag & Drop",
+    "subject": "Proyecto Web — Computer Engineering Degree",
+    "professor": "Roberto García",
+    "university": "Universitat de Lleida (UdL)",
+    "format": "drag-and-drop",
+    "totalQuestions": 10,
+    "topics": ["AJAX", "REST/ROA", "Diseño de APIs RESTful"]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "algorithm": "AJAX Steps — GET Request",
+      "topic": "AJAX",
+      "difficulty": "medium",
+      "description": "Ordena/completa los pasos para hacer una petición AJAX GET con XMLHttpRequest:",
+      "code": [
+        "// 1. Crear instancia XMLHttpRequest",
+        "var xhr = [B1];",
+        "",
+        "// 2. Abrir la conexión",
+        "xhr.[B2](\"GET\", \"products/34/\", true);",
+        "",
+        "// 3. Definir callback de estado",
+        "xhr.[B3] = function() {",
+        "  if (xhr.[B4] == 4 && xhr.status == 200) {",
+        "    document.getElementById(\"div\").innerHTML = xhr.[B5];",
+        "  }",
+        "};",
+        "",
+        "// 4. Enviar petición (sin cuerpo para GET)",
+        "xhr.[B6]();"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "new XMLHttpRequest()", "hint": "Constructor del objeto AJAX estándar (IE7+)"},
+        {"id": "B2", "answer": "open", "hint": "Método para configurar método HTTP y URL"},
+        {"id": "B3", "answer": "onreadystatechange", "hint": "Propiedad callback que se llama cuando cambia readyState"},
+        {"id": "B4", "answer": "readyState", "hint": "Propiedad numérica (0-4) que indica el estado de la petición"},
+        {"id": "B5", "answer": "responseText", "hint": "Propiedad con el cuerpo de la respuesta como string"},
+        {"id": "B6", "answer": "send", "hint": "Método que envía la petición al servidor"}
+      ],
+      "tokens": ["new XMLHttpRequest()", "open", "onreadystatechange", "readyState", "responseText", "send", "status", "onload", "new ActiveXObject('Microsoft.XMLHTTP')", "responseXML"],
+      "explanation": "Los 4 pasos AJAX: (1) crear XMLHttpRequest, (2) open() configura método y URL, (3) onreadystatechange maneja la respuesta cuando readyState=4 y status=200, (4) send() envía. Para GET no se pasa cuerpo a send()."
+    },
+    {
+      "id": 2,
+      "algorithm": "AJAX Steps — POST Request",
+      "topic": "AJAX",
+      "difficulty": "medium",
+      "description": "Completa el código para hacer una petición AJAX POST enviando datos de formulario:",
+      "code": [
+        "var xhr = new XMLHttpRequest();",
+        "xhr.open([B1], \"/tasks/2024-06-09\", true);",
+        "",
+        "// Configurar cabecera para datos de formulario",
+        "xhr.[B2](\"Content-Type\", \"[B3]\");",
+        "",
+        "xhr.onreadystatechange = function() {",
+        "  if (xhr.readyState == 4 && xhr.[B4] == 201) {",
+        "    var location = xhr.getResponseHeader(\"[B5]\");",
+        "    console.log(\"Recurso creado en: \" + location);",
+        "  }",
+        "};",
+        "",
+        "xhr.send(\"title=buy+some+fruit&state=pending\");"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "\"POST\"", "hint": "Método HTTP para crear recursos"},
+        {"id": "B2", "answer": "setRequestHeader", "hint": "Método para establecer cabeceras HTTP"},
+        {"id": "B3", "answer": "application/x-www-form-urlencoded", "hint": "Content-Type estándar para datos de formulario"},
+        {"id": "B4", "answer": "status", "hint": "Propiedad con el código de estado HTTP"},
+        {"id": "B5", "answer": "Location", "hint": "Cabecera HTTP que el servidor usa para indicar la URI del recurso creado"}
+      ],
+      "tokens": ["\"POST\"", "\"GET\"", "\"PUT\"", "setRequestHeader", "getRequestHeader", "application/x-www-form-urlencoded", "application/json", "status", "readyState", "Location", "Content-Type"],
+      "explanation": "Para POST: método='POST', setRequestHeader define Content-Type, status==201 indica creación exitosa, y el header 'Location' contiene la URI del nuevo recurso."
+    },
+    {
+      "id": 3,
+      "algorithm": "XMLHttpRequest — readyState Values",
+      "topic": "AJAX",
+      "difficulty": "easy",
+      "description": "Arrastra el significado correcto a cada valor de readyState:",
+      "code": [
+        "// Asigna la descripción correcta a cada estado:",
+        "",
+        "readyState = 0  →  [B1]",
+        "readyState = 1  →  [B2]",
+        "readyState = 2  →  [B3]",
+        "readyState = 3  →  [B4]",
+        "readyState = 4  →  [B5]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "No inicializado (open() no llamado)", "hint": "Estado inicial del objeto XHR"},
+        {"id": "B2", "answer": "Conexión establecida (open() llamado)", "hint": "Después de llamar a open()"},
+        {"id": "B3", "answer": "Petición recibida (cabeceras disponibles)", "hint": "El servidor ha recibido la petición"},
+        {"id": "B4", "answer": "Procesando (descargando respuesta)", "hint": "El cuerpo de la respuesta está llegando"},
+        {"id": "B5", "answer": "Finalizado/Listo (respuesta completa)", "hint": "Estado donde se procesa la respuesta"}
+      ],
+      "tokens": [
+        "No inicializado (open() no llamado)",
+        "Conexión establecida (open() llamado)",
+        "Petición recibida (cabeceras disponibles)",
+        "Procesando (descargando respuesta)",
+        "Finalizado/Listo (respuesta completa)",
+        "Error de red",
+        "Timeout excedido"
+      ],
+      "explanation": "Los 5 estados de readyState documentan el ciclo de vida completo de una petición AJAX. El estado 4 es el único donde se debe procesar la respuesta (junto con verificar status==200)."
+    },
+    {
+      "id": 4,
+      "algorithm": "HTTP Methods — REST Semantics",
+      "topic": "REST/ROA",
+      "difficulty": "medium",
+      "description": "Arrastra el método HTTP correcto a cada operación RESTful sobre la API de tareas:",
+      "code": [
+        "// Obtener todas las tareas:",
+        "[B1] /tasks",
+        "",
+        "// Crear nueva tarea (servidor asigna ID):",
+        "[B2] /tasks/2024-06-09",
+        "",
+        "// Obtener detalles de una tarea:",
+        "[B3] /tasks/2024-06-09/1",
+        "",
+        "// Reemplazar tarea completamente:",
+        "[B4] /tasks/2024-06-09/1",
+        "",
+        "// Eliminar una tarea:",
+        "[B5] /tasks/2024-06-09/1"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "GET", "hint": "Método seguro e idempotente para obtener recursos"},
+        {"id": "B2", "answer": "POST", "hint": "Método para crear recurso subordinado (servidor asigna URI)"},
+        {"id": "B3", "answer": "GET", "hint": "Mismo método para obtener un recurso específico"},
+        {"id": "B4", "answer": "PUT", "hint": "Método idempotente para reemplazar la representación completa"},
+        {"id": "B5", "answer": "DELETE", "hint": "Método idempotente para eliminar el recurso"}
+      ],
+      "tokens": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"],
+      "explanation": "La interfaz uniforme REST: GET (leer, seguro+idempotente), POST (crear subordinado, el servidor asigna URI, responde 201+Location), PUT (reemplazar completo, idempotente), DELETE (eliminar, idempotente). PATCH sería para actualizaciones parciales."
+    },
+    {
+      "id": 5,
+      "algorithm": "ROA Principles — Identification",
+      "topic": "REST/ROA",
+      "difficulty": "medium",
+      "description": "Clasifica cada característica con el principio ROA al que pertenece:",
+      "code": [
+        "// Arrastra el principio correcto a cada característica:",
+        "",
+        "\"Cada pieza de información tiene su propia URI\"",
+        "→ [B1]",
+        "",
+        "\"Cada petición HTTP es independiente y contiene toda la info\"",
+        "→ [B2]",
+        "",
+        "\"GET no modifica el servidor; PUT tiene el mismo efecto aplicado N veces\"",
+        "→ [B3]",
+        "",
+        "\"Las respuestas incluyen enlaces para que el cliente pueda navegar\"",
+        "→ [B4]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "Addressability", "hint": "Direccionabilidad: cada recurso tiene su dirección única"},
+        {"id": "B2", "answer": "Statelessness", "hint": "Sin estado: no hay sesión en el servidor"},
+        {"id": "B3", "answer": "Uniform Interface", "hint": "Interfaz uniforme: semántica HTTP (seguridad e idempotencia)"},
+        {"id": "B4", "answer": "Connectedness / HATEOAS", "hint": "Conectividad: hipermedia como motor del estado de la aplicación"}
+      ],
+      "tokens": ["Addressability", "Statelessness", "Uniform Interface", "Connectedness / HATEOAS", "Scalability", "Cacheability", "REST-RPC"],
+      "explanation": "Los 4 principios de ROA: Addressability (URIs únicas), Statelessness (sin sesión), Uniform Interface (semántica HTTP) y Connectedness/HATEOAS (hipermedia como guía)."
+    },
+    {
+      "id": 6,
+      "algorithm": "REST vs REST-RPC — URL Design",
+      "topic": "REST/ROA",
+      "difficulty": "medium",
+      "description": "Clasifica cada URL/operación como RESTful o REST-RPC (anti-patrón):",
+      "code": [
+        "// Indica si cada operación es RESTful o REST-RPC:",
+        "",
+        "GET /dogs                     → [B1]",
+        "GET /getDog?id=5              → [B2]",
+        "DELETE /dogs/brian            → [B3]",
+        "POST /saveDog                 → [B4]",
+        "PUT /dogs/brian               → [B5]",
+        "GET /deleteUser?id=5          → [B6]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "RESTful", "hint": "Sustantivo en URL, método correcto para listar"},
+        {"id": "B2", "answer": "REST-RPC", "hint": "Verbo 'get' en la URL viola la interfaz uniforme"},
+        {"id": "B3", "answer": "RESTful", "hint": "Sustantivo + ID, método DELETE correcto"},
+        {"id": "B4", "answer": "REST-RPC", "hint": "Verbo 'save' en la URL, debería ser POST /dogs"},
+        {"id": "B5", "answer": "RESTful", "hint": "Sustantivo + ID, método PUT para reemplazar"},
+        {"id": "B6", "answer": "REST-RPC", "hint": "GET nunca debe modificar recursos; verbo 'delete' en URL"}
+      ],
+      "tokens": ["RESTful", "REST-RPC"],
+      "explanation": "RESTful: sustantivos en URLs, operación en el método HTTP. REST-RPC: verbos en URLs (getDog, saveDog, deleteUser) o GET para operaciones modificadoras. Es el anti-patrón más común."
+    },
+    {
+      "id": 7,
+      "algorithm": "HTTP Response Codes — REST",
+      "topic": "Diseño de APIs RESTful",
+      "difficulty": "medium",
+      "description": "Asocia cada código de respuesta HTTP con la situación RESTful correspondiente:",
+      "code": [
+        "// Arrastra el código HTTP correcto:",
+        "",
+        "Recurso obtenido exitosamente (GET):           [B1]",
+        "Recurso creado exitosamente (POST):            [B2]",
+        "Recurso eliminado exitosamente (DELETE):       [B3]",
+        "URI alternativa redirige a URI canónica:       [B4]",
+        "Recurso no encontrado:                         [B5]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "200 OK", "hint": "El código de éxito estándar"},
+        {"id": "B2", "answer": "201 Created", "hint": "Éxito en creación; va con cabecera Location"},
+        {"id": "B3", "answer": "200 OK o 204 No Content", "hint": "200 si hay cuerpo de respuesta; 204 si no hay"},
+        {"id": "B4", "answer": "303 See Other", "hint": "Redirección a la URI canónica en ROA"},
+        {"id": "B5", "answer": "404 Not Found", "hint": "El recurso no existe en esa URI"}
+      ],
+      "tokens": ["200 OK", "201 Created", "200 OK o 204 No Content", "303 See Other", "301 Moved Permanently", "404 Not Found", "500 Internal Server Error", "400 Bad Request"],
+      "explanation": "Códigos clave REST: 200 OK (éxito general), 201 Created (POST exitoso + Location header), 204 No Content (éxito sin cuerpo), 303 See Other (redirección a URI canónica), 404 Not Found (recurso no existe)."
+    },
+    {
+      "id": 8,
+      "algorithm": "RESTful API Design Table — Tasks",
+      "topic": "Diseño de APIs RESTful",
+      "difficulty": "hard",
+      "description": "Completa la tabla de diseño de la API RESTful de Tareas con las operaciones correctas:",
+      "code": [
+        "// Tabla de diseño de API RESTful (operación o N/A):",
+        "",
+        "URL ejemplo               | GET          | POST          | PUT/PATCH    | DELETE",
+        "--------------------------|--------------|---------------|--------------|--------",
+        "/tasks                    | [B1]         | N/A           | N/A          | N/A",
+        "/tasks/2024-06-09         | [B2]         | [B3]          | N/A          | N/A",
+        "/tasks/2024-06-09/1       | [B4]         | N/A           | [B5]         | [B6]"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "Listar todas las tareas", "hint": "Obtener la colección completa"},
+        {"id": "B2", "answer": "Listar tareas del día", "hint": "Obtener tareas filtradas por fecha"},
+        {"id": "B3", "answer": "Crear nueva tarea (servidor asigna ID)", "hint": "POST al recurso colección crea subordinado"},
+        {"id": "B4", "answer": "Ver detalles de la tarea", "hint": "Obtener una tarea específica"},
+        {"id": "B5", "answer": "Actualizar/cambiar estado de la tarea", "hint": "PUT reemplaza; PATCH cambia parcialmente"},
+        {"id": "B6", "answer": "Eliminar la tarea", "hint": "DELETE borra el recurso"}
+      ],
+      "tokens": [
+        "Listar todas las tareas",
+        "Listar tareas del día",
+        "Crear nueva tarea (servidor asigna ID)",
+        "Ver detalles de la tarea",
+        "Actualizar/cambiar estado de la tarea",
+        "Eliminar la tarea",
+        "Reemplazar todas las tareas",
+        "Buscar tareas"
+      ],
+      "explanation": "La tabla de diseño RESTful es la herramienta clave del curso. Filas=recursos, columnas=métodos HTTP. Cada celda define la semántica de la operación o indica N/A. Diseñar así garantiza una API coherente y predecible."
+    },
+    {
+      "id": 9,
+      "algorithm": "jQuery AJAX — Methods",
+      "topic": "AJAX",
+      "difficulty": "medium",
+      "description": "Completa el código jQuery para cargar datos asincrónicamente:",
+      "code": [
+        "// Cargar HTML directamente en un div:",
+        "[B1](\"#resultado\").[B2](\"datos/fragmento.html\");",
+        "",
+        "// Petición GET con callback:",
+        "$.[B3](\"api/products\", function(data) {",
+        "  console.log(data);",
+        "});",
+        "",
+        "// Petición POST enviando datos del formulario:",
+        "$.[B4](\"api/tasks\", $(\"#miFormulario\").[B5](), function(resp) {",
+        "  alert(\"Tarea creada: \" + resp.id);",
+        "});",
+        "",
+        "// Codificar un valor para incluir en URL:",
+        "var url = \"search?q=\" + [B6](\"hello world & más\");"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "$", "hint": "Función principal de jQuery"},
+        {"id": "B2", "answer": "load", "hint": "Método jQuery que carga contenido AJAX en el elemento"},
+        {"id": "B3", "answer": "get", "hint": "Atajo jQuery para peticiones GET"},
+        {"id": "B4", "answer": "post", "hint": "Atajo jQuery para peticiones POST"},
+        {"id": "B5", "answer": "serialize", "hint": "Método jQuery que convierte campos de formulario a query string"},
+        {"id": "B6", "answer": "encodeURIComponent", "hint": "Función JS que codifica caracteres especiales para URLs"}
+      ],
+      "tokens": ["$", "jQuery", "load", "fetch", "get", "post", "ajax", "serialize", "val", "encodeURIComponent", "encodeURI", "btoa"],
+      "explanation": "jQuery simplifica AJAX: $(selector).load() para cargar HTML, $.get()/$.post() para peticiones simples, .serialize() para formularios, encodeURIComponent() para valores seguros en URLs."
+    },
+    {
+      "id": 10,
+      "algorithm": "REST Principles — Web 2.0 Mapping",
+      "topic": "REST/ROA",
+      "difficulty": "hard",
+      "description": "Ordena los conceptos para construir una petición REST/ROA completa con los principios correctos aplicados:",
+      "code": [
+        "// Una petición RESTful bien diseñada debe cumplir:",
+        "",
+        "// 1. ADDRESSABILITY: La URI identifica el recurso exacto",
+        "[B1] /tasks/2024-06-09/1",
+        "//   ↑ toda la info de routing está en la URI",
+        "",
+        "// 2. UNIFORM INTERFACE: El método indica la operación",
+        "// Método usado: [B2]  (actualizar estado)",
+        "// Cuerpo: {\"state\": \"completed\"}",
+        "",
+        "// 3. STATELESSNESS: La petición es auto-contenida",
+        "// Incluye: [B3]  (no depende de sesión)",
+        "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9...",
+        "",
+        "// 4. CONNECTEDNESS: La respuesta incluye enlaces",
+        "// Respuesta incluye: [B4]",
+        "// {\"id\":\"/tasks/2024-06-09/1\", \"state\":\"completed\",",
+        "//  \"links\": {\"day\": \"[B5]\", \"all\": \"/tasks\"}}"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "PUT", "hint": "Método HTTP para reemplazar el recurso (idempotente)"},
+        {"id": "B2", "answer": "PUT", "hint": "Mismo que B1 — el método define la operación"},
+        {"id": "B3", "answer": "cabecera de autenticación", "hint": "Toda la info necesaria va en la petición, no en sesión de servidor"},
+        {"id": "B4", "answer": "enlaces a recursos relacionados", "hint": "HATEOAS: hipermedia como motor del estado"},
+        {"id": "B5", "answer": "/tasks/2024-06-09", "hint": "Enlace al recurso padre (día al que pertenece la tarea)"}
+      ],
+      "tokens": [
+        "PUT",
+        "PATCH",
+        "POST",
+        "cabecera de autenticación",
+        "cookie de sesión del servidor",
+        "ID de sesión en memoria",
+        "enlaces a recursos relacionados",
+        "solo el estado actualizado",
+        "/tasks/2024-06-09",
+        "/tasks/all",
+        "/dates/2024-06-09"
+      ],
+      "explanation": "Una petición RESTful perfecta aplica los 4 principios: (1) URI identifica el recurso exacto (addressability), (2) método HTTP indica la operación (interfaz uniforme), (3) petición auto-contenida con autenticación propia (statelessness), (4) respuesta con enlaces para navegar (HATEOAS/connectedness)."
+    }
+  ]
+}
