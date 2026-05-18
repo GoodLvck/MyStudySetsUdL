@@ -1,0 +1,704 @@
+{
+  "metadata": {
+    "title": "Patrones de Diseño (GoF) — Preguntas Test",
+    "subject": "AEPBD — Ampliació BBDD i Enginyeria del Software",
+    "professor": "Juan Manuel Gimeno Illa",
+    "format": "quiz",
+    "totalQuestions": 50,
+    "topics": [
+      "Introducción GoF",
+      "Patrones de Interfaz",
+      "Patrones de Responsabilidad",
+      "Patrones de Construcción",
+      "Patrones de Operación",
+      "Patrones de Extensión"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Introducción GoF",
+      "difficulty": "easy",
+      "question": "¿Cuántos patrones describe el libro 'Design Patterns' del Gang of Four?",
+      "options": ["A) 18", "B) 20", "C) 23", "D) 26"],
+      "correctAnswer": "C",
+      "explanation": "El libro GoF (Gamma, Helm, Johnson, Vlissides, 1995) describe exactamente 23 patrones de diseño organizados en tres categorías: Creacional, Estructural y Comportamiento."
+    },
+    {
+      "id": 2,
+      "topic": "Introducción GoF",
+      "difficulty": "easy",
+      "question": "¿Quiénes forman el 'Gang of Four' (GoF)?",
+      "options": [
+        "A) Fowler, Beck, Martin, Kerievsky",
+        "B) Gamma, Helm, Johnson, Vlissides",
+        "C) Alexander, Metsker, Wake, Vlissides",
+        "D) Knuth, Dijkstra, Hoare, Wirth"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El Gang of Four está formado por Erich Gamma, Richard Helm, Ralph Johnson y John Vlissides, autores del libro 'Design Patterns: Elements of Reusable Object-Oriented Software' (1995)."
+    },
+    {
+      "id": 3,
+      "topic": "Introducción GoF",
+      "difficulty": "easy",
+      "question": "Según la clasificación GoF por PROPÓSITO (what), ¿cuáles son las tres categorías de patrones?",
+      "options": [
+        "A) Interfaces, Responsabilidad, Construcción",
+        "B) Estáticos, Dinámicos, Mixtos",
+        "C) Creacionales, Estructurales, Comportamiento",
+        "D) Clase, Objeto, Componente"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La clasificación GoF por propósito divide los 23 patrones en: Creacionales (crean objetos), Estructurales (componen clases/objetos) y de Comportamiento (interacción entre objetos)."
+    },
+    {
+      "id": 4,
+      "topic": "Introducción GoF",
+      "difficulty": "medium",
+      "question": "¿Qué diferencia hay entre un patrón de CLASE y un patrón de OBJETO en la clasificación GoF por ámbito (scope)?",
+      "options": [
+        "A) Los patrones de clase son más complejos que los de objeto",
+        "B) Los patrones de clase usan herencia (estáticos) y los de objeto usan composición/polimorfismo (dinámicos)",
+        "C) Los patrones de clase solo se aplican a clases abstractas",
+        "D) No existe tal distinción en GoF"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En GoF, los patrones de CLASE usan herencia (relaciones estáticas, fijadas en compilación) y los patrones de OBJETO usan composición y polimorfismo (relaciones dinámicas, cambian en tiempo de ejecución)."
+    },
+    {
+      "id": 5,
+      "topic": "Introducción GoF",
+      "difficulty": "medium",
+      "question": "¿Cuál de los siguientes patrones es Creacional/Clase según la tabla GoF?",
+      "options": ["A) Abstract Factory", "B) Factory Method", "C) Builder", "D) Prototype"],
+      "correctAnswer": "B",
+      "explanation": "Factory Method es el único patrón Creacional/Clase en GoF, ya que usa herencia para delegar la creación a subclases. El resto de patrones creacionales (Abstract Factory, Builder, Prototype, Singleton) son Creacional/Objeto."
+    },
+    {
+      "id": 6,
+      "topic": "Introducción GoF",
+      "difficulty": "medium",
+      "question": "Según la organización por INTENCIÓN de Metsker & Wake, ¿qué patrones pertenecen al grupo 'Extensions'?",
+      "options": [
+        "A) Decorator, Iterator, Visitor",
+        "B) Builder, Factory Method, Prototype",
+        "C) Template Method, State, Strategy",
+        "D) Adapter, Bridge, Composite"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Según Metsker & Wake, los patrones de 'Extensions' son Decorator, Iterator y Visitor, que permiten extender el comportamiento de clases sin modificarlas directamente."
+    },
+    {
+      "id": 7,
+      "topic": "Introducción GoF",
+      "difficulty": "hard",
+      "question": "¿Cuántos patrones Estructurales/Objeto hay en la tabla GoF?",
+      "options": ["A) 5", "B) 6", "C) 7", "D) 8"],
+      "correctAnswer": "C",
+      "explanation": "Los patrones Estructurales/Objeto son 7: Object Adapter, Bridge, Composite, Decorator, Façade, Flyweight y Proxy. El único Estructural/Clase es Class Adapter."
+    },
+    {
+      "id": 8,
+      "topic": "Introducción GoF",
+      "difficulty": "hard",
+      "question": "¿Qué patrones pertenecen a la categoría 'Responsibility' según Metsker & Wake?",
+      "options": [
+        "A) Singleton, Observer, Mediator, Proxy, Chain of Responsibility, Flyweight",
+        "B) Singleton, Observer, Builder, Proxy, Decorator",
+        "C) Observer, Mediator, Command, Visitor, Iterator",
+        "D) Proxy, Facade, Adapter, Bridge, Flyweight"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Según Metsker & Wake, los patrones de 'Responsibility' son: Singleton, Observer, Mediator, Proxy, Chain of Responsibility y Flyweight. Todos tratan sobre quién es responsable de realizar una tarea."
+    },
+    {
+      "id": 9,
+      "topic": "Patrones de Interfaz",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención del patrón Adapter?",
+      "options": [
+        "A) Crear familias de objetos relacionados sin especificar sus clases concretas",
+        "B) Proporcionar la interfaz que un cliente espera usando los servicios de una clase con interfaz diferente",
+        "C) Desacoplar una abstracción de su implementación para que puedan variar independientemente",
+        "D) Proporcionar una interfaz simplificada para un conjunto de clases"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El patrón Adapter convierte la interfaz de una clase en otra interfaz que el cliente espera, como un adaptador de enchufe de viaje que permite usar dispositivos con distintos tipos de conectores."
+    },
+    {
+      "id": 10,
+      "topic": "Patrones de Interfaz",
+      "difficulty": "medium",
+      "question": "¿Qué diferencia hay entre el Class Adapter y el Object Adapter?",
+      "options": [
+        "A) El Class Adapter usa composición y el Object Adapter usa herencia",
+        "B) El Class Adapter usa herencia y el Object Adapter usa delegación (has-a)",
+        "C) El Class Adapter es más flexible porque puede adaptarse en tiempo de ejecución",
+        "D) No hay diferencia funcional entre ambos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El Class Adapter usa herencia (extends ExistingClass, implements RequiredInterface), mientras que el Object Adapter usa delegación (has-a relationship). El Object Adapter es más flexible: puede adaptar diferentes clases de una jerarquía y cambiar el adaptado en tiempo de ejecución."
+    },
+    {
+      "id": 11,
+      "topic": "Patrones de Interfaz",
+      "difficulty": "medium",
+      "question": "En el ejemplo de OozinozRocket, ¿qué tipo de Adapter implementa?",
+      "options": [
+        "A) Object Adapter, porque tiene una referencia a PhysicalRocket",
+        "B) Class Adapter, porque extiende PhysicalRocket e implementa RocketSim",
+        "C) Façade Adapter, porque simplifica la interfaz",
+        "D) Bridge Adapter, porque desacopla la implementación"
+      ],
+      "correctAnswer": "B",
+      "explanation": "OozinozRocket es un Class Adapter porque usa herencia: extiende PhysicalRocket (clase existente) e implementa RocketSim (interfaz requerida). OozinozSkyrocket, en cambio, es el Object Adapter que extiende Skyrocket y tiene una referencia (has-a) a PhysicalRocket."
+    },
+    {
+      "id": 12,
+      "topic": "Patrones de Interfaz",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención del patrón Composite?",
+      "options": [
+        "A) Asegurar que una clase tiene una única instancia",
+        "B) Permitir que los clientes traten objetos individuales y composiciones de manera uniforme",
+        "C) Proporcionar una interfaz de acceso secuencial a los elementos de una colección",
+        "D) Definir el esqueleto de un algoritmo dejando que las subclases redefinan ciertos pasos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El patrón Composite permite tratar objetos individuales (Leaf) y composiciones de objetos (Composite) de manera uniforme a través de una interfaz común (Component). Ideal para estructuras de árbol."
+    },
+    {
+      "id": 13,
+      "topic": "Patrones de Interfaz",
+      "difficulty": "medium",
+      "question": "En el patrón Composite, ¿cómo funciona la operación getMachineCount()?",
+      "options": [
+        "A) Composite devuelve 1, Leaf suma todos sus hijos",
+        "B) Composite suma el getMachineCount() de todos sus hijos, Leaf devuelve 1",
+        "C) Tanto Composite como Leaf devuelven el número total de máquinas",
+        "D) Solo el Composite raíz implementa getMachineCount()"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En el patrón Composite, la operación se comporta recursivamente: el Composite itera sobre todos sus hijos sumando sus getMachineCount(), mientras que el Leaf (hoja) simplemente devuelve 1 (cuenta solo a sí mismo)."
+    },
+    {
+      "id": 14,
+      "topic": "Patrones de Interfaz",
+      "difficulty": "hard",
+      "question": "¿Cuándo un grafo dirigido es un árbol en el contexto del patrón Composite?",
+      "options": [
+        "A) Cuando todos los nodos tienen el mismo número de hijos",
+        "B) Cuando tiene una única raíz sin referencias + cada nodo tiene un único padre",
+        "C) Cuando no hay ciclos pero puede haber múltiples padres",
+        "D) Cuando la profundidad máxima es menor que el número de nodos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Un grafo dirigido es un árbol si: (1) tiene una única raíz sin referencias entrantes y (2) cada nodo tiene un único padre. Para detectar ciclos se puede usar isTree(Set<MachineComponent> visited) con un IdentityHashMap."
+    },
+    {
+      "id": 15,
+      "topic": "Patrones de Interfaz",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención del patrón Bridge?",
+      "options": [
+        "A) Añadir responsabilidades dinámicamente a un objeto",
+        "B) Desacoplar una abstracción de su implementación para que ambas puedan variar independientemente",
+        "C) Proporcionar una interfaz única para un conjunto de interfaces en un subsistema",
+        "D) Convertir la interfaz de una clase en otra interfaz que el cliente espera"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El patrón Bridge desacopla la abstracción de su implementación usando composición en lugar de herencia, permitiendo que tanto la abstracción como la implementación varíen independientemente."
+    },
+    {
+      "id": 16,
+      "topic": "Patrones de Responsabilidad",
+      "difficulty": "easy",
+      "question": "¿Por qué el constructor de un Singleton debe ser privado?",
+      "options": [
+        "A) Por convención de estilo de código",
+        "B) Para mejorar el rendimiento evitando instanciaciones innecesarias",
+        "C) Para impedir que código externo cree instancias adicionales de la clase",
+        "D) Porque los constructores privados son obligatorios en clases con métodos estáticos"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El constructor privado es fundamental en el Singleton para impedir que cualquier código externo pueda instanciar la clase directamente con 'new'. Solo el propio método estático getFactory() (o getInstance()) puede crear la instancia."
+    },
+    {
+      "id": 17,
+      "topic": "Patrones de Responsabilidad",
+      "difficulty": "medium",
+      "question": "¿Cuál es el problema del Singleton con inicialización lazy sin sincronización en un entorno multihilo?",
+      "options": [
+        "A) La instancia se crea demasiado tarde y puede haber errores de rendimiento",
+        "B) Dos o más hilos pueden pasar la comprobación 'if (factory == null)' simultáneamente y crear múltiples instancias",
+        "C) No puede ser serializado correctamente",
+        "D) No funciona con garbage collection"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Sin sincronización, dos hilos pueden comprobar 'if (factory == null)' al mismo tiempo, ambos obtener true y cada uno crear una instancia diferente. Esto viola la garantía de unicidad del Singleton."
+    },
+    {
+      "id": 18,
+      "topic": "Patrones de Responsabilidad",
+      "difficulty": "medium",
+      "question": "¿Qué ventaja tiene el Singleton implementado como enum?",
+      "options": [
+        "A) Es la única variante que permite inicialización lazy",
+        "B) Es automáticamente serializable y thread-safe, sin código adicional",
+        "C) Permite herencia de otras clases",
+        "D) Tiene el mejor rendimiento en todos los casos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El Singleton con enum es automáticamente serializable (la JVM garantiza que solo hay una instancia del enum) y thread-safe (la inicialización de enums es thread-safe por la JVM). No requiere readResolve() ni bloques synchronized."
+    },
+    {
+      "id": 19,
+      "topic": "Patrones de Responsabilidad",
+      "difficulty": "hard",
+      "question": "¿Qué hace el método readResolve() en un Singleton serializable?",
+      "options": [
+        "A) Lee los datos del Singleton desde un archivo",
+        "B) Convierte el Singleton en un objeto serializable",
+        "C) Al deserializar, devuelve la instancia existente en lugar de crear una nueva",
+        "D) Sincroniza el acceso durante la deserialización"
+      ],
+      "correctAnswer": "C",
+      "explanation": "readResolve() es un método especial de Java que se llama durante la deserialización. En un Singleton serializable, retorna getFactory() para garantizar que la deserialización devuelve la instancia existente y no crea una nueva instancia, preservando la unicidad."
+    },
+    {
+      "id": 20,
+      "topic": "Patrones de Responsabilidad",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención del patrón Observer?",
+      "options": [
+        "A) Encapsular una petición como un objeto",
+        "B) Definir una dependencia 1-N entre objetos para que cuando uno cambia de estado, todos sus dependientes sean notificados",
+        "C) Centralizar la coordinación de interacciones entre objetos",
+        "D) Proporcionar un sustituto de otro objeto para controlar el acceso"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El patrón Observer define una dependencia uno-a-muchos (1-N): cuando el sujeto observable cambia su estado, todos los observadores registrados son notificados y actualizados automáticamente."
+    },
+    {
+      "id": 21,
+      "topic": "Patrones de Responsabilidad",
+      "difficulty": "medium",
+      "question": "¿Qué diferencia hay entre el modelo 'pull' y el modelo 'push' en el patrón Observer?",
+      "options": [
+        "A) En pull, el observable fuerza datos al observer; en push, el observer consulta los datos",
+        "B) En pull, el observer consulta al observable los datos necesarios (bajo acoplamiento); en push, el observable pasa información en la notificación (mayor acoplamiento)",
+        "C) Pull y push se refieren a la dirección del flujo de datos en la red",
+        "D) No existe distinción entre pull y push en el patrón Observer"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En el modelo PULL, el observable solo notifica el cambio y los observadores consultan activamente la información que necesitan (menor acoplamiento). En el modelo PUSH, el observable incluye datos en la notificación, lo que puede acoplar más estrechamente las partes."
+    },
+    {
+      "id": 22,
+      "topic": "Patrones de Responsabilidad",
+      "difficulty": "medium",
+      "question": "¿Cómo se relaciona el patrón Observer con el patrón arquitectónico MVC?",
+      "options": [
+        "A) El Modelo implementa Observer y las Vistas implementan Observable",
+        "B) El Modelo extiende Observable, las Vistas/Controladores implementan Observer y se registran como observadores del Modelo",
+        "C) MVC y Observer son patrones completamente independientes sin relación",
+        "D) El Controlador es el único Observer en MVC"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En MVC con Observer: el Modelo (datos/funcionalidad) extiende Observable; las Vistas y Controladores implementan Observer y se registran en el Modelo. Cuando el Modelo cambia, llama setChanged() y notifyObservers(), actualizando automáticamente las vistas."
+    },
+    {
+      "id": 23,
+      "topic": "Patrones de Responsabilidad",
+      "difficulty": "hard",
+      "question": "¿Por qué Java 9 marcó como @Deprecated las clases java.util.Observer y java.util.Observable?",
+      "options": [
+        "A) Porque ya no se usan patrones Observer en Java moderno",
+        "B) Por limitaciones de diseño: Observable es una clase (no interfaz), el mecanismo de notificación no permite eventos con tipo, y existen alternativas como java.beans y la Flow API",
+        "C) Por problemas de rendimiento irresolubles",
+        "D) Porque el patrón Observer fue reemplazado por el patrón Command"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Java 9 deprecó Observer/Observable por sus limitaciones: Observable es una clase concreta que impide composición con herencia múltiple, el mecanismo de notificación no es type-safe y no soporta streams reactivos. Las alternativas son java.beans event propagation y la Flow API (reactive streams)."
+    },
+    {
+      "id": 24,
+      "topic": "Patrones de Responsabilidad",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención del patrón Proxy?",
+      "options": [
+        "A) Añadir funcionalidad a un objeto dinámicamente",
+        "B) Un objeto actúa en nombre de otro objeto",
+        "C) Propagar una petición hasta que alguien la gestiona",
+        "D) Compartir objetos de grano fino para reducir costes"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El patrón Proxy proporciona un sustituto o representante de otro objeto para controlar el acceso a él. El proxy puede controlar el acceso, añadir seguridad, implementar lazy loading o caching."
+    },
+    {
+      "id": 25,
+      "topic": "Patrones de Construcción",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención principal del patrón Builder?",
+      "options": [
+        "A) Asegurar una única instancia de una clase",
+        "B) Mover la lógica de construcción fuera de la clase para construir objetos paso a paso",
+        "C) Definir una interfaz para crear un objeto pero dejando a las subclases decidir la clase",
+        "D) Crear familias de objetos relacionados"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El patrón Builder separa la construcción de un objeto complejo de su representación, moviendo la lógica de construcción a una clase Builder separada que construye el objeto paso a paso."
+    },
+    {
+      "id": 26,
+      "topic": "Patrones de Construcción",
+      "difficulty": "medium",
+      "question": "¿Qué ventaja ofrece la API fluida (fluent API) en el patrón Builder?",
+      "options": [
+        "A) Mejora el rendimiento al reducir el número de objetos creados",
+        "B) Los métodos del builder devuelven 'this', permitiendo encadenar llamadas como StringBuilder o HttpRequest.Builder",
+        "C) Permite serialización automática del objeto construido",
+        "D) Garantiza que el objeto sea thread-safe"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Una API fluida en el Builder hace que cada método setter devuelva 'this' (el propio builder), permitiendo encadenar las llamadas de configuración en una sola expresión. Ejemplos: StringBuilder.append().append().toString() o HttpRequest.newBuilder().uri().header().build()."
+    },
+    {
+      "id": 27,
+      "topic": "Patrones de Construcción",
+      "difficulty": "medium",
+      "question": "¿Qué diferencia hay entre UnforgivingBuilder y ForgivingBuilder?",
+      "options": [
+        "A) UnforgivingBuilder es más rápido; ForgivingBuilder es más seguro",
+        "B) UnforgivingBuilder lanza excepción si faltan atributos requeridos; ForgivingBuilder infiere los valores faltantes",
+        "C) UnforgivingBuilder usa herencia; ForgivingBuilder usa composición",
+        "D) Son dos nombres para el mismo concepto"
+      ],
+      "correctAnswer": "B",
+      "explanation": "UnforgivingBuilder lanza BuilderException si faltan atributos obligatorios. ForgivingBuilder es más permisivo: infiere o calcula valores faltantes (por ejemplo, calcula headcount a partir de dollarsPerHead) en lugar de fallar."
+    },
+    {
+      "id": 28,
+      "topic": "Patrones de Construcción",
+      "difficulty": "hard",
+      "question": "¿Qué consecuencia importante tiene usar el patrón Builder para construir objetos?",
+      "options": [
+        "A) El objeto construido siempre es mutable para facilitar modificaciones posteriores",
+        "B) El objeto construido puede ser inmutable (todos sus campos pueden ser final)",
+        "C) El Builder siempre necesita conocer el tipo concreto del objeto a construir",
+        "D) El Builder impide la herencia en la clase construida"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Una consecuencia importante del Builder es que la clase construida puede ser inmutable: como toda la construcción se hace en el Builder y la instancia final se crea de una vez, todos los campos de la clase construida pueden ser final, garantizando inmutabilidad."
+    },
+    {
+      "id": 29,
+      "topic": "Patrones de Construcción",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención del patrón Factory Method?",
+      "options": [
+        "A) Definir una interfaz para crear un objeto, permitiendo a las subclases decidir qué clase instanciar",
+        "B) Asegurar que una clase tiene exactamente una instancia",
+        "C) Crear familias de objetos relacionados sin especificar clases concretas",
+        "D) Construir objetos complejos paso a paso"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Factory Method define una interfaz para crear un objeto pero deja que las subclases (o el propio método) decidan qué clase concreta instanciar. El cliente no necesita conocer la clase concreta."
+    },
+    {
+      "id": 30,
+      "topic": "Patrones de Construcción",
+      "difficulty": "medium",
+      "question": "En el ejemplo de CreditCheck, ¿qué determina qué implementación devuelve el Factory Method?",
+      "options": [
+        "A) El tipo del parámetro pasado al método",
+        "B) Si la agencia de crédito está disponible (isAgencyUp())",
+        "C) La configuración del sistema operativo",
+        "D) El usuario autenticado en el sistema"
+      ],
+      "correctAnswer": "B",
+      "explanation": "CreditCheckFactory.createCreditCheck() verifica isAgencyUp(): si la agencia está disponible devuelve CreditCheckOnline, si no devuelve CreditCheckOffline. El cliente recibe un objeto CreditCheck sin saber cuál de las dos implementaciones concretas tiene."
+    },
+    {
+      "id": 31,
+      "topic": "Patrones de Construcción",
+      "difficulty": "medium",
+      "question": "¿Para qué sirve el patrón Factory Method en el contexto de jerarquías paralelas?",
+      "options": [
+        "A) Para combinar dos jerarquías en una sola clase",
+        "B) Cuando dos jerarquías tienen clases correspondientes, Factory Method crea el objeto correcto de la segunda jerarquía para cada clase de la primera",
+        "C) Para eliminar la necesidad de dos jerarquías paralelas",
+        "D) Para compartir instancias entre jerarquías paralelas"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Cuando hay jerarquías paralelas (por ejemplo, Machine y Scheduler donde cada tipo de Machine tiene su Scheduler correspondiente), Factory Method asegura que se crea el Scheduler correcto para cada tipo de Machine, manteniendo el acoplamiento correcto entre las jerarquías."
+    },
+    {
+      "id": 32,
+      "topic": "Patrones de Construcción",
+      "difficulty": "medium",
+      "question": "¿Cuál es la diferencia principal entre Abstract Factory y Factory Method?",
+      "options": [
+        "A) Abstract Factory crea una familia de objetos relacionados; Factory Method crea un solo tipo de objeto",
+        "B) Abstract Factory usa herencia; Factory Method usa composición",
+        "C) Abstract Factory es más antiguo que Factory Method",
+        "D) No hay diferencia significativa entre ambos"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Abstract Factory facilita la creación de familias de objetos relacionados (por ejemplo, un GUI Kit completo: botones, menús, paneles con un look-and-feel coherente). Factory Method crea objetos de un único tipo, delegando en subclases la elección de la clase concreta."
+    },
+    {
+      "id": 33,
+      "topic": "Patrones de Construcción",
+      "difficulty": "hard",
+      "question": "En el ejemplo de Abstract Factory con GUI Kit, ¿qué representa la 'familia' de objetos?",
+      "options": [
+        "A) Los diferentes tipos de ventanas del sistema operativo",
+        "B) Componentes de UI con un estilo visual coherente (look-and-feel), como botones, menús y paneles de la versión Beta",
+        "C) Las diferentes versiones del mismo botón",
+        "D) Los objetos creados en el mismo hilo de ejecución"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En el ejemplo de GUI Kit, la familia es el conjunto de componentes de interfaz (createButton(), createButtonOk(), createButtonCancel()) que comparten el mismo look-and-feel. La Abstract Factory (BetaUI extiende UI base) garantiza que todos los componentes son compatibles entre sí."
+    },
+    {
+      "id": 34,
+      "topic": "Patrones de Operación",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención del patrón Template Method?",
+      "options": [
+        "A) Encapsular algoritmos alternativos en clases separadas que implementan la misma interfaz",
+        "B) Implementar el esqueleto de un algoritmo en un método, dejando que las subclases redefinan ciertos pasos",
+        "C) Distribuir la operación para que cada clase represente un estado diferente",
+        "D) Encapsular una petición como un objeto"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Template Method define el esqueleto de un algoritmo en un método de la superclase, dejando que las subclases sobreescriban pasos específicos sin cambiar la estructura general del algoritmo."
+    },
+    {
+      "id": 35,
+      "topic": "Patrones de Operación",
+      "difficulty": "medium",
+      "question": "¿Qué es un 'hook' en el patrón Template Method?",
+      "options": [
+        "A) Un paso abstracto obligatorio que deben implementar las subclases",
+        "B) Un paso opcional con implementación por defecto (posiblemente vacía) que las subclases pueden sobreescribir",
+        "C) Un mecanismo de callback para observadores",
+        "D) Un método privado que no puede ser sobreescrito"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Un hook en Template Method es un paso opcional con implementación por defecto (generalmente vacía o con comportamiento neutral). Las subclases pueden sobreescribirlo para insertar comportamiento adicional sin que sea obligatorio hacerlo."
+    },
+    {
+      "id": 36,
+      "topic": "Patrones de Operación",
+      "difficulty": "medium",
+      "question": "¿Qué principio de diseño ilustra el patrón Template Method con la frase 'Don't call us, we'll call you'?",
+      "options": [
+        "A) Principio de Responsabilidad Única (SRP)",
+        "B) Principio de Inversión de Dependencias (DIP)",
+        "C) Hollywood Principle / Inversión de Control (IoC)",
+        "D) Principio de Segregación de Interfaces (ISP)"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Template Method ilustra el Hollywood Principle (Inversión de Control): la superclase 'llama' a los métodos de las subclases en el momento adecuado, no al revés. Las subclases no controlan el flujo del algoritmo, solo implementan los pasos que se les piden."
+    },
+    {
+      "id": 37,
+      "topic": "Patrones de Operación",
+      "difficulty": "hard",
+      "question": "¿Cuál es la diferencia fundamental entre Strategy y Template Method?",
+      "options": [
+        "A) Strategy usa herencia para variar el algoritmo; Template Method usa composición",
+        "B) Strategy usa composición (objeto con estrategia intercambiable); Template Method usa herencia (subclase sobreescribe pasos)",
+        "C) Template Method permite cambiar el algoritmo en tiempo de ejecución; Strategy no",
+        "D) No hay diferencia, son patrones equivalentes"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La diferencia clave: Strategy usa COMPOSICIÓN (el contexto tiene una referencia a una interfaz Strategy, el algoritmo concreto es un objeto intercambiable en tiempo de ejecución). Template Method usa HERENCIA (la superclase define el esqueleto y las subclases sobreescriben pasos)."
+    },
+    {
+      "id": 38,
+      "topic": "Patrones de Operación",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención del patrón Strategy?",
+      "options": [
+        "A) Definir el esqueleto de un algoritmo en una superclase",
+        "B) Encapsular algoritmos alternativos en clases separadas que implementan la misma interfaz",
+        "C) Distribuir la operación de modo que cada clase represente un estado diferente",
+        "D) Centralizar la coordinación entre múltiples objetos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Strategy encapsula algoritmos alternativos en clases separadas (PromotionAdvisor, GroupAdvisor, ItemAdvisor...) que implementan la misma interfaz (Advisor). El contexto selecciona y delega en la estrategia apropiada."
+    },
+    {
+      "id": 39,
+      "topic": "Patrones de Operación",
+      "difficulty": "medium",
+      "question": "En el refactoring de Customer.getRecommended() al patrón Strategy, ¿qué problema resuelve?",
+      "options": [
+        "A) El método tenía demasiados parámetros",
+        "B) Un método largo mezclaba la lógica de selección de estrategia con las implementaciones de cada estrategia",
+        "C) La clase Customer no podía ser instanciada correctamente",
+        "D) El método no era thread-safe"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Antes del refactoring, getRecommended() era un método largo con lógica mezclada: selección de qué estrategia usar + implementación de cada estrategia (PromotionAdvisor, GroupAdvisor, ItemAdvisor, RandomAdvisor). Strategy separa ambas responsabilidades: getAdvisor() selecciona y la clase Advisor encapsula la implementación."
+    },
+    {
+      "id": 40,
+      "topic": "Patrones de Operación",
+      "difficulty": "medium",
+      "question": "¿Cómo se usa Comparator<T> como ejemplo del patrón Strategy?",
+      "options": [
+        "A) Comparator es un Observer que notifica cambios en el orden",
+        "B) Comparator encapsula una estrategia de comparación/ordenación que se pasa a Collections.sort()",
+        "C) Comparator es un Factory Method para crear elementos comparables",
+        "D) Comparator implementa el patrón Template Method para la ordenación"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Comparator<T> es un ejemplo clásico de Strategy: encapsula el algoritmo de comparación/ordenación. Collections.sort(list, comparator) acepta cualquier implementación de Comparator, permitiendo cambiar la estrategia de ordenación sin modificar el algoritmo de sort."
+    },
+    {
+      "id": 41,
+      "topic": "Patrones de Extensión",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención del patrón Visitor?",
+      "options": [
+        "A) Proporcionar acceso secuencial a los elementos de una colección",
+        "B) Añadir nuevas operaciones a una jerarquía de clases sin modificarla",
+        "C) Envolver un objeto para añadir responsabilidades dinámicamente",
+        "D) Proporcionar una interfaz simplificada para un subsistema"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Visitor permite añadir nuevas operaciones a una jerarquía de clases sin modificar las clases existentes (principio Open/Closed). La infraestructura se añade una sola vez (método accept()) y cada nuevo Visitor añade una nueva operación."
+    },
+    {
+      "id": 42,
+      "topic": "Patrones de Extensión",
+      "difficulty": "medium",
+      "question": "¿Por qué el método accept() no puede estar en la clase base de la jerarquía aunque su código sea idéntico en todas las subclases?",
+      "options": [
+        "A) Por razones de rendimiento: sería más lento en la clase base",
+        "B) Porque 'this' en la clase base tendría el tipo de la clase base, no el tipo concreto de la subclase, rompiendo el double dispatch",
+        "C) Porque Java no permite métodos idénticos en clase base y subclases",
+        "D) Por razones de diseño, pero técnicamente sería válido"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El método accept() debe estar en cada subclase porque llama v.visit(this), donde 'this' debe tener el tipo estático de la subclase concreta. Si estuviera solo en la clase base, 'this' sería del tipo de la base y se llamaría siempre al mismo método visit(), rompiendo el double dispatch."
+    },
+    {
+      "id": 43,
+      "topic": "Patrones de Extensión",
+      "difficulty": "medium",
+      "question": "¿Qué es el 'double dispatch' en el patrón Visitor?",
+      "options": [
+        "A) El método accept() llama al método visit() dos veces por seguridad",
+        "B) El método a ejecutar se determina por el tipo dinámico TANTO del Visitor COMO del elemento aceptante",
+        "C) El visitor visita cada elemento exactamente dos veces",
+        "D) Se llama primero accept() y luego visit() en un segundo paso"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Double dispatch significa que el método concreto ejecutado depende del tipo dinámico de DOS objetos: el elemento (que implementa accept) y el visitor (que implementa visit). Esto permite que diferentes visitors traten de forma diferente cada tipo de elemento."
+    },
+    {
+      "id": 44,
+      "topic": "Patrones de Extensión",
+      "difficulty": "hard",
+      "question": "¿Qué problema del 'Expression Problem' (Wadler, 1998) ilustra el patrón Visitor?",
+      "options": [
+        "A) Si se añade una nueva subclase sin actualizar la interfaz del Visitor, compila pero puede comportarse incorrectamente",
+        "B) El Visitor no puede acceder a atributos privados de las clases que visita",
+        "C) No se pueden crear visitors anónimos en Java",
+        "D) El Expression Problem hace el Visitor imposible de implementar en Java"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El Expression Problem: si se añade una nueva subclase a la jerarquía sin actualizar la interfaz MachineVisitor para incluir visit(NewSubclass), el código compila pero el visitor puede silenciosamente no tratar la nueva subclase correctamente. Si se añade en la interfaz, obliga a actualizar todos los visitors existentes (ventaja: error de compilación fuerza a manejar los nuevos casos)."
+    },
+    {
+      "id": 45,
+      "topic": "Patrones de Extensión",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención del patrón Iterator?",
+      "options": [
+        "A) Añadir operaciones a una jerarquía sin modificarla",
+        "B) Proporcionar acceso secuencial a los elementos de una colección sin exponer su representación interna",
+        "C) Envolver un objeto para añadir responsabilidades",
+        "D) Compartir objetos de grano fino para reducir el uso de memoria"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Iterator proporciona una forma estándar de acceder secuencialmente a los elementos de una colección sin necesidad de conocer la estructura interna de la colección."
+    },
+    {
+      "id": 46,
+      "topic": "Patrones de Extensión",
+      "difficulty": "medium",
+      "question": "¿Qué hace que iterar sobre un Composite sea más complejo que la traversal recursiva?",
+      "options": [
+        "A) Los Composite tienen más elementos que las colecciones simples",
+        "B) El iterador debe mantener estado entre llamadas a next(), preservando la posición en la estructura arborescente",
+        "C) Los Composite no soportan el patrón Iterator en Java",
+        "D) La complejidad algorítmica de iterar sobre Composite es O(n²)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La traversal recursiva puede mantener el estado en la pila de llamadas. Un Iterator sobre Composite debe mantener explícitamente el estado (posición actual, iteradores de hijos, sub-iteradores) entre llamadas a next()/hasNext(), lo que requiere un diseño más complejo."
+    },
+    {
+      "id": 47,
+      "topic": "Patrones de Extensión",
+      "difficulty": "medium",
+      "question": "¿Para qué se usa IdentityHashMap en el iterador de Composite cíclico?",
+      "options": [
+        "A) Para mejorar el rendimiento de búsqueda de elementos",
+        "B) Para mantener un conjunto de elementos visitados basado en identidad de objeto (==), no en igualdad (.equals()), permitiendo detectar ciclos",
+        "C) Para almacenar los elementos en orden de inserción",
+        "D) Para sincronizar el acceso concurrente al iterador"
+      ],
+      "correctAnswer": "B",
+      "explanation": "IdentityHashMap compara las claves por identidad (==) en lugar de igualdad (.equals()). Esto es crucial para detectar ciclos en un Composite: dos objetos pueden ser 'iguales' según equals() pero ser instancias distintas, y necesitamos detectar que visitamos el mismo objeto físico."
+    },
+    {
+      "id": 48,
+      "topic": "Patrones de Extensión",
+      "difficulty": "easy",
+      "question": "¿Cuál es la intención del patrón Decorator?",
+      "options": [
+        "A) Asegurar que una clase tiene una única instancia",
+        "B) Componer dinámicamente comportamiento de objetos, envolviendo un objeto para añadir responsabilidades sin subclasificación",
+        "C) Proporcionar un sustituto de otro objeto para controlar el acceso",
+        "D) Definir una interfaz para crear objetos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Decorator envuelve un objeto para añadir responsabilidades dinámicamente, como alternativa flexible a la herencia para extender funcionalidad. Permite componer comportamientos combinando múltiples decoradores."
+    },
+    {
+      "id": 49,
+      "topic": "Patrones de Extensión",
+      "difficulty": "hard",
+      "question": "¿Qué es ConcurrentModificationException y cuándo ocurre en el contexto del patrón Iterator?",
+      "options": [
+        "A) Ocurre cuando dos iteradores recorren la misma colección simultáneamente",
+        "B) Ocurre cuando la colección se modifica estructuralmente mientras se está iterando sobre ella",
+        "C) Ocurre cuando el iterador llega al final de la colección",
+        "D) Ocurre cuando se llama a next() sin comprobar hasNext() antes"
+      ],
+      "correctAnswer": "B",
+      "explanation": "ConcurrentModificationException se lanza cuando una colección es modificada estructuralmente (añadiendo o eliminando elementos) mientras se está iterando sobre ella con un Iterator. Las colecciones Java usan un modCount para detectar esta situación."
+    },
+    {
+      "id": 50,
+      "topic": "Patrones de Extensión",
+      "difficulty": "hard",
+      "question": "¿Cómo funciona getDepth() en el CompositeIterator?",
+      "options": [
+        "A) Cuenta el número total de elementos visitados hasta el momento",
+        "B) Devuelve la profundidad del nodo actual como subiterator.getDepth() + 1",
+        "C) Devuelve el nivel máximo del árbol Composite",
+        "D) No existe getDepth() en el patrón Iterator estándar"
+      ],
+      "correctAnswer": "B",
+      "explanation": "En el CompositeIterator, getDepth() devuelve subiterator.getDepth() + 1, donde subiterator es el iterador del hijo actual. Esto propaga recursivamente la profundidad: el LeafIterator devuelve 0, el CompositeIterator añade 1 por cada nivel de nesting."
+    }
+  ]
+}

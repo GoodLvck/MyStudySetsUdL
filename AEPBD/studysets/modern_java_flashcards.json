@@ -1,0 +1,253 @@
+{
+  "metadata": {
+    "title": "Modern Java — Flashcards",
+    "subject": "AEPBD — Ampliació BBDD i Enginyeria del Software",
+    "professor": "Juan Manuel Gimeno Illa",
+    "format": "flashcards",
+    "totalCards": 40,
+    "topics": ["Evolución de Java", "Default Methods", "Lambdas", "Interfaces Funcionales", "Method References", "Optional", "Streams"]
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Evolución de Java",
+      "front": "¿Cuál es el ciclo de lanzamiento de Java desde la versión 9?",
+      "back": "Cada 6 meses (marzo y septiembre).\n• Java 9: sept. 2017\n• Java 10: mar. 2018\n• Java 11 (LTS): sept. 2018\n• ...\n• Java 21 (LTS): sept. 2023\n• Java 25 (LTS): sept. 2025\nVersiones LTS cada ~2 años."
+    },
+    {
+      "id": 2,
+      "topic": "Evolución de Java",
+      "front": "¿Qué novedades introdujo Java 5?",
+      "back": "Java 5 (2004) fue una versión muy importante:\n• Generics (tipos paramétricos)\n• Annotations\n• Autoboxing/Unboxing\n• Bucle for-each mejorado\n• Enums\n• Varargs\n• java.util.concurrent"
+    },
+    {
+      "id": 3,
+      "topic": "Evolución de Java",
+      "front": "¿Qué novedades introdujo Java 7?",
+      "back": "Java 7 (2011):\n• Diamond operator: List<String> list = new ArrayList<>()\n• try-with-resources (AutoCloseable)\n• Switch con Strings\n• Binary literals y _ en números\n• Fork/Join framework\n• NIO.2 (java.nio.file)"
+    },
+    {
+      "id": 4,
+      "topic": "Evolución de Java",
+      "front": "¿Qué novedades introdujo Java 8?",
+      "back": "Java 8 (2014) — LTS y revolución funcional:\n• Expresiones Lambda\n• Streams API\n• Default methods en interfaces\n• Method references\n• Optional<T>\n• Nueva API de fecha/hora (java.time)\n• Nashorn (motor JavaScript)"
+    },
+    {
+      "id": 5,
+      "topic": "Evolución de Java",
+      "front": "¿Qué novedades introdujo Java 21 (LTS)?",
+      "back": "Java 21 (sept. 2023) — LTS con grandes características:\n• Virtual Threads (Project Loom) — hilos ligeros\n• Pattern matching para switch\n• Record Patterns\n• Sequenced Collections\n• String Templates (preview)\n• Virtual threads permiten millones de hilos concurrentes"
+    },
+    {
+      "id": 6,
+      "topic": "Evolución de Java",
+      "front": "¿Cuál es la evolución de la concurrencia en Java?",
+      "back": "Cronológicamente:\n1. Thread (Java 1.0)\n2. java.util.concurrent (Java 5/6)\n3. Fork/Join framework (Java 7)\n4. Parallel Streams + CompletableFuture (Java 8)\n5. Virtual Threads / Project Loom (Java 21)"
+    },
+    {
+      "id": 7,
+      "topic": "Default Methods",
+      "front": "¿Qué problema resuelven los default methods?",
+      "back": "Problema: añadir un nuevo método a una interfaz existente rompía TODAS sus implementaciones.\n\nSolución (Java 8): default methods — se puede proporcionar una implementación por defecto en la interfaz.\n\nEjemplo: Collection.removeIf(Predicate) se añadió como default method."
+    },
+    {
+      "id": 8,
+      "topic": "Default Methods",
+      "front": "¿Cuál es la sintaxis de un default method?",
+      "back": "```java\ninterface Interfaz {\n    // Método abstracto\n    void metodoAbstracto();\n\n    // Default method\n    default void metodoConImplementacion() {\n        System.out.println(\"Implementación por defecto\");\n    }\n}\n```\nLa clase que implementa la interfaz puede sobrescribir el default method o usar el heredado."
+    },
+    {
+      "id": 9,
+      "topic": "Default Methods",
+      "front": "¿Cuáles son las 3 reglas de resolución de conflictos en default methods?",
+      "back": "1. Las CLASES ganan: un método declarado en una clase (o clase padre) siempre tiene prioridad sobre cualquier default method.\n\n2. Las SUB-INTERFACES ganan: el default method de la interfaz más específica (la sub-interfaz) tiene prioridad sobre el de la más general.\n\n3. Si aún hay ambigüedad: la clase debe SOBRESCRIBIR explícitamente el método y puede llamar al deseado con `Interfaz.super.método()`."
+    },
+    {
+      "id": 10,
+      "topic": "Default Methods",
+      "front": "¿En qué se diferencian aún las clases abstractas de las interfaces en Java 8+?",
+      "back": "Diferencias clave que persisten:\n• Una clase puede extender SOLO UNA clase abstracta, pero implementar MÚLTIPLES interfaces.\n• Las clases abstractas pueden tener VARIABLES DE INSTANCIA y estado; las interfaces NO.\n• Las clases abstractas pueden tener constructores; las interfaces NO.\n• Los métodos de clase abstracta pueden ser package-private o protected; los de interfaz son implícitamente públicos."
+    },
+    {
+      "id": 11,
+      "topic": "Default Methods",
+      "front": "¿Qué son los 'optional methods' en el contexto de interfaces?",
+      "back": "Métodos de interfaz con implementación default que lanza UnsupportedOperationException.\n\nEjemplo: Iterator.remove()\n```java\ndefault void remove() {\n    throw new UnsupportedOperationException(\"remove\");\n}\n```\nPermite que las implementaciones no tengan que definir un cuerpo vacío o lanzar la excepción ellas mismas."
+    },
+    {
+      "id": 12,
+      "topic": "Lambdas",
+      "front": "¿Qué es una expresión lambda en Java?",
+      "back": "Representación concisa de una función anónima que puede pasarse como argumento. Características:\n• Sin nombre\n• Tiene lista de parámetros\n• Tiene cuerpo\n• Tiene tipo de retorno\n• Opcionalmente puede lanzar excepciones\n\nSintaxis:\n• (params) -> expresión\n• (params) -> { sentencias; }"
+    },
+    {
+      "id": 13,
+      "topic": "Lambdas",
+      "front": "¿Qué es la 'behaviour parameterization'?",
+      "back": "La capacidad de pasar múltiples comportamientos (código) como parámetros a un método.\n\nEvolución del ejemplo de filtrar manzanas:\n1. filterGreenApples() — específico\n2. filterApplesByColor(color) — parcialmente genérico\n3. filter(inventory, ApplePredicate) — genérico con interfaz\n4. filter(inventory, a -> GREEN.equals(a.getColor())) — lambda\n\nVentaja: código adaptable a cambios de requisitos sin duplicación."
+    },
+    {
+      "id": 14,
+      "topic": "Lambdas",
+      "front": "¿Qué es el 'ámbito léxico' (lexical scoping) en el contexto de lambdas?",
+      "back": "Las lambdas pueden capturar variables de su entorno léxico (el código que las rodea):\n• Variables de instancia y estáticas: acceso libre\n• Variables locales: solo si son effectively final (no se reasignan)\n\n```java\nint portNumber = 1337; // effectively final\nRunnable r = () -> System.out.println(portNumber); // OK\n// portNumber = 31337; // esto haría que la captura falle\n```"
+    },
+    {
+      "id": 15,
+      "topic": "Interfaces Funcionales",
+      "front": "¿Qué es una interfaz funcional y cómo se anota?",
+      "back": "Una interfaz con exactamente UN método abstracto (SAM — Single Abstract Method).\n\nPuede tener:\n• Múltiples default methods\n• Métodos estáticos\n\nAnnotación (opcional pero recomendada):\n```java\n@FunctionalInterface\npublic interface Predicate<T> {\n    boolean test(T t);\n}\n```\nLa anotación hace que el compilador verifique que haya exactamente un método abstracto."
+    },
+    {
+      "id": 16,
+      "topic": "Interfaces Funcionales",
+      "front": "¿Cuáles son las interfaces funcionales principales del paquete java.util.function?",
+      "back": "Las más importantes:\n• Predicate<T>: T → boolean\n• Consumer<T>: T → void\n• Function<T,R>: T → R\n• Supplier<T>: () → T\n• UnaryOperator<T>: T → T\n• BinaryOperator<T>: (T,T) → T\n• BiPredicate<L,R>: (L,R) → boolean\n• BiConsumer<T,U>: (T,U) → void\n• BiFunction<T,U,R>: (T,U) → R"
+    },
+    {
+      "id": 17,
+      "topic": "Interfaces Funcionales",
+      "front": "¿Para qué sirven las especializaciones primitivas de interfaces funcionales?",
+      "back": "Evitan el autoboxing (boxing/unboxing) entre tipos primitivos y sus wrappers.\n\nEjemplo:\n• Predicate<Integer> aplica autoboxing: int → Integer (crea objeto)\n• IntPredicate opera directamente sobre int (sin crear objetos)\n\nEspecializaciones comunes:\n• IntPredicate, LongPredicate, DoublePredicate\n• IntConsumer, LongConsumer, DoubleConsumer\n• IntFunction<R>, ToIntFunction<T>\n• IntUnaryOperator, IntBinaryOperator"
+    },
+    {
+      "id": 18,
+      "topic": "Interfaces Funcionales",
+      "front": "¿Qué es el 'functional descriptor' de una interfaz funcional?",
+      "back": "La firma del método abstracto de la interfaz funcional. Describe qué tipo de lambda puede usarse con esa interfaz.\n\nEjemplos:\n• Predicate<T>: T → boolean\n• Runnable: () → void\n• Comparator<T>: (T, T) → int\n• Callable<V>: () → V (puede lanzar Exception)\n\nUna lambda es válida si su tipo coincide con el functional descriptor."
+    },
+    {
+      "id": 19,
+      "topic": "Method References",
+      "front": "¿Cuáles son los 3 tipos de referencias a método?",
+      "back": "1. Referencia a método ESTÁTICO:\n   `Integer::parseInt` ≡ `(s) -> Integer.parseInt(s)`\n\n2. Referencia a método de instancia de tipo ARBITRARIO:\n   `String::toUpperCase` ≡ `(s) -> s.toUpperCase()`\n   (primer parámetro = receptor)\n\n3. Referencia a método de instancia de objeto CONCRETO:\n   `System.out::println` ≡ `(s) -> System.out.println(s)`\n   (objeto concreto = receptor)"
+    },
+    {
+      "id": 20,
+      "topic": "Method References",
+      "front": "¿Cómo funciona la referencia a constructor?",
+      "back": "Sintaxis: `Clase::new`\n\nEquivalencias según constructor:\n• `Apple::new` (sin args) ≡ `() -> new Apple()`\n  → Tipo: Supplier<Apple>\n\n• `Apple::new` (con Integer) ≡ `(w) -> new Apple(w)`\n  → Tipo: Function<Integer, Apple>\n\n• `Apple::new` (con String, Integer) ≡ `(c,w) -> new Apple(c,w)`\n  → Tipo: BiFunction<String, Integer, Apple>"
+    },
+    {
+      "id": 21,
+      "topic": "Method References",
+      "front": "Convierte estas lambdas a referencias a método:\n1. `(a) -> a.getWeight()`\n2. `() -> Thread.currentThread().getPriority()`\n3. `(String s) -> System.out.println(s)`",
+      "back": "Conversiones:\n1. `(a) -> a.getWeight()` → `Apple::getWeight`\n   (método de instancia de tipo arbitrario)\n\n2. `() -> Thread.currentThread().getPriority()` → `Thread.currentThread()::getPriority`\n   (método de instancia de objeto concreto)\n\n3. `(String s) -> System.out.println(s)` → `System.out::println`\n   (método de instancia de objeto concreto)"
+    },
+    {
+      "id": 22,
+      "topic": "Optional",
+      "front": "¿Por qué es problemático el uso de null en Java?",
+      "back": "Tony Hoare llamó a null su 'billion dollar mistake' (1965, ALGOL W).\n\nProblemas con null en Java:\n• Es fuente de NullPointerExceptions\n• Engrosa el código con comprobaciones\n• No tiene ningún significado semántico\n• Rompe la filosofía Java (null no es objeto)\n• Es un hueco en el sistema de tipos\n\nSolución: Optional<T>"
+    },
+    {
+      "id": 23,
+      "topic": "Optional",
+      "front": "¿Cómo se crea un Optional?",
+      "back": "Tres métodos de fábrica:\n\n• `Optional.empty()` → Optional vacío\n• `Optional.of(value)` → Optional con valor no null\n  (lanza NPE si value es null)\n• `Optional.ofNullable(value)` → Optional con value si no es null, vacío si lo es\n\nEjemplos:\n```java\nOptional<Car> optCar = Optional.empty();\nOptional<Car> optCar2 = Optional.of(car); // car != null\nOptional<Car> optCar3 = Optional.ofNullable(car);\n```"
+    },
+    {
+      "id": 24,
+      "topic": "Optional",
+      "front": "¿Cuáles son las operaciones principales sobre Optional?",
+      "back": "Transformación:\n• `.map(f)` — aplica f si hay valor, devuelve Optional\n• `.flatMap(f)` — como map pero aplana Optional<Optional<T>>\n• `.filter(pred)` — filtra por predicado\n\nExtracción:\n• `.get()` — obtiene valor o lanza NoSuchElementException\n• `.orElse(default)` — valor o default\n• `.orElseGet(supplier)` — valor o resultado de supplier\n• `.orElseThrow(exSupplier)` — valor o lanza excepción\n\nConsulta:\n• `.isPresent()` — true si hay valor\n• `.isEmpty()` — true si vacío (Java 11+)"
+    },
+    {
+      "id": 25,
+      "topic": "Optional",
+      "front": "¿Cómo se encadenan Optionals para obtener el nombre de la aseguradora de una persona?",
+      "back": "Modelo:\n• Person tiene Optional<Car> getCar()\n• Car tiene Optional<Insurance> getInsurance()\n• Insurance tiene String getName() (requerido)\n\nCódena:\n```java\noptPerson\n    .flatMap(Person::getCar)\n    .flatMap(Car::getInsurance)\n    .map(Insurance::getName)\n    .orElse(\"Unknown\");\n```\n• flatMap porque getCar() ya devuelve Optional\n• map para getName() que devuelve String directo"
+    },
+    {
+      "id": 26,
+      "topic": "Streams",
+      "difficulty_note": "core",
+      "front": "¿Qué es un Stream en Java?",
+      "back": "Una secuencia de elementos de una fuente que soporta operaciones de procesamiento de datos.\n\nCaracterísticas:\n• Evaluación LAZY: las operaciones intermedias no se ejecutan hasta la terminal\n• PIPELINING: las operaciones intermedias devuelven un Stream (encadenables)\n• Iteración INTERNA: la biblioteca gestiona la iteración\n\nNo almacena datos, no modifica la fuente, procesa elementos bajo demanda."
+    },
+    {
+      "id": 27,
+      "topic": "Streams",
+      "front": "¿Cuál es la diferencia entre operaciones intermedias y terminales en Streams?",
+      "back": "Operaciones INTERMEDIAS:\n• Devuelven un Stream (permiten encadenar)\n• Son LAZY (no se ejecutan hasta la terminal)\n• Ejemplos: filter, map, sorted, distinct, limit, skip, flatMap, takeWhile, dropWhile\n\nOperaciones TERMINALES:\n• Producen un resultado no-Stream\n• Consumen el pipeline y lo ejecutan\n• Ejemplos: collect, forEach, count, reduce, findFirst, findAny, anyMatch, allMatch, min, max"
+    },
+    {
+      "id": 28,
+      "topic": "Streams",
+      "front": "¿Cómo se filtra y transforma una colección de platos con Streams?",
+      "back": "Ejemplo: obtener nombres de platos con < 400 calorías ordenados por calorías\n\n```java\nList<String> result = dishes.stream()\n    .filter(d -> d.getCalories() < 400)\n    .sorted(comparing(Dish::getCalories))\n    .map(Dish::getName)\n    .collect(toList());\n```\n\nvs. Java 7: bucle for + if + Collections.sort + otro bucle"
+    },
+    {
+      "id": 29,
+      "topic": "Streams",
+      "front": "¿Qué es flatMap en Streams y cuándo se usa?",
+      "back": "flatMap transforma cada elemento en un Stream y aplana todos los Streams en uno solo.\n\nCaso de uso: obtener todas las letras únicas de una lista de palabras\n```java\nList<String> uniqueLetters = words.stream()\n    .map(word -> word.split(\"\"))  // Stream<String[]>\n    .flatMap(Arrays::stream)       // aplana → Stream<String>\n    .distinct()\n    .collect(toList());\n```\nSin flatMap, map daría Stream<String[]> en lugar de Stream<String>."
+    },
+    {
+      "id": 30,
+      "topic": "Streams",
+      "front": "¿Cómo funciona la operación reduce en Streams?",
+      "back": "reduce combina todos los elementos en un único resultado.\n\nSintaxis:\n• `reduce(identidad, BinaryOperator<T>)` → T\n• `reduce(BinaryOperator<T>)` → Optional<T>\n\nEjemplos:\n```java\n// Suma de enteros\nint sum = numbers.stream().reduce(0, Integer::sum);\n\n// Nombre más largo\nOptional<String> longest = names.stream()\n    .reduce((n1, n2) -> n1.length() >= n2.length() ? n1 : n2);\n```"
+    },
+    {
+      "id": 31,
+      "topic": "Streams",
+      "front": "¿Qué es un Parallel Stream y cómo se activa?",
+      "back": "Un Stream que procesa elementos en paralelo usando múltiples hilos del ForkJoinPool.\n\nActivación:\n```java\n// Desde colección\nlist.parallelStream()\n\n// Desde stream secuencial\nlist.stream().parallel()\n```\n\nInternamente usa Fork/Join framework y Spliterators.\n\nCuidado: no siempre es más rápido. Depende de:\n• Tamaño de datos (grandes = mejor)\n• Descomposabilidad del fuente\n• Coste de la operación por elemento"
+    },
+    {
+      "id": 32,
+      "topic": "Streams",
+      "front": "¿Qué estructuras de datos tienen mejor descomposabilidad para Streams paralelos?",
+      "back": "Descomposabilidad para paralelismo:\n\n• ArrayList → Excelente (acceso aleatorio)\n• IntStream.range → Excelente (conoce su tamaño)\n• HashSet / TreeSet → Buena\n• LinkedList → Pobre (acceso secuencial)\n• Stream.iterate → Pobre (sin tamaño conocido)\n\nRegla: estructuras con acceso aleatorio y tamaño conocido se dividen mejor."
+    },
+    {
+      "id": 33,
+      "topic": "Streams",
+      "front": "¿Cómo se leen las líneas de un archivo como Stream?",
+      "back": "```java\nPath path = Paths.get(\"archivo.txt\");\n\ntry (Stream<String> lines = Files.lines(path)) {\n    // cada elemento es una línea\n    long wordCount = lines\n        .flatMap(line -> Arrays.stream(line.split(\" \")))\n        .distinct()\n        .count();\n}\n```\n\nNota: Files.lines() devuelve un Stream<String>. Debe cerrarse (try-with-resources) ya que Stream implementa AutoCloseable."
+    },
+    {
+      "id": 34,
+      "topic": "Streams",
+      "front": "¿Cómo se ordenan elementos con criterios múltiples en Streams?",
+      "back": "Usando Comparator compuesto:\n\n```java\n// Ordenar por edad\npersons.stream()\n    .sorted(Comparator.comparing(Person::age))\n\n// Ordenar por edad, luego por nombre\npersons.stream()\n    .sorted(comparing(Person::age)\n        .thenComparing(Person::name))\n\n// Ordenar por edad descendente\npersons.stream()\n    .sorted(comparing(Person::age).reversed())\n```\n\ncomparingInt, comparingLong, comparingDouble para primitivos."
+    },
+    {
+      "id": 35,
+      "topic": "Streams",
+      "front": "¿Cómo se une (join) una lista de Strings con un separador usando Streams?",
+      "back": "Usando Collectors.joining():\n\n```java\nList<String> names = List.of(\"Ana\", \"Bob\", \"Carlos\");\n\n// Sin separador: \"AnaBobCarlos\"\nString s1 = names.stream().collect(Collectors.joining());\n\n// Con separador: \"Ana, Bob, Carlos\"\nString s2 = names.stream().collect(Collectors.joining(\", \"));\n\n// Con separador y delimitadores: \"[Ana, Bob, Carlos]\"\nString s3 = names.stream()\n    .collect(Collectors.joining(\", \", \"[\", \"]\"));\n```"
+    },
+    {
+      "id": 36,
+      "topic": "Streams",
+      "front": "¿Cuáles son las operaciones de Streams que trabajan con posición?",
+      "back": "Operaciones que manipulan posición/cantidad:\n• `limit(n)` — primeros n elementos\n• `skip(n)` — salta los primeros n\n• `findFirst()` → Optional<T> — primer elemento\n• `findAny()` → Optional<T> — cualquier elemento (paralelos)\n• `takeWhile(pred)` — elementos mientras se cumple pred (Java 9+)\n• `dropWhile(pred)` — descarta mientras se cumple pred (Java 9+)\n• `distinct()` — elementos únicos (equals/hashCode)\n• `count()` → long — número total de elementos"
+    },
+    {
+      "id": 37,
+      "topic": "Streams",
+      "front": "¿Para qué sirve `mapToInt` y qué ventaja tiene sobre `map`?",
+      "back": "mapToInt convierte un Stream<T> en un IntStream (especialización primitiva).\n\nVentajas:\n• Evita el boxing/unboxing (sin Integer, solo int)\n• Da acceso a operaciones numéricas directas: sum(), min(), max(), average(), count()\n\nEjemplo:\n```java\n// Con mapToInt: eficiente, sin boxing\nint total = names.stream()\n    .mapToInt(String::length)\n    .sum();\n\n// Equivalente con map: boxing implícito\nint total2 = names.stream()\n    .map(String::length)  // Integer\n    .reduce(0, Integer::sum);\n```"
+    },
+    {
+      "id": 38,
+      "topic": "Lambdas",
+      "front": "¿Qué es el 'type inference' en el contexto de lambdas?",
+      "back": "El compilador puede inferir el tipo de los parámetros de una lambda a partir del contexto (la interfaz funcional esperada).\n\nCon tipos explícitos:\n```java\nComparator<Apple> c = (Apple a1, Apple a2) ->\n    Integer.compare(a1.getWeight(), a2.getWeight());\n```\n\nCon inferencia de tipos:\n```java\nComparator<Apple> c = (a1, a2) ->\n    Integer.compare(a1.getWeight(), a2.getWeight());\n```\n\nAmbas son válidas; la segunda es más concisa."
+    },
+    {
+      "id": 39,
+      "topic": "Default Methods",
+      "front": "¿Cómo se puede usar la herencia múltiple de comportamiento con default methods?",
+      "back": "Ejemplo con interfaces Rotatable, Movable, Resizable:\n\n```java\npublic interface Rotatable { default void rotateBy(int deg) {...} }\npublic interface Movable { default void moveHorizontally(int x) {...} }\npublic interface Resizable { default void setAbsoluteSize(int w, int h) {...} }\n\npublic class Monster implements Rotatable, Movable, Resizable {\n    // Hereda todos los comportamientos\n    // Solo implementa los métodos abstractos requeridos\n}\n```\n\nMonster::new obtiene todos los comportamientos sin herencia de código repetido."
+    },
+    {
+      "id": 40,
+      "topic": "Streams",
+      "front": "¿Cuáles son las conclusiones principales del tema Modern Java?",
+      "back": "Conclusiones del curso:\n• Java 8 fuerza el pensamiento DECLARATIVO (qué, no cómo)\n• Las lambdas y Streams son la base de la programación funcional en Java\n• El ciclo de 6 meses asegura evolución continua del lenguaje\n• Las versiones LTS (11, 17, 21) son para producción estable\n• Virtual Threads (Java 21) democratizan la alta concurrencia\n• Default methods permiten evolucionar APIs sin romper código existente\n• Optional<T> es mejor que null para valores que pueden no existir"
+    }
+  ]
+}

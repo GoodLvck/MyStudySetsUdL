@@ -1,0 +1,319 @@
+{
+  "metadata": {
+    "title": "Patrones de Diseño (GoF) — Flashcards",
+    "subject": "AEPBD — Ampliació BBDD i Enginyeria del Software",
+    "professor": "Juan Manuel Gimeno Illa",
+    "format": "flashcards",
+    "totalCards": 50,
+    "topics": [
+      "Introducción GoF",
+      "Patrones de Interfaz",
+      "Patrones de Responsabilidad",
+      "Patrones de Construcción",
+      "Patrones de Operación",
+      "Patrones de Extensión"
+    ]
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Introducción GoF",
+      "front": "¿Qué es un patrón de diseño según Christopher Alexander?",
+      "back": "Describe un problema que ocurre repetidamente en nuestro entorno y su solución, de forma que se puede aplicar indefinidamente sin hacer lo mismo dos veces.\n\nLos patrones no se inventan: se sintetizan de sistemas existentes."
+    },
+    {
+      "id": 2,
+      "topic": "Introducción GoF",
+      "front": "¿Cuántos patrones describe el GoF y cómo se clasifican por propósito?",
+      "back": "23 patrones, clasificados en 3 categorías por propósito:\n\n• CREACIONALES: cómo se crean los objetos\n  (Factory Method, Abstract Factory, Builder, Prototype, Singleton)\n• ESTRUCTURALES: cómo se componen clases y objetos\n  (Adapter×2, Bridge, Composite, Decorator, Façade, Flyweight, Proxy)\n• COMPORTAMIENTO: cómo interactúan los objetos\n  (Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Memento, Observer, State, Strategy, Template Method, Visitor)"
+    },
+    {
+      "id": 3,
+      "topic": "Introducción GoF",
+      "front": "¿Qué distingue un patrón de CLASE de un patrón de OBJETO en GoF?",
+      "back": "Clasificación por ÁMBITO (scope):\n\n• Patrón de CLASE: usa herencia (relaciones estáticas, fijadas en compilación)\n• Patrón de OBJETO: usa composición y polimorfismo (relaciones dinámicas, cambian en tiempo de ejecución)\n\nEjemplo: Class Adapter (herencia) vs Object Adapter (composición)"
+    },
+    {
+      "id": 4,
+      "topic": "Introducción GoF",
+      "front": "¿Cuál es la organización por INTENCIÓN de Metsker & Wake?",
+      "back": "5 grupos por intención:\n\n• INTERFACES: Adapter, Façade, Composite, Bridge\n• RESPONSIBILITY: Singleton, Observer, Mediator, Proxy, Chain of Responsibility, Flyweight\n• CONSTRUCTION: Builder, Factory Method, Abstract Factory, Prototype, Memento\n• OPERATIONS: Template Method, State, Strategy, Command, Interpreter\n• EXTENSIONS: Decorator, Iterator, Visitor"
+    },
+    {
+      "id": 5,
+      "topic": "Patrones de Interfaz",
+      "front": "Patrón ADAPTER — Intención y analogía",
+      "back": "INTENCIÓN: Proporcionar la interfaz que un cliente espera usando los servicios de una clase con interfaz diferente.\n\nANALOGÍA: Adaptador de enchufe de viaje — permite usar un dispositivo americano en un enchufe europeo.\n\nDOS VARIANTES:\n• Class Adapter: herencia (extends ExistingClass implements RequiredInterface)\n• Object Adapter: delegación has-a (más flexible, puede cambiar adaptado en runtime)"
+    },
+    {
+      "id": 6,
+      "topic": "Patrones de Interfaz",
+      "front": "Class Adapter vs Object Adapter — ¿Cuál es más flexible y por qué?",
+      "back": "El OBJECT ADAPTER es más flexible porque:\n\n1. Puede adaptar distintas clases de una jerarquía (no solo la clase específica heredada)\n2. Puede cambiar el objeto adaptado en tiempo de ejecución (la referencia has-a es mutable)\n3. No requiere herencia múltiple (Java solo permite herencia simple)\n\nEjemplo:\n• OozinozRocket = Class Adapter (extends PhysicalRocket implements RocketSim)\n• OozinozSkyrocket = Object Adapter (extends Skyrocket, has-a PhysicalRocket)"
+    },
+    {
+      "id": 7,
+      "topic": "Patrones de Interfaz",
+      "front": "Patrón COMPOSITE — Intención y participantes",
+      "back": "INTENCIÓN: Dejar que los clientes traten objetos individuales y composiciones de manera uniforme.\n\nPARTICIPANTES:\n• Component: interfaz/clase abstracta común\n• Composite: nodo interno — tiene lista de hijos (List<Component>); implementa operaciones sumando sobre hijos\n• Leaf: nodo hoja — sin hijos; implementa operaciones directamente\n\nEjemplo: getMachineCount() — Composite suma hijos, Leaf devuelve 1\n\nIdeal para estructuras de árbol (jerarquías de partes y todos)"
+    },
+    {
+      "id": 8,
+      "topic": "Patrones de Interfaz",
+      "front": "¿Cuándo un grafo dirigido es un árbol? ¿Cómo detectar ciclos en Composite?",
+      "back": "Un grafo dirigido es un ÁRBOL si:\n1. Tiene una única raíz sin referencias entrantes\n2. Cada nodo tiene exactamente un padre\n\nDETECCIÓN DE CICLOS:\n• Método isTree(Set<MachineComponent> visited)\n• El Set se implementa con IdentityHashMap (compara por identidad ==, no equals())\n• Si un nodo ya está en visited → hay ciclo\n\nPROCESOS (grafos cíclicos): verificación falla → desmontar → reconstruir = ciclo legítimo"
+    },
+    {
+      "id": 9,
+      "topic": "Patrones de Interfaz",
+      "front": "Patrón FAÇADE — Intención",
+      "back": "INTENCIÓN: Proporcionar una interfaz simplificada para interactuar con un conjunto de clases (subsistema).\n\nVENTAJAS:\n• Reduce el acoplamiento entre el cliente y el subsistema\n• Simplifica el uso de APIs complejas\n• No impide el acceso directo al subsistema si se necesita\n\nEjemplo: una clase de configuración que simplifica el acceso a múltiples servicios internos."
+    },
+    {
+      "id": 10,
+      "topic": "Patrones de Interfaz",
+      "front": "Patrón BRIDGE — Intención y diferencia con Adapter",
+      "back": "INTENCIÓN: Desacoplar una abstracción de su implementación para que ambas puedan variar independientemente.\n\nDIFERENCIA CON ADAPTER:\n• Adapter: adapta una interfaz existente (arregla incompatibilidades post-facto)\n• Bridge: diseña la separación abstracción/implementación desde el principio\n\nUSO: cuando quieres evitar una proliferación de subclases por combinar múltiples dimensiones de variación."
+    },
+    {
+      "id": 11,
+      "topic": "Patrones de Responsabilidad",
+      "front": "Patrón SINGLETON — Intención y variantes de implementación",
+      "back": "INTENCIÓN: Asegurar que una clase tiene exactamente UNA instancia y proporcionar un punto global de acceso.\n\nCONSTRUCTOR: siempre privado\n\nVARIANTES:\n• Eager: public static final Factory INSTANCE = new Factory();\n• Lazy: if (factory == null) factory = new Factory(); — NO thread-safe\n• Synchronized: synchronized(classLock) { if (factory==null)... } — thread-safe\n• Serializable: implementa readResolve() → return getFactory()\n• Enum: public enum Factory { factory; } — automáticamente serializable y thread-safe"
+    },
+    {
+      "id": 12,
+      "topic": "Patrones de Responsabilidad",
+      "front": "¿Por qué el Singleton enum es la mejor variante moderna?",
+      "back": "El Singleton ENUM es superior porque:\n\n1. Thread-safe automáticamente (la JVM garantiza inicialización de enums)\n2. Serializable sin código adicional (no necesita readResolve())\n3. Protegido contra reflexión (no se puede llamar al constructor privado vía reflection)\n4. Código muy conciso\n\nSINTAXIS:\npublic enum Factory {\n    factory;\n    // métodos aquí\n}\n\nLIMITACIÓN: No es lazy (se inicializa al cargar la clase)"
+    },
+    {
+      "id": 13,
+      "topic": "Patrones de Responsabilidad",
+      "front": "Patrón OBSERVER — Intención y participantes",
+      "back": "INTENCIÓN: Definir una dependencia 1-N entre objetos para que cuando uno cambia de estado, todos sus dependientes sean notificados automáticamente.\n\nPARTICIPANTES:\n• Observable/Subject: el sujeto observado — registra/elimina observadores, notifica cambios\n• Observer: interfaz con update(Observable o, Object arg)\n\nUSO EN JAVA:\n• Registro: slider.addChangeListener(this)\n• Notificación: setChanged() + notifyObservers()\n\nJava 9: Observer/Observable @Deprecated → usar java.beans o Flow API"
+    },
+    {
+      "id": 14,
+      "topic": "Patrones de Responsabilidad",
+      "front": "Observer pull vs push — diferencias y acoplamiento",
+      "back": "MODELO PULL (bajo acoplamiento):\n• Observable notifica sin datos: update(observable, null)\n• Observer consulta activamente: observable.getValue()\n• Observable no sabe qué datos necesita cada Observer\n\nMODELO PUSH (mayor acoplamiento):\n• Observable pasa datos en la notificación: update(observable, value)\n• Observer recibe directamente los datos\n• Observable asume qué datos necesitan los Observers\n\nPREFERENCIA: pull para mayor flexibilidad; push cuando los datos son siempre los mismos."
+    },
+    {
+      "id": 15,
+      "topic": "Patrones de Responsabilidad",
+      "front": "¿Cómo se usa Observer en el patrón MVC?",
+      "back": "MVC CON OBSERVER:\n• Modelo extiende Observable — contiene datos y funcionalidad\n• Vistas implementan Observer — registradas en el Modelo\n• Controladores implementan Observer — también registrados en el Modelo\n\nFLUJO:\n1. Usuario interactúa → Controlador actualiza el Modelo\n2. Modelo llama setChanged() y notifyObservers()\n3. Todas las Vistas registradas reciben update() y se actualizan\n\nVENTAJA: Modelo desacoplado de las Vistas; múltiples vistas del mismo modelo."
+    },
+    {
+      "id": 16,
+      "topic": "Patrones de Responsabilidad",
+      "front": "Patrón MEDIATOR — Intención",
+      "back": "INTENCIÓN: Centralizar la coordinación de interacciones entre objetos, evitando que se referencien explícitamente entre sí.\n\nPROBLEMA QUE RESUELVE: Sin Mediator, N objetos que se comunican entre sí generan O(N²) referencias. Con Mediator, cada objeto solo conoce al Mediator.\n\nANALOGÍA: Torre de control aérea — los aviones no se comunican entre sí, sino con la torre.\n\nDIFERENCIA CON Observer: Mediator es bidireccional y centralizado; Observer es 1-N y desacoplado."
+    },
+    {
+      "id": 17,
+      "topic": "Patrones de Responsabilidad",
+      "front": "Patrón PROXY — Intención y tipos",
+      "back": "INTENCIÓN: Proporcionar un sustituto o representante de otro objeto para controlar el acceso a él.\n\nTIPOS DE PROXY:\n• Proxy remoto: acceso a objeto en distinto espacio de direcciones (red)\n• Proxy virtual: crea objetos costosos bajo demanda (lazy loading)\n• Proxy de protección: controla acceso según permisos\n• Proxy caché: almacena resultados para evitar llamadas repetidas\n\nDIFERENCIA CON DECORATOR: Proxy controla acceso; Decorator añade funcionalidad."
+    },
+    {
+      "id": 18,
+      "topic": "Patrones de Responsabilidad",
+      "front": "Patrón CHAIN OF RESPONSIBILITY — Intención",
+      "back": "INTENCIÓN: Evitar acoplar el emisor de una petición a su receptor, dando a múltiples objetos la oportunidad de manejar la petición. La petición se propaga por una cadena hasta que alguien la gestiona.\n\nESTRUCTURA: Cada manejador tiene una referencia al siguiente en la cadena. Si no puede manejar la petición, la pasa al siguiente.\n\nEjemplos: filtros de middleware HTTP, manejo de eventos en UI (event bubbling), logging por niveles."
+    },
+    {
+      "id": 19,
+      "topic": "Patrones de Responsabilidad",
+      "front": "Patrón FLYWEIGHT — Intención",
+      "back": "INTENCIÓN: Compartir objetos de grano fino (fine-grained) para evitar crear un número excesivo de objetos similares, reduciendo el coste en memoria.\n\nCONCEPTO CLAVE: Estado intrínseco (compartido, independiente del contexto) vs estado extrínseco (específico del contexto, se pasa como parámetro).\n\nEjemplo: caracteres en un editor de texto — el objeto 'a' se comparte; su posición en el documento es estado extrínseco."
+    },
+    {
+      "id": 20,
+      "topic": "Patrones de Construcción",
+      "front": "Patrón BUILDER — Intención y cuándo usarlo",
+      "back": "INTENCIÓN: Mover la lógica de construcción fuera de la clase para construir objetos paso a paso.\n\nCUÁNDO USARLO:\n• Constructor con demasiados parámetros (antipatrón 'telescoping constructor')\n• Cuando el proceso de construcción tiene múltiples pasos opcionales\n• En parsing: el Builder acumula información y construye al final\n\nEjemplo: ReservationBuilder parsea 'Date, November 5, Headcount, 250, City, Springfield...'\n\nFLUENT API: métodos devuelven this → StringBuilder, HttpRequest.Builder"
+    },
+    {
+      "id": 21,
+      "topic": "Patrones de Construcción",
+      "front": "FACTORY METHOD — Intención, ejemplo y jerarquías paralelas",
+      "back": "INTENCIÓN: Definir una interfaz para crear un objeto mientras se mantiene control sobre qué clase se instancia.\n\nCLIENTE: No sabe ni debe saber qué clase concreta se instancia.\n\nEJEMPLOS:\n• Iterable<E>.iterator() — el cliente no sabe qué implementación de Iterator devuelve\n• CreditCheckFactory.createCreditCheck() — devuelve Online u Offline según isAgencyUp()\n\nJERARQUÍAS PARALELAS: cuando Machine y Scheduler tienen clases correspondientes, Factory Method crea el Scheduler correcto para cada tipo de Machine."
+    },
+    {
+      "id": 22,
+      "topic": "Patrones de Construcción",
+      "front": "ABSTRACT FACTORY — Intención y diferencia con Factory Method",
+      "back": "INTENCIÓN: Facilitar la creación de familias de objetos relacionados sin especificar sus clases concretas.\n\nFAMILIA: conjunto de objetos compatibles entre sí (mismo look-and-feel, mismo contexto geográfico, etc.)\n\nEjemplo GUI Kit:\n• UI base → BetaUI\n• createButton(), createButtonOk(), createButtonCancel()\n\nDIFERENCIA CON FACTORY METHOD:\n• Factory Method: crea UN tipo de objeto, subclases deciden la clase concreta\n• Abstract Factory: crea una FAMILIA de objetos relacionados"
+    },
+    {
+      "id": 23,
+      "topic": "Patrones de Construcción",
+      "front": "Patrón PROTOTYPE — Intención y uso",
+      "back": "INTENCIÓN: Especificar los tipos de objetos a crear usando una instancia prototipo y crear nuevos objetos copiando (clonando) ese prototipo.\n\nCUÁNDO USAR:\n• La clase a instanciar se especifica en tiempo de ejecución\n• La creación de una clase es costosa y se puede copiar\n• Queremos evitar la jerarquía de clases factoría\n\nEN JAVA: interface Cloneable + Object.clone()\n\nDISTINCIÓN: shallow copy (copia referencias) vs deep copy (copia todo el grafo de objetos)."
+    },
+    {
+      "id": 24,
+      "topic": "Patrones de Construcción",
+      "front": "Patrón MEMENTO — Intención",
+      "back": "INTENCIÓN: Capturar y externalizar el estado interno de un objeto sin violar su encapsulación, para poder restaurar el objeto a ese estado posteriormente.\n\nPARTICIPANTES:\n• Originator: el objeto cuyo estado se guarda; crea y restaura Mementos\n• Memento: almacena el estado interno (opaco para los demás)\n• Caretaker: guarda los Mementos pero no puede acceder a su contenido\n\nUSOS: undo/redo, snapshots de estado, checkpoints de transacciones."
+    },
+    {
+      "id": 25,
+      "topic": "Patrones de Operación",
+      "front": "Patrón TEMPLATE METHOD — Intención, estructura y ejemplo",
+      "back": "INTENCIÓN: Implementar el esqueleto de un algoritmo en un método, dejando que las subclases redefinan ciertos pasos sin cambiar la estructura del algoritmo.\n\nTIPOS DE PASOS:\n• Abstractos: obligatorios para las subclases\n• Con implementación por defecto: las subclases pueden sobreescribirlos\n• Hooks: opcionales con implementación vacía\n\nEjemplo: AsterStarPress.shutdown():\n1. stopProcessing() [abstracto]\n2. markMoldIncomplete() [sobreescrito en OzAsterStarPress]\n3. usherInputMolds() [por defecto]\n4. dischargePaste() [sobreescrito en OzAsterStarPress]\n5. flush() [hook]"
+    },
+    {
+      "id": 26,
+      "topic": "Patrones de Operación",
+      "front": "Patrón STRATEGY — Intención y refactoring desde método largo",
+      "back": "INTENCIÓN: Encapsular algoritmos alternativos en clases separadas que implementan la misma interfaz, separando la lógica de selección de las implementaciones.\n\nREFACTORING:\nAntes: Customer.getRecommended() — método largo mezclando selección + 4 implementaciones\nDespués:\n• Interfaz Advisor con método recommend(customer)\n• Clases: PromotionAdvisor, GroupAdvisor, ItemAdvisor, RandomAdvisor\n• getRecommended() → getAdvisor().recommend(this)\n• getAdvisor() contiene solo la lógica de selección\n\nEjemplo: Comparator<T> como estrategia de ordenación para Collections.sort()"
+    },
+    {
+      "id": 27,
+      "topic": "Patrones de Operación",
+      "front": "Patrón STATE — Intención y estructura",
+      "back": "INTENCIÓN: Distribuir la operación de forma que cada clase de estado representa un estado diferente del objeto, cambiando el comportamiento del contexto cuando cambia su estado.\n\nESTRUCTURA:\n• Context: mantiene referencia al estado actual, delega en él\n• State (interfaz): define operaciones dependientes del estado\n• ConcreteState: implementa comportamiento para cada estado\n\nDIFERENCIA CON STRATEGY:\n• Strategy: el cliente decide qué estrategia usar\n• State: las transiciones de estado pueden ser internas al sistema"
+    },
+    {
+      "id": 28,
+      "topic": "Patrones de Operación",
+      "front": "Patrón COMMAND — Intención y usos",
+      "back": "INTENCIÓN: Encapsular una petición (llamada a método) como un objeto, permitiendo parametrizar clientes con diferentes peticiones, hacer cola, deshacer operaciones.\n\nEST RUCTURA:\n• Command (interfaz): execute()\n• ConcreteCommand: implementa execute() llamando al receptor\n• Invoker: almacena y ejecuta Commands\n• Receiver: el objeto que realiza la operación real\n\nUSOS: undo/redo (también guardar undo()), transacciones, macros (lista de Commands), sistemas de eventos."
+    },
+    {
+      "id": 29,
+      "topic": "Patrones de Operación",
+      "front": "Patrón INTERPRETER — Intención",
+      "back": "INTENCIÓN: Distribuir la operación de interpretación de manera que cada implementación se aplica a un tipo diferente de composición del lenguaje.\n\nCLASIFICACIÓN: Comportamiento/Clase (usa herencia)\n\nUSO: Definir una gramática para un lenguaje simple y crear un intérprete que use esa gramática para interpretar sentencias.\n\nESTRUCTURA: Árbol sintáctico de Expresiones — Terminal (hojas) y No-Terminal (nodos internos con hijos)."
+    },
+    {
+      "id": 30,
+      "topic": "Patrones de Extensión",
+      "front": "Patrón VISITOR — Intención, double dispatch e infraestructura",
+      "back": "INTENCIÓN: Añadir nuevas operaciones a una jerarquía de clases sin modificarla (Open/Closed Principle).\n\nINFRAESTRUCTURA (se añade una vez):\n• accept(MachineVisitor v) en cada clase de la jerarquía\n• Interfaz MachineVisitor con visit(Machine m) y visit(MachineComposite mc)\n\nDOUBLE DISPATCH:\n• accept() llama v.visit(this) → tipo de ELEMENTO resuelto\n• Sobrecarga de visit() → tipo de VISITOR resuelto\n\nEjemplo: FindVisitor busca por id visitando hojas y composites"
+    },
+    {
+      "id": 31,
+      "topic": "Patrones de Extensión",
+      "front": "Visitor — ¿Por qué accept() no puede estar solo en la clase base?",
+      "back": "Aunque el código de accept() es IDÉNTICO en todas las subclases:\n\npublic void accept(MachineVisitor v) {\n    v.visit(this);\n}\n\nNO puede estar solo en la clase base porque:\n• El tipo ESTÁTICO de 'this' sería el de la clase base\n• v.visit(this) llamaría siempre a visit(MachineBase), nunca a visit(MachineComposite)\n• Se perdería el double dispatch → todas las visitas tratarían igual todos los elementos\n\nEn cada subclase, el tipo estático de 'this' es correcto → se llama al método visit() apropiado."
+    },
+    {
+      "id": 32,
+      "topic": "Patrones de Extensión",
+      "front": "Visitor — El Expression Problem (Wadler, 1998)",
+      "back": "TENSIÓN FUNDAMENTAL:\n• Añadir nueva OPERACIÓN: crear un nuevo Visitor (fácil, no modifica clases)\n• Añadir nueva SUBCLASE: actualizar la interfaz Visitor + todos los Visitors existentes (costoso)\n\nSI NO SE ACTUALIZA LA INTERFAZ al añadir subclase:\n• El código compila\n• Pero el visitor puede silenciosamente no manejar la nueva subclase (error silencioso)\n\nSI SE ACTUALIZA LA INTERFAZ:\n• Añadir nuevo método visit(NewSubclass) → error de compilación en todos los Visitors que no lo implementen\n• VENTAJA: fuerza a manejar todos los casos\n\nTRADE-OFF: Visitor favorece extensión por operaciones pero dificulta extensión por subclases."
+    },
+    {
+      "id": 33,
+      "topic": "Patrones de Extensión",
+      "front": "Patrón ITERATOR — Intención y mecanismos en Java",
+      "back": "INTENCIÓN: Proporcionar acceso secuencial a los elementos de una colección sin exponer su representación interna.\n\nMECANISMOS DE ITERACIÓN EN JAVA (evolución):\n1. for/while/do-while (básico)\n2. Enumeration (JDK 1.0)\n3. Iterator<E> (JDK 1.2) — hasNext(), next(), remove()\n4. foreach / enhanced for (JDK 1.5) — usa Iterable\n5. Streams (Java 8+) — funcional, lazy, paralelo\n\nPROBLEMA: ConcurrentModificationException — modificar colección durante iteración"
+    },
+    {
+      "id": 34,
+      "topic": "Patrones de Extensión",
+      "front": "Iterator sobre Composite — ¿Por qué es más complejo que la traversal recursiva?",
+      "back": "TRAVERSAL RECURSIVA: mantiene estado en la pila de llamadas de Java — simple de implementar.\n\nITERATOR: debe mantener estado EXPLÍCITAMENTE entre llamadas a next():\n\nDISEÑO:\n• ComponentIterator<E>: abstracto, tiene head + Set<E> visited\n• LeafIterator<E>: devuelve head una vez, luego hasNext()=false\n• CompositeIterator<E>: tiene peek, iterador de hijos, subiterador del hijo actual\n\ngetDepth() = subiterator.getDepth() + 1\n\nAcycliclyIterable<E>: extiende Iterable<E>, añade iterator(Set<E> visited) para detección de ciclos"
+    },
+    {
+      "id": 35,
+      "topic": "Patrones de Extensión",
+      "front": "Patrón DECORATOR — Intención y diferencia con herencia",
+      "back": "INTENCIÓN: Componer dinámicamente el comportamiento de objetos envolviendo un objeto para añadir responsabilidades sin subclasificación.\n\nCÓMO FUNCIONA:\n• Decorator implementa la misma interfaz que el objeto decorado\n• Mantiene una referencia al objeto decorado\n• Delega en el objeto decorado y añade comportamiento antes/después\n\nVENTAJA SOBRE HERENCIA:\n• Más flexible: se pueden combinar decoradores dinámicamente\n• Evita explosión de subclases por combinaciones de características\n\nEjemplo Java: InputStream → BufferedInputStream → DataInputStream"
+    },
+    {
+      "id": 36,
+      "topic": "Introducción GoF",
+      "front": "¿Qué patrones de Comportamiento/Clase hay en GoF?",
+      "back": "Solo 2 patrones de Comportamiento/Clase (usan herencia):\n1. Interpreter\n2. Template Method\n\nTodos los demás patrones de Comportamiento son de tipo Objeto:\nChain of Responsibility, Command, Iterator, Mediator, Memento, Observer, State, Strategy, Visitor"
+    },
+    {
+      "id": 37,
+      "topic": "Patrones de Responsabilidad",
+      "front": "Singleton — Diferencia entre eager y lazy initialization",
+      "back": "EAGER (inicialización ansiosa):\npublic static final Factory INSTANCE = new Factory();\n• Se crea al cargar la clase\n• Siempre thread-safe\n• Consume memoria aunque no se use nunca\n\nLAZY (inicialización perezosa):\nprivate static Factory factory;\npublic static Factory getFactory() {\n    if (factory == null) factory = new Factory();\n    return factory;\n}\n• Se crea solo si se solicita\n• NO thread-safe sin sincronización adicional\n• Ahorra memoria si raramente se usa"
+    },
+    {
+      "id": 38,
+      "topic": "Patrones de Responsabilidad",
+      "front": "Singleton — Implementación synchronized thread-safe",
+      "back": "private static Factory factory;\nprivate static final Object classLock = Factory.class;\nprivate Factory() { }\n\npublic static Factory getFactory() {\n    synchronized(classLock) {\n        if (factory == null)\n            factory = new Factory();\n        return factory;\n    }\n}\n\nNOTA: synchronized garantiza que solo un hilo a la vez ejecuta el bloque, evitando la creación de múltiples instancias. Factory.class es el lock estándar para métodos de clase."
+    },
+    {
+      "id": 39,
+      "topic": "Patrones de Construcción",
+      "front": "Builder — UnforgivingBuilder vs ForgivingBuilder",
+      "back": "UNFORGIVING BUILDER:\n• Lanza BuilderException si faltan atributos requeridos\n• Estricto: el cliente debe proporcionar todos los datos necesarios\n• Falla rápido ante datos incompletos\n\nFORGIVING BUILDER:\n• Infiere o calcula valores faltantes\n• Ejemplo: calcula headcount desde dollarsPerHead\n• Más tolerante a entrada incompleta\n• Útil cuando los datos tienen valores razonables por defecto\n\nAmbos parsean: 'Date, November 5, Headcount, 250, City, Springfield, DollarsPerHead, 9.95, HasSite, False'"
+    },
+    {
+      "id": 40,
+      "topic": "Patrones de Operación",
+      "front": "Template Method — Refactoring: ¿cuándo aplicarlo?",
+      "back": "SEÑALES PARA REFACTORIZAR A TEMPLATE METHOD:\n• Múltiples clases tienen algoritmos similares con pasos diferentes\n• Código duplicado en subclases con ligeras variaciones\n\nPROCESO:\n1. Identificar los pasos del algoritmo comunes y diferentes\n2. Mover el esqueleto del algoritmo a la superclase\n3. Los pasos comunes se implementan en la superclase\n4. Los pasos diferentes se convierten en métodos abstractos o con implementación por defecto\n\nCONSECUENCIAS:\n• Reduce duplicación\n• Inversión de Control (IoC) — Hollywood Principle\n• A menudo usa Factory Method para crear objetos dentro del template"
+    },
+    {
+      "id": 41,
+      "topic": "Patrones de Operación",
+      "front": "Strategy — getAdvisor() como método de selección",
+      "back": "ANTES (método largo mezclado):\npublic Product getRecommended() {\n    // if promotion active → busca en promotions\n    // else if is group → busca en group deals\n    // else if items available → busca items\n    // else → random\n}\n\nDESPUÉS (Strategy):\npublic Product getRecommended() {\n    return getAdvisor().recommend(this);\n}\n\nprivate Advisor getAdvisor() {\n    // solo lógica de selección de estrategia\n}\n\nInterfaces: Advisor { recommend(Customer c) }\nImplementaciones: PromotionAdvisor, GroupAdvisor, ItemAdvisor, RandomAdvisor"
+    },
+    {
+      "id": 42,
+      "topic": "Patrones de Extensión",
+      "front": "Visitor — Implementación de FindVisitor",
+      "back": "FindVisitor implementa MachineVisitor para buscar por id:\n\npublic class FindVisitor implements MachineVisitor {\n    private final String targetId;\n    private Machine found;\n    \n    public void visit(Machine m) {\n        if (m.getId().equals(targetId)) found = m;\n    }\n    \n    public void visit(MachineComposite mc) {\n        if (mc.getId().equals(targetId)) found = mc;\n        // accept() en cada hijo propagará la visita\n    }\n    \n    public Machine getFound() { return found; }\n}\n\nEn Machine: public void accept(MachineVisitor v) { v.visit(this); }\nEn MachineComposite: accept llama v.visit(this) Y propaga a hijos"
+    },
+    {
+      "id": 43,
+      "topic": "Patrones de Interfaz",
+      "front": "Composite — Adaptación de la interfaz para facilitar el uso del cliente",
+      "back": "PROBLEMA: el cliente necesita implementar muchos métodos de la interfaz Component.\n\nSOLUCIÓN en dos pasos:\n1. Definir una INTERFAZ con todos los métodos necesarios\n2. Crear una CLASE ABSTRACTA con implementaciones por defecto de los métodos opcionales\n\nRESULTADO: el cliente solo sobreescribe los métodos que necesita cambiar, sin verse forzado a implementar todos.\n\nEjemplo: javax.swing.event.MouseAdapter proporciona implementaciones vacías de todos los métodos de MouseListener/MouseMotionListener."
+    },
+    {
+      "id": 44,
+      "topic": "Patrones de Construcción",
+      "front": "Factory Method — ¿Qué garantiza el patrón y qué NO sabe el cliente?",
+      "back": "EL CLIENTE SABE:\n• La interfaz/tipo del objeto que necesita (p.ej. CreditCheck, Iterator<E>)\n• Qué método llamar para obtenerlo (createCreditCheck(), iterator())\n\nEL CLIENTE NO SABE (NI DEBE SABER):\n• Qué clase concreta se instanciará\n• Los criterios de selección (isAgencyUp(), tipo de contenedor)\n• Las dependencias de la implementación concreta\n\nGARANTÍA: si la agencia cae, el cliente sigue funcionando con la implementación offline, sin cambiar ningún código del cliente."
+    },
+    {
+      "id": 45,
+      "topic": "Introducción GoF",
+      "front": "Consejo moderno sobre Singleton: contenedores DI",
+      "back": "CONSEJO MODERNO: en lugar de implementar manualmente el patrón Singleton, usar contenedores de Inyección de Dependencias (DI):\n\n• GUICE: @Singleton annotation\n• SPRING: @Component + @Scope('singleton') [por defecto]\n\nVENTAJAS de DI containers:\n• Ciclo de vida gestionado por el contenedor\n• Más testeable (se puede inyectar mock fácilmente)\n• No contamina el código con lógica de instanciación\n• Soporte automático para serialización y threading\n\nEl patrón Singleton manual sigue siendo valioso para entender el concepto."
+    },
+    {
+      "id": 46,
+      "topic": "Patrones de Extensión",
+      "front": "Iterator — Traversal preorder vs postorder en Composite",
+      "back": "PREORDER (profundidad, nodo antes que hijos):\n• Se visita el Composite ANTES que sus hijos\n• Útil para: copiar árbol, mostrar estructura\n\nPOSTORDER (profundidad, hijos antes que nodo):\n• Se visita el Composite DESPUÉS de sus hijos\n• Útil para: borrar árbol, calcular tamaños\n\nCompositeIterator mantiene:\n• peek: siguiente elemento preorder\n• childIterator: itera sobre los hijos directos\n• subiterator: itera recursivamente en el hijo actual\n• getDepth(): retorna subiterator.getDepth() + 1"
+    },
+    {
+      "id": 47,
+      "topic": "Patrones de Extensión",
+      "front": "IdentityHashMap — ¿Por qué se usa en iteradores de Composite cíclico?",
+      "back": "IdentityHashMap compara claves por IDENTIDAD (==) en lugar de IGUALDAD (.equals()).\n\nPOR QUÉ ES NECESARIO:\n• Dos nodos pueden tener el mismo id/contenido y ser 'iguales' según equals()\n• Pero son objetos FÍSICAMENTE DISTINTOS en el grafo\n• Necesitamos saber si visitamos el MISMO OBJETO (mismo puntero)\n\nEjemplo problemático con HashMap normal:\n• Nodo A (id='x') y Nodo B (id='x') → equals() devuelve true\n• HashSet basado en hashCode/equals los trataría como el mismo nodo\n• IdentityHashSet los trata correctamente como nodos distintos\n\nSet<E> backed = Collections.newSetFromMap(new IdentityHashMap<>())"
+    },
+    {
+      "id": 48,
+      "topic": "Patrones de Operación",
+      "front": "Diferencia entre State y Strategy",
+      "back": "SIMILITUD: ambos tienen un contexto que delega en un objeto que implementa una interfaz.\n\nDIFERENCIAS:\n\nSTRATEGY:\n• El CLIENTE elige y configura la estrategia\n• Las estrategias son generalmente independientes entre sí\n• La estrategia raramente cambia en tiempo de ejecución\n• Encapsula algoritmos alternativos\n\nSTATE:\n• Las TRANSICIONES de estado pueden ser gestionadas internamente\n• Los estados son conscientes entre sí (transiciones)\n• El estado cambia frecuentemente durante la vida del objeto\n• Encapsula comportamiento dependiente del estado"
+    },
+    {
+      "id": 49,
+      "topic": "Patrones de Responsabilidad",
+      "front": "Observer en Java: secuencia de pasos para notificar correctamente",
+      "back": "SECUENCIA CORRECTA en la API java.util.Observable:\n\n1. Modificar el estado del Modelo\n2. Llamar setChanged() — activa el flag interno\n3. Llamar notifyObservers() o notifyObservers(arg)\n4. Los observers registrados reciben update(Observable o, Object arg)\n\nSIN setChanged(): notifyObservers() no hace NADA (el flag no está activo)\n\nEjemplo en Tpeak:\npublic void setValue(double value) {\n    this.value = value;\n    setChanged();\n    notifyObservers();\n}\n\nRegistro del observer: observable.addObserver(this)"
+    },
+    {
+      "id": 50,
+      "topic": "Introducción GoF",
+      "front": "Resumen: ¿cómo elegir entre patrones similares?",
+      "back": "ADAPTER vs FAÇADE vs BRIDGE:\n• Adapter: adapta UNA interfaz existente incompatible\n• Façade: simplifica acceso a UN SUBSISTEMA complejo\n• Bridge: separa abstracción/implementación para variación INDEPENDIENTE\n\nSINGLETON vs FLYWEIGHT:\n• Singleton: UNA instancia de una clase\n• Flyweight: POCAS instancias compartidas de objetos de grano fino\n\nDECORATOR vs PROXY:\n• Decorator: añade responsabilidades (comportamiento)\n• Proxy: controla acceso (seguridad, lazy load, caché)\n\nSTRATEGY vs STATE vs TEMPLATE METHOD:\n• Strategy: algoritmo intercambiable externamente\n• State: comportamiento según estado interno\n• Template Method: esqueleto fijo, pasos variables en subclases"
+    }
+  ]
+}

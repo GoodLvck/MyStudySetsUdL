@@ -1,0 +1,283 @@
+{
+  "metadata": {
+    "title": "Modern Java — Drag & Drop",
+    "subject": "AEPBD — Ampliació BBDD i Enginyeria del Software",
+    "professor": "Juan Manuel Gimeno Illa",
+    "format": "drag-and-drop",
+    "totalQuestions": 10,
+    "topics": ["Default Methods", "Lambdas", "Interfaces Funcionales", "Optional", "Streams"]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "algorithm": "Stream Pipeline básico",
+      "topic": "Streams",
+      "difficulty": "medium",
+      "description": "Completa el pipeline de Stream para obtener los nombres de platos con menos de 400 calorías, ordenados por calorías:",
+      "code": [
+        "return dishes.[B1]()",
+        "    .[B2](d -> d.getCalories() < 400)",
+        "    .[B3](comparing(Dish::getCalories))",
+        "    .[B4](Dish::getName)",
+        "    .[B5](toList());"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "stream", "hint": "Obtiene el Stream de la colección"},
+        {"id": "B2", "answer": "filter", "hint": "Operación intermedia que filtra elementos por predicado"},
+        {"id": "B3", "answer": "sorted", "hint": "Operación intermedia que ordena con Comparator"},
+        {"id": "B4", "answer": "map", "hint": "Operación intermedia que transforma elementos"},
+        {"id": "B5", "answer": "collect", "hint": "Operación terminal que acumula resultados"}
+      ],
+      "tokens": ["stream", "filter", "sorted", "map", "collect", "reduce", "forEach", "flatMap", "parallel", "limit"],
+      "explanation": "Un pipeline de Stream típico: stream() → operaciones intermedias (filter, sorted, map) → operación terminal (collect). Las operaciones intermedias son lazy y no se ejecutan hasta la terminal."
+    },
+    {
+      "id": 2,
+      "algorithm": "Declaración de Default Method",
+      "topic": "Default Methods",
+      "difficulty": "easy",
+      "description": "Completa la declaración de un default method en una interfaz:",
+      "code": [
+        "public [B1] Shape {",
+        "    double area();  // método abstracto",
+        "",
+        "    [B2] void printArea() {",
+        "        System.out.println(\"Area: \" + area());",
+        "    }",
+        "}"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "interface", "hint": "Palabra clave para declarar una interfaz"},
+        {"id": "B2", "answer": "default", "hint": "Palabra clave que permite implementación en interfaces"}
+      ],
+      "tokens": ["interface", "default", "abstract", "class", "static", "final", "public", "implements", "extends", "override"],
+      "explanation": "Los default methods se declaran en interfaces con la palabra clave 'default' antes del tipo de retorno. Proporcionan una implementación por defecto que las clases implementadoras pueden sobrescribir."
+    },
+    {
+      "id": 3,
+      "algorithm": "Expresión Lambda y Tipos Funcionales",
+      "topic": "Interfaces Funcionales",
+      "difficulty": "medium",
+      "description": "Asigna la lambda correcta a cada variable de tipo funcional:",
+      "code": [
+        "// 1. Predica si un número es par",
+        "[B1]<Integer> isEven = n -> n % 2 == 0;",
+        "",
+        "// 2. Convierte String a su longitud",
+        "[B2]<String, Integer> strLen = s -> s.length();",
+        "",
+        "// 3. Produce un String vacío",
+        "[B3]<String> emptyStr = () -> \"\";",
+        "",
+        "// 4. Imprime un String",
+        "[B4]<String> printer = s -> System.out.println(s);"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "Predicate", "hint": "T → boolean"},
+        {"id": "B2", "answer": "Function", "hint": "T → R"},
+        {"id": "B3", "answer": "Supplier", "hint": "() → T"},
+        {"id": "B4", "answer": "Consumer", "hint": "T → void"}
+      ],
+      "tokens": ["Predicate", "Function", "Supplier", "Consumer", "BiFunction", "UnaryOperator", "BinaryOperator", "BiPredicate", "BiConsumer", "Runnable"],
+      "explanation": "Predicate<T>: T→boolean | Function<T,R>: T→R | Supplier<T>: ()→T | Consumer<T>: T→void. La firma de la lambda debe coincidir con el functional descriptor de la interfaz funcional."
+    },
+    {
+      "id": 4,
+      "algorithm": "Encadenamiento de Optional",
+      "topic": "Optional",
+      "difficulty": "medium",
+      "description": "Completa el encadenamiento de Optional para obtener el nombre de la aseguradora del coche de una persona:",
+      "code": [
+        "// Person::getCar devuelve Optional<Car>",
+        "// Car::getInsurance devuelve Optional<Insurance>",
+        "// Insurance::getName devuelve String",
+        "",
+        "String name = optPerson",
+        "    .[B1](Person::getCar)",
+        "    .[B2](Car::getInsurance)",
+        "    .[B3](Insurance::getName)",
+        "    .[B4](\"Unknown\");"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "flatMap", "hint": "Aplana Optional<Optional<Car>> → Optional<Car>"},
+        {"id": "B2", "answer": "flatMap", "hint": "Aplana Optional<Optional<Insurance>> → Optional<Insurance>"},
+        {"id": "B3", "answer": "map", "hint": "Insurance::getName devuelve String, no Optional"},
+        {"id": "B4", "answer": "orElse", "hint": "Devuelve el valor o el argumento si vacío"}
+      ],
+      "tokens": ["flatMap", "map", "filter", "orElse", "orElseGet", "get", "isPresent", "ifPresent", "of", "empty"],
+      "explanation": "Se usa flatMap cuando el método devuelve Optional (para no obtener Optional<Optional<T>>), y map cuando devuelve el valor directamente. orElse proporciona el valor por defecto."
+    },
+    {
+      "id": 5,
+      "algorithm": "Method References",
+      "topic": "Method References",
+      "difficulty": "medium",
+      "description": "Convierte cada lambda a su referencia a método equivalente:",
+      "code": [
+        "// Lambda → Method Reference",
+        "",
+        "// 1. Método estático",
+        "Function<String,Integer> f1 = s -> Integer.parseInt(s);",
+        "Function<String,Integer> f1b = [B1];",
+        "",
+        "// 2. Método de instancia de tipo arbitrario",
+        "Function<String,String> f2 = s -> s.toUpperCase();",
+        "Function<String,String> f2b = [B2];",
+        "",
+        "// 3. Método de instancia de objeto concreto",
+        "Consumer<String> f3 = s -> System.out.println(s);",
+        "Consumer<String> f3b = [B3];",
+        "",
+        "// 4. Constructor",
+        "Supplier<ArrayList> f4 = () -> new ArrayList();",
+        "Supplier<ArrayList> f4b = [B4];"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "Integer::parseInt", "hint": "Clase::métodoEstático"},
+        {"id": "B2", "answer": "String::toUpperCase", "hint": "Clase::métodoDeInstancia (primer parámetro es el receptor)"},
+        {"id": "B3", "answer": "System.out::println", "hint": "objetoConcreto::método"},
+        {"id": "B4", "answer": "ArrayList::new", "hint": "Clase::new"}
+      ],
+      "tokens": ["Integer::parseInt", "String::toUpperCase", "System.out::println", "ArrayList::new", "Integer::valueOf", "String::toLowerCase", "System.err::println", "LinkedList::new", "Math::abs", "Objects::nonNull"],
+      "explanation": "Los 3 tipos de referencias a método: (1) Clase::métodoEstático, (2) Clase::métodoDeInstancia (el 1er param es receptor), (3) objeto::método. Las referencias a constructor usan Clase::new."
+    },
+    {
+      "id": 6,
+      "algorithm": "Reglas de resolución de Default Methods",
+      "topic": "Default Methods",
+      "difficulty": "hard",
+      "description": "Completa la clase que resuelve un conflicto ambiguo de default methods llamando explícitamente al de la interfaz B:",
+      "code": [
+        "interface A {",
+        "    [B1] String hello() { return \"Hello from A\"; }",
+        "}",
+        "",
+        "interface B [B2] A {",
+        "    [B3] String hello() { return \"Hello from B\"; }",
+        "}",
+        "",
+        "class C [B4] A, B {",
+        "    @Override",
+        "    public String hello() {",
+        "        return [B5];",
+        "    }",
+        "}"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "default", "hint": "Palabra clave para método con implementación en interfaz"},
+        {"id": "B2", "answer": "extends", "hint": "Relación de herencia entre interfaces"},
+        {"id": "B3", "answer": "default", "hint": "Palabra clave para método con implementación en interfaz"},
+        {"id": "B4", "answer": "implements", "hint": "Relación de implementación de interfaces"},
+        {"id": "B5", "answer": "B.super.hello()", "hint": "Sintaxis para llamar al default method de una interfaz específica"}
+      ],
+      "tokens": ["default", "extends", "implements", "abstract", "override", "B.super.hello()", "A.super.hello()", "super.hello()", "B.hello()", "this.hello()"],
+      "explanation": "Cuando hay ambigüedad entre default methods de interfaces no relacionadas, la clase debe sobrescribir el método y usar NombreInterfaz.super.método() para delegar explícitamente."
+    },
+    {
+      "id": 7,
+      "algorithm": "Stream con flatMap y distinct",
+      "topic": "Streams",
+      "difficulty": "hard",
+      "description": "Completa el código para obtener todas las letras únicas de una lista de palabras:",
+      "code": [
+        "List<String> words = List.of(\"Hello\", \"World\");",
+        "",
+        "List<String> letters = words.[B1]()",
+        "    .[B2](word -> word.split(\"\"))",
+        "    .[B3](Arrays::stream)",
+        "    .[B4]()",
+        "    .[B5](toList());"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "stream", "hint": "Obtiene el Stream de la lista"},
+        {"id": "B2", "answer": "map", "hint": "Transforma cada String en String[] (array de letras)"},
+        {"id": "B3", "answer": "flatMap", "hint": "Aplana Stream<String[]> en Stream<String>"},
+        {"id": "B4", "answer": "distinct", "hint": "Elimina elementos duplicados"},
+        {"id": "B5", "answer": "collect", "hint": "Operación terminal que acumula en lista"}
+      ],
+      "tokens": ["stream", "map", "flatMap", "distinct", "collect", "filter", "sorted", "forEach", "reduce", "count"],
+      "explanation": "map(word -> word.split(\"\")) crea un Stream<String[]>. flatMap(Arrays::stream) aplana cada array en un Stream<String>, dando un único Stream<String>. distinct() elimina duplicados."
+    },
+    {
+      "id": 8,
+      "algorithm": "Comparator compuesto",
+      "topic": "Streams",
+      "difficulty": "medium",
+      "description": "Completa el código para ordenar personas por edad descendente y luego por nombre ascendente:",
+      "code": [
+        "List<Person> sorted = persons.stream()",
+        "    .sorted(",
+        "        [B1](Person::age)",
+        "        .[B2]()",
+        "        .[B3](Person::name)",
+        "    )",
+        "    .collect(toList());"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "comparing", "hint": "Método estático de Comparator que acepta key extractor"},
+        {"id": "B2", "answer": "reversed", "hint": "Invierte el orden del comparador"},
+        {"id": "B3", "answer": "thenComparing", "hint": "Añade criterio de ordenación secundario"}
+      ],
+      "tokens": ["comparing", "reversed", "thenComparing", "thenComparingInt", "naturalOrder", "reverseOrder", "comparingInt", "thenReversed", "andThen", "negate"],
+      "explanation": "Comparator.comparing(Person::age) crea un Comparator por edad. .reversed() lo invierte (mayor a menor). .thenComparing(Person::name) añade el criterio secundario de nombre."
+    },
+    {
+      "id": 9,
+      "algorithm": "Lambda con bloque y Optional",
+      "topic": "Optional",
+      "difficulty": "hard",
+      "description": "Completa el método que busca el coche de una persona y devuelve su marca o 'Unknown':",
+      "code": [
+        "public String getCarBrand(Optional<Person> optPerson) {",
+        "    return optPerson",
+        "        .[B1](person -> {",
+        "            [B2]<Car> optCar = person.getCar();",
+        "            return optCar;",
+        "        })",
+        "        .[B3](car -> car.getBrand())",
+        "        .[B4](\"Unknown\");",
+        "}"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "flatMap", "hint": "person.getCar() devuelve Optional<Car>"},
+        {"id": "B2", "answer": "Optional", "hint": "Tipo del valor devuelto por getCar()"},
+        {"id": "B3", "answer": "map", "hint": "getBrand() devuelve String directamente"},
+        {"id": "B4", "answer": "orElse", "hint": "Devuelve el valor o el String por defecto"}
+      ],
+      "tokens": ["flatMap", "Optional", "map", "orElse", "filter", "Stream", "List", "ifPresent", "orElseGet", "get"],
+      "explanation": "flatMap se usa cuando el mapper devuelve Optional (person.getCar() → Optional<Car>). map se usa cuando devuelve valor directo (car.getBrand() → String). orElse provee valor por defecto."
+    },
+    {
+      "id": 10,
+      "algorithm": "Interfaz Funcional Propia con excepción",
+      "topic": "Interfaces Funcionales",
+      "difficulty": "hard",
+      "description": "Completa la definición de una interfaz funcional que puede lanzar excepciones comprobadas, y su uso:",
+      "code": [
+        "@[B1]",
+        "public interface CheckedFunction<T, R> {",
+        "    R [B2](T t) [B3] Exception;",
+        "}",
+        "",
+        "// Uso:",
+        "CheckedFunction<String, Integer> parser = s -> Integer.parseInt(s);",
+        "",
+        "// Método que la acepta:",
+        "public static <T, R> [B4]<T, R> wrap(CheckedFunction<T, R> fn) {",
+        "    return t -> {",
+        "        try { return fn.apply(t); }",
+        "        catch (Exception e) { throw new RuntimeException(e); }",
+        "    };",
+        "}"
+      ],
+      "blanks": [
+        {"id": "B1", "answer": "FunctionalInterface", "hint": "Anotación que verifica que hay exactamente un método abstracto"},
+        {"id": "B2", "answer": "apply", "hint": "Nombre convencional del método abstracto de Function-like interfaces"},
+        {"id": "B3", "answer": "throws", "hint": "Palabra clave para declarar excepciones que puede lanzar un método"},
+        {"id": "B4", "answer": "Function", "hint": "Interfaz funcional estándar T → R que no declara excepciones"}
+      ],
+      "tokens": ["FunctionalInterface", "apply", "throws", "Function", "Override", "test", "accept", "get", "throw", "Consumer"],
+      "explanation": "Las interfaces funcionales estándar no declaran excepciones comprobadas. Para soportarlas hay que definir la propia. El método wrap() convierte CheckedFunction a Function estándar envolviendo las excepciones."
+    }
+  ]
+}
