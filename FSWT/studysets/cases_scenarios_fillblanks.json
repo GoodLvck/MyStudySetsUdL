@@ -1,0 +1,384 @@
+{
+  "metadata": {
+    "title": "Test Cases & Test Scenarios",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "fillblanks",
+    "totalQuestions": 20,
+    "topics": [
+      "Conceptos y documentación",
+      "Diseño claro y trazabilidad",
+      "Login e image upload",
+      "Aplicación: ATM y diagnóstico"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Conceptos y documentación",
+      "difficulty": "medium",
+      "sentence": "Un escenario tiene relación de uno a ___ con sus casos.",
+      "blanks": [
+        "muchos"
+      ],
+      "hints": [
+        "Puede originar varios casos"
+      ],
+      "explanation": "Scenario: probar autenticación. Cases: login válido, password errónea, campos vacíos, etc., cada uno con estado, pasos, datos y resultados esperados.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Conceptos y documentación",
+      "difficulty": "medium",
+      "sentence": "El resultado previsto se registra como ___ results.",
+      "blanks": [
+        "expected"
+      ],
+      "hints": [
+        "Esperado en inglés"
+      ],
+      "explanation": "ID y objetivo, precondiciones, pasos, datos, expected results; al ejecutar se añaden actual results, estado y entorno. Se versiona y revisa según necesidad.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Conceptos y documentación",
+      "difficulty": "medium",
+      "sentence": "Lo observado se registra como ___ results.",
+      "blanks": [
+        "actual"
+      ],
+      "hints": [
+        "Real en inglés"
+      ],
+      "explanation": "Expected se deriva de requisitos antes de juzgar la ejecución. Actual es lo observado, aunque no coincida. Su comparación informa el veredicto.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Conceptos y documentación",
+      "difficulty": "medium",
+      "sentence": "Las condiciones necesarias antes de ejecutar son las ___.",
+      "blanks": [
+        "preconditions"
+      ],
+      "hints": [
+        "Una palabra inglesa en plural"
+      ],
+      "explanation": "Entorno, preparación de datos, fecha, status, conclusión, verdict, detalles de bug, adjuntos, autor, revisor, versión y comentarios, además del núcleo del caso.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Conceptos y documentación",
+      "difficulty": "medium",
+      "sentence": "Los casos que evalúan facilidad de uso son de ___.",
+      "blanks": [
+        "usability"
+      ],
+      "hints": [
+        "Usabilidad en inglés"
+      ],
+      "explanation": "Functionality, user interface, performance, integration, usability, database, security y user acceptance. Son focos, no una regla que impida combinaciones.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Conceptos y documentación",
+      "difficulty": "medium",
+      "sentence": "El identificador único de un caso es su Test Case ___.",
+      "blanks": [
+        "ID"
+      ],
+      "hints": [
+        "Dos letras"
+      ],
+      "explanation": "Verificar funcionalidades, guiar trabajo, detectar gaps y problemas de uso, dejar pasos de referencia, facilitar reutilización y ayudar a incorporaciones al equipo.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Conceptos y documentación",
+      "difficulty": "medium",
+      "sentence": "Los casos ejecutados por herramientas son casos ___.",
+      "blanks": [
+        "automatizados"
+      ],
+      "hints": [
+        "Contrapuesto a manuales"
+      ],
+      "explanation": "Ejecución, comparaciones, gestión e informes según herramientas. El material cita Selenium/Appium y lenguajes de scripting; el diseño y revisión siguen requiriendo criterios.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "sentence": "Un caso centrado en un objetivo de funcionalidad se denomina ___.",
+      "blanks": [
+        "atómico"
+      ],
+      "hints": [
+        "No significa necesariamente un solo paso"
+      ],
+      "explanation": "Técnica adecuada, claridad, nomenclatura uniforme, objetivo atómico, ausencia de ambigüedad y suposiciones ocultas, trazabilidad, diversidad y poca redundancia.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      },
+      "acceptedAnswers": [
+        [
+          "atomic"
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "sentence": "La matriz que conecta requisitos y tests es una matriz de ___.",
+      "blanks": [
+        "trazabilidad"
+      ],
+      "hints": [
+        "Seguimiento de relaciones"
+      ],
+      "explanation": "Vincula requisitos del alcance con casos y ayuda a detectar huecos. Que cada requisito tenga un enlace no demuestra todos sus escenarios ni calidad de tests.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      },
+      "acceptedAnswers": [
+        [
+          "traceability"
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "sentence": "La técnica de valores frontera es boundary value ___.",
+      "blanks": [
+        "analysis"
+      ],
+      "hints": [
+        "Análisis en inglés"
+      ],
+      "explanation": "Límites para fronteras numéricas; particiones para clases de entradas similares; tablas de decisión para combinaciones de condiciones y acciones. El documento las menciona como técnicas de diseño.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "sentence": "Repetir un caso sin añadir cobertura genera ___.",
+      "blanks": [
+        "redundancia"
+      ],
+      "hints": [
+        "Duplicación innecesaria"
+      ],
+      "explanation": "Copias equivalentes consumen recursos. Variaciones que cambian condiciones, estado u oráculo sí pueden aportar cobertura.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "sentence": "La especificación de requisitos de software se abrevia ___.",
+      "blanks": [
+        "SRS"
+      ],
+      "hints": [
+        "Tres letras"
+      ],
+      "explanation": "Basar reglas y condiciones en SRS/use cases y explicitar lo que falte. En práctica de estudio, declarar supuestos en vez de presentarlos como hechos del sistema.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "sentence": "Un caso con entradas inválidas suele llamarse test ___.",
+      "blanks": [
+        "negativo"
+      ],
+      "hints": [
+        "Contrapuesto a positivo"
+      ],
+      "explanation": "La corrección funcional no demuestra rendimiento, usabilidad o robustez. Datos realistas y negativos amplían la evidencia.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      },
+      "acceptedAnswers": [
+        [
+          "negative"
+        ]
+      ]
+    },
+    {
+      "id": 14,
+      "topic": "Login e image upload",
+      "difficulty": "medium",
+      "sentence": "El flujo de recuperar contraseña se suele etiquetar Forgot ___?",
+      "blanks": [
+        "password"
+      ],
+      "hints": [
+        "Contraseña en inglés"
+      ],
+      "explanation": "Credenciales válidas, email/password inválidos por separado y juntos, campos vacíos, recuperación de contraseña y enlaces. Cada condición necesita expected result.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Login e image upload",
+      "difficulty": "medium",
+      "sentence": "Probar justo por debajo y por encima de un máximo cubre valores ___.",
+      "blanks": [
+        "límite"
+      ],
+      "hints": [
+        "Fronteras"
+      ],
+      "explanation": "Ruta, cargar/cambiar, formatos, nombres con espacios/caracteres permitidos, duplicados, tamaño, tipos no imagen, dimensiones, progreso, cancelar, selector, carga múltiple, calidad y visualización.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      },
+      "acceptedAnswers": [
+        [
+          "frontera",
+          "fronterizos",
+          "limites"
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "topic": "Login e image upload",
+      "difficulty": "medium",
+      "sentence": "Un límite que admite el propio valor máximo es ___.",
+      "blanks": [
+        "inclusivo"
+      ],
+      "hints": [
+        "Incluye el extremo"
+      ],
+      "explanation": "5 MB puede interpretarse con distintas unidades; aceptar hasta el límite o solo menos cambia la respuesta correcta. El requisito debe fijarlo antes de juzgar.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Login e image upload",
+      "difficulty": "medium",
+      "sentence": "Los escenarios suelen derivarse de los ___ cases.",
+      "blanks": [
+        "use"
+      ],
+      "hints": [
+        "Casos de uso"
+      ],
+      "explanation": "Debe ser creíble, suficientemente complejo, relevante/motivador y con resultado evaluable. Suele derivarse de use cases.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Aplicación: ATM y diagnóstico",
+      "difficulty": "medium",
+      "sentence": "Con saldo 500, retirada 200 y sin comisión, el saldo esperado es ___.",
+      "blanks": [
+        "300"
+      ],
+      "hints": [
+        "Resta directa"
+      ],
+      "explanation": "Definir autenticación, saldo, importe, comisiones y condiciones; ejecutar retirada; comparar efectivo, saldo y registro según contrato. No basta con que no falle la pantalla.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "11, 17"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Aplicación: ATM y diagnóstico",
+      "difficulty": "medium",
+      "sentence": "Después del cambio debe comprobarse la ___ del nuevo PIN, no solo el mensaje.",
+      "blanks": [
+        "persistencia"
+      ],
+      "hints": [
+        "Que el cambio se conserve"
+      ],
+      "explanation": "Precisar estado y reglas de PIN, confirmar el cambio y comprobar uso del nuevo y rechazo del anterior según especificación. No inventar formato ni política de bloqueo.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "11, 17"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Aplicación: ATM y diagnóstico",
+      "difficulty": "medium",
+      "sentence": "La captura o archivo de evidencia se registra como ___.",
+      "blanks": [
+        "attachment"
+      ],
+      "hints": [
+        "Adjunto en inglés"
+      ],
+      "explanation": "Resultado real, estado final, versión/entorno, pasos y datos para reproducir, adjuntos y referencia al bug. Expected no debe alterarse para ocultar el fallo.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "11, 17"
+      }
+    }
+  ]
+}

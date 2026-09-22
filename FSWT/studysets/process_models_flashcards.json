@@ -1,0 +1,272 @@
+{
+  "metadata": {
+    "title": "Software Process Models",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "flashcards",
+    "totalCards": 25,
+    "topics": [
+      "Process framework",
+      "Waterfall y prototyping",
+      "Spiral y Unified Process",
+      "Incremental, reuse y mejora"
+    ]
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Process framework",
+      "front": "¿Qué es un process framework?",
+      "back": "Una base de actividades comunes aplicables a proyectos de distintos tamaños y complejidad. Organiza acciones, tareas, productos, puntos de calidad e hitos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Process framework",
+      "front": "Enumera las cinco framework activities y el propósito de cada una.",
+      "back": "Communication recoge objetivos/requisitos; planning organiza trabajo, recursos y riesgos; modeling representa solución y arquitectura; construction implementa y prueba; deployment entrega y obtiene feedback.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Process framework",
+      "front": "¿Qué diferencia framework y umbrella activities?",
+      "back": "Las primeras organizan el trabajo principal. Las umbrella son transversales para gestionar progreso, calidad, cambio y riesgo durante el proyecto.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Process framework",
+      "front": "¿Cuáles son las ocho umbrella activities?",
+      "back": "Tracking/control, risk management, SQA, technical reviews, measurement, configuration management, reusability management y work product preparation/production.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Process framework",
+      "front": "¿Qué hacen tracking, reviews y configuration management?",
+      "back": "Tracking/control compara progreso con el plan; technical reviews detecta errores antes de propagarlos; configuration management gestiona efectos de cambios.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Process framework",
+      "front": "Activity, action y task: aporta ejemplos.",
+      "back": "Activity: comunicación, objetivo amplio. Action: diseño arquitectónico, producto importante. Task: ejecutar un unit test, objetivo pequeño y resultado concreto.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Process framework",
+      "front": "¿Qué incluye una descripción de proceso además de actividades y orden?",
+      "back": "Products (resultados), roles (responsabilidades) y pre/postconditions (lo que debe cumplirse antes/después).",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Process framework",
+      "front": "¿Cuáles son las cuatro actividades de Sommerville?",
+      "back": "Specification, design and implementation, validation y evolution. Son otra abstracción, compatible con el framework de cinco actividades.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Process framework",
+      "front": "Compara los cuatro process flows del diagrama.",
+      "back": "Linear: secuencia. Iterative: se repiten actividades. Evolutionary: vueltas que producen incrementos cada vez más completos. Parallel: actividades simultáneas con coordinación.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Process framework",
+      "front": "Plan-driven vs agile: ¿qué cambia?",
+      "back": "Plan-driven planifica actividades anticipadamente y mide contra el plan. Agile planifica incrementalmente y acomoda cambios. En práctica se mezclan.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Waterfall y prototyping",
+      "front": "¿En qué orden avanza waterfall?",
+      "back": "Requirements analysis/definition; system/software design; implementation/unit testing; integration/system testing; operation/maintenance.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Waterfall y prototyping",
+      "front": "¿Cuándo conviene razonar sobre waterfall y cuál es su limitación?",
+      "back": "Es comprensible y planificable con requisitos estables y bien entendidos. Cambios tardíos y feedback final son costosos. Las pruebas unitarias sí aparecen durante implementación.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Waterfall y prototyping",
+      "front": "¿Qué se gana y qué se arriesga con prototyping?",
+      "back": "Feedback temprano, aclaración de requisitos y menor rechazo; a cambio, coordinación con usuarios, planificación difícil, trabajo descartado y tentación de enviar el prototipo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Waterfall y prototyping",
+      "front": "¿Por qué puede ser mala base de producción un throw-away prototype?",
+      "back": "Puede tener poca documentación, estructura degradada y no cumplir rendimiento, otras necesidades no funcionales ni estándares organizativos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Spiral y Unified Process",
+      "front": "¿Qué distingue spiral de una simple repetición de waterfall?",
+      "back": "Evaluación explícita de riesgos en cada vuelta, prototipos como mitigación y ajuste de coste/calendario con feedback. Las releases evolucionan.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Spiral y Unified Process",
+      "front": "¿Qué ventajas y límites tiene spiral?",
+      "back": "Participación continua, manejo del riesgo y adecuación a sistemas complejos/extensibles. Requiere equipo experto, buena gestión y buen análisis de riesgo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Spiral y Unified Process",
+      "front": "¿Cuáles son las cinco fases de UP incluidas en el curso?",
+      "back": "Inception, elaboration, construction, transition y production. El material incluye explícitamente production.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Spiral y Unified Process",
+      "front": "Inception vs elaboration: ¿qué produce cada una?",
+      "back": "Inception recoge negocio y use cases preliminares. Elaboration refina casos y crea una architectural baseline.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Spiral y Unified Process",
+      "front": "Construction vs transition vs production en UP.",
+      "back": "Construction implementa, prueba e integra. Transition entrega, recibe feedback y beta testing. Production monitoriza, da soporte y procesa defectos y cambios.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Spiral y Unified Process",
+      "front": "¿Por qué UP es iterativo e incremental?",
+      "back": "Desarrolla versiones progresivas, admite cambios y solapamiento de trabajo entre incrementos, con use cases y arquitectura como ejes.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Incremental, reuse y mejora",
+      "front": "¿Qué ventajas tiene incremental development?",
+      "back": "Menos retrabajo ante cambios, feedback sobre demostraciones y valor útil entregado antes.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Incremental, reuse y mejora",
+      "front": "¿Qué problemas puede traer incremental development?",
+      "back": "Menor visibilidad documental y deterioro estructural por cambios sucesivos. Hace falta invertir en mantener una estructura adecuada.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Incremental, reuse y mejora",
+      "front": "¿Qué es integration and configuration?",
+      "back": "Desarrollo por integración de componentes o aplicaciones existentes y configuración para adaptar comportamiento al usuario. Se basa en reuse.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Incremental, reuse y mejora",
+      "front": "¿Qué significa que no hay un proceso universalmente correcto?",
+      "back": "La elección depende de requisitos, riesgo, tamaño, equipo y feedback necesario. Pueden combinarse prácticas plan-driven y agile.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Incremental, reuse y mejora",
+      "front": "¿Cómo resume el material process improvement?",
+      "back": "Agile enfatiza reducir overhead; maturity-based enfatiza gestión del proceso y buenas prácticas de ingeniería.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    }
+  ]
+}

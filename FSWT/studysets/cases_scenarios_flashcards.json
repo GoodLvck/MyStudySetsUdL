@@ -1,0 +1,222 @@
+{
+  "metadata": {
+    "title": "Test Cases & Test Scenarios",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "flashcards",
+    "totalCards": 20,
+    "topics": [
+      "Conceptos y documentación",
+      "Diseño claro y trazabilidad",
+      "Login e image upload",
+      "Aplicación: ATM y diagnóstico"
+    ]
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Conceptos y documentación",
+      "front": "Test scenario vs test case: explica con login.",
+      "back": "Scenario: probar autenticación. Cases: login válido, password errónea, campos vacíos, etc., cada uno con estado, pasos, datos y resultados esperados.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Conceptos y documentación",
+      "front": "¿Qué contiene el núcleo mínimo de un caso reproducible?",
+      "back": "ID y objetivo, precondiciones, pasos, datos, expected results; al ejecutar se añaden actual results, estado y entorno. Se versiona y revisa según necesidad.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Conceptos y documentación",
+      "front": "¿Qué diferencia expected de actual results?",
+      "back": "Expected se deriva de requisitos antes de juzgar la ejecución. Actual es lo observado, aunque no coincida. Su comparación informa el veredicto.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Conceptos y documentación",
+      "front": "¿Qué campos adicionales enumera la plantilla?",
+      "back": "Entorno, preparación de datos, fecha, status, conclusión, verdict, detalles de bug, adjuntos, autor, revisor, versión y comentarios, además del núcleo del caso.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Conceptos y documentación",
+      "front": "¿Cuáles son los ocho tipos de test case ilustrados?",
+      "back": "Functionality, user interface, performance, integration, usability, database, security y user acceptance. Son focos, no una regla que impida combinaciones.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Conceptos y documentación",
+      "front": "¿Qué objetivos tiene documentar test cases?",
+      "back": "Verificar funcionalidades, guiar trabajo, detectar gaps y problemas de uso, dejar pasos de referencia, facilitar reutilización y ayudar a incorporaciones al equipo.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Conceptos y documentación",
+      "front": "¿Qué tareas pueden automatizarse?",
+      "back": "Ejecución, comparaciones, gestión e informes según herramientas. El material cita Selenium/Appium y lenguajes de scripting; el diseño y revisión siguen requiriendo criterios.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Diseño claro y trazabilidad",
+      "front": "¿Qué hace bueno a un test case?",
+      "back": "Técnica adecuada, claridad, nomenclatura uniforme, objetivo atómico, ausencia de ambigüedad y suposiciones ocultas, trazabilidad, diversidad y poca redundancia.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Diseño claro y trazabilidad",
+      "front": "¿Por qué usar una traceability matrix?",
+      "back": "Vincula requisitos del alcance con casos y ayuda a detectar huecos. Que cada requisito tenga un enlace no demuestra todos sus escenarios ni calidad de tests.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Diseño claro y trazabilidad",
+      "front": "Boundary value analysis, partitions y decision tables: ¿cuándo ayudan?",
+      "back": "Límites para fronteras numéricas; particiones para clases de entradas similares; tablas de decisión para combinaciones de condiciones y acciones. El documento las menciona como técnicas de diseño.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Diseño claro y trazabilidad",
+      "front": "¿Por qué evitar casos redundantes sin borrar variaciones relevantes?",
+      "back": "Copias equivalentes consumen recursos. Variaciones que cambian condiciones, estado u oráculo sí pueden aportar cobertura.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Diseño claro y trazabilidad",
+      "front": "¿Qué significa no assumptions al escribir casos?",
+      "back": "Basar reglas y condiciones en SRS/use cases y explicitar lo que falte. En práctica de estudio, declarar supuestos en vez de presentarlos como hechos del sistema.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Diseño claro y trazabilidad",
+      "front": "¿Por qué incluir casos no funcionales y datos diversos?",
+      "back": "La corrección funcional no demuestra rendimiento, usabilidad o robustez. Datos realistas y negativos amplían la evidencia.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Login e image upload",
+      "front": "¿Qué condiciones de login propone el material?",
+      "back": "Credenciales válidas, email/password inválidos por separado y juntos, campos vacíos, recuperación de contraseña y enlaces. Cada condición necesita expected result.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Login e image upload",
+      "front": "¿Qué dimensiones cubre el escenario de image upload?",
+      "back": "Ruta, cargar/cambiar, formatos, nombres con espacios/caracteres permitidos, duplicados, tamaño, tipos no imagen, dimensiones, progreso, cancelar, selector, carga múltiple, calidad y visualización.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Login e image upload",
+      "front": "¿Por qué especificar unidad y frontera inclusiva de tamaño?",
+      "back": "5 MB puede interpretarse con distintas unidades; aceptar hasta el límite o solo menos cambia la respuesta correcta. El requisito debe fijarlo antes de juzgar.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Login e image upload",
+      "front": "¿Qué hace útil a un escenario además de ser una historia?",
+      "back": "Debe ser creíble, suficientemente complejo, relevante/motivador y con resultado evaluable. Suele derivarse de use cases.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Aplicación: ATM y diagnóstico",
+      "front": "¿Cómo formular una prueba de retirada en ATM?",
+      "back": "Definir autenticación, saldo, importe, comisiones y condiciones; ejecutar retirada; comparar efectivo, saldo y registro según contrato. No basta con que no falle la pantalla.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "11, 17"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Aplicación: ATM y diagnóstico",
+      "front": "¿Cómo probar cambio de PIN?",
+      "back": "Precisar estado y reglas de PIN, confirmar el cambio y comprobar uso del nuevo y rechazo del anterior según especificación. No inventar formato ni política de bloqueo.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "11, 17"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Aplicación: ATM y diagnóstico",
+      "front": "¿Qué evidencias guardar al fallar un caso?",
+      "back": "Resultado real, estado final, versión/entorno, pasos y datos para reproducir, adjuntos y referencia al bug. Expected no debe alterarse para ocultar el fallo.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "11, 17"
+      }
+    }
+  ]
+}

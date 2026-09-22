@@ -1,0 +1,498 @@
+{
+  "metadata": {
+    "title": "Fundamentals of Software Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "fillblanks",
+    "totalQuestions": 27,
+    "topics": [
+      "Quality revolution",
+      "V&V y fallos",
+      "Reliability, test cases y oráculos",
+      "Niveles y selección",
+      "Planificación, métricas y equipo"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Quality revolution",
+      "difficulty": "medium",
+      "sentence": "El ciclo de mejora continua se abrevia ___.",
+      "blanks": [
+        "PDCA"
+      ],
+      "hints": [
+        "Iniciales de Plan, Do, Check, Act"
+      ],
+      "explanation": "El material vincula a Deming con SQC y la difusión de PDCA, a Juran con el paso hacia TQC, y a Ishikawa con causa y efecto. Taiichi Ohno se asocia al principio lean.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Quality revolution",
+      "difficulty": "medium",
+      "sentence": "En PDCA, la etapa que evalúa las mediciones es ___.",
+      "blanks": [
+        "Check"
+      ],
+      "hints": [
+        "Término inglés para comprobar"
+      ],
+      "explanation": "Plan fija objetivos y proceso. Do ejecuta y mide. Check evalúa mediciones. Act introduce mejoras para el siguiente ciclo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Quality revolution",
+      "difficulty": "medium",
+      "sentence": "El principio que busca eliminar desperdicio se llama ___.",
+      "blanks": [
+        "lean"
+      ],
+      "hints": [
+        "Término usado por Toyota"
+      ],
+      "explanation": "Reducir desperdicio y recursos sin valor, acortando el recorrido entre pedido y cobro con mejora continua.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Quality revolution",
+      "difficulty": "medium",
+      "sentence": "El diagrama de causa y efecto también se conoce como diagrama de ___.",
+      "blanks": [
+        "Ishikawa"
+      ],
+      "hints": [
+        "Apellido del autor"
+      ],
+      "explanation": "Pareto analysis, trend chart, flow chart, histogram, scatter diagram, control chart y cause-and-effect diagram.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Quality revolution",
+      "difficulty": "medium",
+      "sentence": "Total Quality Control se abrevia ___.",
+      "blanks": [
+        "TQC"
+      ],
+      "hints": [
+        "Tres letras"
+      ],
+      "explanation": "Prioridad de calidad y cliente, decisiones con datos, participación respetuosa y comités interfuncionales.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Quality revolution",
+      "difficulty": "medium",
+      "sentence": "La visión que compara coste con beneficio es la ___ view.",
+      "blanks": [
+        "value-based"
+      ],
+      "hints": [
+        "Término inglés con guion"
+      ],
+      "explanation": "Transcendental: excelencia percibida difícil de formalizar. User: necesidades y experiencia. Manufacturing: conformidad y proceso. Product: propiedades del producto. Value-based: beneficio frente a coste.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      },
+      "acceptedAnswers": [
+        [
+          "value based"
+        ]
+      ]
+    },
+    {
+      "id": 7,
+      "topic": "Quality revolution",
+      "difficulty": "medium",
+      "sentence": "La probabilidad de operación sin fallos se relaciona con el factor ___.",
+      "blanks": [
+        "reliability"
+      ],
+      "hints": [
+        "Nombre inglés de fiabilidad"
+      ],
+      "explanation": "Un factor expresa una característica como reliability, efficiency o testability. Un criterio vincula esa calidad con un atributo del desarrollo, como modularity. L1 enumera ISO 9126, CMM, TPI y TMM como referencias/modelos del material.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "V&V y fallos",
+      "difficulty": "medium",
+      "sentence": "La evaluación de adecuación al uso real se llama ___.",
+      "blanks": [
+        "validation"
+      ],
+      "hints": [
+        "Término inglés"
+      ],
+      "explanation": "Verification: conformidad con especificaciones, building the product right. Validation: adecuación al uso y necesidades reales, building the right product.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "V&V y fallos",
+      "difficulty": "medium",
+      "sentence": "Según L1, un estado incorrecto del sistema es un ___.",
+      "blanks": [
+        "error"
+      ],
+      "hints": [
+        "No es todavía la manifestación externa"
+      ],
+      "explanation": "Fault/defect/bug es la causa. Error es el estado incorrecto según L1. Failure es la desviación observable. No todo fault se activa ni todo error llega a manifestarse externamente.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "V&V y fallos",
+      "difficulty": "medium",
+      "sentence": "El análisis que requiere ejecutar el programa se llama ___.",
+      "blanks": [
+        "dynamic"
+      ],
+      "hints": [
+        "Adjetivo inglés"
+      ],
+      "explanation": "El estático revisa artefactos sin ejecutar. El dinámico ejecuta y observa una muestra de comportamientos. Se complementan.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      },
+      "acceptedAnswers": [
+        [
+          "dinamico",
+          "dinámica"
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "topic": "V&V y fallos",
+      "difficulty": "medium",
+      "sentence": "La desviación externa respecto a la especificación se llama ___.",
+      "blanks": [
+        "failure"
+      ],
+      "hints": [
+        "Término de L1 para fallo observable"
+      ],
+      "explanation": "Puede revelar fallos y aportar evidencia sobre requisitos, rendimiento y calidad. Pasar una suite no demuestra ausencia de todos los defectos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "V&V y fallos",
+      "difficulty": "medium",
+      "sentence": "Un fault también se denomina defect o ___.",
+      "blanks": [
+        "bug"
+      ],
+      "hints": [
+        "Nombre informal de un defecto"
+      ],
+      "explanation": "Una perspectiva menos ligada a las decisiones de implementación y orientada a encontrar fallos. Debe aprender el sistema. La independencia complementa el conocimiento del desarrollador, sin garantizar detección completa.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "medium",
+      "sentence": "La descripción de los patrones de uso futuro se llama operational ___.",
+      "blanks": [
+        "profile"
+      ],
+      "hints": [
+        "Perfil en inglés"
+      ],
+      "explanation": "Probabilidad de operar sin fallos durante un tiempo especificado en un entorno especificado. Las pruebas para estimarla deben representar el uso futuro.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "medium",
+      "sentence": "Un caso básico empareja input con expected ___.",
+      "blanks": [
+        "outcome"
+      ],
+      "hints": [
+        "Resultado en inglés"
+      ],
+      "explanation": "En un sistema stateless la salida depende de la entrada actual. En uno con estado también depende del estado e historia, por lo que se especifican precondiciones y secuencias.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "medium",
+      "sentence": "El mecanismo que verifica corrección de resultados es el test ___.",
+      "blanks": [
+        "oracle"
+      ],
+      "hints": [
+        "Oráculo en inglés"
+      ],
+      "explanation": "Un valor, una modificación de estado o una secuencia de valores que se interpreta conjuntamente. ATM: efectivo entregado y nuevo saldo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "medium",
+      "sentence": "El resultado observado al ejecutar es el ___ outcome.",
+      "blanks": [
+        "actual"
+      ],
+      "hints": [
+        "Contrapuesto a expected"
+      ],
+      "explanation": "La ejecución puede finalizar normalmente y producir un valor o estado equivocado. Hay que comparar actual con expected mediante un oráculo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "medium",
+      "sentence": "Probar todas las posibilidades se denomina ___ testing.",
+      "blanks": [
+        "exhaustive"
+      ],
+      "hints": [
+        "Término inglés"
+      ],
+      "explanation": "Dominios válidos/ inválidos, diseños y entornos suelen impedir exhaustive testing. Se busca una selección que revele defectos y reduzca riesgo a coste viable.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "medium",
+      "sentence": "Antes de ejecutar se debe configurar el execution ___.",
+      "blanks": [
+        "environment"
+      ],
+      "hints": [
+        "Entorno en inglés"
+      ],
+      "explanation": "Identificar objetivo, seleccionar entradas, calcular expected outcome, configurar entorno, ejecutar y analizar resultados.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Niveles y selección",
+      "difficulty": "medium",
+      "sentence": "El nivel que se centra en unir módulos es ___ testing.",
+      "blanks": [
+        "integration"
+      ],
+      "hints": [
+        "Integración en inglés"
+      ],
+      "explanation": "Unit: unidad aislada. Integration: interfaces entre unidades. System: comportamiento global y propiedades emergentes. Acceptance: criterios y expectativas del cliente.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Niveles y selección",
+      "difficulty": "medium",
+      "sentence": "En el V-model mostrado, requirements se relaciona con ___ testing.",
+      "blanks": [
+        "acceptance"
+      ],
+      "hints": [
+        "Aceptación en inglés"
+      ],
+      "explanation": "Requirements con acceptance, high-level design con system, detailed design con integration y coding con unit. Conecta productos del desarrollo con su evaluación.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Niveles y selección",
+      "difficulty": "medium",
+      "sentence": "User Acceptance Testing se abrevia ___.",
+      "blanks": [
+        "UAT"
+      ],
+      "hints": [
+        "Tres letras"
+      ],
+      "explanation": "UAT comprueba criterios contractuales. L1 describe BAT como comprobación del proveedor para que el sistema pueda superar UAT. Es la convención específica de estas diapositivas.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Niveles y selección",
+      "difficulty": "medium",
+      "sentence": "La comprobación de que un cambio no rompe lo anterior se llama ___ testing.",
+      "blanks": [
+        "regression"
+      ],
+      "hints": [
+        "Regresión en inglés"
+      ],
+      "explanation": "Volver a ejecutar pruebas relevantes después de cambios para detectar daños al comportamiento existente. Puede aplicarse a unit, integration, system y acceptance.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Niveles y selección",
+      "difficulty": "medium",
+      "sentence": "El flujo de valores entre variables se llama ___ flow.",
+      "blanks": [
+        "data"
+      ],
+      "hints": [
+        "Contrapuesto a control"
+      ],
+      "explanation": "White-box usa código, control flow y data flow. Black-box usa requisitos e interfaces observables. No son sinónimos de unit y system respectivamente.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Niveles y selección",
+      "difficulty": "medium",
+      "sentence": "La selección basada en estructura interna se llama ___ testing.",
+      "blanks": [
+        "white-box"
+      ],
+      "hints": [
+        "Caja blanca en inglés con guion"
+      ],
+      "explanation": "Requisitos y especificaciones funcionales, código, dominios de entrada/salida, operational profile y fault models (error guessing, fault seeding, mutation analysis).",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      },
+      "acceptedAnswers": [
+        [
+          "white box"
+        ]
+      ]
+    },
+    {
+      "id": 25,
+      "topic": "Planificación, métricas y equipo",
+      "difficulty": "medium",
+      "sentence": "Las acciones modulares que componen un caso son test ___.",
+      "blanks": [
+        "steps"
+      ],
+      "hints": [
+        "Pasos en inglés"
+      ],
+      "explanation": "Marco, alcance, recursos, esfuerzo, calendario y presupuesto. Los casos pueden componerse de test steps modulares.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "Planificación, métricas y equipo",
+      "difficulty": "medium",
+      "sentence": "La capacidad de revelar defectos de la suite es test case ___.",
+      "blanks": [
+        "effectiveness"
+      ],
+      "hints": [
+        "Eficacia en inglés"
+      ],
+      "explanation": "Ejecución (avance), defectos (seguimiento), eficacia de casos (capacidad de revelar defectos) y eficacia del esfuerzo (incluye defectos escapados a clientes).",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "Planificación, métricas y equipo",
+      "difficulty": "medium",
+      "sentence": "Reejecutar automáticamente casos existentes facilita el ___ testing.",
+      "blanks": [
+        "regression"
+      ],
+      "hints": [
+        "Tipo de prueba tras cambios"
+      ],
+      "explanation": "Mayor productividad, regresión más amplia y ciclos más cortos. Requiere casos claros, herramientas e infraestructura, profesionales preparados y presupuesto. No sustituye el diseño ni el juicio.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    }
+  ]
+}

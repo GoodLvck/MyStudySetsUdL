@@ -1,0 +1,725 @@
+{
+  "metadata": {
+    "title": "Fundamentals of Software Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "quiz",
+    "totalQuestions": 39,
+    "topics": [
+      "Quality revolution",
+      "V&V y fallos",
+      "Reliability, test cases y oráculos",
+      "Niveles y selección",
+      "Planificación, métricas y equipo"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Quality revolution",
+      "difficulty": "easy",
+      "question": "¿Qué objetivo caracteriza el principio lean presentado en las diapositivas?",
+      "options": [
+        "A) Maximizar el inventario de trabajo pendiente",
+        "B) Priorizar beneficios a corto plazo sobre el cliente",
+        "C) Eliminar el consumo de recursos que no aporta valor al producto",
+        "D) Añadir inspecciones sin medir sus resultados"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Lean busca reducir desperdicio y el tiempo entre pedido y cobro mediante mejora continua; añadir trabajo sin valor contradice ese objetivo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Quality revolution",
+      "difficulty": "easy",
+      "question": "¿Cuál es el orden correcto del ciclo de Shewhart?",
+      "options": [
+        "A) Check, Plan, Act, Do",
+        "B) Do, Act, Plan, Check",
+        "C) Plan, Check, Do, Act",
+        "D) Plan, Do, Check, Act"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Se fijan objetivos, se ejecuta el plan, se evalúan las mediciones y se actúa para mejorar el siguiente ciclo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Quality revolution",
+      "difficulty": "medium",
+      "question": "Un equipo estudia las mediciones de un piloto y las compara con los objetivos. ¿En qué fase PDCA está?",
+      "options": [
+        "A) Act",
+        "B) Plan",
+        "C) Check",
+        "D) Do"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Check evalúa los resultados. Act decide e introduce las mejoras a partir de esa evaluación.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Quality revolution",
+      "difficulty": "easy",
+      "question": "¿Qué principio corresponde a Total Quality Control (TQC)?",
+      "options": [
+        "A) La calidad pertenece únicamente al departamento de pruebas",
+        "B) El productor define siempre el valor sin consultar al cliente",
+        "C) Decisiones basadas en hechos y datos con prioridad al cliente",
+        "D) Los beneficios inmediatos justifican ignorar defectos"
+      ],
+      "correctAnswer": "C",
+      "explanation": "TQC prioriza calidad y cliente y fomenta gestión participativa y transversal.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Quality revolution",
+      "difficulty": "easy",
+      "question": "¿Para qué sirve el diagrama de Ishikawa?",
+      "options": [
+        "A) Ordenar los pasos de una prueba automatizada",
+        "B) Organizar posibles causas de un efecto de calidad",
+        "C) Medir exclusivamente el tiempo de ejecución",
+        "D) Demostrar que el software está libre de fallos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Es un diagrama de causa y efecto; en la figura del curso aparecen materiales, máquinas, métodos y mediciones.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Quality revolution",
+      "difficulty": "medium",
+      "question": "Según la comparación de premios de las diapositivas, ¿qué distingue al Baldrige del Deming?",
+      "options": [
+        "A) Baldrige enfatiza calidad definida por el cliente y Deming conformidad con especificaciones",
+        "B) Ambos definen calidad exclusivamente por número de tests",
+        "C) Baldrige mide solo beneficios y Deming solo velocidad",
+        "D) Deming elimina la necesidad de especificaciones"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Esta es la comparación docente de la página 6; relaciona perspectiva del cliente con conformidad definida por el productor.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Quality revolution",
+      "difficulty": "easy",
+      "question": "Una usuaria considera excelente una app porque resuelve sus necesidades y resulta fácil de usar. ¿Qué visión aplica?",
+      "options": [
+        "A) Manufacturing view",
+        "B) Transcendental view",
+        "C) User's view",
+        "D) Value-based view"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La visión del usuario se centra en necesidades y experiencia. La basada en valor incorpora explícitamente el coste frente al beneficio.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Quality revolution",
+      "difficulty": "medium",
+      "question": "Se compara la utilidad de dos herramientas con su coste total. ¿Qué visión de calidad predomina?",
+      "options": [
+        "A) Manufacturing view",
+        "B) Value-based view",
+        "C) Product view",
+        "D) Transcendental view"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La visión basada en valor equilibra beneficios y coste; no se limita a las características del producto.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Quality revolution",
+      "difficulty": "medium",
+      "question": "¿Qué ejemplo distingue correctamente quality factor de quality criterion?",
+      "options": [
+        "A) Testability es un factor y modularity puede ser un criterio que lo favorece",
+        "B) Un criterio es un caso de prueba y un factor su dato de entrada",
+        "C) Factor y criterio significan exclusivamente coste",
+        "D) Modularity es siempre una probabilidad de fallo"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El factor expresa una característica de calidad; un criterio se relaciona con atributos del desarrollo que la sustentan.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "V&V y fallos",
+      "difficulty": "easy",
+      "question": "¿Qué pregunta resume verification?",
+      "options": [
+        "A) ¿Hemos ejecutado todas las entradas posibles?",
+        "B) ¿Estamos construyendo correctamente el producto respecto a su especificación?",
+        "C) ¿Se ha aprobado el presupuesto comercial?",
+        "D) ¿Es este el producto que realmente necesita el usuario?"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Verification comprueba conformidad con requisitos establecidos; validation comprueba la adecuación al uso real.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "V&V y fallos",
+      "difficulty": "medium",
+      "question": "Una aplicación cumple toda su especificación, pero no permite al cliente realizar su trabajo. ¿Qué carencia revela?",
+      "options": [
+        "A) Ausencia necesaria de unit tests",
+        "B) Demostración de que verification y validation son equivalentes",
+        "C) Falta de validation del producto respecto al uso previsto",
+        "D) Un error exclusivo de compilación"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La conformidad con una especificación no garantiza que esa especificación represente las necesidades reales.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "V&V y fallos",
+      "difficulty": "easy",
+      "question": "Según la terminología de L1, ¿qué es un error?",
+      "options": [
+        "A) Cualquier observación externa conforme a la especificación",
+        "B) La causa adjudicada de un estado incorrecto",
+        "C) Un estado incorrecto del sistema que puede conducir a un failure",
+        "D) Una medida de productividad del tester"
+      ],
+      "correctAnswer": "C",
+      "explanation": "En estas diapositivas error es un estado; fault es su causa y failure es el comportamiento externo incorrecto.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "V&V y fallos",
+      "difficulty": "medium",
+      "question": "Una condición mal escrita deja un saldo interno incorrecto y después se muestra un importe equivocado. ¿Cuál es el failure?",
+      "options": [
+        "A) El importe incorrecto que observa el usuario",
+        "B) El estado interno del saldo antes de mostrarlo",
+        "C) La condición mal escrita",
+        "D) El nombre del método que calcula el saldo"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Fault: condición defectuosa. Error: estado interno incorrecto. Failure: desviación observable de la conducta especificada.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "V&V y fallos",
+      "difficulty": "medium",
+      "question": "Existe un fault, pero la entrada del test no lo activa. ¿Qué conclusión es válida?",
+      "options": [
+        "A) Puede no observarse ningún failure en esa ejecución",
+        "B) El test demuestra ausencia de defectos",
+        "C) El fault deja de existir",
+        "D) El sistema necesariamente falla al arrancar"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Un defecto puede permanecer latente. La ejecución debe activar y propagar sus efectos para que sean observables.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "V&V y fallos",
+      "difficulty": "easy",
+      "question": "¿Qué actividad es static analysis?",
+      "options": [
+        "A) Inspeccionar código sin ejecutarlo",
+        "B) Ejecutar una función con valores límite",
+        "C) Reproducir una secuencia de retiradas en un ATM",
+        "D) Medir latencia bajo carga"
+      ],
+      "correctAnswer": "A",
+      "explanation": "La inspección razona sobre representaciones estáticas. Las otras opciones requieren ejecución.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "V&V y fallos",
+      "difficulty": "medium",
+      "question": "¿Qué combinación ofrece evidencia más completa de calidad?",
+      "options": [
+        "A) Reservar toda evaluación para después de entregar",
+        "B) Combinar análisis estático con pruebas dinámicas",
+        "C) Usar solo pruebas que ya sabemos que pasan",
+        "D) Sustituir todas las ejecuciones por lectura de código"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Ambas técnicas son complementarias: una examina artefactos y la otra observa comportamientos reales seleccionados.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "V&V y fallos",
+      "difficulty": "easy",
+      "question": "¿Qué puede mostrar una campaña de pruebas satisfactoria?",
+      "options": [
+        "A) Evidencia de calidad y de conformidad para los casos probados",
+        "B) Corrección en cualquier entorno imaginable",
+        "C) Garantía de satisfacción de cualquier usuario futuro",
+        "D) Prueba universal de ausencia de faults"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Los tests aportan evidencia limitada a lo ejercitado. No prueban la ausencia universal de defectos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "easy",
+      "question": "¿Qué condiciones forman parte de la definición de software reliability?",
+      "options": [
+        "A) Operación sin fallos durante un tiempo y en un entorno especificados",
+        "B) Cantidad de desarrolladores asignados al proyecto",
+        "C) Ausencia de excepciones en una sola ejecución",
+        "D) Número de líneas de código sin comentarios"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Reliability es una probabilidad condicionada por tiempo y entorno, no un simple recuento de tests aprobados.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "medium",
+      "question": "Para estimar fiabilidad de uso, ¿cómo deben elegirse las entradas aleatorias?",
+      "options": [
+        "A) Exclusivamente entre entradas que ya fallaron",
+        "B) Uniformemente siempre, aunque el uso real sea muy distinto",
+        "C) Solo entre entradas fáciles de automatizar",
+        "D) De acuerdo con la distribución del uso futuro descrita por el operational profile"
+      ],
+      "correctAnswer": "D",
+      "explanation": "La muestra debe representar el uso previsto. Una distribución uniforme puede sesgar la estimación si no coincide con ese uso.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "easy",
+      "question": "¿Cuál es la forma básica de un test case en L1?",
+      "options": [
+        "A) Un listado de todas las clases",
+        "B) Un input sin criterio de evaluación",
+        "C) Un bug report sin pasos",
+        "D) Una pareja de entrada y resultado esperado"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Sin resultado esperado no hay una base clara para decidir si la ejecución es correcta.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "medium",
+      "question": "¿Por qué una prueba de ATM debe especificar el saldo inicial y la secuencia de acciones?",
+      "options": [
+        "A) Porque basta con verificar el último botón pulsado",
+        "B) Porque todo ATM es stateless",
+        "C) Porque un test de estado no puede automatizarse",
+        "D) Porque la salida depende del estado y de la entrada actual"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Un sistema con estado puede responder de manera distinta a la misma entrada según su historia y condiciones iniciales.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "medium",
+      "question": "Un ATM parte de 500 y retira 200 sin comisión. ¿Qué expected outcome comprueba mejor la operación?",
+      "options": [
+        "A) Saldo final de 500 si no aparece una excepción",
+        "B) Entrega de 200 y saldo final de 300",
+        "C) Solo que no se cierre la pantalla",
+        "D) Solo que se registre un clic"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El resultado esperado puede incluir salidas y cambios de estado, no únicamente una respuesta visual.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "easy",
+      "question": "¿Cuál es la función de un test oracle?",
+      "options": [
+        "A) Medir exclusivamente cobertura de sentencias",
+        "B) Determinar si el resultado observado coincide con el esperado",
+        "C) Elegir siempre la entrada más grande",
+        "D) Eliminar todos los stubs automáticamente"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El oráculo proporciona o verifica el resultado esperado y permite compararlo con la ejecución de la implementación bajo prueba.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "hard",
+      "question": "Se usa la salida de la implementación como único resultado esperado de esa misma ejecución. ¿Qué problema aparece?",
+      "options": [
+        "A) Se elimina la necesidad de especificación",
+        "B) El oráculo puede aceptar el mismo defecto que debería detectar",
+        "C) La prueba pasa a ser estática",
+        "D) Se obtiene exhaustive testing"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Copiar el resultado observado como expectativa no ofrece una comprobación independiente de corrección.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "medium",
+      "question": "¿Por qué exhaustive testing es normalmente inviable?",
+      "options": [
+        "A) Porque todos los faults son equivalentes",
+        "B) Por el tamaño del dominio, la complejidad y los entornos posibles",
+        "C) Porque los resultados esperados nunca pueden calcularse",
+        "D) Porque solo cuentan las entradas válidas"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Habría que cubrir entradas válidas e inválidas, combinaciones de estados y condiciones de ejecución; el espacio suele ser enorme.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "medium",
+      "question": "Probar un subconjunto D1 de entradas ejercita una parte P1 del comportamiento. ¿Qué se puede inferir?",
+      "options": [
+        "A) Queda incertidumbre sobre comportamientos no ejercitados",
+        "B) Ya no es necesario analizar resultados",
+        "C) El resto del dominio se comporta igual por definición",
+        "D) Se han descubierto todos los faults"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El problema central es seleccionar un subconjunto eficaz, sin confundir muestra con cobertura exhaustiva.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "Reliability, test cases y oráculos",
+      "difficulty": "easy",
+      "question": "¿Qué debe preceder a comparar resultados de una prueba?",
+      "options": [
+        "A) Registrar el resultado como correcto por defecto",
+        "B) Modificar la especificación para que coincida con la salida",
+        "C) Definir objetivo, entradas, resultado esperado y entorno, y ejecutar",
+        "D) Eliminar los casos que podrían fallar"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El proceso incluye preparación, ejecución y análisis; el expected outcome se deriva antes de juzgar el actual outcome.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "Niveles y selección",
+      "difficulty": "easy",
+      "question": "¿Qué nivel prueba métodos individuales de manera aislada?",
+      "options": [
+        "A) Release testing",
+        "B) Acceptance testing",
+        "C) System testing",
+        "D) Unit testing"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Unit testing se ocupa de unidades aisladas; integración comprueba la colaboración entre unidades.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 29,
+      "topic": "Niveles y selección",
+      "difficulty": "medium",
+      "question": "Dos módulos funcionan por separado, pero intercambian los campos en distinto orden. ¿Qué prueba apunta directamente al problema?",
+      "options": [
+        "A) Un test aislado que sustituye ambos módulos",
+        "B) Integration testing",
+        "C) Acceptance testing sin ejecutar la integración",
+        "D) Una inspección solo del presupuesto"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El defecto está en la interacción y el contrato de la interfaz entre módulos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 30,
+      "topic": "Niveles y selección",
+      "difficulty": "easy",
+      "question": "Según L1, ¿qué comprueba UAT?",
+      "options": [
+        "A) Que el sistema satisface los criterios contractuales de aceptación",
+        "B) La cobertura de cada rama interna",
+        "C) Que todos los programadores usen el mismo editor",
+        "D) Solo la estructura de los bucles"
+      ],
+      "correctAnswer": "A",
+      "explanation": "L1 asocia UAT a los criterios de aceptación; BAT se presenta allí como preparación por la organización del proveedor para superar UAT.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 31,
+      "topic": "Niveles y selección",
+      "difficulty": "medium",
+      "question": "¿Qué propósito distingue regression testing?",
+      "options": [
+        "A) Medir únicamente la nueva funcionalidad",
+        "B) Garantizar que nunca habrá cambios de requisitos",
+        "C) Comprobar que un cambio no rompe comportamiento previamente válido",
+        "D) Reemplazar todos los tests anteriores por uno nuevo"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La regresión reutiliza y prioriza pruebas existentes en distintos niveles. La suite también puede ampliarse para nuevos casos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 32,
+      "topic": "Niveles y selección",
+      "difficulty": "easy",
+      "question": "¿Qué información caracteriza white-box testing?",
+      "options": [
+        "A) Solo observaciones externas sin conocer implementación",
+        "B) El coste de licencia de las herramientas",
+        "C) Únicamente opiniones de usuarios",
+        "D) Estructura interna, control flow y data flow"
+      ],
+      "correctAnswer": "D",
+      "explanation": "White-box deriva pruebas de la estructura interna; black-box parte del comportamiento observable y sus contratos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 33,
+      "topic": "Niveles y selección",
+      "difficulty": "medium",
+      "question": "¿Puede aplicarse black-box testing a una función individual?",
+      "options": [
+        "A) Sí, pero deja de necesitar resultados esperados",
+        "B) No, solo puede probar sistemas completos",
+        "C) No, toda prueba unitaria es white-box",
+        "D) Sí, usando su contrato de entrada y salida sin basarse en su código"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Nivel de prueba y técnica son dimensiones distintas: una unidad también tiene una interfaz externa observable.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 34,
+      "topic": "Niveles y selección",
+      "difficulty": "medium",
+      "question": "¿Qué fuente de selección se basa en patrones de fallos plausibles?",
+      "options": [
+        "A) Solo el calendario de entregas",
+        "B) El tema visual del entorno de desarrollo",
+        "C) Fault model, incluyendo error guessing y mutation analysis",
+        "D) La longitud del nombre del proyecto"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Un fault model orienta la búsqueda hacia tipos de defectos. Es distinto de seleccionar según requisitos, código o perfil operacional.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 35,
+      "topic": "Planificación, métricas y equipo",
+      "difficulty": "easy",
+      "question": "¿Qué conjunto pertenece a un test plan?",
+      "options": [
+        "A) Alcance, recursos, esfuerzo, calendario y presupuesto",
+        "B) Solo una lista de bugs ya corregidos",
+        "C) Solo salidas observadas de una ejecución",
+        "D) Únicamente nombres de clases"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El plan organiza el marco y las condiciones de la campaña; los test steps detallan acciones reutilizables de cada caso.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    },
+    {
+      "id": 36,
+      "topic": "Planificación, métricas y equipo",
+      "difficulty": "medium",
+      "question": "¿Qué mide principalmente la eficacia de una suite de test cases?",
+      "options": [
+        "A) La longitud de las preguntas del tester",
+        "B) El número de colores del informe",
+        "C) Su capacidad de revelar defectos",
+        "D) El número de reuniones del equipo"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Test case effectiveness trata de defect revealing ability; un gran número de casos redundantes no garantiza eficacia.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    },
+    {
+      "id": 37,
+      "topic": "Planificación, métricas y equipo",
+      "difficulty": "medium",
+      "question": "¿Qué dato ayuda a evaluar defectos que escaparon al esfuerzo de pruebas?",
+      "options": [
+        "A) Solo cantidad de test steps escritos",
+        "B) Defectos encontrados por clientes y no detectados por testers",
+        "C) Solo horas de funcionamiento del editor",
+        "D) Número de miembros del departamento comercial"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los defectos escapados aportan evidencia sobre limitaciones del proceso de pruebas previo a la entrega.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    },
+    {
+      "id": 38,
+      "topic": "Planificación, métricas y equipo",
+      "difficulty": "medium",
+      "question": "¿Qué combinación favorece una automatización sostenible?",
+      "options": [
+        "A) Suponer que la herramienta diseña todos los oráculos",
+        "B) Herramientas compradas antes de definir objetivos y sin mantenimiento",
+        "C) Automatizar exclusivamente casos ambiguos",
+        "D) Casos bien definidos, infraestructura, experiencia y presupuesto"
+      ],
+      "correctAnswer": "D",
+      "explanation": "La automatización reduce esfuerzo repetitivo y mejora regresión si hay condiciones organizativas y técnicas apropiadas.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    },
+    {
+      "id": 39,
+      "topic": "Planificación, métricas y equipo",
+      "difficulty": "easy",
+      "question": "¿Qué medida ayuda a retener test engineers según L1?",
+      "options": [
+        "A) Considerar testing una actividad sin especialización",
+        "B) Evaluar solo cantidad de bugs sin contexto",
+        "C) Eliminar toda formación de entrevistadores",
+        "D) Reconocer el esfuerzo de testing al nivel del desarrollo"
+      ],
+      "correctAnswer": "D",
+      "explanation": "El material enfatiza reconocimiento profesional, contratación y entrevistas cuidadas, y equipos con responsabilidades definidas.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    }
+  ]
+}

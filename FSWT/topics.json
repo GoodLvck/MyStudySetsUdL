@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "fundamentals",
+    "title": "Fundamentals of Software Testing",
+    "description": "Calidad, V&V, fault/error/failure, fiabilidad, oráculos, niveles, selección y gestión de pruebas.",
+    "icon": "🔎",
+    "quiz": 39,
+    "fill": 27,
+    "cards": 28,
+    "source": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf"
+  },
+  {
+    "slug": "process_models",
+    "title": "Software Process Models",
+    "description": "Framework y umbrella activities, flujos, waterfall, prototipos, spiral, Unified Process, incremental y reutilización.",
+    "icon": "🔄",
+    "quiz": 32,
+    "fill": 25,
+    "cards": 25,
+    "source": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx"
+  },
+  {
+    "slug": "software_testing",
+    "title": "Software Testing",
+    "description": "Development testing, equivalence partitioning, TDD, regresión, release, performance y user/acceptance testing.",
+    "icon": "🧪",
+    "quiz": 41,
+    "fill": 28,
+    "cards": 28,
+    "source": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf"
+  },
+  {
+    "slug": "cases_scenarios",
+    "title": "Test Cases & Test Scenarios",
+    "description": "Diseño de casos claros y trazables, plantilla, escenarios, login, carga de imágenes y ejemplos de ATM.",
+    "icon": "📋",
+    "quiz": 28,
+    "fill": 20,
+    "cards": 20,
+    "source": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf"
+  },
+  {
+    "slug": "unit_testing",
+    "title": "Unit Testing",
+    "description": "Static/dynamic testing, code review, prevención, scaffolding, mutation score, debugging, XP/TDD, JUnit y herramientas.",
+    "icon": "🔬",
+    "quiz": 59,
+    "fill": 37,
+    "cards": 38,
+    "source": "02-UnitTesting/L3_Ch3-UnitTesting.pdf"
+  }
+]

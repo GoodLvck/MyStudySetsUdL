@@ -1,0 +1,679 @@
+{
+  "metadata": {
+    "title": "Unit Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "02-UnitTesting/L3_Ch3-UnitTesting.pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "fillblanks",
+    "totalQuestions": 37,
+    "topics": [
+      "Concepto y static unit testing",
+      "Defect prevention",
+      "Dynamic unit testing y selección",
+      "Mutation testing",
+      "Debugging",
+      "XP, TDD y JUnit",
+      "Herramientas y cobertura"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "sentence": "La unidad bajo prueba se abrevia ___.",
+      "blanks": [
+        "UUT"
+      ],
+      "hints": [
+        "Unit Under Test"
+      ],
+      "explanation": "Función, procedimiento, método o clase con una interfaz. Aislar permite controlar entradas y dependencias; no implica ausencia de toda colaboración emulada.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "sentence": "La revisión informal guiada por el autor es un ___.",
+      "blanks": [
+        "walkthrough"
+      ],
+      "hints": [
+        "Término inglés"
+      ],
+      "explanation": "Inspection: proceso formal por pares y criterios. Walkthrough: el autor guía de forma informal una ejecución manual o simulada de escenarios.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "sentence": "La comprobación de preparación inicial se llama ___.",
+      "blanks": [
+        "readiness"
+      ],
+      "hints": [
+        "Primera etapa"
+      ],
+      "explanation": "Readiness, preparation, examination, re-work, validation y exit. Tras corregir CR, se validan independientemente y se distribuye informe.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "sentence": "Quien mantiene la sesión encauzada es el ___.",
+      "blanks": [
+        "moderator"
+      ],
+      "hints": [
+        "Moderador en inglés"
+      ],
+      "explanation": "Preguntas, posibles CR y mejoras. Roles: moderator, author, presenter, record keeper, reviewers y observer. Se revisa el código, no se juzga personalmente a su autor.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "sentence": "Change Request se abrevia ___.",
+      "blanks": [
+        "CR"
+      ],
+      "hints": [
+        "Dos letras"
+      ],
+      "explanation": "Descripción, prioridad, responsable y fecha límite. El autor resuelve y una validación independiente verifica antes del cierre.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "sentence": "Mil líneas de código se abrevian ___.",
+      "blanks": [
+        "KLOC"
+      ],
+      "hints": [
+        "Unidad de tres más una letras"
+      ],
+      "explanation": "LOC/hora, CR/KLOC, CR/hora y horas totales. Deben interpretarse en contexto, no como ranking automático de personas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "sentence": "El diseño detallado de módulos se llama ___-level design.",
+      "blanks": [
+        "low"
+      ],
+      "hints": [
+        "Bajo en inglés"
+      ],
+      "explanation": "Requirements (necesidad/propuesta), functional specification, high-level design (arquitectura), low-level design (módulos) y código; además guías de instalación, usuario y troubleshooting.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Defect prevention",
+      "difficulty": "medium",
+      "sentence": "Añadir código para observar ejecución se llama ___.",
+      "blanks": [
+        "instrumentation"
+      ],
+      "hints": [
+        "Instrumentación en inglés"
+      ],
+      "explanation": "Los CR señalan problemas que cuestan esfuerzo y pueden retrasar el proyecto. Validación de inputs, límites, retornos y observabilidad reducen introducción de fallos.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Defect prevention",
+      "difficulty": "medium",
+      "sentence": "Una condición booleana que debería mantenerse verdadera es una ___.",
+      "blanks": [
+        "assertion"
+      ],
+      "hints": [
+        "Aserción en inglés"
+      ],
+      "explanation": "Instrumentación, controles de división/índices, tratamiento de retornos y buffers, mensajes de fuente común, validar argumentos, assertions documentadas, comprobaciones inversas y contadores de bucle.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      },
+      "acceptedAnswers": [
+        [
+          "asercion"
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "topic": "Defect prevention",
+      "difficulty": "medium",
+      "sentence": "Los incrementos bb[0]++ y bb[1]++ del ejemplo son contadores de ___.",
+      "blanks": [
+        "ramas"
+      ],
+      "hints": [
+        "Alternativas de un if"
+      ],
+      "explanation": "Instrumentation añade observación (contadores/trazas). Mutation introduce deliberadamente un pequeño cambio para evaluar tests. No tienen el mismo objetivo.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Defect prevention",
+      "difficulty": "medium",
+      "sentence": "Ignorar un código de retorno puede ocultar un ___.",
+      "blanks": [
+        "error"
+      ],
+      "hints": [
+        "Estado o condición problemática"
+      ],
+      "explanation": "Aclaran invariantes y evitan que errores de operaciones se ignoren. Una assertion complementa, no sustituye, el tratamiento definido de entradas inválidas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "medium",
+      "sentence": "El programa que invoca la UUT es el test ___.",
+      "blanks": [
+        "driver"
+      ],
+      "hints": [
+        "No es el stub"
+      ],
+      "explanation": "Driver llama a UUT y aporta datos. Stub emula una dependencia llamada por UUT. Ambos forman scaffolding, que controla el entorno.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "medium",
+      "sentence": "La dependencia emulada que recibe llamadas de UUT es un ___.",
+      "blanks": [
+        "stub"
+      ],
+      "hints": [
+        "Cuatro letras"
+      ],
+      "explanation": "Permite condiciones controladas y aislamiento. No demuestra integración con la dependencia real ni equivalencia perfecta del sustituto.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "medium",
+      "sentence": "Control Flow Graph se abrevia ___.",
+      "blanks": [
+        "CFG"
+      ],
+      "hints": [
+        "Tres letras"
+      ],
+      "explanation": "Construir CFG, elegir criterio y caminos, derivar path predicates y resolverlos. Si un predicado es imposible, el camino no es factible.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "medium",
+      "sentence": "Driver más stubs forman el ___.",
+      "blanks": [
+        "scaffolding"
+      ],
+      "hints": [
+        "Andamiaje en inglés"
+      ],
+      "explanation": "Control flow: orden/caminos. Data flow: propagación de valores. Domain: errores de dominios y fronteras. Functional: relación de entradas/salidas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "sentence": "La versión modificada del programa es un ___.",
+      "blanks": [
+        "mutant"
+      ],
+      "hints": [
+        "Mutante en inglés"
+      ],
+      "explanation": "La adecuación de la suite para detectar defectos modelados como pequeñas modificaciones legales. Localiza debilidades de inputs y oráculos.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      },
+      "acceptedAnswers": [
+        [
+          "mutante"
+        ]
+      ]
+    },
+    {
+      "id": 17,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "sentence": "Un mutante indistinguible del original para todos los inputs es ___.",
+      "blanks": [
+        "equivalent"
+      ],
+      "hints": [
+        "Equivalente en inglés"
+      ],
+      "explanation": "Killed: un test detecta la diferencia incorrecta. Equivalent: mismo comportamiento para todos los inputs relevantes. Killable/stubborn en L3: no equivalente que la suite actual no mata.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      },
+      "acceptedAnswers": [
+        [
+          "equivalente"
+        ]
+      ]
+    },
+    {
+      "id": 18,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "sentence": "Un mutante detectado por un test se considera ___.",
+      "blanks": [
+        "killed"
+      ],
+      "hints": [
+        "Muerto en inglés"
+      ],
+      "explanation": "La suite puede no contener el input que activa/propaga la diferencia o su oráculo no comprobarla. Equivalencia requiere razonar más allá de esos casos.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      },
+      "acceptedAnswers": [
+        [
+          "muerto"
+        ]
+      ]
+    },
+    {
+      "id": 19,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "sentence": "Con 6 killed entre 8 no equivalentes, el score porcentual es ___.",
+      "blanks": [
+        "75"
+      ],
+      "hints": [
+        "Escribe solo el número"
+      ],
+      "explanation": "100 × killed / (total mutants − equivalent mutants). Con 10 totales, 2 equivalentes y 6 killed: 75 %. Si no hay no equivalentes, el cociente no se define.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "sentence": "En el ejemplo, el mutante de inicio de bucle se excluye del ___.",
+      "blanks": [
+        "denominador"
+      ],
+      "hints": [
+        "Parte de la fracción del score"
+      ],
+      "explanation": "Con r=1 y > estricto añade a[1] > a[1], que siempre es falso; después ejecuta las mismas comparaciones. Es equivalencia bajo el modelo del programa mostrado.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "sentence": "Con 2,2,1, el original con > devuelve el índice ___.",
+      "blanks": [
+        "1"
+      ],
+      "hints": [
+        "Índices del ejemplo comienzan en 1"
+      ],
+      "explanation": "2,2,1: el original conserva índice 1 y el mutante elige 2. Los tests originales tienen máximo único, así que no revelan el cambio de política de empate.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "sentence": "Con 2,2,1, el mutante con >= devuelve el índice ___.",
+      "blanks": [
+        "2"
+      ],
+      "hints": [
+        "El último máximo empatado"
+      ],
+      "explanation": "2/4=50 % suponiendo todos no equivalentes; al excluir M1, 2/3≈66.7 %; tras matar M3 con un empate, 3/3=100 %.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "sentence": "El score exigido por mutation-adequate es ___ %.",
+      "blanks": [
+        "100"
+      ],
+      "hints": [
+        "Porcentaje de todos los no equivalentes"
+      ],
+      "explanation": "100 % de mutantes no equivalentes considerados muertos. No significa que no existan otros defectos, inputs o estados sin probar.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "sentence": "La hipótesis de relación entre fallos simples y complejos se llama ___ effect.",
+      "blanks": [
+        "coupling"
+      ],
+      "hints": [
+        "Acoplamiento en inglés"
+      ],
+      "explanation": "Competent programmer hypothesis: errores plausibles son desviaciones de programas próximos al correcto. Coupling effect: tests para errores simples suelen revelar muchos errores complejos relacionados.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Debugging",
+      "difficulty": "medium",
+      "sentence": "La localización de la causa de un fallo se llama ___.",
+      "blanks": [
+        "debugging"
+      ],
+      "hints": [
+        "Depuración en inglés"
+      ],
+      "explanation": "Testing expone fallos y evalúa resultados. Debugging parte del síntoma y busca su causa concreta para poder corregirla y volver a probar.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "Debugging",
+      "difficulty": "medium",
+      "sentence": "Partir de síntomas para formular hipótesis es ___.",
+      "blanks": [
+        "induction"
+      ],
+      "hints": [
+        "Inducción en inglés"
+      ],
+      "explanation": "Brute force: trazas/prints. Induction: datos → patrones → hipótesis. Deduction: causas candidatas → pruebas para descartar. Backtracking: retroceder desde el fallo por la ejecución.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "Debugging",
+      "difficulty": "medium",
+      "sentence": "Contrastar una lista de causas candidatas es ___.",
+      "blanks": [
+        "deduction"
+      ],
+      "hints": [
+        "Deducción en inglés"
+      ],
+      "explanation": "Aumenta el número de caminos potenciales que pueden conducir al punto del fallo, complicando retroceder a su causa.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "medium",
+      "sentence": "En XP, el requisito se expresa como una ___.",
+      "blanks": [
+        "story"
+      ],
+      "hints": [
+        "Historia en inglés"
+      ],
+      "explanation": "Elegir story, escribir test pequeño inicialmente fallido, implementar para pasarlo, ejecutar todos y corregir hasta que pasen; repetir para completar la story.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 29,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "medium",
+      "sentence": "Dos programadores colaborando en implementación/revisión practican ___ programming.",
+      "blanks": [
+        "pair"
+      ],
+      "hints": [
+        "Pareja en inglés"
+      ],
+      "explanation": "No producción antes de test fallido; no más test del necesario para fallar; no más producción de la necesaria para pasar. Favorecen incrementos pequeños.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 30,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "medium",
+      "sentence": "La clase base de la API clásica se llama ___.",
+      "blanks": [
+        "TestCase"
+      ],
+      "hints": [
+        "Respeta el nombre del ejemplo"
+      ],
+      "explanation": "API clásica junit.framework, herencia de TestCase y métodos assert*. El pseudocódigo ilustra conceptos y no debe confundirse con una guía de la versión actual.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 31,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "medium",
+      "sentence": "La assertion que exige identidad de referencia es ___.",
+      "blanks": [
+        "assertSame"
+      ],
+      "hints": [
+        "Nombre de método"
+      ],
+      "explanation": "assertEquals compara igualdad según tipo/contrato; assertSame exige la misma referencia. Para double, assertEquals admite tolerancia.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 32,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "medium",
+      "sentence": "En assertEquals(expected, actual), el primer argumento es ___.",
+      "blanks": [
+        "expected"
+      ],
+      "hints": [
+        "Esperado en inglés"
+      ],
+      "explanation": "Esperan condición verdadera, condición falsa y referencia nula, respectivamente. Una violación hace fallar el test; el estilo clásico puede mostrar mensaje opcional.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 33,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "medium",
+      "sentence": "El margen permitido en comparación de doubles se denomina ___.",
+      "blanks": [
+        "tolerancia"
+      ],
+      "hints": [
+        "Nombre en español"
+      ],
+      "explanation": "El resultado numérico puede tener diferencias pequeñas de precisión. La tolerancia fija cuánto error se acepta según el caso, no permite diferencias ilimitadas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      },
+      "acceptedAnswers": [
+        [
+          "tolerance"
+        ]
+      ]
+    },
+    {
+      "id": 34,
+      "topic": "Herramientas y cobertura",
+      "difficulty": "medium",
+      "sentence": "La herramienta para asignaciones sin liberar es memory ___ detector.",
+      "blanks": [
+        "leak"
+      ],
+      "hints": [
+        "Fuga en inglés"
+      ],
+      "explanation": "Auditor comprueba estándares mínimos; bound checker vigila accesos fuera de límites; leak detector detecta asignaciones no liberadas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 35,
+      "topic": "Herramientas y cobertura",
+      "difficulty": "medium",
+      "sentence": "El soporte de ejecución de pruebas es un test ___.",
+      "blanks": [
+        "harness"
+      ],
+      "hints": [
+        "No es el oracle"
+      ],
+      "explanation": "Coverage mide estructuras ejercitadas; data generator ayuda a obtener entradas para comportamiento deseado; harness apoya ejecución dinámica.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 36,
+      "topic": "Herramientas y cobertura",
+      "difficulty": "medium",
+      "sentence": "Para E=9 y N=8, la complejidad ciclomática es ___.",
+      "blanks": [
+        "3"
+      ],
+      "hints": [
+        "9 menos 8 más 2"
+      ],
+      "explanation": "V(G)=E−N+2. Con E=9 y N=8, V=3. Mide caminos linealmente independientes; no cuenta todas las ejecuciones ni prueba ausencia de fallos.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 37,
+      "topic": "Herramientas y cobertura",
+      "difficulty": "medium",
+      "sentence": "La herramienta que genera transacciones o paquetes es traffic ___.",
+      "blanks": [
+        "generator"
+      ],
+      "hints": [
+        "Generador en inglés"
+      ],
+      "explanation": "Documenters generan descripciones/árboles, debuggers permiten inspección de ejecución, emuladores/simuladores sustituyen entornos, performance monitors miden tiempos y network analyzers examinan tráfico.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    }
+  ]
+}

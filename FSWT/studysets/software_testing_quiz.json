@@ -1,0 +1,762 @@
+{
+  "metadata": {
+    "title": "Software Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "quiz",
+    "totalQuestions": 41,
+    "topics": [
+      "Objetivos, V&V e inspecciones",
+      "Development y object testing",
+      "Selección de tests y system testing",
+      "TDD y regression testing",
+      "Release, requirements y performance",
+      "User y acceptance testing"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "easy",
+      "question": "¿Cuándo tiene éxito un test orientado a defect testing?",
+      "options": [
+        "A) Cuando revela un comportamiento incorrecto del sistema",
+        "B) Cuando no ejecuta ninguna entrada",
+        "C) Solo cuando el resultado coincide con la especificación",
+        "D) Cuando sustituye todas las inspecciones"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El objetivo es encontrar defectos; un test que falla puede ser útil y exitoso respecto a ese objetivo, aunque su veredicto sea fail.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "easy",
+      "question": "¿Qué busca principalmente validation testing?",
+      "options": [
+        "A) Contar el número de métodos privados",
+        "B) Mostrar que el software satisface sus requisitos",
+        "C) Modificar el programa hasta hacerlo fallar",
+        "D) Probar exclusivamente valores inválidos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Validation testing demuestra comportamiento previsto. En la distinción amplia V&V, validation también considera las necesidades reales.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "medium",
+      "question": "¿De qué depende la confianza de V&V requerida según el capítulo?",
+      "options": [
+        "A) Solo del número de testers independientes",
+        "B) Del propósito, expectativas de usuarios y entorno comercial",
+        "C) Únicamente de la longitud del código",
+        "D) Siempre de un porcentaje universal de tests pasados"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Un sistema crítico puede necesitar mayor confianza. El contexto influye en el nivel de evidencia exigido.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "medium",
+      "question": "Un sistema aún no compila, pero ya tiene requisitos y diseño. ¿Qué evaluación es posible?",
+      "options": [
+        "A) Realizar beta testing del ejecutable inexistente",
+        "B) Inspeccionar esas representaciones estáticas",
+        "C) Ejecutar sus unit tests completos",
+        "D) Medir directamente su latencia operacional"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Las inspecciones pueden aplicarse antes de tener un sistema ejecutable y a requisitos, diseño, configuración o datos de prueba.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "medium",
+      "question": "¿Qué ventaja de la inspección se relaciona con error masking?",
+      "options": [
+        "A) Siempre prueba el rendimiento real",
+        "B) Garantiza ausencia de defectos en código heredado",
+        "C) Puede examinar varios defectos sin que un fallo de ejecución oculte los siguientes",
+        "D) Elimina la necesidad de revisar requisitos"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Una ejecución puede detenerse por un defecto y ocultar otros; revisar artefactos no depende de completar esa ejecución.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "medium",
+      "question": "¿Qué evidencia requiere especialmente ejecutar el sistema y observarlo?",
+      "options": [
+        "A) La latencia real bajo una carga concreta",
+        "B) La presencia de un nombre de variable incorrecto",
+        "C) Una infracción de estilo en código fuente",
+        "D) Una inconsistencia textual entre dos requisitos"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Una inspección puede señalar riesgos, pero no mide rendimiento o experiencia de uso efectiva en el entorno.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "easy",
+      "question": "¿Qué etapas de testing distingue el capítulo?",
+      "options": [
+        "A) Development, release y user testing",
+        "B) Inception, elaboration y transition",
+        "C) Static, dynamic y mutation únicamente",
+        "D) Planning, modeling y deployment"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Son etapas según contexto y responsables. Dentro de development se distinguen unit, component y system testing.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Development y object testing",
+      "difficulty": "easy",
+      "question": "¿Qué foco corresponde a component testing en este capítulo?",
+      "options": [
+        "A) Exclusivamente el tiempo de compilación",
+        "B) Interfaces de componentes formados al integrar unidades",
+        "C) Solo nombres de atributos individuales",
+        "D) Solo decisiones comerciales de aceptación"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Component testing se concentra en interfaces; system testing comprueba interacciones globales.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Development y object testing",
+      "difficulty": "medium",
+      "question": "Todas las unidades pasan, pero el sistema falla al intercambiar mensajes. ¿Por qué sigue haciendo falta system testing?",
+      "options": [
+        "A) Porque unit testing no prueba nunca lógica",
+        "B) Porque un sistema solo puede fallar en una función individual",
+        "C) Las interacciones y el comportamiento emergente no quedan demostrados por pruebas aisladas",
+        "D) Porque system testing elimina los requisitos"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Compatibilidad, datos correctos y orden temporal entre componentes deben evaluarse al integrarlos.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Development y object testing",
+      "difficulty": "medium",
+      "question": "Según el material, ¿qué supone cobertura completa de una object class?",
+      "options": [
+        "A) Solo probar los métodos heredados",
+        "B) Comprobar únicamente que la clase compila",
+        "C) Solo invocar el constructor una vez",
+        "D) Operaciones, atributos y estados posibles"
+      ],
+      "correctAnswer": "D",
+      "explanation": "El capítulo exige considerar operaciones, asignación/consulta de atributos y estados, aunque una cobertura exhaustiva puede ser difícil.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Development y object testing",
+      "difficulty": "medium",
+      "question": "¿Por qué la herencia dificulta diseñar pruebas de clases?",
+      "options": [
+        "A) Porque vuelve idénticas todas las clases",
+        "B) Porque elimina los estados de los objetos",
+        "C) Porque impide llamar métodos públicos",
+        "D) La información y el comportamiento relevante están distribuidos en la jerarquía"
+      ],
+      "correctAnswer": "D",
+      "explanation": "No toda la lógica está localizada en la clase que se está leyendo; hay que considerar lo heredado y sus interacciones.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Development y object testing",
+      "difficulty": "medium",
+      "question": "En WeatherStation, ¿qué aporta probar Shutdown → Running → Shutdown?",
+      "options": [
+        "A) Medir solo el número de atributos",
+        "B) Demostrar todas las secuencias de estados posibles",
+        "C) Verificar una secuencia de transiciones y sus eventos",
+        "D) Sustituir todas las pruebas de reportWeather"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Probar operaciones aisladas no comprueba necesariamente que sus secuencias produzcan estados correctos.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Development y object testing",
+      "difficulty": "easy",
+      "question": "¿Qué tres partes tiene un automated unit test según el capítulo?",
+      "options": [
+        "A) Setup, call y assertion",
+        "B) Commit, release y payment",
+        "C) Alpha, beta y acceptance",
+        "D) Inspection, walkthrough y review"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Setup prepara entradas/estado, call ejecuta la operación y assertion compara actual con expected.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Development y object testing",
+      "difficulty": "medium",
+      "question": "¿Qué debe comprobarse al probar entradas anormales?",
+      "options": [
+        "A) Que se borre el código de validación",
+        "B) Que la prueba evite toda assertion",
+        "C) Que cualquier entrada inválida sea aceptada como válida",
+        "D) Que se gestionan conforme al contrato, sin fallos inesperados"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Una excepción controlada o rechazo especificado puede ser el comportamiento correcto; crash inesperado no lo es.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "easy",
+      "question": "¿En qué se basa equivalence partitioning?",
+      "options": [
+        "A) Usar solo entradas válidas centrales",
+        "B) Agrupar tests según el nombre del autor",
+        "C) Agrupar entradas que deberían procesarse de forma similar y elegir representantes",
+        "D) Probar siempre todos los números posibles"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La hipótesis es que elementos de una clase ejercitan comportamiento similar. Deben considerarse clases válidas e inválidas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "question": "Se acepta una cantidad entera entre 4 y 10 inclusive. ¿Qué particiones son apropiadas?",
+      "options": [
+        "A) Una clase distinta por cada test escrito",
+        "B) Solo 4 y 10",
+        "C) Todos los positivos en una clase y nada más",
+        "D) Menos de 4, de 4 a 10 y más de 10"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Son las tres regiones del ejemplo. Los límites ayudan a detectar comparaciones incorrectas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "question": "Para el intervalo válido 4–10, ¿qué conjunto prueba ambos límites y sus vecinos externos?",
+      "options": [
+        "A) 5, 6, 7, 8",
+        "B) 3, 4, 10, 11",
+        "C) 1, 2, 12, 13",
+        "D) 4, 5, 6, 7"
+      ],
+      "correctAnswer": "B",
+      "explanation": "3 y 11 son inválidos adyacentes; 4 y 10 son límites válidos. Solo valores interiores no detectan bien errores de frontera.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "question": "Un campo acepta enteros de 10000 a 99999. ¿Qué valor está justo por encima del límite válido?",
+      "options": [
+        "A) 99999",
+        "B) 50000",
+        "C) 100000",
+        "D) 10000"
+      ],
+      "correctAnswer": "C",
+      "explanation": "100000 pertenece a la partición inválida superior; 99999 todavía es válido.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "question": "¿Qué diferencia guideline-based testing de partition testing?",
+      "options": [
+        "A) Usa experiencia de errores frecuentes como guía para elegir casos",
+        "B) Nunca utiliza entradas inválidas",
+        "C) Exige probar todos los valores de cada partición",
+        "D) Se basa únicamente en frecuencia de uso"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Las guidelines recogen experiencia de fallos típicos; pueden complementar particiones y pruebas de límites.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "question": "¿Por qué los use cases sirven como base de system testing?",
+      "options": [
+        "A) Porque garantizan que no hay estados internos",
+        "B) Porque solo describen métodos privados",
+        "C) Obligan a ejercitar colaboraciones entre varios componentes",
+        "D) Porque reemplazan todo test de interfaz"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Un flujo de uso normalmente atraviesa componentes; sus secuencias ayudan a verificar interacciones.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "easy",
+      "question": "¿Qué aporta un sequence diagram al diseñar un test de sistema?",
+      "options": [
+        "A) Prueba por sí mismo la corrección de la ejecución",
+        "B) Solo calcula el presupuesto de pruebas",
+        "C) Enumera exclusivamente fallos de memoria",
+        "D) Identifica participantes, mensajes y orden de las interacciones"
+      ],
+      "correctAnswer": "D",
+      "explanation": "El diagrama informa qué colaboraciones y orden deben provocarse y observarse.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "question": "¿Cuál es una testing policy coherente con el capítulo?",
+      "options": [
+        "A) Probar funciones de entrada con datos correctos e incorrectos y combinaciones relevantes",
+        "B) Evitar combinaciones porque los unit tests siempre bastan",
+        "C) Declarar exhaustivo cualquier conjunto de cien tests",
+        "D) Probar solo funciones del primer menú"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Una política concreta requisitos de cobertura viable sin prometer testing exhaustivo.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "TDD y regression testing",
+      "difficulty": "easy",
+      "question": "¿Cuál es el orden inicial de TDD?",
+      "options": [
+        "A) Ejecutar beta testing antes de definir funciones",
+        "B) Escribir solo documentación y omitir ejecución",
+        "C) Implementar todo el sistema y escribir tests al final",
+        "D) Identificar un incremento, escribir su test, observarlo fallar e implementar"
+      ],
+      "correctAnswer": "D",
+      "explanation": "TDD usa tests anteriores a la implementación como guía de incrementos pequeños.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "TDD y regression testing",
+      "difficulty": "medium",
+      "question": "Un test nuevo pasa antes de implementar la función que supuestamente falta. ¿Qué conviene investigar?",
+      "options": [
+        "A) Si el test comprueba realmente lo requerido o si la función ya existe",
+        "B) Dar por demostrada la corrección total",
+        "C) Cambiar el resultado esperado para forzar cualquier fallo",
+        "D) Eliminar todos los tests antiguos"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El fallo inicial comprueba que el test distingue la ausencia de la funcionalidad; un pase inesperado requiere entender la causa.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "TDD y regression testing",
+      "difficulty": "medium",
+      "question": "Después de implementar un incremento, el test nuevo pasa y uno anterior falla. ¿Qué exige el flujo descrito?",
+      "options": [
+        "A) Continuar siempre con el siguiente incremento",
+        "B) Ignorar el test anterior porque ya cumplió su función",
+        "C) Borrar el requisito antiguo sin consultarlo",
+        "D) Corregir la regresión hasta que todos pasen antes de avanzar"
+      ],
+      "correctAnswer": "D",
+      "explanation": "El capítulo pide ejecutar la suite y no introducir cambios que rompan comportamiento anterior.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "TDD y regression testing",
+      "difficulty": "easy",
+      "question": "¿Puede usarse TDD en un proceso plan-driven?",
+      "options": [
+        "A) Solo si no hay especificación",
+        "B) No, está definido solo para XP",
+        "C) Sí, el capítulo lo permite aunque surgiera asociado a métodos ágiles",
+        "D) Solo en pruebas manuales de usuarios"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La práctica test-first no está limitada a una única organización del proceso.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "TDD y regression testing",
+      "difficulty": "medium",
+      "question": "¿Qué beneficio de TDD facilita localizar defectos?",
+      "options": [
+        "A) Los tests sustituyen el razonamiento del programador",
+        "B) No existen fallos de integración en TDD",
+        "C) Cada fallo proporciona automáticamente el parche correcto",
+        "D) Los incrementos pequeños limitan el código recién cambiado que debe investigarse"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Simplified debugging significa reducir la zona probable, no automatizar toda la explicación causal.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "TDD y regression testing",
+      "difficulty": "medium",
+      "question": "¿Qué significa que los tests de TDD sirven como documentación?",
+      "options": [
+        "A) Reemplazan cualquier información de arquitectura y usuario",
+        "B) Describen por definición todos los casos posibles",
+        "C) Expresan ejemplos ejecutables del comportamiento esperado",
+        "D) Demuestran ausencia de todos los defectos"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Los tests documentan lo que comprueban; el beneficio no garantiza documentación completa ni corrección universal.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 29,
+      "topic": "Release, requirements y performance",
+      "difficulty": "easy",
+      "question": "¿Qué objetivo principal tiene release testing?",
+      "options": [
+        "A) Sustituir la decisión del cliente de aceptar",
+        "B) Convencer al proveedor de que la versión es suficientemente buena para uso externo",
+        "C) Cambiar los requisitos durante cada ejecución",
+        "D) Probar únicamente un método privado"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Se centra en funcionalidad, rendimiento y dependability especificados y en validación para uso externo.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 30,
+      "topic": "Release, requirements y performance",
+      "difficulty": "medium",
+      "question": "¿Qué distingue release testing de system testing del equipo de desarrollo?",
+      "options": [
+        "A) Que release testing usa exclusivamente código fuente",
+        "B) Que system testing siempre es manual",
+        "C) Que release testing no ejecuta el sistema",
+        "D) Equipo independiente y énfasis en validar la release frente al énfasis en descubrir defectos"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Release testing es una forma de system testing, con diferencia de responsables y objetivo principal.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 31,
+      "topic": "Release, requirements y performance",
+      "difficulty": "easy",
+      "question": "¿Cómo se derivan normalmente los tests de release según el capítulo?",
+      "options": [
+        "A) Solo de líneas de código sin requisitos",
+        "B) De los nombres de las variables",
+        "C) De la especificación, con enfoque black-box",
+        "D) Exclusivamente de las opiniones del desarrollador"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El enfoque evita depender de decisiones internas y evalúa los contratos de la versión completa.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 32,
+      "topic": "Release, requirements y performance",
+      "difficulty": "medium",
+      "question": "Mentcare debe exigir motivo al ignorar una alerta de alergia. ¿Qué test verifica directamente ese requisito?",
+      "options": [
+        "A) Intentar ignorarla sin motivo y comprobar que el sistema lo exige",
+        "B) Prescribir siempre a personas sin alergias",
+        "C) Comprobar solo que aparece una alerta",
+        "D) Medir solo el color del botón"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Mostrar la alerta y exigir justificación son requisitos distintos y necesitan observaciones distintas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 33,
+      "topic": "Release, requirements y performance",
+      "difficulty": "medium",
+      "question": "¿Qué conjunto cubre mejor las alertas de alergia de Mentcare?",
+      "options": [
+        "A) Solo medir memoria del formulario",
+        "B) Sin alergias, una alergia, varias alergias y anulación con motivo obligatorio",
+        "C) Solo una prescripción válida sin alergias",
+        "D) Solo arranque y cierre del programa"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los casos deben distinguir ausencia/presencia/multiplicidad de alertas y la regla adicional de anulación.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 34,
+      "topic": "Release, requirements y performance",
+      "difficulty": "medium",
+      "question": "¿Cómo deben elegirse las cargas de performance testing para ser relevantes?",
+      "options": [
+        "A) Reflejando el perfil de uso y aumentando carga para observar degradación",
+        "B) Usando siempre únicamente la función más rápida",
+        "C) Midiendo solo ejecución sin usuarios",
+        "D) Ignorando la distribución de operaciones"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El perfil de uso condiciona las propiedades emergentes observadas; el aumento progresivo revela límites de rendimiento.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 35,
+      "topic": "Release, requirements y performance",
+      "difficulty": "easy",
+      "question": "¿Qué distingue stress testing?",
+      "options": [
+        "A) Aprobar el contrato con el cliente",
+        "B) Medir únicamente con carga mínima",
+        "C) Sobrecargar deliberadamente para estudiar cómo falla el sistema",
+        "D) Inspeccionar código sin ejecución"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El foco incluye comportamiento ante sobrecarga; no basta con tiempos bajo carga normal.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 36,
+      "topic": "User y acceptance testing",
+      "difficulty": "medium",
+      "question": "¿Por qué user testing sigue siendo necesario tras buenas pruebas de release?",
+      "options": [
+        "A) Porque las pruebas de release carecen siempre de valor",
+        "B) El entorno real afecta fiabilidad, rendimiento, usabilidad y robustez",
+        "C) Porque acceptance testing es siempre exhaustivo",
+        "D) Porque los usuarios conocen todas las ramas internas"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El laboratorio no reproduce completamente contexto, prácticas y condiciones operativas del usuario.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    },
+    {
+      "id": 37,
+      "topic": "User y acceptance testing",
+      "difficulty": "easy",
+      "question": "Usuarios trabajan con el equipo en las instalaciones del desarrollador. ¿Qué modalidad es?",
+      "options": [
+        "A) Mutation testing",
+        "B) Beta testing",
+        "C) Static inspection",
+        "D) Alpha testing"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Alpha se realiza con usuarios junto al equipo en el sitio del desarrollador.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    },
+    {
+      "id": 38,
+      "topic": "User y acceptance testing",
+      "difficulty": "easy",
+      "question": "Se distribuye una versión para que usuarios la prueben y comuniquen problemas. ¿Qué modalidad es?",
+      "options": [
+        "A) Beta testing",
+        "B) Code inspection",
+        "C) Alpha testing",
+        "D) Unit testing"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Beta recoge experiencia y problemas al experimentar con una release fuera del contexto estrecho del desarrollo.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    },
+    {
+      "id": 39,
+      "topic": "User y acceptance testing",
+      "difficulty": "easy",
+      "question": "¿Quién decide principalmente si acepta el sistema en acceptance testing?",
+      "options": [
+        "A) El cliente según los criterios acordados y su uso previsto",
+        "B) La herramienta de cobertura por sí sola",
+        "C) El proveedor sin intervención del cliente",
+        "D) El compilador tras verificar sintaxis"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Acceptance testing apoya la decisión del cliente, especialmente en sistemas a medida.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    },
+    {
+      "id": 40,
+      "topic": "User y acceptance testing",
+      "difficulty": "medium",
+      "question": "¿Cuál es el orden del proceso de aceptación del capítulo?",
+      "options": [
+        "A) Ejecución, aceptación, criterios, plan, negociación, tests",
+        "B) Criterios, plan, tests, ejecución, negociación, aceptar/rechazar",
+        "C) Negociación, código, mutación, aceptación, requisitos, plan",
+        "D) Plan, rechazo, ejecución, criterios, tests, negociación"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los criterios se definen antes de derivar y ejecutar casos; los resultados se evalúan y negocian antes de decidir.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    },
+    {
+      "id": 41,
+      "topic": "User y acceptance testing",
+      "difficulty": "medium",
+      "question": "¿Qué problema destaca el modelo de aceptación ágil descrito?",
+      "options": [
+        "A) Que ningún usuario intervenga en el desarrollo",
+        "B) Que el usuario integrado no represente a todos los stakeholders",
+        "C) Que desaparezcan las decisiones de aceptabilidad",
+        "D) Que los tests de aceptación nunca se automaticen"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El capítulo presenta aceptación integrada y automatizada, pero advierte del problema de representatividad.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    }
+  ]
+}

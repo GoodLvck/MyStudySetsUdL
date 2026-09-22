@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit Testing — FSWT</title>
+  <link rel="stylesheet" href="study.css">
+  <script src="vendor/marked.umd.js" defer></script>
+  <script src="study.js" defer></script>
+</head>
+<body data-set="unit_testing">
+
+<header>
+  <a href="./" class="back-btn">← Temas</a>
+  <div class="header-center">
+    <h1>Unit Testing</h1>
+    <span class="subtitle">FSWT · Quiz 1 · MCQs and conceptual</span>
+  </div>
+  <button id="theme-toggle" title="Cambiar tema">🌙</button>
+</header>
+
+<main>
+  <div class="mode-tabs" role="tablist">
+    <button class="tab active" data-mode="quiz" role="tab">📝 Tipo Test</button>
+    <button class="tab" data-mode="fill" role="tab">✏️ Completar</button>
+    <button class="tab" data-mode="flashcard" role="tab">🃏 Flashcards</button>
+    <button class="tab" data-mode="apuntes" role="tab">📖 Apuntes</button>
+  </div>
+
+  <div class="controls">
+    <div class="controls-left">
+      <button id="random-toggle" class="btn-ctrl">🔀 Aleatorio</button>
+      <button id="reset-session" class="btn-ctrl">↺ Reiniciar</button>
+    </div>
+    <div id="mastery-stats" class="mastery-stats"></div>
+  </div>
+
+  <div class="progress-section">
+    <div class="progress-track">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <span class="progress-label" id="progress-label">0 / 0 respondidas</span>
+  </div>
+
+  <div class="card" id="question-card" role="tabpanel">
+    <div class="loading">Cargando preguntas…</div>
+  </div>
+
+  <div class="navigation">
+    <button id="prev-btn" class="nav-btn" disabled>← Anterior</button>
+    <span id="question-counter">— / —</span>
+    <button id="next-btn" class="nav-btn">Siguiente →</button>
+  </div>
+</main>
+
+<div class="overlay hidden" id="completion-overlay" role="dialog" aria-modal="true" aria-label="Sesión completada">
+  <div class="overlay-card">
+    <h2>🎉 ¡Sesión completada!</h2>
+    <div class="completion-stats" id="completion-stats"></div>
+    <button id="restart-btn" class="btn-primary">Nueva sesión</button>
+    <button id="close-completion" class="btn-secondary">Revisar respuestas</button>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,520 @@
+{
+  "metadata": {
+    "title": "Software Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "fillblanks",
+    "totalQuestions": 28,
+    "topics": [
+      "Objetivos, V&V e inspecciones",
+      "Development y object testing",
+      "Selección de tests y system testing",
+      "TDD y regression testing",
+      "Release, requirements y performance",
+      "User y acceptance testing"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "medium",
+      "sentence": "El objetivo de descubrir bugs se llama ___ testing.",
+      "blanks": [
+        "defect"
+      ],
+      "hints": [
+        "Defecto en inglés"
+      ],
+      "explanation": "Validation testing: evidencia de funcionamiento según requisitos. Defect testing: provocar un fallo que descubra un defecto. Un test con veredicto fail puede cumplir el objetivo de descubrir bugs.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "medium",
+      "sentence": "La adecuación al propósito se expresa como fit for ___.",
+      "blanks": [
+        "purpose"
+      ],
+      "hints": [
+        "Propósito en inglés"
+      ],
+      "explanation": "Propósito/criticidad del sistema, expectativas del usuario y entorno comercial. La confianza buscada es fit for purpose.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "medium",
+      "sentence": "Examinar un artefacto sin ejecutarlo es una técnica ___.",
+      "blanks": [
+        "estática"
+      ],
+      "hints": [
+        "Contrapuesta a dinámica"
+      ],
+      "explanation": "Requisitos, arquitectura, modelos, esquemas de datos, código parcial, configuración y test data. Se buscan anomalías en representaciones estáticas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "medium",
+      "sentence": "Cuando un error oculta otro en ejecución se habla de error ___.",
+      "blanks": [
+        "masking"
+      ],
+      "hints": [
+        "Enmascaramiento en inglés"
+      ],
+      "explanation": "Permiten revisar incompletos, detectar defectos sin enmascaramiento de ejecución y evaluar estándares/mantenibilidad. No miden por sí solas rendimiento ni experiencia de uso real.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Objetivos, V&V e inspecciones",
+      "difficulty": "medium",
+      "sentence": "La etapa anterior al uso externo de una versión se denomina ___ testing.",
+      "blanks": [
+        "release"
+      ],
+      "hints": [
+        "Versión entregable en inglés"
+      ],
+      "explanation": "Development testing durante desarrollo; release testing de una versión completa por un equipo separado; user testing con usuarios y condiciones reales.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Development y object testing",
+      "difficulty": "medium",
+      "sentence": "Las propiedades que aparecen al integrar el sistema se llaman ___.",
+      "blanks": [
+        "emergentes"
+      ],
+      "hints": [
+        "No se observan necesariamente en una unidad aislada"
+      ],
+      "explanation": "Unit prueba unidades aisladas. Component integra unidades y prueba interfaces. System integra componentes y prueba interacciones y propiedades emergentes.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Development y object testing",
+      "difficulty": "medium",
+      "sentence": "Probar una clase exige considerar operaciones, atributos y ___.",
+      "blanks": [
+        "estados"
+      ],
+      "hints": [
+        "Situaciones internas del objeto"
+      ],
+      "explanation": "Operaciones, atributos y estados. La herencia distribuye la información relevante entre clases, así que no basta revisar solo lo declarado localmente.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      },
+      "acceptedAnswers": [
+        [
+          "states"
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "topic": "Development y object testing",
+      "difficulty": "medium",
+      "sentence": "Para comprobar una secuencia de estados se derivan secuencias de ___.",
+      "blanks": [
+        "eventos"
+      ],
+      "hints": [
+        "Lo que provoca transiciones"
+      ],
+      "explanation": "Derivar secuencias de eventos y transiciones, por ejemplo Shutdown → Running → Shutdown, y comprobar operaciones y resultados esperados.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      },
+      "acceptedAnswers": [
+        [
+          "events"
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "topic": "Development y object testing",
+      "difficulty": "medium",
+      "sentence": "La parte que compara actual con expected es la ___.",
+      "blanks": [
+        "assertion"
+      ],
+      "hints": [
+        "Aserción en inglés"
+      ],
+      "explanation": "Setup prepara objetos, entradas y expectativas. Call ejecuta. Assertion contrasta resultado real con esperado y determina pass/fail.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      },
+      "acceptedAnswers": [
+        [
+          "asercion"
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "topic": "Development y object testing",
+      "difficulty": "medium",
+      "sentence": "Los valores que no corresponden a operación normal son entradas ___.",
+      "blanks": [
+        "anormales"
+      ],
+      "hints": [
+        "Contrapuestas a normales"
+      ],
+      "explanation": "Operación normal y entradas anormales. Las inválidas deben procesarse según el contrato, sin crash inesperado; un rechazo previsto puede ser correcto.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "sentence": "Agrupar entradas de comportamiento similar es equivalence ___.",
+      "blanks": [
+        "partitioning"
+      ],
+      "hints": [
+        "Particionado en inglés"
+      ],
+      "explanation": "Entradas con características comunes deberían recibir tratamiento similar; se eligen representantes de cada clase válida e inválida. No prueba que todos los elementos sean correctos.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "sentence": "El primer entero inválido por encima de 10 es ___.",
+      "blanks": [
+        "11"
+      ],
+      "hints": [
+        "Sucesor entero"
+      ],
+      "explanation": "Particiones: menor que 4, de 4 a 10, mayor que 10. Fronteras/vecinos: 3, 4, 10, 11. Un interior como 7 aporta un caso normal.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "sentence": "El mayor valor válido en el intervalo 10000–99999 es ___.",
+      "blanks": [
+        "99999"
+      ],
+      "hints": [
+        "Límite superior incluido"
+      ],
+      "explanation": "9999 y 100000 son vecinos externos; 10000 y 99999 son límites válidos; 50000 es un ejemplo interior.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "sentence": "Las guías de errores frecuentes fundamentan el ___-based testing.",
+      "blanks": [
+        "guideline"
+      ],
+      "hints": [
+        "Guía en inglés"
+      ],
+      "explanation": "Elegir casos según experiencia sobre errores frecuentes. Complementa particiones, requisitos y límites.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "sentence": "El diagrama que muestra mensajes ordenados entre componentes es un ___ diagram.",
+      "blanks": [
+        "sequence"
+      ],
+      "hints": [
+        "Secuencia en inglés"
+      ],
+      "explanation": "El use case define un flujo que atraviesa componentes; el sequence diagram identifica quién envía qué mensaje y en qué orden.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Selección de tests y system testing",
+      "difficulty": "medium",
+      "sentence": "Una regla sobre cobertura requerida es una testing ___.",
+      "blanks": [
+        "policy"
+      ],
+      "hints": [
+        "Política en inglés"
+      ],
+      "explanation": "Un criterio explícito de cobertura: funciones de menús, combinaciones relevantes y entradas correctas/incorrectas. No es una promesa de exhaustividad.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "TDD y regression testing",
+      "difficulty": "medium",
+      "sentence": "En TDD se escribe el test ___ del código de la nueva función.",
+      "blanks": [
+        "antes"
+      ],
+      "hints": [
+        "Orden temporal"
+      ],
+      "explanation": "Identificar incremento, escribir y ejecutar test, confirmar fallo esperado, implementar lo suficiente, volver a ejecutar toda la suite y refactorizar preservando comportamiento. El fallo inicial comprueba que el test detecta lo que falta.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "TDD y regression testing",
+      "difficulty": "medium",
+      "sentence": "Los tests acumulados protegen frente a ___.",
+      "blanks": [
+        "regresiones"
+      ],
+      "hints": [
+        "Daños al comportamiento anterior"
+      ],
+      "explanation": "Código asociado a tests, suite de regresión creciente, debugging más localizado y tests como documentación de comportamiento.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "TDD y regression testing",
+      "difficulty": "medium",
+      "sentence": "En el flujo descrito, antes de avanzar deben pasar ___ los tests.",
+      "blanks": [
+        "todos"
+      ],
+      "hints": [
+        "No solo el nuevo"
+      ],
+      "explanation": "No. La existencia de tests para el código escrito no implica oráculos correctos ni todas las entradas, estados e interacciones cubiertas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "TDD y regression testing",
+      "difficulty": "medium",
+      "sentence": "Test-Driven Development se abrevia ___.",
+      "blanks": [
+        "TDD"
+      ],
+      "hints": [
+        "Tres letras"
+      ],
+      "explanation": "No. Surgió vinculado a métodos ágiles como XP, pero puede emplearse en procesos plan-driven.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Release, requirements y performance",
+      "difficulty": "medium",
+      "sentence": "Release testing suele usar un enfoque ___.",
+      "blanks": [
+        "black-box"
+      ],
+      "hints": [
+        "Caja negra en inglés con guion"
+      ],
+      "explanation": "Release es una forma de system testing de una versión lista para uso externo, normalmente por equipo independiente y con objetivo de validación. Desarrollo enfatiza encontrar defectos.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      },
+      "acceptedAnswers": [
+        [
+          "black box"
+        ]
+      ]
+    },
+    {
+      "id": 22,
+      "topic": "Release, requirements y performance",
+      "difficulty": "medium",
+      "sentence": "Requirements-based testing deriva tests de cada ___.",
+      "blanks": [
+        "requisito"
+      ],
+      "hints": [
+        "Base contractual o funcional"
+      ],
+      "explanation": "Examinar cada requisito y derivar uno o más casos que observen su cumplimiento. Un requisito puede necesitar casos positivos, negativos y combinaciones.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Release, requirements y performance",
+      "difficulty": "medium",
+      "sentence": "Si se ignora una alerta, el sistema debe exigir un ___.",
+      "blanks": [
+        "motivo"
+      ],
+      "hints": [
+        "Justificación"
+      ],
+      "explanation": "Alertas para medicamentos a los que el paciente es alérgico, ausencia de alerta sin alergia relevante, varias alergias y exigencia de motivo al ignorar una alerta.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Release, requirements y performance",
+      "difficulty": "medium",
+      "sentence": "La sobrecarga deliberada corresponde a ___ testing.",
+      "blanks": [
+        "stress"
+      ],
+      "hints": [
+        "Estrés en inglés"
+      ],
+      "explanation": "Performance evalúa prestaciones bajo cargas pertinentes, a menudo crecientes. Stress sobrecarga deliberadamente y observa comportamiento de fallo. El perfil de uso debe guiar las cargas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "User y acceptance testing",
+      "difficulty": "medium",
+      "sentence": "Pruebas con usuarios junto al equipo en el sitio del desarrollador: ___ testing.",
+      "blanks": [
+        "alpha"
+      ],
+      "hints": [
+        "Primera letra griega"
+      ],
+      "explanation": "El entorno y prácticas reales afectan fiabilidad, rendimiento, usabilidad y robustez, y no quedan totalmente reproducidos en laboratorio.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "User y acceptance testing",
+      "difficulty": "medium",
+      "sentence": "Una release distribuida a usuarios para reportar problemas se somete a ___ testing.",
+      "blanks": [
+        "beta"
+      ],
+      "hints": [
+        "Segunda letra griega"
+      ],
+      "explanation": "Alpha: usuarios con desarrolladores en sus instalaciones. Beta: release disponible para experimentar y reportar problemas. Acceptance: cliente decide si acepta y despliega según criterios.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "User y acceptance testing",
+      "difficulty": "medium",
+      "sentence": "La decisión de aceptar/rechazar va después de ___ los resultados.",
+      "blanks": [
+        "negociar"
+      ],
+      "hints": [
+        "Examinar y acordar su significado contractual"
+      ],
+      "explanation": "Definir criterios, planificar, derivar casos, ejecutar, negociar resultados y aceptar/rechazar. Se generan criterios, plan, tests, resultados e informe.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "User y acceptance testing",
+      "difficulty": "medium",
+      "sentence": "El riesgo de que un solo usuario no represente al resto es falta de ___.",
+      "blanks": [
+        "representatividad"
+      ],
+      "hints": [
+        "Propiedad de una muestra o representante"
+      ],
+      "explanation": "Cliente integrado define tests ejecutados automáticamente con cambios, sin fase separada en el modelo descrito. Riesgo: que ese representante no refleje a todos los stakeholders.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    }
+  ]
+}

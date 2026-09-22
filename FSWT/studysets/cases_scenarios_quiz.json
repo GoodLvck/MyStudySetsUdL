@@ -1,0 +1,526 @@
+{
+  "metadata": {
+    "title": "Test Cases & Test Scenarios",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "quiz",
+    "totalQuestions": 28,
+    "topics": [
+      "Conceptos y documentación",
+      "Diseño claro y trazabilidad",
+      "Login e image upload",
+      "Aplicación: ATM y diagnóstico"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Conceptos y documentación",
+      "difficulty": "easy",
+      "question": "¿Qué distingue un test case de un test scenario?",
+      "options": [
+        "A) El case no necesita expected results",
+        "B) El scenario siempre tiene más detalle que cada case",
+        "C) El case concreta pasos, datos y resultados; el scenario describe una funcionalidad a alto nivel",
+        "D) Ambos son únicamente bug reports"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Un escenario da contexto y puede originar varios casos específicos con condiciones diferentes.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Conceptos y documentación",
+      "difficulty": "easy",
+      "question": "¿Qué relación presenta el documento entre scenario y cases?",
+      "options": [
+        "A) Exactamente un caso por escenario siempre",
+        "B) Todo caso debe contener todos los escenarios de la app",
+        "C) No existe relación entre ambos",
+        "D) Un escenario puede dar lugar a uno o más casos"
+      ],
+      "correctAnswer": "D",
+      "explanation": "La relación descrita es uno a muchos: se descompone una funcionalidad en comprobaciones concretas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Conceptos y documentación",
+      "difficulty": "medium",
+      "question": "¿Cuál es el mejor ejemplo de test case?",
+      "options": [
+        "A) Comprobar que la web funciona",
+        "B) Probar todo el login",
+        "C) Con una cuenta activa, introducir contraseña incorrecta y verificar rechazo sin iniciar sesión",
+        "D) Evaluar todas las operaciones bancarias"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El primer ejemplo tiene condición, acción y comportamiento esperado; los demás son objetivos amplios o ambiguos.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Conceptos y documentación",
+      "difficulty": "easy",
+      "question": "¿Qué campo debe contener lo observado después de ejecutar?",
+      "options": [
+        "A) Actual results",
+        "B) Preconditions",
+        "C) Expected results",
+        "D) Test objective"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Expected se determina a partir del contrato; actual registra observación, incluso si contradice la expectativa.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Conceptos y documentación",
+      "difficulty": "medium",
+      "question": "¿Para qué sirve un Test Case ID estable?",
+      "options": [
+        "A) Sustituir sus pasos",
+        "B) Identificar y referenciar inequívocamente el caso",
+        "C) Garantizar que la función carece de bugs",
+        "D) Eliminar la necesidad de versionado"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El ID permite trazabilidad entre requisitos, ejecuciones y defectos, pero no sustituye contenido ni revisión.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Conceptos y documentación",
+      "difficulty": "medium",
+      "question": "¿Qué diferencia preconditions de test data?",
+      "options": [
+        "A) Las precondiciones solo describen bugs conocidos",
+        "B) Las primeras describen estado/requisitos previos; los datos son valores usados como entrada",
+        "C) Ambos significan únicamente resultado esperado",
+        "D) Los datos siempre se escriben después de ejecutar"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Cuenta activa y sesión cerrada son precondiciones; correo y contraseña concretos son inputs.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Conceptos y documentación",
+      "difficulty": "easy",
+      "question": "¿Qué información facilita reproducir un fallo dependiente de plataforma?",
+      "options": [
+        "A) Solo el nombre del tester",
+        "B) Únicamente el título general del escenario",
+        "C) Test environment y configuración usada",
+        "D) Solo el ID de la tarjeta gráfica del autor"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Entorno, versión y configuración explican condiciones de ejecución; junto a pasos y datos permiten reproducción.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Conceptos y documentación",
+      "difficulty": "medium",
+      "question": "¿Cuál de estas afirmaciones sobre automatización es correcta?",
+      "options": [
+        "A) Toda herramienta infiere sin intervención los requisitos reales",
+        "B) Los scripts nunca requieren mantenimiento",
+        "C) Las pruebas manuales no pueden documentarse",
+        "D) Automatiza ejecución e informes, pero los casos necesitan objetivos y oráculos bien definidos"
+      ],
+      "correctAnswer": "D",
+      "explanation": "El documento cita herramientas y lenguajes; automatizar tareas no elimina el diseño y revisión de las expectativas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Conceptos y documentación",
+      "difficulty": "easy",
+      "question": "¿Qué tipo de test case se dirige a controlar accesos no autorizados?",
+      "options": [
+        "A) Usability",
+        "B) Security",
+        "C) User interface exclusivamente",
+        "D) Performance"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El material enumera functionality, UI, performance, integration, usability, database, security y user acceptance.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "2–5, 11–13, 16"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "question": "¿Qué redacción es más verificable como expected result?",
+      "options": [
+        "A) La pantalla parece correcta",
+        "B) Se muestra rechazo de credenciales y no se crea sesión",
+        "C) El sistema funciona bien",
+        "D) El usuario está contento"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Un resultado observable y específico permite un veredicto reproducible; expresiones vagas no definen el oráculo.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "question": "¿Qué caracteriza un caso atomic según las pautas?",
+      "options": [
+        "A) Carecer de precondiciones",
+        "B) Tener obligatoriamente un único clic",
+        "C) Mezclar todas las funciones para ahorrar IDs",
+        "D) Comprobar una unidad de funcionalidad con un objetivo claro"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Atomic se refiere al objetivo, no a un límite de un paso. Puede necesitar varios pasos para comprobar un comportamiento.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "question": "¿Qué debe hacerse si una funcionalidad o precondición no está especificada?",
+      "options": [
+        "A) Aclararla y vincular el caso a requisitos o use cases",
+        "B) Eliminar expected results",
+        "C) Usar cualquier comportamiento observado como correcto",
+        "D) Inventar la regla y tratarla como requisito real"
+      ],
+      "correctAnswer": "A",
+      "explanation": "La pauta no assumptions exige no convertir suposiciones en contratos. En ejercicios se pueden declarar supuestos explícitos.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "easy",
+      "question": "¿Qué instrumento vincula requisitos del alcance con casos?",
+      "options": [
+        "A) Call stack",
+        "B) Memory dump",
+        "C) Traceability matrix",
+        "D) Control-flow graph"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La matriz permite detectar requisitos sin pruebas y mantener correspondencia cuando hay cambios.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "hard",
+      "question": "Una matriz muestra un caso por cada requisito. ¿Qué no queda demostrado automáticamente?",
+      "options": [
+        "A) Que se cubran todas las condiciones y que los tests detecten todos los defectos",
+        "B) Que se puede localizar un caso por requisito",
+        "C) Que existen referencias entre requisitos y casos",
+        "D) Que se puede revisar el alcance documentado"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Trazabilidad no equivale a exhaustividad ni a calidad del oráculo. Un requisito complejo puede necesitar varios tests.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "question": "¿Qué práctica evita redundancia sin perder cobertura?",
+      "options": [
+        "A) Probar solo el primer requisito",
+        "B) Categorizar y revisar casos para mantener comprobaciones distintas y necesarias",
+        "C) Borrar todos los casos negativos",
+        "D) Crear copias con distinto ID sin cambiar entradas"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Redundancia es repetición sin valor adicional; varios casos del mismo escenario pueden cubrir condiciones diferentes y ser necesarios.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "question": "Un equipo prueba solo funcionalidad. ¿Qué omisión advierten las pautas?",
+      "options": [
+        "A) Solo debería medir líneas de código",
+        "B) Performance, usability y robustness también pueden requerir casos",
+        "C) No se deben usar negative tests",
+        "D) Toda prueba funcional es inútil"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La calidad incluye aspectos no funcionales y comportamiento con entradas negativas además del flujo correcto.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Diseño claro y trazabilidad",
+      "difficulty": "medium",
+      "question": "¿Qué dato de prueba aporta valor respecto a repetir siempre el mismo usuario?",
+      "options": [
+        "A) Solo entradas generadas sin atender requisitos",
+        "B) Solo valores que sabemos que pasan",
+        "C) Únicamente el nombre del autor",
+        "D) Datos diversos y representativos de condiciones reales"
+      ],
+      "correctAnswer": "D",
+      "explanation": "La diversidad y realismo amplían situaciones cubiertas; las pruebas negativas también son importantes.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "6–9"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Login e image upload",
+      "difficulty": "medium",
+      "question": "Además del login válido, ¿qué grupo de casos corresponde al escenario del documento?",
+      "options": [
+        "A) Email inválido, password inválida, ambos inválidos, campos vacíos y recuperación",
+        "B) Solo cambiar el color del logo",
+        "C) Únicamente medir el tamaño del archivo HTML",
+        "D) Solo ejecutar dos veces el mismo acceso correcto"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El escenario incluye combinaciones negativas, vacíos, forgot password y enlaces; cada una requiere resultado esperado.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Login e image upload",
+      "difficulty": "medium",
+      "question": "¿Por qué probar email válido/password inválida y email inválido/password válida por separado?",
+      "options": [
+        "A) Porque los casos deben tener siempre igual resultado de sesión iniciada",
+        "B) Ejercitan condiciones de validación diferentes que podrían tener defectos distintos",
+        "C) Porque no hacen falta credenciales concretas",
+        "D) Porque un escenario admite un solo caso"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Que ambos deban rechazarse no significa que la implementación los procese correctamente por las mismas rutas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Login e image upload",
+      "difficulty": "medium",
+      "question": "Una app permite imágenes de hasta 5 MB inclusive. ¿Qué selección comprueba la frontera de tamaño?",
+      "options": [
+        "A) Solo imágenes de 1 MB",
+        "B) Solo diez imágenes del mismo tamaño pequeño",
+        "C) Solo archivos vacíos",
+        "D) Un tamaño justo menor, exactamente 5 MB y justo mayor, con unidad definida"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Es un ejemplo de boundary value analysis. La definición precisa de MB y límite debe venir del requisito del caso.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Login e image upload",
+      "difficulty": "medium",
+      "question": "¿Qué resultado debe esperarse al cargar un archivo .exe si solo se admiten imágenes?",
+      "options": [
+        "A) Cierre inesperado del navegador",
+        "B) Aceptación porque la extensión no importa nunca",
+        "C) Cambio automático del ejecutable a PNG sin comprobarlo",
+        "D) Rechazo con mensaje apropiado, según el requisito"
+      ],
+      "correctAnswer": "D",
+      "explanation": "El ejemplo exige tratar tipos no permitidos y mostrar errores adecuados; el oráculo debe concretarse en el proyecto.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Login e image upload",
+      "difficulty": "medium",
+      "question": "¿Qué caso de image upload comprueba una acción durante la transferencia?",
+      "options": [
+        "A) Cancelar la carga antes de completarse y verificar sus efectos previstos",
+        "B) Solo consultar la versión del navegador",
+        "C) Solo abrir una imagen ya guardada",
+        "D) Solo comprobar el título de la página"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El escenario incluye cancelación y barra de progreso de cargas grandes. Hay que precisar estado final y limpieza según requisitos.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Login e image upload",
+      "difficulty": "medium",
+      "question": "¿Qué aspecto queda fuera de comprobar solo extensión y tamaño de una imagen?",
+      "options": [
+        "A) Si el nombre termina en PNG",
+        "B) Si tiene una extensión admitida",
+        "C) Si excede el límite de bytes",
+        "D) Calidad y posibilidad de verla después de subirla"
+      ],
+      "correctAnswer": "D",
+      "explanation": "El documento también exige contemplar nombres, duplicados, dimensiones, múltiples archivos, progreso, cancelación y visualización.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Aplicación: ATM y diagnóstico",
+      "difficulty": "medium",
+      "question": "Para probar una retirada, ¿qué precondición es especialmente importante?",
+      "options": [
+        "A) Saldo inicial y condiciones de autenticación conocidas",
+        "B) Que el expected result se copie después",
+        "C) Que el banco tenga muchos empleados",
+        "D) Que se haya hecho cualquier operación desconocida antes"
+      ],
+      "correctAnswer": "A",
+      "explanation": "La retirada es stateful: el estado inicial y las reglas condicionan salida y saldo final.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "11, 17"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Aplicación: ATM y diagnóstico",
+      "difficulty": "medium",
+      "question": "Bajo el supuesto explícito de ausencia de comisión, saldo 500 y retirada 200, ¿qué se espera?",
+      "options": [
+        "A) Saldo final 700",
+        "B) Saldo final 500 y ningún efectivo",
+        "C) Efectivo 200 y saldo final 300",
+        "D) Cualquier saldo mientras no haya excepción"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El oráculo debe incluir efectivo y persistencia del saldo. El supuesto de comisiones debe declararse, no atribuirse al material.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "11, 17"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "Aplicación: ATM y diagnóstico",
+      "difficulty": "medium",
+      "question": "¿Qué verificación refuerza un caso de cambio de PIN correcto?",
+      "options": [
+        "A) El nuevo PIN permite autenticación y el anterior deja de hacerlo según la regla definida",
+        "B) Que se conserve sin más el texto tecleado",
+        "C) Solo que el botón se ilumine",
+        "D) Que cualquier PIN permita entrar"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Se comprueba persistencia y efecto de la modificación. Los requisitos concretos de formato y bloqueo deben especificarse.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "11, 17"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "Aplicación: ATM y diagnóstico",
+      "difficulty": "hard",
+      "question": "Dos testers obtienen resultados distintos con los mismos pasos escritos. ¿Qué carencia conviene investigar primero?",
+      "options": [
+        "A) Que el caso contiene un expected result",
+        "B) Que se registraron las observaciones",
+        "C) Precondiciones, datos, versión y entorno no explicitados",
+        "D) Que ambos usaron el mismo ID de test"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Las condiciones ocultas y la ambigüedad dificultan reproducibilidad; no basta con repetir el texto de los pasos.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "11, 17"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "Aplicación: ATM y diagnóstico",
+      "difficulty": "medium",
+      "question": "Al fallar un caso, ¿qué registro resulta más útil?",
+      "options": [
+        "A) Cambiar expected para que el estado sea pass",
+        "B) Borrar la ejecución fallida",
+        "C) Actual result, entorno, evidencias y referencia al defecto con pasos reproducibles",
+        "D) Anotar solo que algo no funciona"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El documento contempla bug details y attachments además del resultado, estado, fecha, autor, revisor y versión.",
+      "source": {
+        "file": "01-SoftwareTesting/L2.1_Test CasesScenarios.pdf",
+        "pages": "11, 17"
+      }
+    }
+  ]
+}

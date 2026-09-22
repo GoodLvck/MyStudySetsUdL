@@ -1,0 +1,304 @@
+{
+  "metadata": {
+    "title": "Software Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "flashcards",
+    "totalCards": 28,
+    "topics": [
+      "Objetivos, V&V e inspecciones",
+      "Development y object testing",
+      "Selección de tests y system testing",
+      "TDD y regression testing",
+      "Release, requirements y performance",
+      "User y acceptance testing"
+    ]
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Objetivos, V&V e inspecciones",
+      "front": "Validation testing vs defect testing: ¿qué se considera éxito?",
+      "back": "Validation testing: evidencia de funcionamiento según requisitos. Defect testing: provocar un fallo que descubra un defecto. Un test con veredicto fail puede cumplir el objetivo de descubrir bugs.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Objetivos, V&V e inspecciones",
+      "front": "¿Qué determina la confianza de V&V necesaria?",
+      "back": "Propósito/criticidad del sistema, expectativas del usuario y entorno comercial. La confianza buscada es fit for purpose.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Objetivos, V&V e inspecciones",
+      "front": "¿Qué se puede inspeccionar antes de disponer de un ejecutable?",
+      "back": "Requisitos, arquitectura, modelos, esquemas de datos, código parcial, configuración y test data. Se buscan anomalías en representaciones estáticas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Objetivos, V&V e inspecciones",
+      "front": "¿Qué ventajas y límites tienen las inspecciones?",
+      "back": "Permiten revisar incompletos, detectar defectos sin enmascaramiento de ejecución y evaluar estándares/mantenibilidad. No miden por sí solas rendimiento ni experiencia de uso real.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Objetivos, V&V e inspecciones",
+      "front": "¿Cuáles son las tres etapas del capítulo?",
+      "back": "Development testing durante desarrollo; release testing de una versión completa por un equipo separado; user testing con usuarios y condiciones reales.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "3–14"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Development y object testing",
+      "front": "Compara unit, component y system en development testing.",
+      "back": "Unit prueba unidades aisladas. Component integra unidades y prueba interfaces. System integra componentes y prueba interacciones y propiedades emergentes.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Development y object testing",
+      "front": "¿Qué se prueba en una clase y por qué complica la herencia?",
+      "back": "Operaciones, atributos y estados. La herencia distribuye la información relevante entre clases, así que no basta revisar solo lo declarado localmente.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Development y object testing",
+      "front": "¿Cómo se usa el state model de WeatherStation?",
+      "back": "Derivar secuencias de eventos y transiciones, por ejemplo Shutdown → Running → Shutdown, y comprobar operaciones y resultados esperados.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Development y object testing",
+      "front": "Explica setup, call y assertion.",
+      "back": "Setup prepara objetos, entradas y expectativas. Call ejecuta. Assertion contrasta resultado real con esperado y determina pass/fail.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Development y object testing",
+      "front": "¿Qué dos familias de entradas deben cubrirse?",
+      "back": "Operación normal y entradas anormales. Las inválidas deben procesarse según el contrato, sin crash inesperado; un rechazo previsto puede ser correcto.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "16–23"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Selección de tests y system testing",
+      "front": "¿Qué hipótesis sustenta equivalence partitioning?",
+      "back": "Entradas con características comunes deberían recibir tratamiento similar; se eligen representantes de cada clase válida e inválida. No prueba que todos los elementos sean correctos.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Selección de tests y system testing",
+      "front": "Para enteros válidos 4–10, da particiones y fronteras.",
+      "back": "Particiones: menor que 4, de 4 a 10, mayor que 10. Fronteras/vecinos: 3, 4, 10, 11. Un interior como 7 aporta un caso normal.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Selección de tests y system testing",
+      "front": "Para enteros válidos 10000–99999, da valores relevantes.",
+      "back": "9999 y 100000 son vecinos externos; 10000 y 99999 son límites válidos; 50000 es un ejemplo interior.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Selección de tests y system testing",
+      "front": "¿Qué es guideline-based testing?",
+      "back": "Elegir casos según experiencia sobre errores frecuentes. Complementa particiones, requisitos y límites.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Selección de tests y system testing",
+      "front": "¿Cómo conectan use cases y sequence diagrams con system tests?",
+      "back": "El use case define un flujo que atraviesa componentes; el sequence diagram identifica quién envía qué mensaje y en qué orden.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Selección de tests y system testing",
+      "front": "¿Qué es una testing policy y qué ejemplos da el capítulo?",
+      "back": "Un criterio explícito de cobertura: funciones de menús, combinaciones relevantes y entradas correctas/incorrectas. No es una promesa de exhaustividad.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "24–30"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "TDD y regression testing",
+      "front": "Explica el ciclo TDD y por qué importa ver fallar el test.",
+      "back": "Identificar incremento, escribir y ejecutar test, confirmar fallo esperado, implementar lo suficiente, volver a ejecutar toda la suite y refactorizar preservando comportamiento. El fallo inicial comprueba que el test detecta lo que falta.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "TDD y regression testing",
+      "front": "¿Qué cuatro beneficios de TDD enumera el capítulo?",
+      "back": "Código asociado a tests, suite de regresión creciente, debugging más localizado y tests como documentación de comportamiento.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "TDD y regression testing",
+      "front": "¿TDD garantiza código correcto o cobertura completa de escenarios?",
+      "back": "No. La existencia de tests para el código escrito no implica oráculos correctos ni todas las entradas, estados e interacciones cubiertas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "TDD y regression testing",
+      "front": "¿TDD está limitado a agile?",
+      "back": "No. Surgió vinculado a métodos ágiles como XP, pero puede emplearse en procesos plan-driven.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "32–36"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Release, requirements y performance",
+      "front": "Release vs system testing del desarrollador.",
+      "back": "Release es una forma de system testing de una versión lista para uso externo, normalmente por equipo independiente y con objetivo de validación. Desarrollo enfatiza encontrar defectos.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Release, requirements y performance",
+      "front": "¿Qué significa requirements-based testing?",
+      "back": "Examinar cada requisito y derivar uno o más casos que observen su cumplimiento. Un requisito puede necesitar casos positivos, negativos y combinaciones.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Release, requirements y performance",
+      "front": "¿Qué comprueba el ejemplo de Mentcare?",
+      "back": "Alertas para medicamentos a los que el paciente es alérgico, ausencia de alerta sin alergia relevante, varias alergias y exigencia de motivo al ignorar una alerta.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Release, requirements y performance",
+      "front": "Performance vs stress testing.",
+      "back": "Performance evalúa prestaciones bajo cargas pertinentes, a menudo crecientes. Stress sobrecarga deliberadamente y observa comportamiento de fallo. El perfil de uso debe guiar las cargas.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "38–42"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "User y acceptance testing",
+      "front": "¿Por qué no prescindir de user testing?",
+      "back": "El entorno y prácticas reales afectan fiabilidad, rendimiento, usabilidad y robustez, y no quedan totalmente reproducidos en laboratorio.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "User y acceptance testing",
+      "front": "Alpha, beta y acceptance: compara finalidad y contexto.",
+      "back": "Alpha: usuarios con desarrolladores en sus instalaciones. Beta: release disponible para experimentar y reportar problemas. Acceptance: cliente decide si acepta y despliega según criterios.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "User y acceptance testing",
+      "front": "¿Cuáles son las seis etapas de acceptance testing?",
+      "back": "Definir criterios, planificar, derivar casos, ejecutar, negociar resultados y aceptar/rechazar. Se generan criterios, plan, tests, resultados e informe.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "User y acceptance testing",
+      "front": "¿Cómo se presenta aceptación en agile y cuál es el riesgo?",
+      "back": "Cliente integrado define tests ejecutados automáticamente con cambios, sin fase separada en el modelo descrito. Riesgo: que ese representante no refleje a todos los stakeholders.",
+      "source": {
+        "file": "01-SoftwareTesting/L2_Ch8.Testing (Sommerville) [Updated].pdf",
+        "pages": "44–48"
+      }
+    }
+  ]
+}

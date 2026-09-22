@@ -1,0 +1,405 @@
+{
+  "metadata": {
+    "title": "Unit Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "02-UnitTesting/L3_Ch3-UnitTesting.pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "flashcards",
+    "totalCards": 38,
+    "topics": [
+      "Concepto y static unit testing",
+      "Defect prevention",
+      "Dynamic unit testing y selección",
+      "Mutation testing",
+      "Debugging",
+      "XP, TDD y JUnit",
+      "Herramientas y cobertura"
+    ]
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Concepto y static unit testing",
+      "front": "¿Qué puede ser una unidad y qué significa aislamiento?",
+      "back": "Función, procedimiento, método o clase con una interfaz. Aislar permite controlar entradas y dependencias; no implica ausencia de toda colaboración emulada.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Concepto y static unit testing",
+      "front": "Inspection vs walkthrough.",
+      "back": "Inspection: proceso formal por pares y criterios. Walkthrough: el autor guía de forma informal una ejecución manual o simulada de escenarios.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Concepto y static unit testing",
+      "front": "¿Cuáles son las seis etapas de code review?",
+      "back": "Readiness, preparation, examination, re-work, validation y exit. Tras corregir CR, se validan independientemente y se distribuye informe.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Concepto y static unit testing",
+      "front": "¿Qué se prepara y qué roles aparecen en code review?",
+      "back": "Preguntas, posibles CR y mejoras. Roles: moderator, author, presenter, record keeper, reviewers y observer. Se revisa el código, no se juzga personalmente a su autor.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Concepto y static unit testing",
+      "front": "¿Qué incluye un CR y cómo se cierra?",
+      "back": "Descripción, prioridad, responsable y fecha límite. El autor resuelve y una validación independiente verifica antes del cierre.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Concepto y static unit testing",
+      "front": "¿Qué métricas de revisión presenta el material?",
+      "back": "LOC/hora, CR/KLOC, CR/hora y horas totales. Deben interpretarse en contexto, no como ranking automático de personas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Concepto y static unit testing",
+      "front": "¿Qué jerarquía de documentos distingue el capítulo?",
+      "back": "Requirements (necesidad/propuesta), functional specification, high-level design (arquitectura), low-level design (módulos) y código; además guías de instalación, usuario y troubleshooting.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Defect prevention",
+      "front": "¿Por qué prevenir defectos antes de revisar e integrar?",
+      "back": "Los CR señalan problemas que cuestan esfuerzo y pueden retrasar el proyecto. Validación de inputs, límites, retornos y observabilidad reducen introducción de fallos.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Defect prevention",
+      "front": "¿Qué recomendaciones de prevención enumera L3?",
+      "back": "Instrumentación, controles de división/índices, tratamiento de retornos y buffers, mensajes de fuente común, validar argumentos, assertions documentadas, comprobaciones inversas y contadores de bucle.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Defect prevention",
+      "front": "¿Qué diferencia instrumentation de mutation?",
+      "back": "Instrumentation añade observación (contadores/trazas). Mutation introduce deliberadamente un pequeño cambio para evaluar tests. No tienen el mismo objetivo.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Defect prevention",
+      "front": "¿Por qué documentar assertions y tratar retornos?",
+      "back": "Aclaran invariantes y evitan que errores de operaciones se ignoren. Una assertion complementa, no sustituye, el tratamiento definido de entradas inválidas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Dynamic unit testing y selección",
+      "front": "Driver vs stub vs scaffolding.",
+      "back": "Driver llama a UUT y aporta datos. Stub emula una dependencia llamada por UUT. Ambos forman scaffolding, que controla el entorno.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Dynamic unit testing y selección",
+      "front": "¿Qué aporta y qué no demuestra sustituir dependencias?",
+      "back": "Permite condiciones controladas y aislamiento. No demuestra integración con la dependencia real ni equivalencia perfecta del sustituto.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Dynamic unit testing y selección",
+      "front": "¿Cómo se obtienen inputs mediante control flow testing?",
+      "back": "Construir CFG, elegir criterio y caminos, derivar path predicates y resolverlos. Si un predicado es imposible, el camino no es factible.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Dynamic unit testing y selección",
+      "front": "Compara las cuatro familias de selección dinámica de L3.",
+      "back": "Control flow: orden/caminos. Data flow: propagación de valores. Domain: errores de dominios y fronteras. Functional: relación de entradas/salidas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Mutation testing",
+      "front": "¿Qué mide mutation testing?",
+      "back": "La adecuación de la suite para detectar defectos modelados como pequeñas modificaciones legales. Localiza debilidades de inputs y oráculos.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Mutation testing",
+      "front": "Killed, equivalent y stubborn: distingue.",
+      "back": "Killed: un test detecta la diferencia incorrecta. Equivalent: mismo comportamiento para todos los inputs relevantes. Killable/stubborn en L3: no equivalente que la suite actual no mata.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Mutation testing",
+      "front": "¿Por qué sobrevivir no demuestra equivalencia?",
+      "back": "La suite puede no contener el input que activa/propaga la diferencia o su oráculo no comprobarla. Equivalencia requiere razonar más allá de esos casos.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Mutation testing",
+      "front": "¿Cuál es la fórmula del mutation score?",
+      "back": "100 × killed / (total mutants − equivalent mutants). Con 10 totales, 2 equivalentes y 6 killed: 75 %. Si no hay no equivalentes, el cociente no se define.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Mutation testing",
+      "front": "¿Por qué el cambio i=2 a i=1 del ejemplo es equivalente?",
+      "back": "Con r=1 y > estricto añade a[1] > a[1], que siempre es falso; después ejecuta las mismas comparaciones. Es equivalencia bajo el modelo del programa mostrado.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Mutation testing",
+      "front": "¿Qué input mata el cambio > por >= en el máximo por índice?",
+      "back": "2,2,1: el original conserva índice 1 y el mutante elige 2. Los tests originales tienen máximo único, así que no revelan el cambio de política de empate.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Mutation testing",
+      "front": "¿Cómo evoluciona el score del ejemplo?",
+      "back": "2/4=50 % suponiendo todos no equivalentes; al excluir M1, 2/3≈66.7 %; tras matar M3 con un empate, 3/3=100 %.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Mutation testing",
+      "front": "¿Qué significa mutation-adequate y qué no significa?",
+      "back": "100 % de mutantes no equivalentes considerados muertos. No significa que no existan otros defectos, inputs o estados sin probar.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Mutation testing",
+      "front": "¿Qué hipótesis fundamentan la mutación?",
+      "back": "Competent programmer hypothesis: errores plausibles son desviaciones de programas próximos al correcto. Coupling effect: tests para errores simples suelen revelar muchos errores complejos relacionados.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Debugging",
+      "front": "Testing vs debugging.",
+      "back": "Testing expone fallos y evalúa resultados. Debugging parte del síntoma y busca su causa concreta para poder corregirla y volver a probar.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "Debugging",
+      "front": "Brute force, induction, deduction y backtracking.",
+      "back": "Brute force: trazas/prints. Induction: datos → patrones → hipótesis. Deduction: causas candidatas → pruebas para descartar. Backtracking: retroceder desde el fallo por la ejecución.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "Debugging",
+      "front": "¿Por qué backtracking es más difícil en sistemas grandes?",
+      "back": "Aumenta el número de caminos potenciales que pueden conducir al punto del fallo, complicando retroceder a su causa.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "XP, TDD y JUnit",
+      "front": "¿Cómo es el test-first de XP?",
+      "back": "Elegir story, escribir test pequeño inicialmente fallido, implementar para pasarlo, ejecutar todos y corregir hasta que pasen; repetir para completar la story.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 29,
+      "topic": "XP, TDD y JUnit",
+      "front": "¿Cuáles son las tres leyes de TDD del material?",
+      "back": "No producción antes de test fallido; no más test del necesario para fallar; no más producción de la necesaria para pasar. Favorecen incrementos pequeños.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 30,
+      "topic": "XP, TDD y JUnit",
+      "front": "¿Qué estilo de JUnit muestran las diapositivas?",
+      "back": "API clásica junit.framework, herencia de TestCase y métodos assert*. El pseudocódigo ilustra conceptos y no debe confundirse con una guía de la versión actual.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 31,
+      "topic": "XP, TDD y JUnit",
+      "front": "¿Qué comparan assertEquals y assertSame?",
+      "back": "assertEquals compara igualdad según tipo/contrato; assertSame exige la misma referencia. Para double, assertEquals admite tolerancia.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 32,
+      "topic": "XP, TDD y JUnit",
+      "front": "¿Qué hacen assertTrue, assertFalse y assertNull?",
+      "back": "Esperan condición verdadera, condición falsa y referencia nula, respectivamente. Una violación hace fallar el test; el estilo clásico puede mostrar mensaje opcional.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 33,
+      "topic": "XP, TDD y JUnit",
+      "front": "¿Por qué tolerancia en doubles?",
+      "back": "El resultado numérico puede tener diferencias pequeñas de precisión. La tolerancia fija cuánto error se acepta según el caso, no permite diferencias ilimitadas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 34,
+      "topic": "Herramientas y cobertura",
+      "front": "Code auditor, bound checker y leak detector: ¿qué hacen?",
+      "back": "Auditor comprueba estándares mínimos; bound checker vigila accesos fuera de límites; leak detector detecta asignaciones no liberadas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 35,
+      "topic": "Herramientas y cobertura",
+      "front": "Coverage analyzer vs test data generator vs harness.",
+      "back": "Coverage mide estructuras ejercitadas; data generator ayuda a obtener entradas para comportamiento deseado; harness apoya ejecución dinámica.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 36,
+      "topic": "Herramientas y cobertura",
+      "front": "¿Qué expresa McCabe en el ejemplo de CFG conectado?",
+      "back": "V(G)=E−N+2. Con E=9 y N=8, V=3. Mide caminos linealmente independientes; no cuenta todas las ejecuciones ni prueba ausencia de fallos.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 37,
+      "topic": "Herramientas y cobertura",
+      "front": "¿Qué herramientas apoyan observación, documentación y entornos?",
+      "back": "Documenters generan descripciones/árboles, debuggers permiten inspección de ejecución, emuladores/simuladores sustituyen entornos, performance monitors miden tiempos y network analyzers examinan tráfico.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 38,
+      "topic": "Herramientas y cobertura",
+      "front": "¿Qué herramientas apoyan coordinación y reproducción?",
+      "back": "Inspection support organiza revisiones; version control conserva revisiones de software y ficheros relacionados; in-circuit emulators conectan depuración con un procesador objetivo.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    }
+  ]
+}

@@ -1,0 +1,473 @@
+{
+  "metadata": {
+    "title": "Software Process Models",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "fillblanks",
+    "totalQuestions": 25,
+    "topics": [
+      "Process framework",
+      "Waterfall y prototyping",
+      "Spiral y Unified Process",
+      "Incremental, reuse y mejora"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "sentence": "La actividad de interacción con stakeholders es ___.",
+      "blanks": [
+        "communication"
+      ],
+      "hints": [
+        "Primera de las cinco actividades"
+      ],
+      "explanation": "Una base de actividades comunes aplicables a proyectos de distintos tamaños y complejidad. Organiza acciones, tareas, productos, puntos de calidad e hitos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "sentence": "Generación de código y testing pertenecen a ___.",
+      "blanks": [
+        "construction"
+      ],
+      "hints": [
+        "Cuarta actividad"
+      ],
+      "explanation": "Communication recoge objetivos/requisitos; planning organiza trabajo, recursos y riesgos; modeling representa solución y arquitectura; construction implementa y prueba; deployment entrega y obtiene feedback.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "sentence": "Las actividades transversales se denominan ___ activities.",
+      "blanks": [
+        "umbrella"
+      ],
+      "hints": [
+        "Paraguas en inglés"
+      ],
+      "explanation": "Las primeras organizan el trabajo principal. Las umbrella son transversales para gestionar progreso, calidad, cambio y riesgo durante el proyecto.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "sentence": "La actividad que define y recoge medidas es ___.",
+      "blanks": [
+        "measurement"
+      ],
+      "hints": [
+        "Medición en inglés"
+      ],
+      "explanation": "Tracking/control, risk management, SQA, technical reviews, measurement, configuration management, reusability management y work product preparation/production.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "sentence": "La gestión de efectos del cambio es software ___ management.",
+      "blanks": [
+        "configuration"
+      ],
+      "hints": [
+        "Configuración en inglés"
+      ],
+      "explanation": "Tracking/control compara progreso con el plan; technical reviews detecta errores antes de propagarlos; configuration management gestiona efectos de cambios.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "sentence": "En esta jerarquía, el trabajo más acotado se llama ___.",
+      "blanks": [
+        "task"
+      ],
+      "hints": [
+        "Tarea en inglés"
+      ],
+      "explanation": "Activity: comunicación, objetivo amplio. Action: diseño arquitectónico, producto importante. Task: ejecutar un unit test, objetivo pequeño y resultado concreto.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "sentence": "Una condición exigida después de una actividad es una ___.",
+      "blanks": [
+        "postcondition"
+      ],
+      "hints": [
+        "Una sola palabra en inglés"
+      ],
+      "explanation": "Products (resultados), roles (responsabilidades) y pre/postconditions (lo que debe cumplirse antes/después).",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "sentence": "Modificar el sistema para necesidades nuevas corresponde a ___.",
+      "blanks": [
+        "evolution"
+      ],
+      "hints": [
+        "Evolución en inglés"
+      ],
+      "explanation": "Specification, design and implementation, validation y evolution. Son otra abstracción, compatible con el framework de cinco actividades.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "sentence": "El flujo con actividades simultáneas es el ___ process flow.",
+      "blanks": [
+        "parallel"
+      ],
+      "hints": [
+        "Paralelo en inglés"
+      ],
+      "explanation": "Linear: secuencia. Iterative: se repiten actividades. Evolutionary: vueltas que producen incrementos cada vez más completos. Parallel: actividades simultáneas con coordinación.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "sentence": "La planificación progresiva caracteriza los procesos ___.",
+      "blanks": [
+        "agile"
+      ],
+      "hints": [
+        "Ágil en inglés"
+      ],
+      "explanation": "Plan-driven planifica actividades anticipadamente y mide contra el plan. Agile planifica incrementalmente y acomoda cambios. En práctica se mezclan.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Waterfall y prototyping",
+      "difficulty": "medium",
+      "sentence": "El modelo secuencial de fases se llama ___.",
+      "blanks": [
+        "waterfall"
+      ],
+      "hints": [
+        "Cascada en inglés"
+      ],
+      "explanation": "Requirements analysis/definition; system/software design; implementation/unit testing; integration/system testing; operation/maintenance.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Waterfall y prototyping",
+      "difficulty": "medium",
+      "sentence": "La principal dificultad de waterfall es acomodar el ___.",
+      "blanks": [
+        "cambio"
+      ],
+      "hints": [
+        "Lo que obliga a revisar fases previas"
+      ],
+      "explanation": "Es comprensible y planificable con requisitos estables y bien entendidos. Cambios tardíos y feedback final son costosos. Las pruebas unitarias sí aparecen durante implementación.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      },
+      "acceptedAnswers": [
+        [
+          "change"
+        ]
+      ]
+    },
+    {
+      "id": 13,
+      "topic": "Waterfall y prototyping",
+      "difficulty": "medium",
+      "sentence": "Un prototipo que se descarta se llama ___ prototype.",
+      "blanks": [
+        "throw-away"
+      ],
+      "hints": [
+        "Término inglés con guion"
+      ],
+      "explanation": "Feedback temprano, aclaración de requisitos y menor rechazo; a cambio, coordinación con usuarios, planificación difícil, trabajo descartado y tentación de enviar el prototipo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      },
+      "acceptedAnswers": [
+        [
+          "throw away",
+          "throwaway"
+        ]
+      ]
+    },
+    {
+      "id": 14,
+      "topic": "Waterfall y prototyping",
+      "difficulty": "medium",
+      "sentence": "Los requisitos de rendimiento son requisitos no ___.",
+      "blanks": [
+        "funcionales"
+      ],
+      "hints": [
+        "No describen solo qué función ejecuta"
+      ],
+      "explanation": "Puede tener poca documentación, estructura degradada y no cumplir rendimiento, otras necesidades no funcionales ni estándares organizativos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "medium",
+      "sentence": "El spiral model usa prototipos para reducir ___.",
+      "blanks": [
+        "riesgos"
+      ],
+      "hints": [
+        "Incertidumbres con impacto"
+      ],
+      "explanation": "Evaluación explícita de riesgos en cada vuelta, prototipos como mitigación y ajuste de coste/calendario con feedback. Las releases evolucionan.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      },
+      "acceptedAnswers": [
+        [
+          "risks"
+        ]
+      ]
+    },
+    {
+      "id": 16,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "medium",
+      "sentence": "En spiral, el plan se revisa en cada ___.",
+      "blanks": [
+        "iteración"
+      ],
+      "hints": [
+        "Vuelta del proceso"
+      ],
+      "explanation": "Participación continua, manejo del riesgo y adecuación a sistemas complejos/extensibles. Requiere equipo experto, buena gestión y buen análisis de riesgo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      },
+      "acceptedAnswers": [
+        [
+          "iteration"
+        ]
+      ]
+    },
+    {
+      "id": 17,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "medium",
+      "sentence": "La primera fase de UP es ___.",
+      "blanks": [
+        "inception"
+      ],
+      "hints": [
+        "Concepción inicial en inglés"
+      ],
+      "explanation": "Inception, elaboration, construction, transition y production. El material incluye explícitamente production.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "medium",
+      "sentence": "La base arquitectónica se establece en ___.",
+      "blanks": [
+        "elaboration"
+      ],
+      "hints": [
+        "Segunda fase de UP"
+      ],
+      "explanation": "Inception recoge negocio y use cases preliminares. Elaboration refina casos y crea una architectural baseline.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "medium",
+      "sentence": "En UP, beta testing se asocia a ___.",
+      "blanks": [
+        "transition"
+      ],
+      "hints": [
+        "Fase previa a production"
+      ],
+      "explanation": "Construction implementa, prueba e integra. Transition entrega, recibe feedback y beta testing. Production monitoriza, da soporte y procesa defectos y cambios.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "medium",
+      "sentence": "El lenguaje de modelado asociado al Unified Process se abrevia ___.",
+      "blanks": [
+        "UML"
+      ],
+      "hints": [
+        "Tres letras"
+      ],
+      "explanation": "Desarrolla versiones progresivas, admite cambios y solapamiento de trabajo entre incrementos, con use cases y arquitectura como ejes.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "medium",
+      "sentence": "Cada entrega parcial de funcionalidad es un ___.",
+      "blanks": [
+        "incremento"
+      ],
+      "hints": [
+        "Lo que crece en incremental development"
+      ],
+      "explanation": "Menos retrabajo ante cambios, feedback sobre demostraciones y valor útil entregado antes.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      },
+      "acceptedAnswers": [
+        [
+          "increment"
+        ]
+      ]
+    },
+    {
+      "id": 22,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "medium",
+      "sentence": "Mejorar estructura sin cambiar comportamiento externo se llama ___.",
+      "blanks": [
+        "refactoring"
+      ],
+      "hints": [
+        "Término inglés"
+      ],
+      "explanation": "Menor visibilidad documental y deterioro estructural por cambios sucesivos. Hace falta invertir en mantener una estructura adecuada.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "medium",
+      "sentence": "Commercial-Off-the-Shelf se abrevia ___.",
+      "blanks": [
+        "COTS"
+      ],
+      "hints": [
+        "Cuatro letras"
+      ],
+      "explanation": "Desarrollo por integración de componentes o aplicaciones existentes y configuración para adaptar comportamiento al usuario. Se basa en reuse.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "medium",
+      "sentence": "Los productos existentes se aprovechan mediante software ___.",
+      "blanks": [
+        "reuse"
+      ],
+      "hints": [
+        "Reutilización en inglés"
+      ],
+      "explanation": "La elección depende de requisitos, riesgo, tamaño, equipo y feedback necesario. Pueden combinarse prácticas plan-driven y agile.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "medium",
+      "sentence": "El enfoque basado en madurez se denomina ___-based.",
+      "blanks": [
+        "maturity"
+      ],
+      "hints": [
+        "Madurez en inglés"
+      ],
+      "explanation": "Agile enfatiza reducir overhead; maturity-based enfatiza gestión del proceso y buenas prácticas de ingeniería.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    }
+  ]
+}

@@ -1,0 +1,598 @@
+{
+  "metadata": {
+    "title": "Software Process Models",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "quiz",
+    "totalQuestions": 32,
+    "topics": [
+      "Process framework",
+      "Waterfall y prototyping",
+      "Spiral y Unified Process",
+      "Incremental, reuse y mejora"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Process framework",
+      "difficulty": "easy",
+      "question": "¿Cuál es la secuencia de las cinco framework activities?",
+      "options": [
+        "A) Specification, compilation, debugging, billing, retirement",
+        "B) Requirements, maintenance, prototyping, inspection, release",
+        "C) Planning, acceptance, mutation, integration, deployment",
+        "D) Communication, planning, modeling, construction, deployment"
+      ],
+      "correctAnswer": "D",
+      "explanation": "El framework genérico usa estas cinco actividades; otros esquemas del mismo tema agrupan el proceso de otra manera.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Process framework",
+      "difficulty": "easy",
+      "question": "¿En qué actividad genérica se incluyen tanto la generación de código como las pruebas del código?",
+      "options": [
+        "A) Deployment",
+        "B) Modeling",
+        "C) Communication",
+        "D) Construction"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Construction integra implementar y probar. No se limita a escribir código.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "question": "Se acuerdan objetivos y funciones con los stakeholders. ¿Qué framework activity predomina?",
+      "options": [
+        "A) Communication",
+        "B) Configuration management",
+        "C) Construction",
+        "D) Deployment"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Communication recoge requisitos y objetivos con clientes y demás interesados.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Process framework",
+      "difficulty": "easy",
+      "question": "¿Cuál es una umbrella activity?",
+      "options": [
+        "A) Risk management",
+        "B) Communication",
+        "C) Construction",
+        "D) Deployment"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Risk management es transversal. Las otras tres son actividades del framework genérico.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "question": "¿Qué umbrella activity controla los efectos de cambios sobre los productos de trabajo?",
+      "options": [
+        "A) Communication",
+        "B) Deployment",
+        "C) Software configuration management",
+        "D) Reusability management"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Configuration management gestiona cambios; reusability management establece criterios y mecanismos para reutilizar componentes.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "question": "¿Qué diferencia mejor activity, action y task?",
+      "options": [
+        "A) Una activity busca un objetivo amplio, una action produce un producto mayor y una task un resultado concreto acotado",
+        "B) Action es el nombre de cualquier entrega final al cliente",
+        "C) Una task siempre contiene todo el proceso",
+        "D) Son sinónimos exactos en la jerarquía del material"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Comunicación es actividad, diseño arquitectónico puede ser acción y ejecutar un unit test es una tarea.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "question": "¿Cuál es un ejemplo de producto y no de rol de proceso?",
+      "options": [
+        "A) Un modelo arquitectónico",
+        "B) El revisor",
+        "C) El responsable de pruebas",
+        "D) El cliente que acepta una entrega"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Los products son resultados de actividades; roles describen responsabilidades de personas.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "question": "Una condición debe cumplirse antes de ejecutar una actividad. ¿Cómo se denomina?",
+      "options": [
+        "A) Postcondition",
+        "B) Increment",
+        "C) Precondition",
+        "D) Milestone report"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Las preconditions se exigen antes y las postconditions describen lo que debe ser cierto después.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Process framework",
+      "difficulty": "easy",
+      "question": "¿Cuáles son las cuatro actividades comunes del software process según Sommerville en este tema?",
+      "options": [
+        "A) Inspection, walkthrough, mutation, debugging",
+        "B) Communication, planning, modeling, construction",
+        "C) Specification, design and implementation, validation, evolution",
+        "D) Alpha, beta, release, acceptance"
+      ],
+      "correctAnswer": "C",
+      "explanation": "No hay contradicción con las cinco framework activities: son dos abstracciones del proceso presentadas en las diapositivas.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "question": "¿Qué caracteriza el flujo parallel frente al linear?",
+      "options": [
+        "A) Todas las actividades desaparecen",
+        "B) Solo existe una entrega al terminar mantenimiento",
+        "C) Prohíbe dependencias entre actividades",
+        "D) Algunas actividades avanzan simultáneamente en lugar de una sola secuencia"
+      ],
+      "correctAnswer": "D",
+      "explanation": "La figura muestra solapamiento de actividades. Paralelismo no elimina la coordinación ni sus dependencias.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Process framework",
+      "difficulty": "medium",
+      "question": "¿Qué distingue principalmente plan-driven de agile en las diapositivas?",
+      "options": [
+        "A) Agile exige descartar toda documentación",
+        "B) Planificación anticipada frente a planificación incremental que facilita cambios",
+        "C) Agile significa ausencia de planificación",
+        "D) Plan-driven significa ausencia de tests"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Ambos planifican, pero con enfoques distintos; los procesos reales suelen combinar elementos de ambos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "3–13"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Waterfall y prototyping",
+      "difficulty": "easy",
+      "question": "¿Qué contexto encaja mejor con el waterfall descrito?",
+      "options": [
+        "A) Necesidad de redefinir todo después de cada clic",
+        "B) Requisitos bien entendidos y estables",
+        "C) Ausencia de especificación y de fases",
+        "D) Requisitos que cambian cada día y nunca se concretan"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Waterfall separa fases y favorece planificación cuando hay estabilidad; tamaño por sí solo no determina la elección.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Waterfall y prototyping",
+      "difficulty": "medium",
+      "question": "¿Cuál es el orden de fases waterfall mostrado?",
+      "options": [
+        "A) Implementation, deployment, requirements, design, unit testing",
+        "B) Testing, operation, design, requirements, implementation",
+        "C) Requirements, design, implementation/unit testing, integration/system testing, operation/maintenance",
+        "D) Design, acceptance, requirements, maintenance, coding"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Las pruebas unitarias se asocian a implementación; integración y sistema constituyen una fase posterior.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Waterfall y prototyping",
+      "difficulty": "medium",
+      "question": "Un requisito cambia después de cerrar el diseño en waterfall. ¿Qué dificultad es característica?",
+      "options": [
+        "A) Las fases previas dejan de tener relación con el producto",
+        "B) Waterfall cambia requisitos sin ningún retrabajo",
+        "C) Reabrir productos y fases previas puede ser costoso",
+        "D) La modificación elimina la necesidad de validar"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La separación y secuencia de fases dificulta acomodar cambios tardíos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Waterfall y prototyping",
+      "difficulty": "medium",
+      "question": "¿Qué ventaja principal aporta prototyping cuando los requisitos son inciertos?",
+      "options": [
+        "A) Garantiza que el prototipo ya cumple toda calidad de producción",
+        "B) Elimina el coste de participación del usuario",
+        "C) Hace innecesaria la planificación",
+        "D) Permite obtener feedback temprano del cliente"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Un prototipo ayuda a concretar necesidades y reduce riesgo de rechazo, pero también tiene costes y límites.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Waterfall y prototyping",
+      "difficulty": "hard",
+      "question": "Un prototipo rápido funciona en una demo. ¿Por qué no basta para enviarlo a producción?",
+      "options": [
+        "A) La demo demuestra que no necesita mantenimiento",
+        "B) Puede carecer de estructura, documentación y propiedades no funcionales adecuadas",
+        "C) Un prototipo jamás puede mostrar ninguna funcionalidad",
+        "D) Todo prototipo debe escribirse en otro lenguaje"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los throw-away prototypes se descartan porque optimizar para aprender rápido no garantiza un sistema de producción mantenible.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Waterfall y prototyping",
+      "difficulty": "easy",
+      "question": "¿Cuál es un riesgo de prototyping mencionado?",
+      "options": [
+        "A) La prohibición de cambios",
+        "B) La obligación de fijar todos los requisitos desde el inicio",
+        "C) La tentación de entregar como producto final un prototipo inadecuado",
+        "D) La imposibilidad de obtener feedback"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El material también menciona retrasos por participación, trabajo descartado y dificultad de gestión.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "14–19"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "easy",
+      "question": "¿Qué ocupa un lugar central en cada vuelta del spiral model?",
+      "options": [
+        "A) La entrega obligatoria de un sistema completo en la primera vuelta",
+        "B) La prohibición de usar prototipos",
+        "C) La consideración explícita del riesgo",
+        "D) La eliminación de toda participación del cliente"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Spiral combina iteración y disciplina con evaluación del riesgo en cada revolución.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "medium",
+      "question": "¿Qué puede producir una iteración temprana de spiral?",
+      "options": [
+        "A) Un sistema sin posibilidad de nuevas versiones",
+        "B) Una especificación, modelo o prototipo que reduzca incertidumbre",
+        "C) Necesariamente el producto final completo",
+        "D) Solo facturas de operación"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Las primeras vueltas pueden producir modelos; las posteriores versiones progresivamente más completas.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "medium",
+      "question": "¿Qué riesgo organizativo destaca el material para spiral?",
+      "options": [
+        "A) Que no permita ajustar coste y calendario",
+        "B) Depender de un análisis de riesgos competente y de un equipo experto",
+        "C) Que prohíba proyectos grandes",
+        "D) Que excluya feedback del cliente"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Una mala evaluación de riesgos puede comprometer el proyecto y la gestión puede ser compleja.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "medium",
+      "question": "¿Qué conjunto caracteriza al Unified Process?",
+      "options": [
+        "A) Solo codificación con una única prueba final",
+        "B) Iterativo e incremental, guiado por use cases y atento a arquitectura y cambios",
+        "C) Lineal sin feedback y sin modelado",
+        "D) Exclusivamente integración de productos comerciales"
+      ],
+      "correctAnswer": "B",
+      "explanation": "UP enfatiza comunicación, arquitectura, reutilización y la perspectiva del usuario mediante use cases.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "easy",
+      "question": "¿En qué fase de UP se refinan use cases y se establece una architectural baseline?",
+      "options": [
+        "A) Production",
+        "B) Elaboration",
+        "C) Inception",
+        "D) Transition"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Inception inicia requisitos de negocio y casos preliminares; elaboration refina y establece la base arquitectónica.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "easy",
+      "question": "¿Qué fase de UP incluye beta testing de usuarios y convertir el incremento en una release usable?",
+      "options": [
+        "A) Transition",
+        "B) Production",
+        "C) Inception",
+        "D) Elaboration"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Transition corresponde a entrega y feedback; production se ocupa de monitorización y soporte del producto desplegado.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "medium",
+      "question": "¿Qué se hace principalmente en construction de UP?",
+      "options": [
+        "A) Eliminar toda prueba basada en use cases",
+        "B) Solo recoger requisitos de negocio preliminares",
+        "C) Solo monitorizar un sistema ya en operación",
+        "D) Implementar funciones del incremento, ejecutar tests e integrar"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Construction produce e integra el incremento y ejecuta pruebas unitarias y basadas en casos de uso.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Spiral y Unified Process",
+      "difficulty": "medium",
+      "question": "¿Cuál es una dificultad del Unified Process según las diapositivas?",
+      "options": [
+        "A) La prohibición de involucrar al cliente",
+        "B) La ausencia total de documentación",
+        "C) La imposibilidad de incorporar cambios",
+        "D) Integrar incrementos y gestionar fases solapadas"
+      ],
+      "correctAnswer": "D",
+      "explanation": "UP admite cambios y participación, pero requiere experiencia y coordinación de integración y solapamientos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "20–26"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "easy",
+      "question": "¿Qué ventaja ofrece incremental development frente a esperar a una entrega final?",
+      "options": [
+        "A) Garantiza que la arquitectura nunca se deteriora",
+        "B) Entrega valor útil y obtiene feedback antes",
+        "C) Elimina la necesidad de validar incrementos",
+        "D) Impide que cambien requisitos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Los incrementos utilizables permiten aprender del cliente y reducir el retrabajo cuando cambia lo pendiente.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "medium",
+      "question": "¿Por qué incremental development puede reducir la visibilidad para la dirección?",
+      "options": [
+        "A) Documentar cada versión rápida con mucho detalle puede ser poco rentable",
+        "B) Porque está prohibido medir el progreso",
+        "C) Porque todos los incrementos son prototipos desechables",
+        "D) Porque no existen productos ejecutables"
+      ],
+      "correctAnswer": "A",
+      "explanation": "La visibilidad documental tradicional puede ser menor; se necesitan formas adecuadas de evidenciar progreso.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "medium",
+      "question": "Al añadir incrementos sin cuidar la estructura, los cambios se vuelven cada vez más costosos. ¿Qué medida ayuda?",
+      "options": [
+        "A) Refactoring para mejorar la estructura",
+        "B) Eliminar los tests de regresión",
+        "C) Evitar todo feedback",
+        "D) Copiar más código en cada incremento"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Los cambios sucesivos pueden degradar la arquitectura. Refactoring mejora estructura sin buscar cambiar el comportamiento externo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 29,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "easy",
+      "question": "¿Qué caracteriza integration and configuration?",
+      "options": [
+        "A) Escribir siempre todos los componentes desde cero",
+        "B) Probar solo una función aislada",
+        "C) Usar exclusivamente prototipos que se descartan",
+        "D) Construir a partir de componentes o aplicaciones existentes adaptados por configuración"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Es un proceso orientado a reutilización, con adaptación e integración de elementos existentes, incluidos COTS.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 30,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "easy",
+      "question": "¿Qué significa COTS?",
+      "options": [
+        "A) Code Only Testing Strategy",
+        "B) Continuous Operational Test Suite",
+        "C) Commercial-Off-the-Shelf",
+        "D) Customer-Oriented Task Selection"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El término se refiere a productos comerciales disponibles para reutilizar e integrar.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 31,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "medium",
+      "question": "¿Cómo se distinguen los dos enfoques de process improvement citados?",
+      "options": [
+        "A) Ambos se reducen a comprar herramientas",
+        "B) Ninguno influye en cómo se desarrolla",
+        "C) Agile solo aumenta documentos y maturity-based elimina procesos",
+        "D) Agile reduce overhead y maturity-based mejora gestión y buenas prácticas"
+      ],
+      "correctAnswer": "D",
+      "explanation": "El cierre del tema distingue reducción de carga de proceso y madurez de gestión como énfasis diferentes.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    },
+    {
+      "id": 32,
+      "topic": "Incremental, reuse y mejora",
+      "difficulty": "medium",
+      "question": "Un equipo repite actividades para refinar una solución y entrega funciones utilizables por partes. ¿Qué combinación describe esto?",
+      "options": [
+        "A) Iterativo e incremental",
+        "B) Exhaustive testing",
+        "C) Solo lineal y sin incrementos",
+        "D) Solo mantenimiento correctivo"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Iterativo enfatiza repetición y refinamiento; incremental enfatiza añadir partes de funcionalidad. Pueden coexistir.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/2_Ch2 SW Processes [Updated].pptx",
+        "pages": "27–33"
+      }
+    }
+  ]
+}

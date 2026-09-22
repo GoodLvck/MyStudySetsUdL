@@ -1,0 +1,303 @@
+{
+  "metadata": {
+    "title": "Fundamentals of Software Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "flashcards",
+    "totalCards": 28,
+    "topics": [
+      "Quality revolution",
+      "V&V y fallos",
+      "Reliability, test cases y oráculos",
+      "Niveles y selección",
+      "Planificación, métricas y equipo"
+    ]
+  },
+  "cards": [
+    {
+      "id": 1,
+      "topic": "Quality revolution",
+      "front": "¿Qué aportan Deming, Juran e Ishikawa al contexto de calidad?",
+      "back": "El material vincula a Deming con SQC y la difusión de PDCA, a Juran con el paso hacia TQC, y a Ishikawa con causa y efecto. Taiichi Ohno se asocia al principio lean.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Quality revolution",
+      "front": "¿Qué sucede en cada etapa de PDCA?",
+      "back": "Plan fija objetivos y proceso. Do ejecuta y mide. Check evalúa mediciones. Act introduce mejoras para el siguiente ciclo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Quality revolution",
+      "front": "¿Qué persigue lean?",
+      "back": "Reducir desperdicio y recursos sin valor, acortando el recorrido entre pedido y cobro con mejora continua.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Quality revolution",
+      "front": "¿Cuáles son las siete herramientas SQC citadas?",
+      "back": "Pareto analysis, trend chart, flow chart, histogram, scatter diagram, control chart y cause-and-effect diagram.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Quality revolution",
+      "front": "¿Qué principios caracterizan TQC?",
+      "back": "Prioridad de calidad y cliente, decisiones con datos, participación respetuosa y comités interfuncionales.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Quality revolution",
+      "front": "¿Cómo distinguir las cinco visiones de calidad?",
+      "back": "Transcendental: excelencia percibida difícil de formalizar. User: necesidades y experiencia. Manufacturing: conformidad y proceso. Product: propiedades del producto. Value-based: beneficio frente a coste.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Quality revolution",
+      "front": "¿Qué diferencia hay entre factor y criterio de calidad?",
+      "back": "Un factor expresa una característica como reliability, efficiency o testability. Un criterio vincula esa calidad con un atributo del desarrollo, como modularity. L1 enumera ISO 9126, CMM, TPI y TMM como referencias/modelos del material.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "3–8"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "V&V y fallos",
+      "front": "Verification vs validation: ¿cuál es la diferencia?",
+      "back": "Verification: conformidad con especificaciones, building the product right. Validation: adecuación al uso y necesidades reales, building the right product.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "V&V y fallos",
+      "front": "Fault, error y failure: explica la cadena.",
+      "back": "Fault/defect/bug es la causa. Error es el estado incorrecto según L1. Failure es la desviación observable. No todo fault se activa ni todo error llega a manifestarse externamente.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "V&V y fallos",
+      "front": "¿Qué hacen análisis estático y dinámico?",
+      "back": "El estático revisa artefactos sin ejecutar. El dinámico ejecuta y observa una muestra de comportamientos. Se complementan.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "V&V y fallos",
+      "front": "¿Qué demuestra y qué no demuestra testing?",
+      "back": "Puede revelar fallos y aportar evidencia sobre requisitos, rendimiento y calidad. Pasar una suite no demuestra ausencia de todos los defectos.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "V&V y fallos",
+      "front": "¿Qué aporta un tester independiente?",
+      "back": "Una perspectiva menos ligada a las decisiones de implementación y orientada a encontrar fallos. Debe aprender el sistema. La independencia complementa el conocimiento del desarrollador, sin garantizar detección completa.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "9–17"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Reliability, test cases y oráculos",
+      "front": "Define software reliability con sus condiciones.",
+      "back": "Probabilidad de operar sin fallos durante un tiempo especificado en un entorno especificado. Las pruebas para estimarla deben representar el uso futuro.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Reliability, test cases y oráculos",
+      "front": "¿En qué se diferencian casos stateless y state-oriented?",
+      "back": "En un sistema stateless la salida depende de la entrada actual. En uno con estado también depende del estado e historia, por lo que se especifican precondiciones y secuencias.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Reliability, test cases y oráculos",
+      "front": "¿Qué puede formar parte del expected outcome?",
+      "back": "Un valor, una modificación de estado o una secuencia de valores que se interpreta conjuntamente. ATM: efectivo entregado y nuevo saldo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Reliability, test cases y oráculos",
+      "front": "¿Por qué no basta con ejecutar sin excepciones?",
+      "back": "La ejecución puede finalizar normalmente y producir un valor o estado equivocado. Hay que comparar actual con expected mediante un oráculo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Reliability, test cases y oráculos",
+      "front": "¿Por qué se seleccionan subconjuntos de entradas?",
+      "back": "Dominios válidos/ inválidos, diseños y entornos suelen impedir exhaustive testing. Se busca una selección que revele defectos y reduzca riesgo a coste viable.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Reliability, test cases y oráculos",
+      "front": "Enumera las actividades básicas de testing.",
+      "back": "Identificar objetivo, seleccionar entradas, calcular expected outcome, configurar entorno, ejecutar y analizar resultados.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "12, 18–22"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Niveles y selección",
+      "front": "Compara unit, integration, system y acceptance testing.",
+      "back": "Unit: unidad aislada. Integration: interfaces entre unidades. System: comportamiento global y propiedades emergentes. Acceptance: criterios y expectativas del cliente.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Niveles y selección",
+      "front": "¿Qué asociaciones muestra el V-model de L1?",
+      "back": "Requirements con acceptance, high-level design con system, detailed design con integration y coding con unit. Conecta productos del desarrollo con su evaluación.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Niveles y selección",
+      "front": "¿Cómo usa L1 las siglas UAT y BAT?",
+      "back": "UAT comprueba criterios contractuales. L1 describe BAT como comprobación del proveedor para que el sistema pueda superar UAT. Es la convención específica de estas diapositivas.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Niveles y selección",
+      "front": "¿Qué es regression testing?",
+      "back": "Volver a ejecutar pruebas relevantes después de cambios para detectar daños al comportamiento existente. Puede aplicarse a unit, integration, system y acceptance.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Niveles y selección",
+      "front": "White-box vs black-box: ¿qué información guía cada una?",
+      "back": "White-box usa código, control flow y data flow. Black-box usa requisitos e interfaces observables. No son sinónimos de unit y system respectivamente.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Niveles y selección",
+      "front": "¿Qué fuentes sirven para seleccionar tests?",
+      "back": "Requisitos y especificaciones funcionales, código, dominios de entrada/salida, operational profile y fault models (error guessing, fault seeding, mutation analysis).",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "23–27"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Planificación, métricas y equipo",
+      "front": "¿Qué debe proporcionar un test plan?",
+      "back": "Marco, alcance, recursos, esfuerzo, calendario y presupuesto. Los casos pueden componerse de test steps modulares.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "Planificación, métricas y equipo",
+      "front": "¿Qué métricas conviene distinguir?",
+      "back": "Ejecución (avance), defectos (seguimiento), eficacia de casos (capacidad de revelar defectos) y eficacia del esfuerzo (incluye defectos escapados a clientes).",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "Planificación, métricas y equipo",
+      "front": "¿Qué ofrece automatizar y qué requiere?",
+      "back": "Mayor productividad, regresión más amplia y ciclos más cortos. Requiere casos claros, herramientas e infraestructura, profesionales preparados y presupuesto. No sustituye el diseño ni el juicio.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "Planificación, métricas y equipo",
+      "front": "¿Qué destaca L1 sobre herramientas y organización?",
+      "back": "La tabla presenta Katalon, Selenium, Appium, TestComplete y Cypress como ejemplos del material. El organigrama separa funciones de desarrollo, integración, sistema y especialidades. La gestión debe valorar testing igual que desarrollo.",
+      "source": {
+        "file": "00-FundamentalsOfSWTesting/L1_Ch1-Preliminaries [Updated].pdf",
+        "pages": "28–32"
+      }
+    }
+  ]
+}

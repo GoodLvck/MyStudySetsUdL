@@ -1,0 +1,1087 @@
+{
+  "metadata": {
+    "title": "Unit Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Quiz 1 — MCQs and conceptual",
+    "sourceFiles": [
+      "02-UnitTesting/L3_Ch3-UnitTesting.pdf"
+    ],
+    "language": "es",
+    "terminology": "English technical terms retained; source-specific conventions noted in the study notes.",
+    "format": "quiz",
+    "totalQuestions": 59,
+    "topics": [
+      "Concepto y static unit testing",
+      "Defect prevention",
+      "Dynamic unit testing y selección",
+      "Mutation testing",
+      "Debugging",
+      "XP, TDD y JUnit",
+      "Herramientas y cobertura"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "easy",
+      "question": "¿Qué propiedad define unit testing en el capítulo?",
+      "options": [
+        "A) Probar una unidad de programa en aislamiento",
+        "B) Probar siempre toda la aplicación desplegada",
+        "C) Usar únicamente inputs de usuarios reales",
+        "D) Evitar cualquier dependencia emulada"
+      ],
+      "correctAnswer": "A",
+      "explanation": "La unidad puede ser función, procedimiento, método o clase; no existe una única definición universal de su tamaño.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "question": "¿Qué relación hay entre static y dynamic unit testing?",
+      "options": [
+        "A) Nunca pueden coexistir en el mismo proyecto",
+        "B) El dinámico elimina la utilidad de code review",
+        "C) El análisis estático sustituye toda ejecución",
+        "D) Son complementarios; se recomienda revisión estática previa y pueden solaparse parcialmente"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Revisar detecta problemas antes de ejecutar; ejecutar observa comportamientos concretos. El material recomienda combinar ambas técnicas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "easy",
+      "question": "¿Qué caracteriza una inspection frente a un walkthrough?",
+      "options": [
+        "A) Ejecución obligatoria sobre hardware real",
+        "B) Sesión informal dirigida por el autor sin criterios",
+        "C) Revisión formal por pares con pasos y criterios predefinidos",
+        "D) Ausencia de preparación de revisores"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Inspection es formal; walkthrough es una revisión informal donde el autor guía una ejecución manual o simulada de escenarios.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "easy",
+      "question": "El autor guía al equipo por un escenario del código de manera informal. ¿Qué actividad describe?",
+      "options": [
+        "A) Mutation analysis",
+        "B) Stress testing",
+        "C) Walkthrough",
+        "D) Acceptance testing"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La conducción por el autor y el carácter informal identifican walkthrough en este capítulo.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "question": "¿Cuál es el objetivo profesional de code review?",
+      "options": [
+        "A) Corregir únicamente el formato de comentarios",
+        "B) Sustituir toda especificación por opiniones",
+        "C) Evaluar el código y encontrar problemas, sin evaluar personalmente al autor",
+        "D) Clasificar públicamente la inteligencia del programador"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La revisión debe planificarse y gestionarse centrada en el producto, con una dinámica profesional.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "question": "¿Qué se comprueba en readiness?",
+      "options": [
+        "A) La aceptación contractual del cliente",
+        "B) Solo que ya se hayan cerrado todos los CR de esta revisión",
+        "C) Solo el informe final distribuido",
+        "D) Completitud, funcionalidad mínima, legibilidad, complejidad y documentación pertinente"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Readiness decide si el producto y los recursos permiten una revisión útil antes de invertir en preparación y reunión.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "easy",
+      "question": "¿Cuál es el orden de las seis etapas de code review?",
+      "options": [
+        "A) Examination, readiness, exit, preparation, validation, re-work",
+        "B) Preparation, exit, readiness, re-work, examination, validation",
+        "C) Readiness, preparation, examination, re-work, validation, exit",
+        "D) Validation, preparation, re-work, readiness, exit, examination"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Primero se prepara la revisión, luego se examina, corrige, valida independientemente y cierra con informe.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "question": "Durante examination, ¿quién mantiene la revisión centrada y quién registra los CR?",
+      "options": [
+        "A) Stub y driver, respectivamente",
+        "B) Cliente y compilador, respectivamente",
+        "C) Autor y usuario beta, respectivamente",
+        "D) Moderator y record keeper, respectivamente"
+      ],
+      "correctAnswer": "D",
+      "explanation": "El moderador encauza la sesión; el record keeper documenta las solicitudes. El presenter lee el código y el autor lo presenta.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "question": "¿Qué contiene un Change Request según el capítulo?",
+      "options": [
+        "A) El resultado esperado de todos los tests del proyecto",
+        "B) Solo el nombre del autor de todo el módulo",
+        "C) Descripción, prioridad, responsable y fecha límite",
+        "D) Solo una opinión sin ubicación ni responsable"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Estos campos permiten seguimiento. Después del re-work los CR deben validarse independientemente.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "question": "¿Qué distingue validation de re-work en code review?",
+      "options": [
+        "A) Re-work es distribuir el acta final",
+        "B) Validation consiste en inventar nuevos requisitos comerciales",
+        "C) Ambas consisten solo en leer el título del módulo",
+        "D) Validation comprueba independientemente los CR corregidos; re-work los resuelve"
+      ],
+      "correctAnswer": "D",
+      "explanation": "No basta con que el autor diga que corrigió un problema; el proceso incluye comprobar la corrección.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "question": "Se generan 12 CR al revisar 2000 LOC. ¿Cuál es la tasa por KLOC?",
+      "options": [
+        "A) 24 CR/KLOC",
+        "B) 12 CR/KLOC",
+        "C) 0.006 CR/KLOC",
+        "D) 6 CR/KLOC"
+      ],
+      "correctAnswer": "D",
+      "explanation": "2000 LOC son 2 KLOC; 12 dividido entre 2 da 6. No confundir CR/LOC con CR/KLOC.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Concepto y static unit testing",
+      "difficulty": "medium",
+      "question": "¿Qué documento orienta los detalles internos de los módulos?",
+      "options": [
+        "A) Guía de instalación del usuario",
+        "B) Low-level design",
+        "C) Informe comercial de marketing por sí solo",
+        "D) High-level design entendido solo como arquitectura global"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La jerarquía del capítulo va de requisitos y especificación funcional a arquitectura de alto nivel, detalle de módulos y código.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "3–9"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Defect prevention",
+      "difficulty": "easy",
+      "question": "¿Qué finalidad tiene defect prevention?",
+      "options": [
+        "A) Eliminar el seguimiento de CR",
+        "B) Reducir introducción de defectos mediante prácticas de construcción",
+        "C) Esperar a que clientes descubran los problemas",
+        "D) Demostrar que los programadores nunca cometen errores"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Resolver CR consume recursos; las pautas preventivas reducen errores antes de integración, sin garantizar perfección.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Defect prevention",
+      "difficulty": "medium",
+      "question": "¿Qué ejemplo representa instrumentation?",
+      "options": [
+        "A) Cambiar una resta por suma para crear un mutante",
+        "B) Renombrar el proyecto sin observar ejecución",
+        "C) Añadir contadores para registrar qué ramas se ejecutan",
+        "D) Borrar todas las verificaciones de entrada"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La instrumentación añade observabilidad; el ejemplo del material incrementa contadores de ramas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Defect prevention",
+      "difficulty": "medium",
+      "question": "¿Qué expresa una assertion usada para detectar condiciones imposibles?",
+      "options": [
+        "A) Un comentario sin posibilidad de comprobación",
+        "B) Una instrucción para ocultar errores",
+        "C) Una entrada arbitraria del usuario que siempre debe aceptarse",
+        "D) Una condición booleana que debería ser verdadera en ese punto"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Una assertion falsa indica violación de una condición esperada. El material recomienda conservar y documentar aserciones pertinentes.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Defect prevention",
+      "difficulty": "medium",
+      "question": "¿Qué práctica concreta ayuda a prevenir fallos en funciones?",
+      "options": [
+        "A) Eliminar límites de buffers",
+        "B) Validar argumentos y tratar todos los valores de retorno relevantes",
+        "C) Suponer que todos los índices son válidos",
+        "D) Ignorar retornos de error para simplificar"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El capítulo incluye controlar división por cero, índices, buffers y contadores además de validar entradas y retornos.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Defect prevention",
+      "difficulty": "medium",
+      "question": "¿Qué significa reverse-compute como comprobación en el ejemplo de raíz cuadrada?",
+      "options": [
+        "A) Usar el resultado para reconstruir y contrastar la entrada, considerando precisión",
+        "B) Cambiar todas las operaciones aritméticas de signo",
+        "C) Ejecutar el programa en orden inverso siempre",
+        "D) Aceptar cualquier valor porque el algoritmo terminó"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Elevar al cuadrado una raíz calculada permite una comprobación de consistencia, con tolerancia apropiada si hay flotantes.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "10–12"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "easy",
+      "question": "¿Qué hace un test driver?",
+      "options": [
+        "A) Solo almacena documentos de requisitos",
+        "B) Invoca la UUT, proporciona inputs y permite reportar resultados",
+        "C) Es una unidad llamada por la UUT que devuelve datos prefijados",
+        "D) Es siempre la aplicación completa del cliente"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El driver ocupa el papel del llamador. Un stub ocupa el papel de una dependencia llamada por la UUT.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "easy",
+      "question": "¿Qué es un stub en el entorno de pruebas del capítulo?",
+      "options": [
+        "A) Un requisito no funcional",
+        "B) El programa que siempre invoca la UUT desde arriba",
+        "C) Una emulación de una unidad llamada por la UUT",
+        "D) Un informe de aceptación firmado"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El stub sustituye una dependencia para poder ejercitar la unidad de forma controlada y aislada.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "medium",
+      "question": "Una función invoca un servicio de pagos externo no disponible. ¿Qué ayuda a aislarla en la prueba?",
+      "options": [
+        "A) Un stub del servicio con respuestas controladas",
+        "B) Un diagrama sin ejecutar ningún código",
+        "C) Eliminar todas las comprobaciones del resultado",
+        "D) Un usuario que acepte resultados sin comparar"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El sustituto debe representar los comportamientos relevantes del contrato. No demuestra por sí mismo integración con el servicio real.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "easy",
+      "question": "¿Cómo se denomina el conjunto de driver y stubs?",
+      "options": [
+        "A) Acceptance criteria",
+        "B) Scaffolding",
+        "C) Mutation score",
+        "D) Operational profile"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Scaffolding es el soporte que emula el entorno de la unidad para la ejecución aislada.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "medium",
+      "question": "¿Qué documento guía selección de inputs de unit testing en este capítulo?",
+      "options": [
+        "A) Solo un informe de consumo eléctrico",
+        "B) Low-level design",
+        "C) Solo el contrato comercial sin detalle funcional",
+        "D) Únicamente el historial de commits"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El diseño detallado describe el comportamiento de la unidad; también se usan criterios estructurales y dominios.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "medium",
+      "question": "En control flow testing, ¿para qué se resuelve un path predicate?",
+      "options": [
+        "A) Elegir al moderador de la revisión",
+        "B) Calcular directamente la satisfacción del usuario",
+        "C) Encontrar inputs que hagan recorrer el camino seleccionado del CFG",
+        "D) Contar siempre todos los estados de la aplicación"
+      ],
+      "correctAnswer": "C",
+      "explanation": "El predicado reúne condiciones del camino; resolverlo produce candidatos de entrada. Algunos caminos pueden resultar inviables.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "medium",
+      "question": "Un camino exige simultáneamente x > 10 y x < 5 sin modificar x. ¿Qué se concluye?",
+      "options": [
+        "A) Debe eliminarse cualquier test del módulo",
+        "B) El valor x = 7 satisface ambas condiciones",
+        "C) Toda entrada positiva lo recorre",
+        "D) No hay entrada que satisfaga ese camino"
+      ],
+      "correctAnswer": "D",
+      "explanation": "La conjunción es imposible. Una ruta dibujable en el CFG no es necesariamente ejecutable.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Dynamic unit testing y selección",
+      "difficulty": "medium",
+      "question": "¿Qué selección se centra en propagación de valores entre definiciones y usos?",
+      "options": [
+        "A) Alpha testing",
+        "B) Solo revisión de presupuesto",
+        "C) Data flow testing",
+        "D) Release acceptance"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Data flow razona sobre valores; control flow sobre orden y caminos. Domain testing se centra en errores del dominio y functional en entradas/salidas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "Mutation testing",
+      "difficulty": "easy",
+      "question": "¿Cuál es el objetivo principal de mutation testing según el capítulo?",
+      "options": [
+        "A) Sustituir requisitos por variantes aleatorias sin oráculo",
+        "B) Medir solo duración de compilación",
+        "C) Evaluar la capacidad de los test cases para detectar pequeños defectos",
+        "D) Mejorar deliberadamente el programa con nuevas funciones"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La mutación revela debilidades de los tests. Probar la unidad es un beneficio adicional, pero el foco es la adecuación de la suite.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "Mutation testing",
+      "difficulty": "easy",
+      "question": "¿Qué es un mutant?",
+      "options": [
+        "A) Una versión con un pequeño cambio sintáctico legal introducido deliberadamente",
+        "B) Cualquier test que haya fallado",
+        "C) Una copia idéntica del informe de pruebas",
+        "D) Un cliente que rechaza una release"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El curso parte de cambios pequeños, generalmente uno por mutante; algunos alteran comportamiento y otros son equivalentes.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "question": "¿Cuándo se considera killed un mutante?",
+      "options": [
+        "A) Cuando un test detecta una salida o comportamiento incorrecto producido por él",
+        "B) Cuando simplemente se ejecuta alguna línea modificada",
+        "C) Cuando el mutante compila",
+        "D) Cuando pasa toda la suite"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Ejecutar la zona mutada no basta: la diferencia debe alcanzar una observación comprobada por el test.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 29,
+      "topic": "Mutation testing",
+      "difficulty": "hard",
+      "question": "Un mutante pasa todos los tests existentes. ¿Qué puede concluirse?",
+      "options": [
+        "A) Puede ser equivalente o no estar detectado por esa suite",
+        "B) Es necesariamente el programa correcto para todo input",
+        "C) Es necesariamente equivalente",
+        "D) La suite tiene mutation score 100 %"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Supervivencia con una suite finita no demuestra equivalencia para todas las entradas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 30,
+      "topic": "Mutation testing",
+      "difficulty": "easy",
+      "question": "¿Qué define a un equivalent mutant?",
+      "options": [
+        "A) Solo pasa los tres tests que tenemos",
+        "B) Siempre provoca una excepción distinta",
+        "C) Produce el mismo comportamiento observable que el original para todos los inputs relevantes",
+        "D) Tiene exactamente el mismo texto fuente"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La equivalencia es semántica, no solo coincidencia en una muestra ni identidad de código.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 31,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "question": "¿Cómo se calcula mutation score?",
+      "options": [
+        "A) Mutantes supervivientes / LOC × 100",
+        "B) Todos los mutantes / tests fallidos × 100",
+        "C) Tests aprobados / tests escritos × 100",
+        "D) Mutantes no equivalentes matados / total de mutantes no equivalentes × 100"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Los equivalentes se excluyen del denominador porque ningún test correcto puede distinguirlos del original.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 32,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "question": "Hay 10 mutantes, 2 equivalentes y 6 matados. ¿Cuál es el mutation score?",
+      "options": [
+        "A) 100 %",
+        "B) 80 %",
+        "C) 75 %",
+        "D) 60 %"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Hay 8 no equivalentes; 6/8 × 100 = 75 %. El 60 % usaría incorrectamente todos los mutantes.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 33,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "question": "¿Qué significa una suite mutation-adequate según L3?",
+      "options": [
+        "A) No necesita assertions",
+        "B) Mata el 100 % de los mutantes no equivalentes considerados",
+        "C) Ejecuta todas las entradas posibles",
+        "D) Demuestra ausencia de todos los bugs reales"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La adecuación es relativa al conjunto/modelo de mutantes; no garantiza corrección universal ni exhaustividad.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 34,
+      "topic": "Mutation testing",
+      "difficulty": "hard",
+      "question": "En el programa que devuelve el índice del máximo, cambiar el inicio del bucle de i=2 a i=1 con r=1 y comparación estricta > es equivalente. ¿Por qué?",
+      "options": [
+        "A) Solo añade una comparación inicial de un elemento consigo mismo que no cambia r",
+        "B) Porque el primer valor siempre es el máximo",
+        "C) Porque todo cambio de bucle es equivalente",
+        "D) Porque la suite actual tiene tres tests"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Con r=1, la comparación inicial a[1] > a[1] es falsa; las iteraciones restantes son las mismas bajo el modelo del ejemplo.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 35,
+      "topic": "Mutation testing",
+      "difficulty": "hard",
+      "question": "En ese programa, ¿qué entrada distingue > de >= al seleccionar el índice del máximo?",
+      "options": [
+        "A) 2, 2, 1",
+        "B) 3, 1, 2",
+        "C) 1, 2, 1",
+        "D) 1, 2, 3"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Con empate en el máximo, > conserva el primer índice (1) y >= reemplaza por el posterior (2). Las otras entradas tienen máximo único.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 36,
+      "topic": "Mutation testing",
+      "difficulty": "hard",
+      "question": "En el ejemplo de cuatro mutantes, dos mueren y luego se demuestra que uno de los supervivientes es equivalente. Antes de añadir otro test, ¿cuál es el score?",
+      "options": [
+        "A) 50 % necesariamente",
+        "B) 2/3, aproximadamente 66.7 %",
+        "C) 100 %",
+        "D) 25 %"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Al excluir el equivalente quedan tres matables; han muerto dos. El 50 % inicial asumía provisionalmente que todos eran no equivalentes.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 37,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "question": "Tras añadir el caso 2,2,1 que mata al mutante >=, ¿qué score queda en el ejemplo?",
+      "options": [
+        "A) 100 % sobre tres mutantes no equivalentes",
+        "B) 0 % porque cambió el número de tests",
+        "C) 75 % porque el equivalente debe morir",
+        "D) 50 % porque no se permite ampliar la suite"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Los tres no equivalentes quedan matados; el mutante equivalente no entra en el denominador.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 38,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "question": "¿Qué expresa competent programmer hypothesis?",
+      "options": [
+        "A) Los tests siempre son perfectos",
+        "B) Solo los programadores pueden ejecutar tests",
+        "C) Los programadores suelen producir programas cercanos al correcto, no programas arbitrarios",
+        "D) Los programadores competentes nunca crean faults"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La hipótesis justifica estudiar pequeñas desviaciones como modelos de defectos plausibles.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 39,
+      "topic": "Mutation testing",
+      "difficulty": "medium",
+      "question": "¿Qué expresa coupling effect en este contexto?",
+      "options": [
+        "A) Se deben acoplar todos los módulos para probarlos",
+        "B) Tests que detectan fallos simples tienden a detectar muchos fallos complejos relacionados",
+        "C) Todos los fallos complejos son idénticos a uno simple",
+        "D) La cobertura de líneas demuestra corrección"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Es una hipótesis que fundamenta mutation testing, no una garantía universal de detección.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "15–19"
+      }
+    },
+    {
+      "id": 40,
+      "topic": "Debugging",
+      "difficulty": "easy",
+      "question": "¿Qué distingue debugging de testing?",
+      "options": [
+        "A) Debugging es solo ejecutar la suite sin analizar",
+        "B) Testing siempre corrige automáticamente la causa",
+        "C) Ambos son solo code formatting",
+        "D) Debugging busca la causa de un fallo observado; testing busca exponer y evaluar fallos"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Dado un síntoma, debugging intenta localizar su causa; puede requerir evaluación sistemática, hipótesis y trazas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 41,
+      "topic": "Debugging",
+      "difficulty": "easy",
+      "question": "Añadir prints por el código para obtener una traza es un ejemplo de qué enfoque?",
+      "options": [
+        "A) Cause elimination por deducción exclusivamente",
+        "B) Equivalence partitioning",
+        "C) Acceptance testing",
+        "D) Brute force"
+      ],
+      "correctAnswer": "D",
+      "explanation": "La categoría brute force del capítulo usa trazas y prints. Pueden orientar la búsqueda aunque no constituyen por sí mismos una hipótesis causal.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 42,
+      "topic": "Debugging",
+      "difficulty": "medium",
+      "question": "Se recopilan síntomas, se buscan patrones y se formula una hipótesis explicativa. ¿Qué enfoque es?",
+      "options": [
+        "A) Deduction",
+        "B) Induction",
+        "C) Backtracking",
+        "D) Mutation seeding"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Inducción parte de observaciones para proponer causas. Deducción parte de causas candidatas y las contrasta.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 43,
+      "topic": "Debugging",
+      "difficulty": "medium",
+      "question": "Se lista una serie de causas posibles por probabilidad y se prueban para descartarlas. ¿Qué enfoque es?",
+      "options": [
+        "A) Deduction",
+        "B) Induction",
+        "C) Random testing",
+        "D) Walkthrough informal únicamente"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Es cause elimination por deducción: contrastar hipótesis candidatas en orden de plausibilidad.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 44,
+      "topic": "Debugging",
+      "difficulty": "medium",
+      "question": "¿Qué hace backtracking y por qué escala mal?",
+      "options": [
+        "A) Retrocede desde el fallo observado y puede encontrar demasiados caminos previos en programas grandes",
+        "B) Descarta la necesidad de conocer síntomas",
+        "C) Prueba todos los posibles inputs sin mirar el código",
+        "D) Recorre únicamente instrucciones futuras y siempre es constante"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El número de posibles rutas hacia el fallo crece y dificulta rastrear hasta la causa.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 45,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "easy",
+      "question": "¿Cuál es una de las tres leyes de TDD presentadas?",
+      "options": [
+        "A) No escribir código de producción sin un unit test que falle primero",
+        "B) Escribir toda la aplicación antes del primer test",
+        "C) Crear siempre cien tests para cada método",
+        "D) No ejecutar tests anteriores tras modificar código"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Las otras leyes limitan el test a lo suficiente para fallar y la implementación a lo suficiente para hacerlo pasar.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 46,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "medium",
+      "question": "¿Qué caracteriza pair programming en XP según el capítulo?",
+      "options": [
+        "A) Un autor escribe todo y un cliente revisa meses después",
+        "B) Una persona implementa tácticamente y otra revisa con perspectiva de la story",
+        "C) Dos personas ejecutan el mismo binario sin comunicarse",
+        "D) Dos herramientas generan código sin humanos"
+      ],
+      "correctAnswer": "B",
+      "explanation": "La pareja combina implementación y revisión simultáneas enfocadas en la historia.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 47,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "easy",
+      "question": "¿Para qué lenguaje se presenta JUnit?",
+      "options": [
+        "A) Fortran",
+        "B) Java",
+        "C) C#",
+        "D) C++"
+      ],
+      "correctAnswer": "B",
+      "explanation": "El material también cita NUnit para C#, CPPUnit para C++ y fUnit para Fortran.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 48,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "medium",
+      "question": "¿Qué estilo de JUnit usa el ejemplo con junit.framework.TestCase?",
+      "options": [
+        "A) Una biblioteca para performance testing de redes",
+        "B) Un ejemplo de todas las APIs modernas de JUnit",
+        "C) Una prueba de aceptación sin código",
+        "D) La API clásica basada en heredar de TestCase"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Las diapositivas usan el estilo antiguo de JUnit. Debe estudiarse como el ejemplo docente, sin asumir sintaxis de versiones recientes.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 49,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "medium",
+      "question": "En assertEquals(365, x), ¿qué representa 365 en el ejemplo?",
+      "options": [
+        "A) El valor esperado",
+        "B) El valor real devuelto necesariamente",
+        "C) El índice de una línea defectuosa",
+        "D) El número de veces que se ejecuta el test"
+      ],
+      "correctAnswer": "A",
+      "explanation": "El orden docente es expected, actual. x contiene el resultado observado de la llamada.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 50,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "medium",
+      "question": "¿Por qué assertEquals para double incluye una tolerancia?",
+      "options": [
+        "A) Para contar cuántos objetos existen",
+        "B) Para ignorar cualquier diferencia sin límite",
+        "C) Para comparar resultados numéricos admitiendo una diferencia acotada de precisión",
+        "D) Para permitir que todos los tests pasen"
+      ],
+      "correctAnswer": "C",
+      "explanation": "La tolerancia determina el margen aceptable, por ejemplo 0.0001; no autoriza errores arbitrarios.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 51,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "medium",
+      "question": "¿Qué distingue assertSame de assertEquals para objetos?",
+      "options": [
+        "A) assertSame compara solamente nombres de clases",
+        "B) assertSame comprueba identidad de referencia; assertEquals igualdad según el contrato aplicable",
+        "C) assertEquals siempre exige que sean la misma instancia",
+        "D) Ambas comprueban exclusivamente que el objeto sea null"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Dos objetos distintos pueden ser iguales en valor sin compartir identidad. Esa diferencia importa al elegir assertion.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 52,
+      "topic": "XP, TDD y JUnit",
+      "difficulty": "easy",
+      "question": "¿Qué ocurre con assertTrue cuando la condición es falsa en el ejemplo de las diapositivas?",
+      "options": [
+        "A) Se acepta automáticamente el sistema",
+        "B) Se cambia la condición a true silenciosamente",
+        "C) La assertion se considera superada",
+        "D) Se lanza AssertionFailedError"
+      ],
+      "correctAnswer": "D",
+      "explanation": "El método indica fallo mediante la excepción del framework clásico; el mensaje opcional ayuda a diagnosticar.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "23–28"
+      }
+    },
+    {
+      "id": 53,
+      "topic": "Herramientas y cobertura",
+      "difficulty": "easy",
+      "question": "¿Qué herramienta busca escrituras fuera de áreas de memoria permitidas?",
+      "options": [
+        "A) Traffic generator",
+        "B) Bound checker",
+        "C) Version control",
+        "D) Documenter"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Bound checker detecta accesos fuera de límites; memory leak detector se ocupa de memoria asignada que no se libera.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 54,
+      "topic": "Herramientas y cobertura",
+      "difficulty": "medium",
+      "question": "El consumo crece porque no se libera memoria solicitada. ¿Qué herramienta es especialmente pertinente?",
+      "options": [
+        "A) Code documenter",
+        "B) Memory leak detector",
+        "C) Solo un traffic generator",
+        "D) Requirements editor"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Las fugas son distintas de escribir fuera de límites; ambas familias tienen herramientas específicas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 55,
+      "topic": "Herramientas y cobertura",
+      "difficulty": "easy",
+      "question": "¿Qué herramienta informa qué estructuras internas fueron ejercitadas por los tests?",
+      "options": [
+        "A) Test coverage analyzer",
+        "B) Test data generator exclusivamente",
+        "C) Version control",
+        "D) Software inspection scheduler"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Coverage analyzer mide cobertura según criterios de estructura; no demuestra que las assertions sean buenas.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 56,
+      "topic": "Herramientas y cobertura",
+      "difficulty": "medium",
+      "question": "¿Cuál es el papel de un test harness?",
+      "options": [
+        "A) Reemplazar todo versionado",
+        "B) Garantizar que no haya mutantes equivalentes",
+        "C) Decidir automáticamente los requisitos del cliente",
+        "D) Dar soporte a la ejecución de tests dinámicos"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Harness organiza soporte de ejecución. Driver y stubs forman el scaffolding de una unidad concreta.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 57,
+      "topic": "Herramientas y cobertura",
+      "difficulty": "medium",
+      "question": "Para un CFG conectado con 9 aristas y 8 nodos, ¿cuál es V(G)=E−N+2?",
+      "options": [
+        "A) 1",
+        "B) 17",
+        "C) 3",
+        "D) 2"
+      ],
+      "correctAnswer": "C",
+      "explanation": "9−8+2=3, como en la tabla de McCabe del material. Cuenta caminos linealmente independientes, no todas las ejecuciones posibles.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 58,
+      "topic": "Herramientas y cobertura",
+      "difficulty": "hard",
+      "question": "Una suite logra alta cobertura estructural pero apenas mata mutantes. ¿Qué debilidad es plausible?",
+      "options": [
+        "A) Ejecuta código sin comprobar suficientemente las diferencias de comportamiento",
+        "B) El programa necesariamente está libre de defectos",
+        "C) La cobertura impide escribir assertions",
+        "D) Los mutantes son todos equivalentes por definición"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Cobertura muestra ejecución; mutation testing aporta evidencia de sensibilidad a cambios. Un oráculo débil puede dejar sobrevivir defectos.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    },
+    {
+      "id": 59,
+      "topic": "Herramientas y cobertura",
+      "difficulty": "medium",
+      "question": "¿Qué emparejamiento herramienta-función es correcto?",
+      "options": [
+        "A) Documenter ejecuta necesariamente todos los caminos",
+        "B) Version control detecta por sí solo todas las fugas",
+        "C) Performance monitor decide aceptación contractual",
+        "D) Traffic generator produce transacciones y network analyzer examina tráfico"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Las herramientas resuelven necesidades distintas. Versionado guarda revisiones y performance monitors observan características temporales.",
+      "source": {
+        "file": "02-UnitTesting/L3_Ch3-UnitTesting.pdf",
+        "pages": "29–32"
+      }
+    }
+  ]
+}
