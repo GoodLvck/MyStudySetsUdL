@@ -1,0 +1,269 @@
+{
+  "metadata": {
+    "title": "Geometric Search",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "08) COT4521, 5520 slides - geometric search.pdf"
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 12,
+    "topics": [
+      "Geometric Search"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "A point set that changes through insertion or deletion is ___.",
+      "blanks": [
+        "dynamic"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The opposite of static."
+      ],
+      "explanation": "Update cost matters in this mode.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "5"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "A fixed point set is called ___.",
+      "blanks": [
+        "static"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "No data updates."
+      ],
+      "explanation": "Queries may still be repeated.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "5"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "Building a search structure before queries is called ___.",
+      "blanks": [
+        "preprocessing"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Pay work once to speed later queries."
+      ],
+      "explanation": "Separate this from query and update time.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "6"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "Orthogonal ranges are aligned with the coordinate ___.",
+      "blanks": [
+        "axes"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Think axis-aligned rectangles."
+      ],
+      "explanation": "Each dimension contributes an interval.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "7–8"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "The k in O(log n+k) is the number of reported ___.",
+      "blanks": [
+        "elements"
+      ],
+      "acceptedAnswers": [
+        [
+          "points",
+          "results"
+        ]
+      ],
+      "hints": [
+        "Output size."
+      ],
+      "explanation": "Reporting all answers costs at least proportional to k.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "10–15"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "Lower bound finds the first value greater than or ___ to l.",
+      "blanks": [
+        "equal"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "It includes the left endpoint."
+      ],
+      "explanation": "This matters for duplicates.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "10–11"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "If U is the first value index greater than r, the last qualifying index is U ___.",
+      "blanks": [
+        "-1"
+      ],
+      "acceptedAnswers": [
+        [
+          "minus 1",
+          "minus one"
+        ]
+      ],
+      "hints": [
+        "Move one position left."
+      ],
+      "explanation": "The output index interval is [L,U).",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "10–14"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "For the lecture's values 10,12,16,20,21,22,23,26,29,30, query [19,23] reports ___ values.",
+      "blanks": [
+        "4"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Count 20 through 23."
+      ],
+      "explanation": "Only values present in the array are reported.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "8–10"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "An AVL tree keeps its height O(___).",
+      "blanks": [
+        "log n"
+      ],
+      "acceptedAnswers": [
+        [
+          "log(n)"
+        ]
+      ],
+      "hints": [
+        "Balanced search paths."
+      ],
+      "explanation": "This supports logarithmic updates.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "21"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "Even 2-D tree data levels compare coordinate ___.",
+      "blanks": [
+        "x"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Level zero starts here."
+      ],
+      "explanation": "Odd levels compare y.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "22"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "Odd 2-D tree data levels compare coordinate ___.",
+      "blanks": [
+        "y"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Alternate from x."
+      ],
+      "explanation": "The axis depends on depth, not the query point.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "22"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "sentence": "Balanced planar 2-D tree range reporting costs O(___ + k).",
+      "blanks": [
+        "sqrt(n)"
+      ],
+      "acceptedAnswers": [
+        [
+          "√n",
+          "n^0.5"
+        ]
+      ],
+      "hints": [
+        "Square-root search overhead."
+      ],
+      "explanation": "The lecture's bound requires the balance assumptions.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "30–31"
+      }
+    }
+  ]
+}

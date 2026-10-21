@@ -1,0 +1,271 @@
+{
+  "metadata": {
+    "title": "Point Location",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "07) COT4521, 5520 slides - point location.pdf"
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 12,
+    "topics": [
+      "Point Location"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "Off the boundary, an odd crossing count means the point is ___.",
+      "blanks": [
+        "inside"
+      ],
+      "acceptedAnswers": [
+        [
+          "interior"
+        ]
+      ],
+      "hints": [
+        "Odd-even rule."
+      ],
+      "explanation": "Each proper crossing toggles membership.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "8–9"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "Off the boundary, an even crossing count means the point is ___.",
+      "blanks": [
+        "outside"
+      ],
+      "acceptedAnswers": [
+        [
+          "exterior"
+        ]
+      ],
+      "hints": [
+        "Zero is included in this case."
+      ],
+      "explanation": "A bounded polygon is outside sufficiently far along the ray.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "8–9"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "The lecture casts the horizontal ray toward the ___.",
+      "blanks": [
+        "east"
+      ],
+      "acceptedAnswers": [
+        [
+          "right"
+        ]
+      ],
+      "hints": [
+        "Positive x direction."
+      ],
+      "explanation": "Only intersections east of the query count.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "The half-open edge rule includes the ___ endpoint.",
+      "blanks": [
+        "lower"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Use the endpoint with smaller y."
+      ],
+      "explanation": "The upper endpoint is excluded.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "13"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "The half-open edge rule excludes the ___ endpoint.",
+      "blanks": [
+        "upper"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Use the endpoint with larger y."
+      ],
+      "explanation": "This prevents double-counting shared vertices.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "13"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "Horizontal edges are skipped in the crossing ___, but checked for boundary membership.",
+      "blanks": [
+        "count"
+      ],
+      "acceptedAnswers": [
+        [
+          "counting"
+        ]
+      ],
+      "hints": [
+        "The parity computation."
+      ],
+      "explanation": "They are still part of the boundary.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "The crossing condition in x is px ___ xHit.",
+      "blanks": [
+        "<"
+      ],
+      "acceptedAnswers": [
+        [
+          "less than"
+        ]
+      ],
+      "hints": [
+        "The hit must be strictly east."
+      ],
+      "explanation": "Boundary equality is handled first.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "For edge (2,0) to (6,4), xHit at y=2 is ___.",
+      "blanks": [
+        "4"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Halfway along this edge."
+      ],
+      "explanation": "Linear interpolation gives 2+2=4.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "Boundary-inclusive rectangle containment uses ___ inequalities.",
+      "blanks": [
+        "inclusive"
+      ],
+      "acceptedAnswers": [
+        [
+          "non-strict",
+          "nonstrict"
+        ]
+      ],
+      "hints": [
+        "Endpoints are accepted."
+      ],
+      "explanation": "Use <= rather than < on the bounds.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "4"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "Ray casting for n edges takes Θ(___) time.",
+      "blanks": [
+        "n"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "A complete edge scan."
+      ],
+      "explanation": "No preprocessing is assumed.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "Before parity, first test whether the query lies on the polygon ___.",
+      "blanks": [
+        "boundary"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "An edge or vertex."
+      ],
+      "explanation": "The result there follows the containment contract.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "sentence": "For strict-interior containment, a boundary query should return ___.",
+      "blanks": [
+        "false"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Interior excludes edges and vertices."
+      ],
+      "explanation": "The inclusive variant returns true instead.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14–15"
+      }
+    }
+  ]
+}

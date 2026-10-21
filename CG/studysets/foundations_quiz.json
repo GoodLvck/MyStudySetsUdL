@@ -1,0 +1,343 @@
+{
+  "metadata": {
+    "title": "Algorithmic Foundations",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "00) COT4521, 5520 slides - what is computational geometry.pdf",
+      "01) COT4521, 5520 slides - complexity.pdf"
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 18,
+    "topics": [
+      "Algorithmic Foundations"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "What does computational geometry primarily study?",
+      "options": [
+        "A) Only numerical calculus",
+        "B) Algorithms and data structures for geometric problems",
+        "C) Only artistic drawing",
+        "D) Only physical geography"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Geometry supplies the objects; algorithm design and analysis supply methods and guarantees.",
+      "source": {
+        "file": "00) COT4521, 5520 slides - what is computational geometry.pdf",
+        "pages": "3–4"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "Which question belongs to computability?",
+      "options": [
+        "A) How many bytes does an implementation use?",
+        "B) How does time grow with n?",
+        "C) Does an algorithm exist for this problem?",
+        "D) Which valid algorithm is fastest?"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Computability concerns existence; complexity concerns resources.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "4"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "In the course Real RAM model, what is the cost of one primitive array read?",
+      "options": [
+        "A) log n units",
+        "B) n units",
+        "C) It depends on the numeric value stored",
+        "D) One unit"
+      ],
+      "correctAnswer": "D",
+      "explanation": "An individual array read is an atomic operation in this model.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–6"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "What defines worst-case time for input size n?",
+      "options": [
+        "A) Average time over unspecified inputs",
+        "B) Maximum executed instruction count among inputs of size n",
+        "C) Minimum time among all inputs",
+        "D) Largest coordinate in the input"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Worst-case analysis maximizes over inputs of a fixed size.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "6"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "hard",
+      "question": "Which statement expresses a tight asymptotic bound?",
+      "options": [
+        "A) f is Ω(g) only",
+        "B) f is O(g) only",
+        "C) f is Θ(g)",
+        "D) f equals g at one input"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Theta requires both an upper and lower asymptotic bound.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "7–10"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "Does f(n) = O(n²) prove that f grows quadratically?",
+      "options": [
+        "A) No; O means a lower bound",
+        "B) No; linear functions also satisfy that upper bound",
+        "C) Yes; all upper bounds are tight",
+        "D) Yes; O always means exact growth"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Big O permits loose upper bounds; use Theta for a tight classification.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "7–10"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "Which order is from slower to faster asymptotic growth?",
+      "options": [
+        "A) log n, n, n log n, n²",
+        "B) n, log n, n², n log n",
+        "C) n log n, log n, n, n²",
+        "D) n², n log n, n, log n"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The listed hierarchy compares sufficiently large inputs.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "11"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "What is the tight bound for 8n² + 3n + 100?",
+      "options": [
+        "A) Θ(n)",
+        "B) Θ(n²)",
+        "C) Θ(n³)",
+        "D) Θ(1)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The highest-degree term dominates and constants do not affect Theta.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "7–11"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "A full scan is followed by another full scan. What is the time?",
+      "options": [
+        "A) Θ(2^n)",
+        "B) Θ(n²)",
+        "C) Θ(n)",
+        "D) Θ(log n)"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Sequential costs add: n + n = 2n.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–11"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "hard",
+      "question": "Loops enumerate every unordered pair of distinct points. How many pairs are there?",
+      "options": [
+        "A) n² exactly",
+        "B) n!",
+        "C) 2n",
+        "D) n(n-1)/2"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Choose two indices; avoid self-pairs and reverse duplicates.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–11"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "For n = 12, how many unordered distinct pairs are checked?",
+      "options": [
+        "A) 132",
+        "B) 24",
+        "C) 66",
+        "D) 144"
+      ],
+      "correctAnswer": "C",
+      "explanation": "12 times 11 divided by 2 equals 66.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–11"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "A loop doubles i from 1 while i < n. Its iteration count is what order?",
+      "options": [
+        "A) Θ(log n)",
+        "B) Θ(n²)",
+        "C) Θ(n)",
+        "D) Θ(1)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "After t doublings i is 2^t, so reaching n takes logarithmically many steps.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–11"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "An outer n-step loop contains an independent log n-step loop. What is the total?",
+      "options": [
+        "A) Θ(log n)",
+        "B) Θ(n log n)",
+        "C) Θ(n + log n)",
+        "D) Θ(n² log n)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The inner cost is paid n times.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–11"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "Changing from log base 2 to log base 10 changes what?",
+      "options": [
+        "A) A constant factor",
+        "B) Logarithmic time to linear time",
+        "C) The asymptotic class",
+        "D) The input size to its square"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The change-of-base formula multiplies by a fixed constant.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "7–11"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "hard",
+      "question": "What is the solution to T(n) = 2T(n/2) + Θ(n), with constant-size base cases?",
+      "options": [
+        "A) Θ(n²)",
+        "B) Θ(2^n)",
+        "C) Θ(log n)",
+        "D) Θ(n log n)"
+      ],
+      "correctAnswer": "D",
+      "explanation": "There are logarithmically many levels with linear work at each level; this is an application exercise.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–11"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "An algorithm sorts in O(n log n) and scans in O(n). Its combined upper bound is what?",
+      "options": [
+        "A) O(n log n)",
+        "B) O(log n)",
+        "C) O(n² log n)",
+        "D) O(n²)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Add sequential phases and keep the dominant term.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–11"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "Which claim about Ω notation is correct?",
+      "options": [
+        "A) It is a lower bound on the function being analyzed",
+        "B) It always means best-case running time",
+        "C) It always means average-case time",
+        "D) It measures only memory"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The case and the direction of a bound are separate concepts.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "7–10"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "question": "Can a constant-size output require nonconstant computation?",
+      "options": [
+        "A) Only if arithmetic is forbidden",
+        "B) No; output size always equals running time",
+        "C) Only when n is at most two",
+        "D) Yes; closest pair returns two points but must examine the input"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Input processing and output size are distinct costs; this applies the cost model to geometric problems.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–11"
+      }
+    }
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "metadata": {
+    "title": "Geometric Search",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "08) COT4521, 5520 slides - geometric search.pdf"
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 18,
+    "topics": [
+      "Geometric Search"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "A fixed point set receives thousands of queries. What mode is this?",
+      "options": [
+        "A) Repetitive and static",
+        "B) One-time and dynamic",
+        "C) Repetitive and necessarily dynamic",
+        "D) One-time and static"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The set remains fixed while queries repeat.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "5–6"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "Which cost measures building the data structure before queries?",
+      "options": [
+        "A) Preprocessing time",
+        "B) Output size only",
+        "C) Update time only",
+        "D) Query time only"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Separate construction from later search and modification costs.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "5–6"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "What defines an orthogonal 2D range?",
+      "options": [
+        "A) A single sorted index",
+        "B) An arbitrary curved path",
+        "C) Only a circle",
+        "D) An axis-aligned product of x and y intervals"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Orthogonal ranges are aligned with coordinate axes.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "7–8"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "A 1D reporting query on sorted values costs what?",
+      "options": [
+        "A) O(log n) regardless of output",
+        "B) O(k²)",
+        "C) O(log n+k)",
+        "D) O(1)"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Binary searches find boundaries and k outputs must be reported.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "10–15"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Geometric Search",
+      "difficulty": "hard",
+      "question": "What does the left-bound search return?",
+      "options": [
+        "A) Any index with value equal to l",
+        "B) The first index with value >= l",
+        "C) The first value greater than r",
+        "D) The last value smaller than l"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The first qualifying index preserves duplicate values at the lower endpoint.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "10–11"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "If U is the first index with value > r, what is the last qualifying index?",
+      "options": [
+        "A) U+1",
+        "B) U-1",
+        "C) U",
+        "D) 0 always"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The report interval is [L,U), equivalently L through U-1.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "10–14"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "For [10,12,16,20,21,22,23,26,29,30], what does [19,23] report?",
+      "options": [
+        "A) 19,20,21,22,23",
+        "B) 16,20,21,22",
+        "C) 20,21,22",
+        "D) 20,21,22,23"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Endpoints are inclusive, but only elements actually in the input are reported.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "8–10"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "For [2,2,5,8] and [2,5], how many elements should be reported?",
+      "options": [
+        "A) 4",
+        "B) 2",
+        "C) 3",
+        "D) 1"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Both copies of 2 and the 5 qualify.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "10–14"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "If all array values are smaller than l, what can lower_bound(l) return?",
+      "options": [
+        "A) n, the position after the last element",
+        "B) The numeric value l itself",
+        "C) Always zero",
+        "D) Always an existing matching index"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Boundary searches may return insertion positions rather than valid element indices.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "10–15"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Geometric Search",
+      "difficulty": "hard",
+      "question": "What extra property supports logarithmic worst-case height in a dynamic BST?",
+      "options": [
+        "A) Balancing, as in an AVL tree",
+        "B) Using floating-point keys",
+        "C) Sorted insertion into an ordinary BST",
+        "D) Storing only the largest point"
+      ],
+      "correctAnswer": "A",
+      "explanation": "An unbalanced BST can have linear height.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "17–21"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "What update cost does the lecture give for a balanced 1D BST?",
+      "options": [
+        "A) O(2^n)",
+        "B) O(n²)",
+        "C) O(log n)",
+        "D) O(1) for every operation"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Balancing maintains logarithmic height.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "21"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "Which coordinate is compared at the actual 2-D data root, level 0?",
+      "options": [
+        "A) Distance to the origin",
+        "B) x",
+        "C) Neither coordinate",
+        "D) y"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Even levels compare x and odd levels compare y.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "22–29"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "At an odd data level, which coordinate controls branching?",
+      "options": [
+        "A) The node's insertion index",
+        "B) x only",
+        "C) The sum x+y",
+        "D) y"
+      ],
+      "correctAnswer": "D",
+      "explanation": "The splitting axis alternates by level.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "22–29"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "At an x-split node x=5, query x range [6,9] needs which subtree?",
+      "options": [
+        "A) Left only",
+        "B) Both necessarily",
+        "C) Neither necessarily",
+        "D) Right only"
+      ],
+      "correctAnswer": "D",
+      "explanation": "The query lies strictly to the right of the splitting coordinate.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "25–27"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Geometric Search",
+      "difficulty": "hard",
+      "question": "At an x-split node x=5, query x range [2,8] may need which subtrees?",
+      "options": [
+        "A) Left only",
+        "B) Neither",
+        "C) Both",
+        "D) Right only"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The query straddles the split.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "25–27"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "A node point lies outside the query rectangle. Can its subtree be discarded solely for that reason?",
+      "options": [
+        "A) No; descendants may still fall inside",
+        "B) Only if the node stores an integer",
+        "C) Yes; a node determines all descendant membership",
+        "D) Yes; every descendant has identical coordinates"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Pruning must use the split or subtree region, not just root membership.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "25–27"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "Under the course's balanced planar 2-D tree assumptions, what is range reporting time?",
+      "options": [
+        "A) O(1)",
+        "B) O(sqrt(n)+k)",
+        "C) O(n²+k)",
+        "D) O(log n+k) for every 2-D tree"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The square-root search overhead depends on a suitable balanced spatial partition.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "30–31"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Geometric Search",
+      "difficulty": "medium",
+      "question": "Does arbitrary insertion into a 2-D tree guarantee the balanced query bound?",
+      "options": [
+        "A) No; 2-D trees cannot store any points",
+        "B) No; insertion order can create an unbalanced tree",
+        "C) Yes; alternating axes automatically balances it",
+        "D) Yes; equal x values are forbidden"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Alternating coordinates is different from maintaining balance.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "28–31"
+      }
+    }
+  ]
+}

@@ -1,0 +1,270 @@
+{
+  "metadata": {
+    "title": "Algorithmic Foundations",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "00) COT4521, 5520 slides - what is computational geometry.pdf",
+      "01) COT4521, 5520 slides - complexity.pdf"
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 12,
+    "topics": [
+      "Algorithmic Foundations"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "The field studies algorithms and data structures for problems of a ___ nature.",
+      "blanks": [
+        "geometric"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Think points, segments, polygons."
+      ],
+      "explanation": "Computational geometry combines geometry with algorithmic methods.",
+      "source": {
+        "file": "00) COT4521, 5520 slides - what is computational geometry.pdf",
+        "pages": "3"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "The existence of an algorithm is a question of ___.",
+      "blanks": [
+        "computability"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Existence, rather than resource use."
+      ],
+      "explanation": "Complexity analyzes time and space after an algorithm is available.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "4"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "Time and space consumption are studied under ___.",
+      "blanks": [
+        "complexity"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The resource-oriented branch."
+      ],
+      "explanation": "These are the main resources used in algorithm analysis.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "4"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "The course computer model is called Real ___.",
+      "blanks": [
+        "RAM"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Three-letter memory acronym."
+      ],
+      "explanation": "Each cell can hold a primitive value, including a real number.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "Worst-case time uses the ___ instruction count for a fixed input size.",
+      "blanks": [
+        "maximum"
+      ],
+      "acceptedAnswers": [
+        [
+          "max",
+          "largest"
+        ]
+      ],
+      "hints": [
+        "Take the most expensive input."
+      ],
+      "explanation": "Maximization is over all inputs of the same size.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "6"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "The notation for a tight asymptotic bound is ___.",
+      "blanks": [
+        "Theta"
+      ],
+      "acceptedAnswers": [
+        [
+          "Θ"
+        ]
+      ],
+      "hints": [
+        "Both upper and lower bounds."
+      ],
+      "explanation": "Theta pins down growth within constant factors.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "7–10"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "Big O provides an asymptotic ___ bound.",
+      "blanks": [
+        "upper"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The function does not eventually exceed a constant multiple."
+      ],
+      "explanation": "A Big O bound need not be tight.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "7–10"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "Big Omega provides an asymptotic ___ bound.",
+      "blanks": [
+        "lower"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The reverse direction of Big O."
+      ],
+      "explanation": "Omega does not itself mean best case.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "7–10"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "Ignoring lower terms, 9n² + 4n has tight bound Θ(___).",
+      "blanks": [
+        "n²"
+      ],
+      "acceptedAnswers": [
+        [
+          "n^2",
+          "n*n"
+        ]
+      ],
+      "hints": [
+        "Keep the dominant power."
+      ],
+      "explanation": "The quadratic term dominates.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "11"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "Two sequential linear scans take Θ(___) time.",
+      "blanks": [
+        "n"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Add the two scan costs."
+      ],
+      "explanation": "2n belongs to the linear class.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–11"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "For 10 distinct points, the number of unordered pairs is ___.",
+      "blanks": [
+        "45"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Compute 10 times 9 divided by 2."
+      ],
+      "explanation": "Choose each pair once.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–11"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Algorithmic Foundations",
+      "difficulty": "medium",
+      "sentence": "A loop that repeatedly halves the remaining interval needs Θ(___) iterations.",
+      "blanks": [
+        "log n"
+      ],
+      "acceptedAnswers": [
+        [
+          "log(n)",
+          "log2(n)"
+        ]
+      ],
+      "hints": [
+        "How many halvings reach one?"
+      ],
+      "explanation": "Binary search is the standard example.",
+      "source": {
+        "file": "01) COT4521, 5520 slides - complexity.pdf",
+        "pages": "5–11"
+      }
+    }
+  ]
+}

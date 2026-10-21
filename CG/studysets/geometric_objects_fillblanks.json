@@ -1,0 +1,352 @@
+{
+  "metadata": {
+    "title": "Geometric Objects and Transformations",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "03) COT4521, 5520 slides - a library of geom objects (basic objects).pdf",
+      "04) COT4521, 5520 slides - a library of geom objects (more objects).pdf"
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 16,
+    "topics": [
+      "Geometric Objects and Transformations"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "The vector from p to q is q ___ p.",
+      "blanks": [
+        "minus"
+      ],
+      "acceptedAnswers": [
+        [
+          "-"
+        ]
+      ],
+      "hints": [
+        "Order determines the direction."
+      ],
+      "explanation": "Reversing the subtraction reverses direction.",
+      "source": {
+        "file": "03) COT4521, 5520 slides - a library of geom objects (basic objects).pdf",
+        "pages": "33–44"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "The magnitude of (6,8) is ___.",
+      "blanks": [
+        "10"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Use the Pythagorean theorem."
+      ],
+      "explanation": "sqrt(36+64)=10.",
+      "source": {
+        "file": "03) COT4521, 5520 slides - a library of geom objects (basic objects).pdf",
+        "pages": "43"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "For nonzero vectors, a zero dot product indicates they are ___.",
+      "blanks": [
+        "perpendicular"
+      ],
+      "acceptedAnswers": [
+        [
+          "orthogonal"
+        ]
+      ],
+      "hints": [
+        "A right angle."
+      ],
+      "explanation": "The zero-vector exception requires care.",
+      "source": {
+        "file": "03) COT4521, 5520 slides - a library of geom objects (basic objects).pdf",
+        "pages": "62"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "The scalar cross product of (1,0) and (0,1) is ___.",
+      "blanks": [
+        "1"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Compute ux*vy-uy*vx."
+      ],
+      "explanation": "It is positive for this counterclockwise ordered pair.",
+      "source": {
+        "file": "03) COT4521, 5520 slides - a library of geom objects (basic objects).pdf",
+        "pages": "66"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "Math.atan2 returns angles in ___.",
+      "blanks": [
+        "radians"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Java trigonometry's angle unit."
+      ],
+      "explanation": "Convert explicitly if degrees are needed.",
+      "source": {
+        "file": "03) COT4521, 5520 slides - a library of geom objects (basic objects).pdf",
+        "pages": "38"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "To normalize a negative degree angle, add ___.",
+      "blanks": [
+        "360"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "One full turn in degrees."
+      ],
+      "explanation": "For radians, add 2*pi instead.",
+      "source": {
+        "file": "03) COT4521, 5520 slides - a library of geom objects (basic objects).pdf",
+        "pages": "43"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "A 90-degree counterclockwise rotation maps (2,5) to (___,2).",
+      "blanks": [
+        "-5"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The old y changes sign and becomes x."
+      ],
+      "explanation": "The mapping is (-y,x).",
+      "source": {
+        "file": "03) COT4521, 5520 slides - a library of geom objects (basic objects).pdf",
+        "pages": "67"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "Rotation preserves Euclidean ___.",
+      "blanks": [
+        "distance"
+      ],
+      "acceptedAnswers": [
+        [
+          "distances",
+          "length",
+          "lengths"
+        ]
+      ],
+      "hints": [
+        "It is a rigid motion."
+      ],
+      "explanation": "Angles and lengths are unchanged.",
+      "source": {
+        "file": "03) COT4521, 5520 slides - a library of geom objects (basic objects).pdf",
+        "pages": "67–76"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "In ax+by+c=0, a normal vector is (___,b).",
+      "blanks": [
+        "a"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The coefficients of x and y."
+      ],
+      "explanation": "This vector is perpendicular to the line.",
+      "source": {
+        "file": "04) COT4521, 5520 slides - a library of geom objects (more objects).pdf",
+        "pages": "3–12"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "A horizontal valid line has coefficient a equal to ___.",
+      "blanks": [
+        "0"
+      ],
+      "acceptedAnswers": [
+        [
+          "zero"
+        ]
+      ],
+      "hints": [
+        "It fixes y and leaves x free."
+      ],
+      "explanation": "The coefficient b must then be nonzero.",
+      "source": {
+        "file": "04) COT4521, 5520 slides - a library of geom objects (more objects).pdf",
+        "pages": "3–12"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "A unique line intersection requires determinant D to be ___.",
+      "blanks": [
+        "nonzero"
+      ],
+      "acceptedAnswers": [
+        [
+          "non-zero",
+          "not zero"
+        ]
+      ],
+      "hints": [
+        "Division by D must be possible."
+      ],
+      "explanation": "If D is zero, distinguish parallel from coincident.",
+      "source": {
+        "file": "04) COT4521, 5520 slides - a library of geom objects (more objects).pdf",
+        "pages": "21–22"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "A polygon containing every segment between its own points is ___.",
+      "blanks": [
+        "convex"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The segment-containment property."
+      ],
+      "explanation": "Nonconvex polygons can fail this property.",
+      "source": {
+        "file": "04) COT4521, 5520 slides - a library of geom objects (more objects).pdf",
+        "pages": "64"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "GeometricObject is an ___ class.",
+      "blanks": [
+        "abstract"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "It declares behavior implemented by shapes."
+      ],
+      "explanation": "The base class shares colors and the draw interface.",
+      "source": {
+        "file": "03) COT4521, 5520 slides - a library of geom objects (basic objects).pdf",
+        "pages": "5"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "Distance from (0,0) to 3x+4y-10=0 is ___.",
+      "blanks": [
+        "2"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Divide 10 by the normal length 5."
+      ],
+      "explanation": "Use absolute signed residual divided by sqrt(a²+b²).",
+      "source": {
+        "file": "04) COT4521, 5520 slides - a library of geom objects (more objects).pdf",
+        "pages": "16"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "The set of all vector sums a+b is the ___ sum.",
+      "blanks": [
+        "Minkowski"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "A named geometric operation."
+      ],
+      "explanation": "It differs from union and intersection.",
+      "source": {
+        "file": "04) COT4521, 5520 slides - a library of geom objects (more objects).pdf",
+        "pages": "49"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Geometric Objects and Transformations",
+      "difficulty": "medium",
+      "sentence": "Reflecting x interval [2,5] about the origin gives [-5,___].",
+      "blanks": [
+        "-2"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Negate and reverse the endpoints."
+      ],
+      "explanation": "The minimum and maximum exchange roles under negation.",
+      "source": {
+        "file": "04) COT4521, 5520 slides - a library of geom objects (more objects).pdf",
+        "pages": "53"
+      }
+    }
+  ]
+}

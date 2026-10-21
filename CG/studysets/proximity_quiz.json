@@ -1,0 +1,342 @@
+{
+  "metadata": {
+    "title": "Closest Pair and Proximity",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "05) COT4521, 5520 slides - proximity.pdf"
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 18,
+    "topics": [
+      "Closest Pair and Proximity"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "What is the brute-force closest-pair running time?",
+      "options": [
+        "A) Θ(1)",
+        "B) Θ(n²)",
+        "C) Θ(n)",
+        "D) Θ(log n)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "It evaluates all n(n-1)/2 unordered pairs.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "6–7"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "Why can squared distance replace distance for closest-pair comparisons?",
+      "options": [
+        "A) It reduces the number of input points",
+        "B) Every pair has equal squared distance",
+        "C) Squared distances are always integers",
+        "D) Square root is strictly increasing on nonnegative values"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Both measures give the same ordering in exact arithmetic.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "6–7"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "What is the closest distance if two different records have identical coordinates?",
+      "options": [
+        "A) 0",
+        "B) Undefined in every formulation",
+        "C) Infinity",
+        "D) 1"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Distinct input elements can occupy the same location.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "6–7"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "After recursively solving both halves, what must still be checked?",
+      "options": [
+        "A) No further pairs",
+        "B) Pairs crossing the split",
+        "C) Only pairs already found in the left half",
+        "D) Only the farthest two points"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The global closest pair might use one point from each half.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "8–18"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "hard",
+      "question": "Which strip can contain endpoints of a crossing pair closer than delta?",
+      "options": [
+        "A) Within delta of the dividing line on either side",
+        "B) Only the highest point in each half",
+        "C) All points outside both half-planes",
+        "D) Only points exactly on the dividing line"
+      ],
+      "correctAnswer": "A",
+      "explanation": "A point farther away horizontally cannot participate in a crossing improvement.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "12–15"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "Why does scanning all pairs inside the strip fail to guarantee linear combine time?",
+      "options": [
+        "A) The strip contains no valid pair",
+        "B) The strip may contain Θ(n) points",
+        "C) The strip always has two points",
+        "D) Distances cannot be computed there"
+      ],
+      "correctAnswer": "B",
+      "explanation": "A y-order and packing argument are needed to bound candidate comparisons.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "13–16"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "What geometric fact supports a constant number of candidates per strip point?",
+      "options": [
+        "A) All strip points share the same y",
+        "B) Every polygon is convex",
+        "C) Points within each half are separated by at least delta",
+        "D) All x coordinates are distinct integers"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Packing separated points into a bounded-size rectangle limits candidate count.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "14–16"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "How should y order be handled to achieve the O(n log n) algorithm?",
+      "options": [
+        "A) Ignore it and compare all strip pairs",
+        "B) Sort only the output pair",
+        "C) Preserve it by linear partitioning or merging through recursion",
+        "D) Re-sort every subproblem independently at every level"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Linear combine work avoids an extra logarithmic factor.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "15–17"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "Which recurrence describes the efficient divide-and-conquer algorithm?",
+      "options": [
+        "A) T(n)=O(1)",
+        "B) T(n)=2T(n/2)+O(n²)",
+        "C) T(n)=T(n-1)+O(n²)",
+        "D) T(n)=2T(n/2)+O(n)"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Two balanced subproblems and linear merging yield O(n log n).",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "17–18"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "hard",
+      "question": "How does element uniqueness reduce to closest pair?",
+      "options": [
+        "A) Sort by y and ignore x",
+        "B) Map ai to its index and test the maximum distance",
+        "C) Discard duplicates before running the algorithm",
+        "D) Map ai to (ai,0) and test whether minimum distance is zero"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Equal numbers become coincident input points.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "19–20"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "What qualifies the lecture's optimal Θ(n log n) claim?",
+      "options": [
+        "A) The lower bound depends on the computational model and problem assumptions",
+        "B) It says n must be a power of two",
+        "C) It assumes input size is constant",
+        "D) It applies to every integer machine operation without qualification"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Lower bounds must be interpreted under the assumptions used to establish them.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "19–20"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "For p=(1,3), b=(0,0), e=(4,0), what is the closest segment point?",
+      "options": [
+        "A) (4,0)",
+        "B) (1,0)",
+        "C) (1,3)",
+        "D) (0,0)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The projection parameter is 1/4, inside the segment.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "46–50"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "For p=(7,2), b=(0,0), e=(4,0), what is the closest segment point?",
+      "options": [
+        "A) (4,0)",
+        "B) (7,2)",
+        "C) (0,0)",
+        "D) (7,0)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The raw projection parameter exceeds 1, so clamp to the endpoint e.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "46–50"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "Which formula gives the raw projection parameter t?",
+      "options": [
+        "A) (v cross w)/(v dot v)",
+        "B) magnitude(w)+magnitude(v)",
+        "C) (w dot v)/magnitude(v)",
+        "D) (w dot v)/(v dot v)"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Here v=e-b and w=p-b; the squared segment length is the denominator.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "48–50"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "hard",
+      "question": "If b=e, how should closest-point code handle the segment?",
+      "options": [
+        "A) Return the query point always",
+        "B) Discard the whole polygon",
+        "C) Return b before dividing by v dot v",
+        "D) Divide by zero and keep the result"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The segment is a single point; this adds a guard absent from the slide snippet.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "48–50"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "A raw projection parameter t=-0.3 selects which closest point?",
+      "options": [
+        "A) The midpoint always",
+        "B) The unbounded projection outside the segment",
+        "C) b",
+        "D) e"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Clamping t to [0,1] makes it zero.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "48–50"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "How much time is needed to find the closest point among m independent segments by scanning them?",
+      "options": [
+        "A) O(m)",
+        "B) O(2^m)",
+        "C) O(1)",
+        "D) O(log m) without preprocessing"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Each segment projection takes constant time.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "51"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "question": "How does nearest-neighbor differ from closest-pair search?",
+      "options": [
+        "A) Closest pair requires a polygon",
+        "B) Nearest-neighbor includes a separate query point",
+        "C) Nearest-neighbor always finds the farthest pair",
+        "D) Nearest-neighbor has no input set"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Closest pair minimizes over two elements of the input set; nearest-neighbor fixes the query.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "3–6"
+      }
+    }
+  ]
+}

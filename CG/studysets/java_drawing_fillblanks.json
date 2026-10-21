@@ -1,0 +1,276 @@
+{
+  "metadata": {
+    "title": "Drawing Tools in Java",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+      "05) COT4521, 5520 slides - proximity.pdf",
+      "08) COT4521, 5520 slides - geometric search.pdf"
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 12,
+    "topics": [
+      "Drawing Tools in Java"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "Positive screen y points ___.",
+      "blanks": [
+        "down"
+      ],
+      "acceptedAnswers": [
+        [
+          "downward"
+        ]
+      ],
+      "hints": [
+        "Opposite the usual mathematical positive y."
+      ],
+      "explanation": "This affects how rotations and turns appear.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "3"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "Positive screen x points ___.",
+      "blanks": [
+        "right"
+      ],
+      "acceptedAnswers": [
+        [
+          "rightward"
+        ]
+      ],
+      "hints": [
+        "Same horizontal direction as Cartesian x."
+      ],
+      "explanation": "Only the vertical axis is reversed.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "3"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "A circle of radius r needs width ___ in its oval bounding box.",
+      "blanks": [
+        "2r"
+      ],
+      "acceptedAnswers": [
+        [
+          "2*r",
+          "2 r"
+        ]
+      ],
+      "hints": [
+        "Diameter, not radius."
+      ],
+      "explanation": "Both width and height equal the diameter.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "9–14"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "For center x = 70 and radius 10, the oval's left x is ___.",
+      "blanks": [
+        "60"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Subtract the radius."
+      ],
+      "explanation": "The call takes the bounding-box corner.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "The Graphics method that fills an oval is ___.",
+      "blanks": [
+        "fillOval"
+      ],
+      "acceptedAnswers": [
+        [
+          "fillOval()"
+        ]
+      ],
+      "hints": [
+        "Starts with fill."
+      ],
+      "explanation": "drawOval paints only the outline.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "9–10"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "A paint method should draw already-stored ___ rather than request console input.",
+      "blanks": [
+        "state"
+      ],
+      "acceptedAnswers": [
+        [
+          "data",
+          "geometry"
+        ]
+      ],
+      "hints": [
+        "The model's current values."
+      ],
+      "explanation": "The system may invoke painting many times.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "15–22"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "After a state change, request a redraw with ___.",
+      "blanks": [
+        "repaint"
+      ],
+      "acceptedAnswers": [
+        [
+          "repaint()"
+        ]
+      ],
+      "hints": [
+        "The method starts with re."
+      ],
+      "explanation": "The request leads to a later paint using the new values.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "26–32"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "GraphDisplay extends the Swing class ___.",
+      "blanks": [
+        "JPanel"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The drawable panel component."
+      ],
+      "explanation": "The frame contains the panel.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "39"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "FrameDisplay extends the Swing window class ___.",
+      "blanks": [
+        "JFrame"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The top-level frame class."
+      ],
+      "explanation": "The panel performs custom drawing inside the frame.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "8"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "After setting the panel's preferred size, call ___ on the frame.",
+      "blanks": [
+        "pack"
+      ],
+      "acceptedAnswers": [
+        [
+          "pack()"
+        ]
+      ],
+      "hints": [
+        "Fit the window to its contents."
+      ],
+      "explanation": "This accounts for the preferred content size.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "40–48"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "A 400-pixel panel's last pixel coordinate is ___.",
+      "blanks": [
+        "399"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Coordinates start at zero."
+      ],
+      "explanation": "The first coordinate is 0 and the last is width minus one.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "41"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "sentence": "Movement and dragging are handled by Mouse___Listener.",
+      "blanks": [
+        "Motion"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The listener for pointer motion."
+      ],
+      "explanation": "MouseMotionListener has mouseMoved and mouseDragged.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "34–38"
+      }
+    }
+  ]
+}

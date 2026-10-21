@@ -1,0 +1,344 @@
+{
+  "metadata": {
+    "title": "Drawing Tools in Java",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+      "05) COT4521, 5520 slides - proximity.pdf",
+      "08) COT4521, 5520 slides - geometric search.pdf"
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 18,
+    "topics": [
+      "Drawing Tools in Java"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "Where is the origin in the Java component coordinate system shown in class?",
+      "options": [
+        "A) Bottom-left corner",
+        "B) Top-left corner",
+        "C) Bottom-right corner",
+        "D) Center"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Screen x increases right and y increases down.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "3"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "A point changes from (20,30) to (20,45) in screen coordinates. Which way does it move?",
+      "options": [
+        "A) Up",
+        "B) Down",
+        "C) Right",
+        "D) Left"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Increasing screen y moves downward.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "3"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "Which arguments draw a circle centered at (80,100) with radius 15?",
+      "options": [
+        "A) drawOval(65,85,30,30)",
+        "B) drawOval(80,100,15,15)",
+        "C) drawOval(65,85,15,15)",
+        "D) drawOval(80,100,30,30)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Subtract the radius from the center and use twice the radius for each dimension.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "9–14"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "What do width and height represent in drawOval(x,y,width,height)?",
+      "options": [
+        "A) Two radii measured from the center",
+        "B) Stroke width and font height",
+        "C) Coordinates of a second endpoint",
+        "D) Dimensions of the bounding rectangle"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Oval drawing uses a top-left corner and bounding-box dimensions.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "9–10"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "hard",
+      "question": "Which method paints an oval's interior?",
+      "options": [
+        "A) drawOval",
+        "B) fillOval",
+        "C) setFont",
+        "D) drawLine"
+      ],
+      "correctAnswer": "B",
+      "explanation": "fillOval fills; drawOval outlines.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "9–10"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "Why draw graph edges before filled vertex disks?",
+      "options": [
+        "A) Java requires all lines before all ovals",
+        "B) The disks cover the line portions inside the vertices",
+        "C) It changes the graph's combinatorial structure",
+        "D) Edges otherwise have zero length"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Later drawing can cover earlier pixels.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "9–11"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "Why should console input not be requested inside paint()?",
+      "options": [
+        "A) The system can invoke painting repeatedly and unexpectedly",
+        "B) paint can only use constant values",
+        "C) Only the frame can store data",
+        "D) Scanner cannot read integers"
+      ],
+      "correctAnswer": "A",
+      "explanation": "A paint method should redraw stored state rather than block waiting for input.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "15–22"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "After updating an ellipse's stored coordinates, which call requests a redraw?",
+      "options": [
+        "A) pack() only",
+        "B) setTitle()",
+        "C) repaint()",
+        "D) getX()"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Repaint asks Swing to redraw using current state.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "26–32"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "In the lecture's paint(Graphics g) example, why call super.paint(g)?",
+      "options": [
+        "A) To perform inherited painting before custom drawing",
+        "B) To close the window",
+        "C) To change all coordinate signs",
+        "D) To read another ellipse"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The superclass call restores normal component painting before the custom geometry.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "32"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "hard",
+      "question": "Which class is responsible for custom drawing in the lecture framework?",
+      "options": [
+        "A) Scanner",
+        "B) The JVM launcher class",
+        "C) The main method alone",
+        "D) The JPanel subclass"
+      ],
+      "correctAnswer": "D",
+      "explanation": "GraphDisplay is the drawing panel.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "39"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "How do the examples obtain a desired drawable panel size?",
+      "options": [
+        "A) Assume frame size equals panel size",
+        "B) Use the radius as the frame width",
+        "C) Set only the frame title",
+        "D) Set the panel's preferred size and pack the frame"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Window decorations can reduce content space; pack uses preferred component sizes.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "40–48"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "A panel is 400 pixels wide. What is the greatest valid pixel x coordinate?",
+      "options": [
+        "A) 401",
+        "B) 400",
+        "C) 399",
+        "D) 398"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Pixel positions run from zero through width minus one.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "41"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "What does setColor(Color.BLACK) affect?",
+      "options": [
+        "A) Subsequent drawing operations on that Graphics context",
+        "B) Every previously painted pixel",
+        "C) Only the preceding draw call",
+        "D) Only the window title"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Drawing state applies to later operations.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "9–10"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "Increasing both a circle's screen x and y in an animation moves it where?",
+      "options": [
+        "A) Up and left",
+        "B) Up and right",
+        "C) Down and right",
+        "D) Down and left"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Positive screen x is right and positive screen y is down.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "33–38"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "hard",
+      "question": "A panel implements a mouse listener but receives no events. What important step may be missing?",
+      "options": [
+        "A) Calling Math.atan2",
+        "B) Changing every field to static",
+        "C) Registering the listener with the component",
+        "D) Sorting the points by x"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Implementation and registration are separate requirements.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "21–36"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "Which listener interface handles mouseDragged and mouseMoved?",
+      "options": [
+        "A) WindowListener",
+        "B) ActionListener only",
+        "C) KeyListener",
+        "D) MouseMotionListener"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Mouse motion events include movement and dragging.",
+      "source": {
+        "file": "08) COT4521, 5520 slides - geometric search.pdf",
+        "pages": "34–38"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "What happens if repaint is requested but drawable state is unchanged?",
+      "options": [
+        "A) The same geometry is rendered again",
+        "B) The geometry automatically translates",
+        "C) The application reads new console input automatically",
+        "D) The frame becomes a polygon"
+      ],
+      "correctAnswer": "A",
+      "explanation": "A redraw uses current state; it does not itself update that state.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "23–32"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Drawing Tools in Java",
+      "difficulty": "medium",
+      "question": "A fillOval call is followed by a black drawOval with the same bounds. What is the intended result?",
+      "options": [
+        "A) An invisible shape",
+        "B) A filled disk or ellipse with a black outline",
+        "C) Two disjoint ovals",
+        "D) A black rectangle"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The second operation outlines the filled shape at the same location.",
+      "source": {
+        "file": "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+        "pages": "9–10"
+      }
+    }
+  ]
+}

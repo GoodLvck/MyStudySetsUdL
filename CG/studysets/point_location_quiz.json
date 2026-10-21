@@ -1,0 +1,342 @@
+{
+  "metadata": {
+    "title": "Point Location",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "07) COT4521, 5520 slides - point location.pdf"
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 18,
+    "topics": [
+      "Point Location"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "For boundary-inclusive rectangle containment, which comparison is appropriate?",
+      "options": [
+        "A) py <= maxY only",
+        "B) px > maxX and py > maxY",
+        "C) px >= minX only",
+        "D) minX <= px <= maxX and minY <= py <= maxY"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Both coordinate intervals must contain the point, including their endpoints.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "3–4"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "For [1,5] x [2,6], where is point (1,4)?",
+      "options": [
+        "A) Exterior",
+        "B) At the rectangle center",
+        "C) Strictly interior",
+        "D) On the boundary"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Its x equals the left bound and its y lies between the vertical bounds.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "4"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "After handling boundary points, an eastward ray with five proper crossings indicates what?",
+      "options": [
+        "A) Interior",
+        "B) Boundary automatically",
+        "C) Exterior",
+        "D) An invalid polygon automatically"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Five is odd.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "8–9"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "After handling boundary points, an eastward ray with four crossings indicates what?",
+      "options": [
+        "A) Interior",
+        "B) Exterior",
+        "C) A closest-pair tie",
+        "D) Boundary automatically"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Four is even.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "8–9"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Point Location",
+      "difficulty": "hard",
+      "question": "What endpoint convention does the lecture use for crossing counts?",
+      "options": [
+        "A) Include both endpoints always",
+        "B) Include upper y, exclude lower y without changing anything else",
+        "C) Exclude both endpoints always",
+        "D) Include lower y, exclude upper y"
+      ],
+      "correctAnswer": "D",
+      "explanation": "The half-open rule prevents double counting at shared vertices.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "10–14"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "How should horizontal edges be treated?",
+      "options": [
+        "A) Delete them before all processing",
+        "B) Always return outside",
+        "C) Count them twice for every query",
+        "D) Check boundary membership but skip them in the parity count"
+      ],
+      "correctAnswer": "D",
+      "explanation": "They can contain the query point even though they do not contribute ordinary ray crossings.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "13–14"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "Why test whether p is on an edge before applying parity?",
+      "options": [
+        "A) It guarantees an odd crossing count",
+        "B) Boundary membership is a separate contract decision",
+        "C) It avoids reading vertices",
+        "D) It changes every polygon into a rectangle"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The general lecture algorithm includes boundary points; parity handles points off the boundary.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "For an eligible edge, which intersection is counted by the eastward ray?",
+      "options": [
+        "A) An intersection with xHit > px",
+        "B) Only intersections below py",
+        "C) Every intersection regardless of x",
+        "D) Only xHit < px"
+      ],
+      "correctAnswer": "A",
+      "explanation": "An eastward ray contains points strictly to the right after the boundary case is removed.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "Edge (2,0) to (6,4) intersects y=1 at which x?",
+      "options": [
+        "A) 6",
+        "B) 3",
+        "C) 2",
+        "D) 4"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Linear interpolation gives 2+(1/4)*(6-2)=3.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Point Location",
+      "difficulty": "hard",
+      "question": "For edge (2,0) to (6,4), does query (4,1) count its intersection?",
+      "options": [
+        "A) No; the hit at x=3 is west of the query",
+        "B) Yes; every nonhorizontal edge counts",
+        "C) No; the edge is horizontal",
+        "D) Yes; the query y is positive"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Eligibility in y alone is insufficient; the hit must be east of p.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "A nonhorizontal edge spans y=1 through y=5. Which query y is excluded by the half-open rule?",
+      "options": [
+        "A) 4",
+        "B) 1",
+        "C) 5",
+        "D) 2"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The upper endpoint is excluded, while the lower endpoint is included.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "For a polygon with n edges, a full ray-casting query takes what time?",
+      "options": [
+        "A) Θ(n²)",
+        "B) Θ(n)",
+        "C) Θ(log n) without preprocessing",
+        "D) Θ(1)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Each edge is tested once.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "How can the same routine implement strict-interior containment?",
+      "options": [
+        "A) Ignore the closing edge",
+        "B) Always accept vertices",
+        "C) Return false when p is on any boundary edge, then use parity otherwise",
+        "D) Reverse every inequality randomly"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The boundary decision changes; the off-boundary parity result does not.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14–15"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "How should an exact point-on-segment test be implemented?",
+      "options": [
+        "A) Only a positive dot product",
+        "B) Collinearity plus inclusive endpoint bounds",
+        "C) Only equal distances to both endpoints",
+        "D) Only equality of x coordinates"
+      ],
+      "correctAnswer": "B",
+      "explanation": "A point can be collinear but beyond an endpoint.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Point Location",
+      "difficulty": "hard",
+      "question": "What happens to parity at a local y-extremum vertex under the half-open rule?",
+      "options": [
+        "A) The polygon becomes nonsimple",
+        "B) Every extremum forces inside",
+        "C) Incident edges contribute zero or two crossings, so tangency does not toggle parity",
+        "D) Every extremum contributes exactly one"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The rule handles tangential contacts consistently.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "10–14"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "For rectangle polygon (0,0),(4,0),(4,3),(0,3), how many eastward crossings does p=(1,1) have?",
+      "options": [
+        "A) 1",
+        "B) 0",
+        "C) 2",
+        "D) 4"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Only the right edge is east of the query.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "8–14"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "For the same rectangle, p=(5,1) has how many eastward crossings?",
+      "options": [
+        "A) 0",
+        "B) 2",
+        "C) 3",
+        "D) 1"
+      ],
+      "correctAnswer": "A",
+      "explanation": "All boundary intersections at that y lie west of the query.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "8–14"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Point Location",
+      "difficulty": "medium",
+      "question": "Why should you read the method contract before classifying a boundary point?",
+      "options": [
+        "A) Parity alone always distinguishes all three classes",
+        "B) Boundary points never occur in geometry",
+        "C) The lecture's inclusive algorithm and interior-only exercise use different boundary conventions",
+        "D) Every Java method must exclude boundaries"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Specify whether the required result includes or excludes boundary membership.",
+      "source": {
+        "file": "07) COT4521, 5520 slides - point location.pdf",
+        "pages": "3–15"
+      }
+    }
+  ]
+}

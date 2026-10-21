@@ -1,0 +1,266 @@
+{
+  "metadata": {
+    "title": "Closest Pair and Proximity",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "05) COT4521, 5520 slides - proximity.pdf"
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 12,
+    "topics": [
+      "Closest Pair and Proximity"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "Brute-force closest pair enumerates n(n-1)/___ pairs.",
+      "blanks": [
+        "2"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Each unordered pair is counted once."
+      ],
+      "explanation": "Self-pairs and reversed duplicates are excluded.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "6–7"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "For n=6, brute force checks ___ unordered pairs.",
+      "blanks": [
+        "15"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Compute 6 times 5 divided by 2."
+      ],
+      "explanation": "This is quadratic growth in n.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "6–7"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "In divide and conquer, delta is the ___ of the two half-distances.",
+      "blanks": [
+        "minimum"
+      ],
+      "acceptedAnswers": [
+        [
+          "min"
+        ]
+      ],
+      "hints": [
+        "Keep the better recursive answer."
+      ],
+      "explanation": "Only a crossing pair closer than this value improves the result.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "12–15"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "A crossing pair closer than delta must have y difference ___ than delta.",
+      "blanks": [
+        "less"
+      ],
+      "acceptedAnswers": [
+        [
+          "smaller"
+        ]
+      ],
+      "hints": [
+        "Distance is at least absolute y difference."
+      ],
+      "explanation": "This allows a short window in y order.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "12–16"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "With linear merging, closest pair runs in O(n ___ n).",
+      "blanks": [
+        "log"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Two balanced recursive halves."
+      ],
+      "explanation": "The recurrence has linear work per level.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "15–18"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "Mapping ai to (ai,0) detects duplicates when the closest distance is ___.",
+      "blanks": [
+        "0"
+      ],
+      "acceptedAnswers": [
+        [
+          "zero"
+        ]
+      ],
+      "hints": [
+        "Equal coordinates give this distance."
+      ],
+      "explanation": "This is the element-uniqueness reduction.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "19"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "The denominator of projection t is v dot ___.",
+      "blanks": [
+        "v"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "It is the squared segment length."
+      ],
+      "explanation": "Using only magnitude(v) would give projection length, not the parameter.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "48–50"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "A projection parameter must be clamped to the interval [0,___].",
+      "blanks": [
+        "1"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The endpoint e corresponds to this parameter."
+      ],
+      "explanation": "Parameters outside the interval lie beyond the segment.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "48–50"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "If the raw parameter t is negative, return endpoint ___.",
+      "blanks": [
+        "b"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The beginning endpoint."
+      ],
+      "explanation": "The clamped parameter is zero.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "48–50"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "If the raw parameter t exceeds one, return endpoint ___.",
+      "blanks": [
+        "e"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The ending endpoint."
+      ],
+      "explanation": "The clamped parameter is one.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "48–50"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "A zero-length segment has v dot v equal to ___.",
+      "blanks": [
+        "0"
+      ],
+      "acceptedAnswers": [
+        [
+          "zero"
+        ]
+      ],
+      "hints": [
+        "Its direction vector is the zero vector."
+      ],
+      "explanation": "Handle it before division.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "48–50"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Closest Pair and Proximity",
+      "difficulty": "medium",
+      "sentence": "Scanning m segments for the nearest candidate takes O(___) time.",
+      "blanks": [
+        "m"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "One constant-time projection per segment."
+      ],
+      "explanation": "Keep the smallest distance while scanning.",
+      "source": {
+        "file": "05) COT4521, 5520 slides - proximity.pdf",
+        "pages": "51"
+      }
+    }
+  ]
+}

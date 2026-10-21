@@ -1,0 +1,83 @@
+[
+  {
+    "slug": "foundations",
+    "title": "Algorithmic Foundations",
+    "icon": "⏱️",
+    "description": "Real RAM, asymptotic bounds, growth rates, recurrences, and geometric algorithm design.",
+    "quiz": 18,
+    "fill": 12,
+    "sourceFiles": [
+      "00) COT4521, 5520 slides - what is computational geometry.pdf",
+      "01) COT4521, 5520 slides - complexity.pdf"
+    ]
+  },
+  {
+    "slug": "java_drawing",
+    "title": "Drawing Tools in Java",
+    "icon": "🎨",
+    "description": "Coordinates, Graphics, frame/panel design, repainting, sizing, and mouse events.",
+    "quiz": 18,
+    "fill": 12,
+    "sourceFiles": [
+      "02) COT4521, 5520 slides - drawing tools in Java.pdf",
+      "05) COT4521, 5520 slides - proximity.pdf",
+      "08) COT4521, 5520 slides - geometric search.pdf"
+    ]
+  },
+  {
+    "slug": "geometric_objects",
+    "title": "Geometric Objects and Transformations",
+    "icon": "📐",
+    "description": "Points, vectors, lines, segments, rectangles, polygon types, and rotations.",
+    "quiz": 24,
+    "fill": 16,
+    "sourceFiles": [
+      "03) COT4521, 5520 slides - a library of geom objects (basic objects).pdf",
+      "04) COT4521, 5520 slides - a library of geom objects (more objects).pdf"
+    ]
+  },
+  {
+    "slug": "proximity",
+    "title": "Closest Pair and Proximity",
+    "icon": "📍",
+    "description": "Brute force, divide and conquer, strip packing, lower bounds, and segment projections.",
+    "quiz": 18,
+    "fill": 12,
+    "sourceFiles": [
+      "05) COT4521, 5520 slides - proximity.pdf"
+    ]
+  },
+  {
+    "slug": "polygon_operations",
+    "title": "Orientation and Polygon Operations",
+    "icon": "🔺",
+    "description": "Signed turns, shoelace area, boundary order, closest boundary points, and rotation.",
+    "quiz": 18,
+    "fill": 12,
+    "sourceFiles": [
+      "06) COT4521, 5520 slides - polygon operations.pdf"
+    ]
+  },
+  {
+    "slug": "point_location",
+    "title": "Point Location",
+    "icon": "🎯",
+    "description": "Rectangle containment, ray casting, boundary checks, vertex rules, and degeneracies.",
+    "quiz": 18,
+    "fill": 12,
+    "sourceFiles": [
+      "07) COT4521, 5520 slides - point location.pdf"
+    ]
+  },
+  {
+    "slug": "geometric_search",
+    "title": "Geometric Search",
+    "icon": "🌳",
+    "description": "Range reporting, binary search boundaries, balanced BSTs, 2-D trees, and pruning.",
+    "quiz": 18,
+    "fill": 12,
+    "sourceFiles": [
+      "08) COT4521, 5520 slides - geometric search.pdf"
+    ]
+  }
+]

@@ -1,0 +1,264 @@
+{
+  "metadata": {
+    "title": "Orientation and Polygon Operations",
+    "subject": "CG — Computational Geometry",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "06) COT4521, 5520 slides - polygon operations.pdf"
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 12,
+    "topics": [
+      "Orientation and Polygon Operations"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "A positive determinant in Cartesian coordinates indicates a ___ turn.",
+      "blanks": [
+        "left"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Counterclockwise from the directed first edge."
+      ],
+      "explanation": "Screen y-down coordinates reverse the visual interpretation.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "3–6"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "A negative determinant in Cartesian coordinates indicates a ___ turn.",
+      "blanks": [
+        "right"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The lecture returns -1."
+      ],
+      "explanation": "The sign depends on the order of the points.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "3–6"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "A zero determinant means the three points are ___.",
+      "blanks": [
+        "collinear"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "They lie on one supporting line."
+      ],
+      "explanation": "Repeated-point degeneracies also produce zero.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "3–6"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "The signed area of a triangle is its determinant divided by ___.",
+      "blanks": [
+        "2"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The cross product measures twice the area."
+      ],
+      "explanation": "Take the absolute value for unsigned area.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "12–13"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "Counterclockwise vertices give a ___ signed shoelace area.",
+      "blanks": [
+        "positive"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Assume Cartesian coordinates."
+      ],
+      "explanation": "Clockwise order gives the opposite sign.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "13"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "The lecture's area() uses Math.___ to return nonnegative area.",
+      "blanks": [
+        "abs"
+      ],
+      "acceptedAnswers": [
+        [
+          "abs()"
+        ]
+      ],
+      "hints": [
+        "Absolute value."
+      ],
+      "explanation": "This removes the orientation sign.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "15"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "For n vertices, the index after the last vertex wraps to ___.",
+      "blanks": [
+        "0"
+      ],
+      "acceptedAnswers": [
+        [
+          "zero"
+        ]
+      ],
+      "hints": [
+        "Array indices start here."
+      ],
+      "explanation": "Modulo n closes the polygon boundary.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "15"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "A rectangle with side lengths 4 and 3 has area ___.",
+      "blanks": [
+        "12"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Multiply width by height."
+      ],
+      "explanation": "Shoelace gives the same result.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "12–15"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "The shoelace scan takes Θ(___) time for n vertices.",
+      "blanks": [
+        "n"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Each edge is processed once."
+      ],
+      "explanation": "It uses constant extra working storage.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "15"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "Reversing boundary order negates the ___ area.",
+      "blanks": [
+        "signed"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Unsigned area is unchanged."
+      ],
+      "explanation": "Each directed edge reverses its contribution.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "12–15"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "Nearest-boundary search must project onto every polygon ___.",
+      "blanks": [
+        "edge"
+      ],
+      "acceptedAnswers": [
+        [
+          "segment"
+        ]
+      ],
+      "hints": [
+        "Include the closing one."
+      ],
+      "explanation": "A minimum can occur away from vertices.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "17"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Orientation and Polygon Operations",
+      "difficulty": "medium",
+      "sentence": "Rotating all vertices takes Θ(___) time.",
+      "blanks": [
+        "n"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "One constant-time rotation per vertex."
+      ],
+      "explanation": "Boundary order is preserved.",
+      "source": {
+        "file": "06) COT4521, 5520 slides - polygon operations.pdf",
+        "pages": "18"
+      }
+    }
+  ]
+}
