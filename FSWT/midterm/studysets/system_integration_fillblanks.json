@@ -1,0 +1,431 @@
+{
+  "metadata": {
+    "title": "System Integration Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "L6_Ch7-SystemIntegrationTesting [Updated].pdf"
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 20,
+    "topics": [
+      "SIT fundamentals",
+      "Interfaces and granularity",
+      "Builds and regression",
+      "Integration test categories",
+      "Integration strategies",
+      "Stubs and drivers",
+      "Hardware and plans",
+      "COTS and built-in testing"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "SIT fundamentals",
+      "difficulty": "medium",
+      "sentence": "The abbreviation SIT means System ___ Testing.",
+      "blanks": [
+        "Integration"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Testing assembled interactions."
+      ],
+      "explanation": "It complements isolated module tests.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "3–5"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Interfaces and granularity",
+      "difficulty": "medium",
+      "sentence": "Procedure calls, shared memory, and message ___ are interface paradigms.",
+      "blanks": [
+        "passing"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Communicate by sending messages."
+      ],
+      "explanation": "The other two mechanisms are also in the lecture.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "5"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Interfaces and granularity",
+      "difficulty": "medium",
+      "sentence": "Combining modules within one system is ___-system testing.",
+      "blanks": [
+        "intra"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Within rather than between."
+      ],
+      "explanation": "Inter-system joins separate systems.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "7"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Interfaces and granularity",
+      "difficulty": "medium",
+      "sentence": "Joining independent systems is ___-system testing.",
+      "blanks": [
+        "inter"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Between rather than within."
+      ],
+      "explanation": "A shop and external gateway are an example.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "7"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Interfaces and granularity",
+      "difficulty": "medium",
+      "sentence": "Pairwise integration focuses on ___ interconnected systems at a time.",
+      "blanks": [
+        "two"
+      ],
+      "acceptedAnswers": [
+        [
+          "2"
+        ]
+      ],
+      "hints": [
+        "A pair."
+      ],
+      "explanation": "It differs from pairwise combinatorial input testing.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "7"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Builds and regression",
+      "difficulty": "medium",
+      "sentence": "An interim software image for internal testing is a ___.",
+      "blanks": [
+        "build"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "A version assembled for testing."
+      ],
+      "explanation": "A software image is a compiled binary.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "11"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Builds and regression",
+      "difficulty": "medium",
+      "sentence": "Tests of unchanged behavior after a change are ___ tests.",
+      "blanks": [
+        "regression"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Look for unintended side effects."
+      ],
+      "explanation": "This differs from retesting the specific fix alone.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "13"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Integration test categories",
+      "difficulty": "medium",
+      "sentence": "The SIT category checking a complete integrated workflow is ___ validity.",
+      "blanks": [
+        "end-to-end"
+      ],
+      "acceptedAnswers": [
+        [
+          "end to end"
+        ]
+      ],
+      "hints": [
+        "From start to finish across components."
+      ],
+      "explanation": "End-to-end validity checks the complete integrated system workflow.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "32"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Integration strategies",
+      "difficulty": "medium",
+      "sentence": "Top-down integration commonly substitutes missing callees with ___.",
+      "blanks": [
+        "stubs"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Controlled dependencies."
+      ],
+      "explanation": "Real high-level modules call them.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "15–17"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Integration strategies",
+      "difficulty": "medium",
+      "sentence": "Bottom-up integration commonly substitutes missing callers with ___.",
+      "blanks": [
+        "drivers"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Harnesses that invoke lower-level modules."
+      ],
+      "explanation": "They are eventually replaced by actual higher-level modules.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "18–19"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Integration strategies",
+      "difficulty": "medium",
+      "sentence": "Combining all modules at once is the ___-bang approach.",
+      "blanks": [
+        "big"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Many interfaces become active together."
+      ],
+      "explanation": "This can complicate fault localization.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "20"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Integration strategies",
+      "difficulty": "medium",
+      "sentence": "The approach mixing top and bottom integration is called ___.",
+      "blanks": [
+        "sandwich"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The layers meet in the middle."
+      ],
+      "explanation": "The lecture uses big-bang for the middle layer.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "20"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Stubs and drivers",
+      "difficulty": "medium",
+      "sentence": "A replacement for a called dependency is a ___.",
+      "blanks": [
+        "stub"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Follow call direction."
+      ],
+      "explanation": "An example's class name may be misleading.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "15–24"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Stubs and drivers",
+      "difficulty": "medium",
+      "sentence": "A test harness that invokes a real low-level module is a ___.",
+      "blanks": [
+        "driver"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "It supplies a caller."
+      ],
+      "explanation": "It drives the unit or cluster under test.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "18–24"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Hardware and plans",
+      "difficulty": "medium",
+      "sentence": "Hardware Design Verification Test is abbreviated ___.",
+      "blanks": [
+        "DVT"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Three letters."
+      ],
+      "explanation": "It precedes software integration in the described process.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "26"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Hardware and plans",
+      "difficulty": "medium",
+      "sentence": "Supported hardware/software revisions are listed in a compatibility ___.",
+      "blanks": [
+        "matrix"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "A grid of valid combinations."
+      ],
+      "explanation": "Revision changes can alter compatibility.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "28"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Hardware and plans",
+      "difficulty": "medium",
+      "sentence": "ECO expands to Engineering Change ___.",
+      "blanks": [
+        "Order"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "A formal change document."
+      ],
+      "explanation": "It includes compatibility information.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "28"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Hardware and plans",
+      "difficulty": "medium",
+      "sentence": "The sample SIT exit criterion permits at most ___ minor defects.",
+      "blanks": [
+        "25"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "A course-specific numeric example."
+      ],
+      "explanation": "It is not a universal release standard.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "31"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "COTS and built-in testing",
+      "difficulty": "medium",
+      "sentence": "Code connecting distinct components is often called ___.",
+      "blanks": [
+        "glue"
+      ],
+      "acceptedAnswers": [
+        [
+          "glue code"
+        ]
+      ],
+      "hints": [
+        "It joins pieces."
+      ],
+      "explanation": "A wrapper isolates or simplifies one component's interface.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "33"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "COTS and built-in testing",
+      "difficulty": "medium",
+      "sentence": "Built-in tests are explicitly invoked in ___ mode.",
+      "blanks": [
+        "maintenance"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Normal mode keeps them transparent."
+      ],
+      "explanation": "The component executes tests and reports results.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "35"
+      }
+    }
+  ]
+}

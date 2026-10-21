@@ -1,0 +1,517 @@
+{
+  "metadata": {
+    "title": "System Testing and Test Categories",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "L7_Ch8-SystemTestCategories.pdf"
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 24,
+    "topics": [
+      "Taxonomy",
+      "Basic and functionality",
+      "Security",
+      "Robustness",
+      "Interoperability",
+      "Performance distinctions",
+      "Reliability",
+      "Regression and documentation",
+      "Regulatory and safety"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Taxonomy",
+      "difficulty": "medium",
+      "sentence": "A test scenario is primarily classified by its ___ and measured evidence.",
+      "blanks": [
+        "objective"
+      ],
+      "acceptedAnswers": [
+        [
+          "purpose",
+          "goal"
+        ]
+      ],
+      "hints": [
+        "The main question the test answers."
+      ],
+      "explanation": "Categories may overlap; the primary objective guides classification.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "3–5"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Basic and functionality",
+      "difficulty": "medium",
+      "sentence": "CLI stands for Command Line ___.",
+      "blanks": [
+        "Interface"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "A configuration mechanism."
+      ],
+      "explanation": "The lecture lists CLI tests under basic tests.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "7"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Basic and functionality",
+      "difficulty": "medium",
+      "sentence": "EMS stands for Element Management ___.",
+      "blanks": [
+        "System"
+      ],
+      "acceptedAnswers": [
+        [
+          "Systems"
+        ]
+      ],
+      "hints": [
+        "Manage and monitor network elements."
+      ],
+      "explanation": "The lecture also covers EMS client/server behavior.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "10"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Basic and functionality",
+      "difficulty": "medium",
+      "sentence": "MIB stands for Management Information ___.",
+      "blanks": [
+        "Base"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Management objects."
+      ],
+      "explanation": "Tests check the supported standard and enterprise MIBs.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "10"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Basic and functionality",
+      "difficulty": "medium",
+      "sentence": "Completing GUI tasks in few steps and little time concerns ___.",
+      "blanks": [
+        "efficiency"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "One of the lecture's usability characteristics."
+      ],
+      "explanation": "Comprehensibility instead concerns understanding the structure.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "11"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Security",
+      "difficulty": "medium",
+      "sentence": "The C in CIA means ___.",
+      "blanks": [
+        "confidentiality"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Protect against unauthorized disclosure."
+      ],
+      "explanation": "The other objectives are integrity and availability.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "12"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Security",
+      "difficulty": "medium",
+      "sentence": "The I in CIA means ___.",
+      "blanks": [
+        "integrity"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Protect against unauthorized modification."
+      ],
+      "explanation": "Disclosure is confidentiality instead.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "12"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Security",
+      "difficulty": "medium",
+      "sentence": "The A in CIA means ___.",
+      "blanks": [
+        "availability"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Preserve service to authorized users."
+      ],
+      "explanation": "Denial of service threatens this objective.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "12"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Robustness",
+      "difficulty": "medium",
+      "sentence": "Graceful behavior under invalid inputs and changed environments concerns ___.",
+      "blanks": [
+        "robustness"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Error tolerance and recovery."
+      ],
+      "explanation": "Boundary values and power cycling are subcategories.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "15–16"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Robustness",
+      "difficulty": "medium",
+      "sentence": "OIR means Online Insertion and ___.",
+      "blanks": [
+        "Removal"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Modules change while running."
+      ],
+      "explanation": "Test both idle and heavy-load conditions.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "16"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Robustness",
+      "difficulty": "medium",
+      "sentence": "Quick redundant-module failover primarily targets high ___.",
+      "blanks": [
+        "availability"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Keep service running."
+      ],
+      "explanation": "It is related to, but distinct from, failure-free reliability.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "17"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Robustness",
+      "difficulty": "medium",
+      "sentence": "Operation after part of the system fails is degraded-___ testing.",
+      "blanks": [
+        "node"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The lecture also calls this failure containment."
+      ],
+      "explanation": "The goal is useful remaining operation.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "17"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Interoperability",
+      "difficulty": "medium",
+      "sentence": "Working with third-party products is tested through ___.",
+      "blanks": [
+        "interoperability"
+      ],
+      "acceptedAnswers": [
+        [
+          "inter-operability"
+        ]
+      ],
+      "hints": [
+        "Across product boundaries."
+      ],
+      "explanation": "Supported configurations matter.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "18"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Interoperability",
+      "difficulty": "medium",
+      "sentence": "A current build working on older supported platforms has ___ compatibility.",
+      "blanks": [
+        "backward"
+      ],
+      "acceptedAnswers": [
+        [
+          "backwards"
+        ]
+      ],
+      "hints": [
+        "Look toward prior versions."
+      ],
+      "explanation": "This is a specific compatibility objective.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "18"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Performance distinctions",
+      "difficulty": "medium",
+      "sentence": "Completed transactions per second measure ___.",
+      "blanks": [
+        "throughput"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Work per unit time."
+      ],
+      "explanation": "Response time measures the duration of a request.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "19"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Performance distinctions",
+      "difficulty": "medium",
+      "sentence": "Testing growth limits as users increase concerns ___.",
+      "blanks": [
+        "scalability"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "How behavior changes with scale."
+      ],
+      "explanation": "Storage and bandwidth can impose limits.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "20"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Performance distinctions",
+      "difficulty": "medium",
+      "sentence": "Testing beyond designed capacity primarily targets ___.",
+      "blanks": [
+        "stress"
+      ],
+      "acceptedAnswers": [
+        [
+          "stress testing"
+        ]
+      ],
+      "hints": [
+        "Observe overload failure and recovery."
+      ],
+      "explanation": "Ordinary performance tests need not exceed limits.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "21"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Performance distinctions",
+      "difficulty": "medium",
+      "sentence": "Long operation under full load emphasizes load and ___.",
+      "blanks": [
+        "stability"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Look for slow degradation or crashes."
+      ],
+      "explanation": "The duration and load are part of the objective.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "22"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Reliability",
+      "difficulty": "medium",
+      "sentence": "MTTR means Mean Time to ___.",
+      "blanks": [
+        "Repair"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Average restoration duration."
+      ],
+      "explanation": "Keep operating time separate.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Reliability",
+      "difficulty": "medium",
+      "sentence": "With MTTF=100 h and MTTR=2 h, the slide equation gives MTBF=___ h.",
+      "blanks": [
+        "102"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Add the two means."
+      ],
+      "explanation": "Use the lecture's explicitly stated convention.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Regression and documentation",
+      "difficulty": "medium",
+      "sentence": "Rerunning existing tests to detect side effects is ___ testing.",
+      "blanks": [
+        "regression"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "A change may break prior behavior."
+      ],
+      "explanation": "It differs from confirming one specific fix.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "24–25"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Regression and documentation",
+      "difficulty": "medium",
+      "sentence": "Reviewing documentation without executing it is a ___ test.",
+      "blanks": [
+        "read"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The first documentation-test level."
+      ],
+      "explanation": "Functional testing actually follows the instructions.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "26"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Regression and documentation",
+      "difficulty": "medium",
+      "sentence": "Following the manual's actual procedure is a ___ documentation test.",
+      "blanks": [
+        "functional"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Execute the instructions."
+      ],
+      "explanation": "A read review alone does not verify the procedure works.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "26"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Regulatory and safety",
+      "difficulty": "medium",
+      "sentence": "A potentially harmful system/environment condition is a ___.",
+      "blanks": [
+        "hazard"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The harmful event itself is an accident."
+      ],
+      "explanation": "Safety assurance identifies and addresses such conditions.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "28"
+      }
+    }
+  ]
+}

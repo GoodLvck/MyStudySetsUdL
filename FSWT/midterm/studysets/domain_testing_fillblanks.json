@@ -1,0 +1,434 @@
+{
+  "metadata": {
+    "title": "Domain Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "L5_Ch6-DomainTesting [Updated].pdf"
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 20,
+    "topics": [
+      "Domains and errors",
+      "Deriving domains",
+      "Boundary properties",
+      "Boundary defects",
+      "ON/OFF selection"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Domains and errors",
+      "difficulty": "medium",
+      "sentence": "A path domain groups inputs executing the same ___.",
+      "blanks": [
+        "path"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Not necessarily the same numeric result."
+      ],
+      "explanation": "The sequence of computations is shared.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "3,33"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Domains and errors",
+      "difficulty": "medium",
+      "sentence": "Correct path but wrong output is a ___ error.",
+      "blanks": [
+        "computation"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The arithmetic is wrong."
+      ],
+      "explanation": "A domain error takes the wrong path instead.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "5"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Domains and errors",
+      "difficulty": "medium",
+      "sentence": "Wrong input classification causes a ___ error.",
+      "blanks": [
+        "domain"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The undesired path executes."
+      ],
+      "explanation": "Predicates act as classifiers.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "5,8"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Deriving domains",
+      "difficulty": "medium",
+      "sentence": "After c=x+y, c>5 becomes x+y ___ 5.",
+      "blanks": [
+        ">"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Preserve the strict relational operator."
+      ],
+      "explanation": "Substitution changes variables, not the comparison.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "10–13"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Deriving domains",
+      "difficulty": "medium",
+      "sentence": "For d=c+x/2 and d>=c+2, the displayed code includes x=___.",
+      "blanks": [
+        "4"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Check the equality case directly."
+      ],
+      "explanation": "The slide's x>4 statement omits this input.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "10–15"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Deriving domains",
+      "difficulty": "medium",
+      "sentence": "For x=4,y=0 in codedomain, P1P2 is ___.",
+      "blanks": [
+        "FT"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "c=4 and d=6."
+      ],
+      "explanation": "The second comparison is 6>=6.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "10–16"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Boundary properties",
+      "difficulty": "medium",
+      "sentence": "A boundary including its equality points is ___.",
+      "blanks": [
+        "closed"
+      ],
+      "acceptedAnswers": [
+        [
+          "inclusive"
+        ]
+      ],
+      "hints": [
+        "Uses <= or >=."
+      ],
+      "explanation": "The geometric boundary belongs to the selected domain.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "19–20"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Boundary properties",
+      "difficulty": "medium",
+      "sentence": "A boundary excluding equality is ___.",
+      "blanks": [
+        "open"
+      ],
+      "acceptedAnswers": [
+        [
+          "exclusive"
+        ]
+      ],
+      "hints": [
+        "Uses < or >."
+      ],
+      "explanation": "Exact boundary points are not members of the selected domain.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "19–20"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Boundary properties",
+      "difficulty": "medium",
+      "sentence": "A closed domain has ___ of its boundaries closed.",
+      "blanks": [
+        "all"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The course definition."
+      ],
+      "explanation": "One closed boundary alone is insufficient.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "20"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Boundary properties",
+      "difficulty": "medium",
+      "sentence": "Two boundaries can meet at an ___ point.",
+      "blanks": [
+        "extreme"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The lecture's name for a boundary intersection."
+      ],
+      "explanation": "Intersections can need special-case tests.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "21"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Boundary defects",
+      "difficulty": "medium",
+      "sentence": "Replacing <= with < is a ___ error.",
+      "blanks": [
+        "closure"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Equality membership changes."
+      ],
+      "explanation": "The boundary's position does not move.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Boundary defects",
+      "difficulty": "medium",
+      "sentence": "Changing only the threshold can create a ___ boundary.",
+      "blanks": [
+        "shifted"
+      ],
+      "acceptedAnswers": [
+        [
+          "parallel-shifted"
+        ]
+      ],
+      "hints": [
+        "The line remains parallel."
+      ],
+      "explanation": "Inputs between the old and new thresholds can reveal it.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Boundary defects",
+      "difficulty": "medium",
+      "sentence": "Wrong variable coefficients can produce a ___ boundary.",
+      "blanks": [
+        "tilted"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The orientation changes."
+      ],
+      "explanation": "Two distinct ON points improve sensitivity.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Boundary defects",
+      "difficulty": "medium",
+      "sentence": "Omitting a required constraint is a ___-boundary defect.",
+      "blanks": [
+        "missing"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "One of the illustrated defects."
+      ],
+      "explanation": "It can enlarge the admitted domain.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "24"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "ON/OFF selection",
+      "difficulty": "medium",
+      "sentence": "For a closed boundary, the OFF point is just ___ the domain.",
+      "blanks": [
+        "outside"
+      ],
+      "acceptedAnswers": [
+        [
+          "exterior to"
+        ]
+      ],
+      "hints": [
+        "Cross the boundary to the excluded side."
+      ],
+      "explanation": "An ON point is on the included boundary.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "26–29"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "ON/OFF selection",
+      "difficulty": "medium",
+      "sentence": "For an open boundary, the OFF point is just ___ the domain.",
+      "blanks": [
+        "inside"
+      ],
+      "acceptedAnswers": [
+        [
+          "within"
+        ]
+      ],
+      "hints": [
+        "The nearby included side."
+      ],
+      "explanation": "Its exact ON boundary point is excluded.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "26–29"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "ON/OFF selection",
+      "difficulty": "medium",
+      "sentence": "The selection sequence is ON–___–ON.",
+      "blanks": [
+        "OFF"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The middle point crosses the boundary side."
+      ],
+      "explanation": "Use two distinct ON points.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "31"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "ON/OFF selection",
+      "difficulty": "medium",
+      "sentence": "For x+7y>=6, point (-1,1) lies exactly on the ___.",
+      "blanks": [
+        "boundary"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Compute -1+7."
+      ],
+      "explanation": "Its residual equals six.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "27"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "ON/OFF selection",
+      "difficulty": "medium",
+      "sentence": "For x+7y>=6, (0,0.858) is ___ the domain.",
+      "blanks": [
+        "inside"
+      ],
+      "acceptedAnswers": [
+        [
+          "within"
+        ]
+      ],
+      "hints": [
+        "Its residual is 6.006."
+      ],
+      "explanation": "This corrects the final outside wording on the slide.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "27"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Boundary defects",
+      "difficulty": "medium",
+      "sentence": "The integer x=___ reveals the difference between x<=10 and x<10.",
+      "blanks": [
+        "10"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Test equality."
+      ],
+      "explanation": "Other values agree under both predicates.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "23"
+      }
+    }
+  ]
+}

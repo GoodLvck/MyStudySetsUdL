@@ -1,0 +1,565 @@
+{
+  "metadata": {
+    "title": "System Integration Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "L6_Ch7-SystemIntegrationTesting [Updated].pdf"
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 30,
+    "topics": [
+      "SIT fundamentals",
+      "Interfaces and granularity",
+      "Builds and regression",
+      "Integration strategies",
+      "Stubs and drivers",
+      "Hardware and plans",
+      "Integration test categories",
+      "COTS and built-in testing"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "SIT fundamentals",
+      "difficulty": "easy",
+      "question": "What is the primary focus of system integration testing?",
+      "options": [
+        "A) Only reviewing user manuals",
+        "B) Only isolated local arithmetic",
+        "C) Interactions among assembled modules or systems",
+        "D) Only measuring code indentation"
+      ],
+      "correctAnswer": "C",
+      "explanation": "SIT checks that individually tested parts work together.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "3–5"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "SIT fundamentals",
+      "difficulty": "medium",
+      "question": "Why can integration defects remain after all modules pass unit tests?",
+      "options": [
+        "A) Modules can disagree about interface contracts",
+        "B) Unit tests prove every system property",
+        "C) Compiled code cannot communicate",
+        "D) Interfaces contain no data"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Formats, units, timing, and error handling can differ across boundaries.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "3–5"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Interfaces and granularity",
+      "difficulty": "easy",
+      "question": "Which is a common module-interface mechanism listed in the slides?",
+      "options": [
+        "A) Screen brightness",
+        "B) Random naming",
+        "C) Message passing",
+        "D) Source-code color"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Procedure calls, shared memory, and message passing are the three listed paradigms.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "5"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Interfaces and granularity",
+      "difficulty": "medium",
+      "question": "Integrating cart, inventory, and order modules inside one shop is what level?",
+      "options": [
+        "A) Intra-system",
+        "B) Inter-system only",
+        "C) Regulatory certification",
+        "D) Documentation reading"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The modules belong to the same system.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "7–8"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Interfaces and granularity",
+      "difficulty": "medium",
+      "question": "Connecting an e-commerce application to an independent payment system is what level?",
+      "options": [
+        "A) A path constraint",
+        "B) Inter-system",
+        "C) Only an LED test",
+        "D) Only isolated unit testing"
+      ],
+      "correctAnswer": "B",
+      "explanation": "It joins separately tested systems across a system boundary.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "7–8"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Interfaces and granularity",
+      "difficulty": "medium",
+      "question": "What does pairwise integration test?",
+      "options": [
+        "A) Only one isolated function",
+        "B) Two interconnected systems at a time",
+        "C) Every possible pair of input values",
+        "D) All paths through every module"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The term here refers to connected systems, not combinatorial input generation.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "7"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Builds and regression",
+      "difficulty": "easy",
+      "question": "In this lecture, what is a build?",
+      "options": [
+        "A) An unexecuted test idea",
+        "B) A hardware-only drawing",
+        "C) An interim compiled software image for internal testing",
+        "D) Only the final user manual"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Builds support incremental assembly and internal validation.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "9–14"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Builds and regression",
+      "difficulty": "medium",
+      "question": "After adding a module, what testing should accompany its new-interface tests?",
+      "options": [
+        "A) Only a new logo check",
+        "B) Relevant regression tests on previously working behavior",
+        "C) No tests if compilation succeeded",
+        "D) Deleting all old tests"
+      ],
+      "correctAnswer": "B",
+      "explanation": "New interactions can disturb existing functionality.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "12–13"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Builds and regression",
+      "difficulty": "easy",
+      "question": "Which information belongs in a build release note?",
+      "options": [
+        "A) Changes, fixed defects, and outstanding defects",
+        "B) Only the language's syntax rules",
+        "C) Only the final retail price",
+        "D) Only a list of tester birthdays"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Release notes make the build's scope and known state visible.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "13"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Builds and regression",
+      "difficulty": "medium",
+      "question": "Why retain prior daily builds?",
+      "options": [
+        "A) To replace all interface specifications",
+        "B) To make every test infeasible",
+        "C) Reference and rollback",
+        "D) To avoid version control"
+      ],
+      "correctAnswer": "C",
+      "explanation": "A previously known build can help diagnose changes or recover from a broken increment.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Integration strategies",
+      "difficulty": "easy",
+      "question": "Which approach typically needs stubs for missing lower-level modules?",
+      "options": [
+        "A) Top-down",
+        "B) Only regulatory testing",
+        "C) Bottom-up only",
+        "D) Only documentation testing"
+      ],
+      "correctAnswer": "A",
+      "explanation": "High-level real callers need replacements for unavailable dependencies.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "15–17"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Integration strategies",
+      "difficulty": "easy",
+      "question": "Which approach typically needs drivers for missing callers?",
+      "options": [
+        "A) Only performance testing",
+        "B) Top-down only",
+        "C) Only static review",
+        "D) Bottom-up"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Drivers invoke real low-level modules or clusters.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "18–19"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Stubs and drivers",
+      "difficulty": "medium",
+      "question": "A real checkout service calls a fake tax dependency. What role does the fake dependency play?",
+      "options": [
+        "A) Driver",
+        "B) Build release note",
+        "C) Stub",
+        "D) Entry criterion"
+      ],
+      "correctAnswer": "C",
+      "explanation": "It replaces a called service, regardless of its class name.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "15–24"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Stubs and drivers",
+      "difficulty": "medium",
+      "question": "A harness invokes a real parser while its controller is unavailable. What role does the harness play?",
+      "options": [
+        "A) Faulty domain",
+        "B) Wrapper necessarily",
+        "C) Stub",
+        "D) Driver"
+      ],
+      "correctAnswer": "D",
+      "explanation": "It supplies the missing caller role.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "18–24"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Integration strategies",
+      "difficulty": "medium",
+      "question": "What limitation is associated with bottom-up integration?",
+      "options": [
+        "A) It guarantees complete system behavior immediately",
+        "B) It never uses drivers",
+        "C) Low-level modules cannot be tested",
+        "D) High-level design faults may be discovered late"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Top-level control/design arrives later.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "17–19"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Integration strategies",
+      "difficulty": "medium",
+      "question": "What characterizes big-bang integration?",
+      "options": [
+        "A) Only test the bottom utilities with drivers",
+        "B) Always add one module per day",
+        "C) Only test the top module with stubs",
+        "D) Assemble the individually tested modules together and test the whole"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Many simultaneous interfaces can make defect localization harder.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "20"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Integration strategies",
+      "difficulty": "medium",
+      "question": "What middle-layer technique is used in the lecture's sandwich description?",
+      "options": [
+        "A) No middle integration",
+        "B) Big-bang after top and bottom integration",
+        "C) Only documentation review",
+        "D) Only static syntax checking"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The lecture mixes top-down, bottom-up, and a middle joining stage.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "20"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Stubs and drivers",
+      "difficulty": "hard",
+      "question": "A class named PaymentGatewayDriver is called by the service under test and returns fake payment results. How should its role be interpreted?",
+      "options": [
+        "A) Its name proves it is the caller driver",
+        "B) It is the real external gateway",
+        "C) It acts as a callee stub/test double despite its name",
+        "D) It proves real-gateway compatibility"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Classify by the direction of calls, not an inconsistent name in an example.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "22–24"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Hardware and plans",
+      "difficulty": "easy",
+      "question": "When are hardware DVT activities performed in the lecture's process?",
+      "options": [
+        "A) Only after commercial retirement",
+        "B) Before integration with the software system",
+        "C) Never if a software build exists",
+        "D) Only during user-manual reading"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The hardware group prepares and executes design verification before software integration.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "25–27"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Hardware and plans",
+      "difficulty": "easy",
+      "question": "What does a hardware/software compatibility matrix record?",
+      "options": [
+        "A) Only source-code path counts",
+        "B) Only test case names",
+        "C) Only hardware color choices",
+        "D) Supported revision combinations"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Compatibility can depend on both hardware and software revisions.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "28"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Hardware and plans",
+      "difficulty": "easy",
+      "question": "What does ECO stand for in the slides?",
+      "options": [
+        "A) Error Classification Operator",
+        "B) Engineering Change Order",
+        "C) External Caller Oracle",
+        "D) Executable Coverage Outcome"
+      ],
+      "correctAnswer": "B",
+      "explanation": "It formally describes a hardware/software change and includes compatibility information.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "28"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Hardware and plans",
+      "difficulty": "medium",
+      "question": "Which is an SIT entry-readiness item in the sample framework?",
+      "options": [
+        "A) Two weeks of final SIT uptime already completed",
+        "B) No modules remain to integrate",
+        "C) Approved specifications and completed passing unit testing",
+        "D) All final SIT results documented"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Entry criteria establish readiness to begin the integration phase.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "29–30"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Hardware and plans",
+      "difficulty": "medium",
+      "question": "Which belongs to SIT exit rather than entry?",
+      "options": [
+        "A) Choosing the initial hardware prototype only",
+        "B) All modules integrated and results documented",
+        "C) Initial code review only",
+        "D) Creating a check-in form for the first time"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Exit criteria demonstrate completion of the defined phase.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "31"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Hardware and plans",
+      "difficulty": "medium",
+      "question": "How many outstanding minor defects does the slide's example exit framework allow at most?",
+      "options": [
+        "A) 25",
+        "B) 100",
+        "C) 0 in every software process",
+        "D) 2"
+      ],
+      "correctAnswer": "A",
+      "explanation": "This is the sample criterion on p. 31, not a universal release rule.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "31"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Integration test categories",
+      "difficulty": "medium",
+      "question": "Which SIT category targets the complete workflow across the integrated system?",
+      "options": [
+        "A) Pairwise validity only",
+        "B) Interface integrity only",
+        "C) Only local statement coverage",
+        "D) End-to-end validity"
+      ],
+      "correctAnswer": "D",
+      "explanation": "End-to-end validity checks the assembled workflow from start to finish.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "32"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "Integration test categories",
+      "difficulty": "medium",
+      "question": "Keeping an integrated system running for weeks primarily fits which SIT category?",
+      "options": [
+        "A) System endurance",
+        "B) Only predicate interpretation",
+        "C) Code formatting",
+        "D) A one-time wrapper call"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The duration tests continued operation of the integrated system.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "32"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "COTS and built-in testing",
+      "difficulty": "medium",
+      "question": "What is the purpose of a wrapper around an OTS component?",
+      "options": [
+        "A) Always rewrite vendor source",
+        "B) Isolate or simplify the component interface",
+        "C) Replace all system tests",
+        "D) Generate all program paths"
+      ],
+      "correctAnswer": "B",
+      "explanation": "It adapts the boundary around an underlying component.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "33"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "COTS and built-in testing",
+      "difficulty": "medium",
+      "question": "What does tailoring mean in this lecture?",
+      "options": [
+        "A) Delete all component interfaces",
+        "B) Only rename a test case",
+        "C) Require vendor-source edits",
+        "D) Add behavior around a component without modifying its source"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Tailoring enriches the component's functionality through additions.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "33"
+      }
+    },
+    {
+      "id": 29,
+      "topic": "COTS and built-in testing",
+      "difficulty": "medium",
+      "question": "Why deliberately inject a fault into a COTS component during system testing?",
+      "options": [
+        "A) Observe system tolerance, error handling, and recovery",
+        "B) Avoid testing the integrated system",
+        "C) Replace every valid input with random noise permanently",
+        "D) Prove that the component can never fail"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Fault injection probes behavior when the component fails.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "34"
+      }
+    },
+    {
+      "id": 30,
+      "topic": "COTS and built-in testing",
+      "difficulty": "easy",
+      "question": "In which built-in-testing mode can a user invoke internal tests and receive their summary?",
+      "options": [
+        "A) Maintenance mode",
+        "B) Compilation mode only",
+        "C) Shutdown mode only",
+        "D) Normal mode only"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Normal operation hides the testing capability; maintenance exposes it for testing.",
+      "source": {
+        "file": "L6_Ch7-SystemIntegrationTesting [Updated].pdf",
+        "pages": "35"
+      }
+    }
+  ]
+}

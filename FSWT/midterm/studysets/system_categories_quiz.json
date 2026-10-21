@@ -1,0 +1,746 @@
+{
+  "metadata": {
+    "title": "System Testing and Test Categories",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "L7_Ch8-SystemTestCategories.pdf"
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 40,
+    "topics": [
+      "Taxonomy",
+      "Basic and functionality",
+      "Security",
+      "Robustness",
+      "Interoperability",
+      "Performance distinctions",
+      "Reliability",
+      "Regression and documentation",
+      "Regulatory and safety"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Taxonomy",
+      "difficulty": "easy",
+      "question": "What should primarily determine the category assigned to a test scenario?",
+      "options": [
+        "A) Only the number of test cases",
+        "B) Only the tool's brand",
+        "C) Only whether a network appears",
+        "D) Its objective and measured evidence"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Categories can overlap; identify the main question the test answers.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "3–5"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Basic and functionality",
+      "difficulty": "easy",
+      "question": "Checking supported boot options primarily belongs to which category?",
+      "options": [
+        "A) Stress only",
+        "B) Domain testing only",
+        "C) Basic tests",
+        "D) Regression only"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Basic tests establish operational readiness.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "4,6–7"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Basic and functionality",
+      "difficulty": "easy",
+      "question": "Testing a graceful rollback from a new software image primarily targets what?",
+      "options": [
+        "A) All-path coverage",
+        "B) Upgrade/downgrade behavior",
+        "C) Cyclomatic complexity",
+        "D) Only confidentiality"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Upgrade/downgrade tests are listed under basic tests.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "6"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Basic and functionality",
+      "difficulty": "easy",
+      "question": "Which basic tests verify status indicator behavior?",
+      "options": [
+        "A) Only MIB tests",
+        "B) Predicate coverage tests",
+        "C) LED tests",
+        "D) Only stress tests"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The lecture explicitly includes Light Emitting Diode indicators.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "7"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Basic and functionality",
+      "difficulty": "medium",
+      "question": "Power-on self-test and loopback are examples of which basic subcategory?",
+      "options": [
+        "A) Diagnostic tests",
+        "B) Scalability only",
+        "C) Documentation read tests",
+        "D) Regression selection only"
+      ],
+      "correctAnswer": "A",
+      "explanation": "They check hardware or module functioning.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "7"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Basic and functionality",
+      "difficulty": "medium",
+      "question": "What distinguishes system-level module functionality tests from necessarily isolated unit tests?",
+      "options": [
+        "A) They never execute code",
+        "B) They only count statements",
+        "C) They always use no other modules",
+        "D) Modules are checked as part of the assembled system"
+      ],
+      "correctAnswer": "D",
+      "explanation": "The lecture verifies that modules function correctly within the whole system.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "9"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Basic and functionality",
+      "difficulty": "easy",
+      "question": "Logging/tracing tests should verify what?",
+      "options": [
+        "A) Only font size in source files",
+        "B) Only all Boolean combinations",
+        "C) Configuration and operation of logs, including crash records",
+        "D) Only boot media labels"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Logs are a functional feature and can provide post-crash evidence.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "10"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Basic and functionality",
+      "difficulty": "medium",
+      "question": "What is an EMS expected to manage, monitor, and upgrade?",
+      "options": [
+        "A) Communication-system network elements",
+        "B) Only predicate variables",
+        "C) Only source-code comments",
+        "D) Only test-taker laptops"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Element Management Systems expose management functions through clients and servers.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "10"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Basic and functionality",
+      "difficulty": "medium",
+      "question": "A test verifies claimed standard and enterprise management objects. Which subcategory fits?",
+      "options": [
+        "A) Only power cycling",
+        "B) Only documentation reading",
+        "C) Only safety assurance",
+        "D) MIB tests"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Management Information Base tests check the supported management objects.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "10"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Basic and functionality",
+      "difficulty": "easy",
+      "question": "Which GUI usability property emphasizes completing tasks with few steps and little time?",
+      "options": [
+        "A) Boundary closure",
+        "B) Only confidentiality",
+        "C) Efficiency",
+        "D) Only reliability"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The lecture distinguishes efficiency from navigation, responsiveness, and comprehensibility.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "11"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Security",
+      "difficulty": "easy",
+      "question": "Preventing unauthorized disclosure primarily protects what?",
+      "options": [
+        "A) Integrity only",
+        "B) Confidentiality",
+        "C) Scalability",
+        "D) Availability only"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Disclosure concerns who can learn the data.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "12–13"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Security",
+      "difficulty": "easy",
+      "question": "Preventing unauthorized data modification primarily protects what?",
+      "options": [
+        "A) Bootability",
+        "B) Throughput only",
+        "C) Confidentiality only",
+        "D) Integrity"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Integrity concerns unauthorized changes to data or processes.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "12–13"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Security",
+      "difficulty": "easy",
+      "question": "Ensuring authorized users can access a service primarily protects what?",
+      "options": [
+        "A) Only confidentiality",
+        "B) Only line coverage",
+        "C) Only interoperability",
+        "D) Availability"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Denial of service threatens availability.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "12–13"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Basic and functionality",
+      "difficulty": "medium",
+      "question": "A specified data-conversion capability not covered by other functional subcategories fits what?",
+      "options": [
+        "A) Only predicate interpretation",
+        "B) Feature tests",
+        "C) Only thermal hardware tests",
+        "D) Only reliability"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Feature tests cover additional required functionality.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "14"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Robustness",
+      "difficulty": "medium",
+      "question": "A test checks recovery after a temporary power interruption. Which subcategory fits?",
+      "options": [
+        "A) Only throughput benchmarking",
+        "B) Only MIB tests",
+        "C) Power cycling",
+        "D) Only documentation review"
+      ],
+      "correctAnswer": "C",
+      "explanation": "It checks graceful return to operation after power is restored.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "15–16"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Robustness",
+      "difficulty": "medium",
+      "question": "Inserting and removing modules while the system runs is tested under what?",
+      "options": [
+        "A) ECO",
+        "B) OIR",
+        "C) CFG",
+        "D) MTTF"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Online insertion and removal is a robustness subcategory.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "16"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Robustness",
+      "difficulty": "medium",
+      "question": "Failing a redundant module and observing quick failover primarily tests what?",
+      "options": [
+        "A) Only data conversion",
+        "B) Only closed-domain boundaries",
+        "C) Only documentation accuracy",
+        "D) High availability"
+      ],
+      "correctAnswer": "D",
+      "explanation": "The goal is continued service and graceful recovery despite failures.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "17"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Robustness",
+      "difficulty": "medium",
+      "question": "Checking useful operation after part of the system becomes nonoperational targets what?",
+      "options": [
+        "A) Only statement coverage",
+        "B) Only boot sequence",
+        "C) Degraded-node or failure-containment behavior",
+        "D) Only confidentiality"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The system should contain the failure and retain permitted functionality.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "17"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Interoperability",
+      "difficulty": "easy",
+      "question": "Testing interaction with a third-party product primarily concerns what?",
+      "options": [
+        "A) Only a read test",
+        "B) Only local arithmetic",
+        "C) Interoperability",
+        "D) Only cyclomatic complexity"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The focus is correct operation across product boundaries.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "18"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Interoperability",
+      "difficulty": "medium",
+      "question": "A current build is tested against an older supported platform. What is the specific concern?",
+      "options": [
+        "A) Backward compatibility",
+        "B) Only stress",
+        "C) Only a stub's return value",
+        "D) Only an extra boundary"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The new build must continue working with the older supported environment.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "18"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Interoperability",
+      "difficulty": "medium",
+      "question": "Varying configurations during interoperability testing is called what in the slides?",
+      "options": [
+        "A) Only domain interpretation",
+        "B) Configuration testing",
+        "C) Only power-on self-test",
+        "D) Only predicate coverage"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The lecture names those reconfiguration activities configuration testing.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "18"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Performance distinctions",
+      "difficulty": "easy",
+      "question": "Which is a performance metric?",
+      "options": [
+        "A) Response time",
+        "B) Class name length",
+        "C) Only source file extension",
+        "D) Number of chapter headings"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Other listed metrics include throughput, execution time, and resource utilization.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "19"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Performance distinctions",
+      "difficulty": "medium",
+      "question": "Which description defines throughput?",
+      "options": [
+        "A) Only total waiting time",
+        "B) Completed work per unit time",
+        "C) Time required for one request",
+        "D) Only a failure-free interval"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Response time and throughput measure different dimensions.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "19"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Performance distinctions",
+      "difficulty": "medium",
+      "question": "Increasing users and resources to find growth limits primarily tests what?",
+      "options": [
+        "A) Only an LED",
+        "B) Scalability",
+        "C) Documentation reading",
+        "D) Only a closure fault"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The objective is behavior as scale dimensions increase.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "20"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Performance distinctions",
+      "difficulty": "medium",
+      "question": "Pushing load beyond designed capacity to observe failure and recovery is what?",
+      "options": [
+        "A) Only read testing",
+        "B) Only backward compatibility",
+        "C) Stress testing",
+        "D) Only basic boot testing"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Exceeding specified limits distinguishes this objective from ordinary performance measurement.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "21"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "Performance distinctions",
+      "difficulty": "medium",
+      "question": "Running sustained full load for days to detect memory growth primarily fits what?",
+      "options": [
+        "A) Load and stability",
+        "B) Only predicate interpretation",
+        "C) Only a short boot test",
+        "D) Only regulatory marking"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The focus is long-run stability under anticipated or full load.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "22"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "Performance distinctions",
+      "difficulty": "hard",
+      "question": "A memory leak appears during a test. Can the defect alone uniquely identify the test category?",
+      "options": [
+        "A) No; classify by the test's objective and conditions",
+        "B) Yes; leaks imply documentation testing",
+        "C) Yes; every leak is only a stress test",
+        "D) Yes; every leak is only a unit test"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Stress and sustained-load tests can both reveal memory leaks.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "19–22"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "Reliability",
+      "difficulty": "easy",
+      "question": "What does MTTR measure in the slide convention?",
+      "options": [
+        "A) Minimum time to regression",
+        "B) Mean total response time",
+        "C) Mean repair time",
+        "D) Maximum throughput ratio"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Repair duration is separate from failure-free operation.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 29,
+      "topic": "Reliability",
+      "difficulty": "medium",
+      "question": "Using the lecture's equation, MTTF=200 h and MTTR=5 h give which MTBF?",
+      "options": [
+        "A) 1000 h",
+        "B) 205 h",
+        "C) 195 h",
+        "D) 40 h"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The stated convention is MTBF=MTTF+MTTR.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 30,
+      "topic": "Reliability",
+      "difficulty": "hard",
+      "question": "Operating intervals are 80,100,120 h and repair times are 1,2,3 h. What is MTBF under the lecture's convention?",
+      "options": [
+        "A) 2 h",
+        "B) 102 h",
+        "C) 106 h",
+        "D) 100 h"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Mean operating time is 100 h and mean repair time is 2 h.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 31,
+      "topic": "Reliability",
+      "difficulty": "medium",
+      "question": "Which unit conversion is correct before adding repair time to operating hours?",
+      "options": [
+        "A) Units can always be ignored",
+        "B) 30 minutes equals 30 hours",
+        "C) 30 minutes equals 2 hours",
+        "D) 30 minutes equals 0.5 hours"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Use consistent units in reliability calculations.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 32,
+      "topic": "Regression and documentation",
+      "difficulty": "easy",
+      "question": "What is the main objective of regression testing?",
+      "options": [
+        "A) Find unintended effects of changes on previously working behavior",
+        "B) Avoid unchanged code forever",
+        "C) Only prove a single reported fix works",
+        "D) Always generate a new test from scratch"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Existing tests are selected and rerun to detect side effects.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "24–25"
+      }
+    },
+    {
+      "id": 33,
+      "topic": "Regression and documentation",
+      "difficulty": "medium",
+      "question": "Why might a team rerun a justified subset rather than all previous tests?",
+      "options": [
+        "A) Regression is unnecessary after fixes",
+        "B) Unchanged code can never fail",
+        "C) Only newly written tests can detect side effects",
+        "D) A full rerun may be prohibitively expensive"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Subset selection balances cost with the likelihood of finding change-related failures.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "24–25"
+      }
+    },
+    {
+      "id": 34,
+      "topic": "Regression and documentation",
+      "difficulty": "easy",
+      "question": "Reviewing manual clarity without executing instructions is which documentation level?",
+      "options": [
+        "A) Stress test",
+        "B) Functional test",
+        "C) OIR test",
+        "D) Read test"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Read testing checks organization, flow, clarity, and accuracy by review.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "26"
+      }
+    },
+    {
+      "id": 35,
+      "topic": "Regression and documentation",
+      "difficulty": "medium",
+      "question": "Following documented installation instructions on the real system is which documentation level?",
+      "options": [
+        "A) Functional test",
+        "B) Only a security test",
+        "C) Only a reliability test",
+        "D) Read test only"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The procedure's actual behavior is checked against the documentation.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "26"
+      }
+    },
+    {
+      "id": 36,
+      "topic": "Regression and documentation",
+      "difficulty": "medium",
+      "question": "Exercising online help and checking useful error messages is which documentation level?",
+      "options": [
+        "A) Read test only",
+        "B) Only an interface wrapper",
+        "C) Hands-on test",
+        "D) Only scalability"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The lecture distinguishes hands-on help/error-message use from reading and full procedure execution.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "26"
+      }
+    },
+    {
+      "id": 37,
+      "topic": "Regulatory and safety",
+      "difficulty": "easy",
+      "question": "What is the primary purpose of regulatory tests in the lecture?",
+      "options": [
+        "A) Prove no hazard can ever exist",
+        "B) Only measure a function's speed",
+        "C) Only enumerate graph edges",
+        "D) Obtain relevant compliance evidence for intended markets"
+      ],
+      "correctAnswer": "D",
+      "explanation": "The lecture discusses safety and electromagnetic compliance certification as examples.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "27"
+      }
+    },
+    {
+      "id": 38,
+      "topic": "Regulatory and safety",
+      "difficulty": "medium",
+      "question": "What is a hazard?",
+      "options": [
+        "A) A condition with potential to contribute to an accident",
+        "B) Any ordinary test failure with no system context",
+        "C) Only a syntax error",
+        "D) Always an accident that already occurred"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Hazards describe potential harmful conditions, whereas accidents are harmful events.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "28"
+      }
+    },
+    {
+      "id": 39,
+      "topic": "Regulatory and safety",
+      "difficulty": "medium",
+      "question": "Why must software safety consider the surrounding system and environment?",
+      "options": [
+        "A) Software can contribute to harm through the equipment and context it controls",
+        "B) Software's file extension determines physical risk",
+        "C) A unit test removes every hazard",
+        "D) Only user manuals affect safety"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Context determines how software behavior can lead to physical consequences.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "28–29"
+      }
+    },
+    {
+      "id": 40,
+      "topic": "Regulatory and safety",
+      "difficulty": "medium",
+      "question": "Which activity belongs to safety assurance?",
+      "options": [
+        "A) Only count GUI icons",
+        "B) Identify, track, evaluate, and eliminate or control hazards",
+        "C) Only rename functions",
+        "D) Only increase throughput"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Safety assurance also embeds safety considerations into design and implementation.",
+      "source": {
+        "file": "L7_Ch8-SystemTestCategories.pdf",
+        "pages": "30"
+      }
+    }
+  ]
+}

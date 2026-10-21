@@ -1,0 +1,563 @@
+{
+  "metadata": {
+    "title": "Control Flow Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "L4_Ch4-ControlFlowTesting [Updated].pdf"
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 30,
+    "topics": [
+      "Fundamentals",
+      "Coverage",
+      "Short-circuit evaluation",
+      "Symbolic execution",
+      "Feasibility",
+      "Cyclomatic complexity"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Fundamentals",
+      "difficulty": "easy",
+      "question": "What does control flow testing derive its tests from?",
+      "options": [
+        "A) Only database size",
+        "B) Only deployment costs",
+        "C) The program's execution structure",
+        "D) Only users' color preferences"
+      ],
+      "correctAnswer": "C",
+      "explanation": "It models decisions and paths to select executions through code.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "3–7"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Fundamentals",
+      "difficulty": "easy",
+      "question": "In a CFG, what does a directed edge represent?",
+      "options": [
+        "A) The size of an input file",
+        "B) A specific variable's value",
+        "C) The expected output text",
+        "D) A possible transfer of control"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Nodes represent statements or blocks; edges connect possible execution steps.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "4–8"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Fundamentals",
+      "difficulty": "medium",
+      "question": "Which sequence best describes generating control flow tests?",
+      "options": [
+        "A) Run one input and declare every path covered",
+        "B) Construct CFG, select paths, derive constraints, solve for inputs",
+        "C) Choose random outputs, then remove all decisions",
+        "D) Write release notes before reading any code"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Path-selection criteria guide the selection before input solving.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "7"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Coverage",
+      "difficulty": "easy",
+      "question": "What does 100% statement coverage establish?",
+      "options": [
+        "A) Every counted executable statement ran at least once",
+        "B) Every possible input was checked",
+        "C) Every decision outcome occurred",
+        "D) The program has no defects"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Statement execution is weaker than complete branch or path exploration.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "19–22"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "question": "A single test takes the true side of an if without an else and executes all statements. What can still be missing?",
+      "options": [
+        "A) The function entry",
+        "B) Every assignment necessarily",
+        "C) The return statement necessarily",
+        "D) The false branch"
+      ],
+      "correctAnswer": "D",
+      "explanation": "An empty false branch can remain untested despite all statements executing.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "19–22"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "question": "For an ordinary reachable CFG, complete branch coverage generally implies what?",
+      "options": [
+        "A) Complete all-path coverage",
+        "B) Complete statement coverage",
+        "C) Every Boolean combination was evaluated",
+        "D) Correct outputs on all inputs"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Both decision outcomes cover reachable statements, but not all path combinations.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "20–22"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "question": "Two independent sequential decisions are tested with TT and FF only. What can hold?",
+      "options": [
+        "A) Full branch coverage without full path coverage",
+        "B) All four combinations have been executed",
+        "C) No branch coverage at all",
+        "D) Full path coverage automatically"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Each decision has both outcomes, but TF and FT are absent.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "16–25"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "question": "How do these slides define predicate coverage?",
+      "options": [
+        "A) All possible feasible truth combinations affecting a selected path are explored",
+        "B) Only the overall decision becomes true once",
+        "C) Only every statement is visited",
+        "D) Only function calls are counted"
+      ],
+      "correctAnswer": "A",
+      "explanation": "This lecture uses a combination-oriented definition; do not confuse it with decision coverage.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "23–25"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Coverage",
+      "difficulty": "easy",
+      "question": "For three independent Boolean conditions, how many truth combinations make their OR true?",
+      "options": [
+        "A) 1",
+        "B) 7",
+        "C) 3",
+        "D) 8"
+      ],
+      "correctAnswer": "B",
+      "explanation": "There are eight combinations and only all-false makes OR false.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "23–25"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Coverage",
+      "difficulty": "easy",
+      "question": "For three independent Boolean conditions, how many truth combinations make their AND true?",
+      "options": [
+        "A) 8",
+        "B) 7",
+        "C) 1",
+        "D) 3"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Only all-true satisfies the AND.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "23–25"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "question": "Why can complete all-path coverage be impractical for a routine with loops?",
+      "options": [
+        "A) All loop paths are identical",
+        "B) Every loop executes once only",
+        "C) Loops always have zero branches",
+        "D) There may be unboundedly many iteration paths"
+      ],
+      "correctAnswer": "D",
+      "explanation": "A practical criterion must control path growth and account for feasibility.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "17,34"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Short-circuit evaluation",
+      "difficulty": "medium",
+      "question": "For A && B in short-circuit evaluation, when is B skipped?",
+      "options": [
+        "A) When A is true",
+        "B) Only when B is true",
+        "C) Never",
+        "D) When A is false"
+      ],
+      "correctAnswer": "D",
+      "explanation": "False on the left already determines the conjunction's result.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "9–12"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Short-circuit evaluation",
+      "difficulty": "medium",
+      "question": "For A OR B using short-circuit semantics, when is B skipped?",
+      "options": [
+        "A) When A is false",
+        "B) When A is true",
+        "C) Only when both are false",
+        "D) Never"
+      ],
+      "correctAnswer": "B",
+      "explanation": "True on the left already determines the disjunction's result.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "9–12"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Short-circuit evaluation",
+      "difficulty": "hard",
+      "question": "In C, i starts at 0 and an evaluated i++ is used as a condition. What happens?",
+      "options": [
+        "A) Its condition value is false and i becomes 1",
+        "B) It is true and i becomes 2",
+        "C) It is false and i stays 0",
+        "D) Its condition value is true and i stays 0"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Post-increment yields the old value and then updates i; Java does not allow integer Boolean conditions.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "9–12"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Symbolic execution",
+      "difficulty": "easy",
+      "question": "Which can belong to a routine's input vector besides its parameters?",
+      "options": [
+        "A) Only expected output labels",
+        "B) Only local temporaries created after entry",
+        "C) Only the function's name",
+        "D) Relevant globals and file state"
+      ],
+      "correctAnswer": "D",
+      "explanation": "All relevant pre-entry state can influence execution.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "27"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Symbolic execution",
+      "difficulty": "medium",
+      "question": "What is the purpose of predicate interpretation through symbolic execution?",
+      "options": [
+        "A) Express path conditions using input symbols and constants",
+        "B) Replace all predicates with true",
+        "C) Force every path to be feasible",
+        "D) Delete the routine's output"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Substituting assignments eliminates local variables from the interpreted path constraints.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "28–31"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Symbolic execution",
+      "difficulty": "medium",
+      "question": "For y=x+2, what input constraint makes y>5 true?",
+      "options": [
+        "A) x>7",
+        "B) x>3",
+        "C) x=2 only",
+        "D) x<3"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Substitute x+2 for y and subtract two.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "29–31"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Symbolic execution",
+      "difficulty": "hard",
+      "question": "After y=x+2, the true branch y>5 executes y=y-1. Which constraint makes the next y<8 true?",
+      "options": [
+        "A) x=8",
+        "B) x>8",
+        "C) x<7",
+        "D) x<6"
+      ],
+      "correctAnswer": "C",
+      "explanation": "On this path the updated y is x+1, so x+1<8.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "29–33"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Symbolic execution",
+      "difficulty": "medium",
+      "question": "Which integer forces both x>3 and x<7?",
+      "options": [
+        "A) 8",
+        "B) 7",
+        "C) 3",
+        "D) 4"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Both inequalities are strict; 4,5,6 all satisfy them.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "29–33"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Feasibility",
+      "difficulty": "medium",
+      "question": "If x never changes, a path requires x>0 and x<=0. What is its status?",
+      "options": [
+        "A) Feasible only for x=1",
+        "B) Feasible only for x=0",
+        "C) Infeasible",
+        "D) Always feasible"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The constraints contradict each other.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "31–32"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "Feasibility",
+      "difficulty": "medium",
+      "question": "A path predicate expression has no solution. What should the tester conclude?",
+      "options": [
+        "A) No input can execute that selected path",
+        "B) All other paths are infeasible",
+        "C) The CFG has no edges",
+        "D) More random inputs must eventually execute it"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Unsatisfiable path constraints establish infeasibility.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "31–32"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "Symbolic execution",
+      "difficulty": "medium",
+      "question": "For ReturnAverage with AS=1, MIN=25, MAX=35, value[0]=30, what average is returned?",
+      "options": [
+        "A) 35",
+        "B) 25",
+        "C) 30",
+        "D) -999"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The sole processed value lies in the permitted range.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "13,33"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "Feasibility",
+      "difficulty": "hard",
+      "question": "A ReturnAverage path exits before accepting any values but requires tv>0. What contradiction results?",
+      "options": [
+        "A) MIN<=MAX",
+        "B) AS>0",
+        "C) 0>0",
+        "D) value[0]!=-999"
+      ],
+      "correctAnswer": "C",
+      "explanation": "tv begins at zero and remains zero if no qualifying value is counted.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "13,31–32"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "Cyclomatic complexity",
+      "difficulty": "easy",
+      "question": "For one connected CFG, what is cyclomatic complexity?",
+      "options": [
+        "A) N-E+2",
+        "B) E+N",
+        "C) E-N+2",
+        "D) E-N"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The general slide formula is E-N+2P with P=1.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "35"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "Cyclomatic complexity",
+      "difficulty": "medium",
+      "question": "A connected CFG has E=10 and N=8. What is V(G)?",
+      "options": [
+        "A) 2",
+        "B) 4",
+        "C) 6",
+        "D) 18"
+      ],
+      "correctAnswer": "B",
+      "explanation": "10-8+2=4.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "35"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "Cyclomatic complexity",
+      "difficulty": "medium",
+      "question": "What does cyclomatic complexity count in the CFG model?",
+      "options": [
+        "A) Linearly independent basis paths",
+        "B) All complete paths including every loop repetition",
+        "C) Number of confirmed defects",
+        "D) Number of input values"
+      ],
+      "correctAnswer": "A",
+      "explanation": "A path-basis dimension is different from exhaustive execution-path count.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "35–39"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "Cyclomatic complexity",
+      "difficulty": "hard",
+      "question": "A connected structured CFG has three binary decision nodes. What is V under that representation?",
+      "options": [
+        "A) 3",
+        "B) 4",
+        "C) 6",
+        "D) 8"
+      ],
+      "correctAnswer": "B",
+      "explanation": "For this model V equals decision nodes plus one.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "35–39"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "Cyclomatic complexity",
+      "difficulty": "easy",
+      "question": "Which complexity band do the slides associate with V=8?",
+      "options": [
+        "A) Low",
+        "B) Medium",
+        "C) High",
+        "D) Impossible"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The slide's heuristic bands are 1–5 low, 6–10 medium, and above 10 high.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "38"
+      }
+    },
+    {
+      "id": 29,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "question": "A suite executes 9 of 12 counted branches. What is branch coverage?",
+      "options": [
+        "A) 75%",
+        "B) 90%",
+        "C) 133%",
+        "D) 25%"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Divide covered branches by counted branches and multiply by 100.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "19–25"
+      }
+    },
+    {
+      "id": 30,
+      "topic": "Coverage",
+      "difficulty": "hard",
+      "question": "Which claim remains unjustified even after full structural coverage?",
+      "options": [
+        "A) The suite exercised the measured code constructs",
+        "B) The counted obligations were executed",
+        "C) The chosen structural coverage target was met",
+        "D) The software is correct for every specified behavior"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Coverage measures execution, not absence of faults or completeness of the specification.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "19–25,39"
+      }
+    }
+  ]
+}

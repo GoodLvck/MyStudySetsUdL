@@ -1,0 +1,429 @@
+{
+  "metadata": {
+    "title": "Control Flow Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "L4_Ch4-ControlFlowTesting [Updated].pdf"
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 20,
+    "topics": [
+      "Fundamentals",
+      "Coverage",
+      "Short-circuit evaluation",
+      "Symbolic execution",
+      "Feasibility",
+      "Cyclomatic complexity"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Fundamentals",
+      "difficulty": "medium",
+      "sentence": "A program's execution structure can be modeled as a control flow ___.",
+      "blanks": [
+        "graph"
+      ],
+      "acceptedAnswers": [
+        [
+          "CFG"
+        ]
+      ],
+      "hints": [
+        "A directed representation."
+      ],
+      "explanation": "Nodes are statements or blocks and edges are control transfers.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "4–8"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Fundamentals",
+      "difficulty": "medium",
+      "sentence": "An entry-to-exit statement sequence is a program ___.",
+      "blanks": [
+        "path"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "A route through execution."
+      ],
+      "explanation": "Different inputs may select different routes.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "3"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "sentence": "Executing every counted statement at least once achieves statement ___.",
+      "blanks": [
+        "coverage"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "A structural test criterion."
+      ],
+      "explanation": "It does not necessarily exercise every branch.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "19"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "sentence": "Each decision outcome must be exercised for full ___ coverage.",
+      "blanks": [
+        "branch"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "True and false edges."
+      ],
+      "explanation": "This is stronger than merely visiting every statement.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "20"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "sentence": "Three independent Boolean conditions have ___ truth combinations.",
+      "blanks": [
+        "8"
+      ],
+      "acceptedAnswers": [
+        [
+          "eight"
+        ]
+      ],
+      "hints": [
+        "Two to the third power."
+      ],
+      "explanation": "Some combinations may be infeasible when conditions are correlated.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "23–25"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "sentence": "OR of three Booleans is false only when all are ___.",
+      "blanks": [
+        "false"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "One of eight combinations."
+      ],
+      "explanation": "The other seven make the OR true.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "25"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "sentence": "AND of three Booleans is true only when all are ___.",
+      "blanks": [
+        "true"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "One of eight combinations."
+      ],
+      "explanation": "The other seven make the AND false.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "25"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Short-circuit evaluation",
+      "difficulty": "medium",
+      "sentence": "In A && B, B is skipped when A is ___.",
+      "blanks": [
+        "false"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The conjunction is already determined."
+      ],
+      "explanation": "Side effects in B do not occur if it is skipped.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "9–12"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Short-circuit evaluation",
+      "difficulty": "medium",
+      "sentence": "In A OR B with short-circuiting, B is skipped when A is ___.",
+      "blanks": [
+        "true"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The disjunction is already determined."
+      ],
+      "explanation": "Use the language's short-circuit operator.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "9–12"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Symbolic execution",
+      "difficulty": "medium",
+      "sentence": "All relevant pre-entry data form the input ___.",
+      "blanks": [
+        "vector"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Not limited to formal arguments."
+      ],
+      "explanation": "Globals, files, and external state may be included.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "27"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Symbolic execution",
+      "difficulty": "medium",
+      "sentence": "Propagating symbols through assignments is symbolic ___.",
+      "blanks": [
+        "execution"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Use inputs rather than just concrete values."
+      ],
+      "explanation": "It supports deriving path constraints over the inputs.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "29–31"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Symbolic execution",
+      "difficulty": "medium",
+      "sentence": "An interpreted path predicate should eliminate local ___.",
+      "blanks": [
+        "variables"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Keep inputs and constants."
+      ],
+      "explanation": "Local state is replaced by expressions over input symbols.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "31"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Feasibility",
+      "difficulty": "medium",
+      "sentence": "A path with unsatisfiable constraints is ___.",
+      "blanks": [
+        "infeasible"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "No input can force it."
+      ],
+      "explanation": "Trying more random inputs cannot resolve a contradiction.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "31–32"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Symbolic execution",
+      "difficulty": "medium",
+      "sentence": "The constraints x>3 and x<7 admit integer x=4,5,and ___.",
+      "blanks": [
+        "6"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "The largest integer strictly below seven."
+      ],
+      "explanation": "Both bounds are strict.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "29–33"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Symbolic execution",
+      "difficulty": "medium",
+      "sentence": "ReturnAverage returns ___ for a sole in-range value of 30.",
+      "blanks": [
+        "30"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Only one value contributes."
+      ],
+      "explanation": "Sum divided by accepted-value count is 30/1.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "13,33"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Cyclomatic complexity",
+      "difficulty": "medium",
+      "sentence": "For one connected CFG, V=E-N+___.",
+      "blanks": [
+        "2"
+      ],
+      "acceptedAnswers": [
+        [
+          "two"
+        ]
+      ],
+      "hints": [
+        "Set P=1 in E-N+2P."
+      ],
+      "explanation": "The graph representation determines the counts.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "35"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Cyclomatic complexity",
+      "difficulty": "medium",
+      "sentence": "For E=14,N=12,P=1, V equals ___.",
+      "blanks": [
+        "4"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Compute 14-12+2."
+      ],
+      "explanation": "This is the independent path-basis size under the model.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "35"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Cyclomatic complexity",
+      "difficulty": "medium",
+      "sentence": "V describes a path ___, not every complete execution path.",
+      "blanks": [
+        "basis"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Independent paths."
+      ],
+      "explanation": "Loops can still produce arbitrarily many complete paths.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "35–39"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Cyclomatic complexity",
+      "difficulty": "medium",
+      "sentence": "The slide's V=1–5 complexity band is ___.",
+      "blanks": [
+        "low"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Its simplest heuristic band."
+      ],
+      "explanation": "The bands guide maintainability discussion.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "38"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "Coverage",
+      "difficulty": "medium",
+      "sentence": "Covering 9 of 12 branches gives ___ percent coverage.",
+      "blanks": [
+        "75"
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "hints": [
+        "Compute 9/12 times 100."
+      ],
+      "explanation": "State the denominator convention.",
+      "source": {
+        "file": "L4_Ch4-ControlFlowTesting [Updated].pdf",
+        "pages": "19–25"
+      }
+    }
+  ]
+}

@@ -1,0 +1,562 @@
+{
+  "metadata": {
+    "title": "Domain Testing",
+    "subject": "FSWT — Fundamentals of Software Testing",
+    "course": "Midterm — October 28, 2026",
+    "sourceFiles": [
+      "L5_Ch6-DomainTesting [Updated].pdf"
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 30,
+    "topics": [
+      "Domains and errors",
+      "Deriving domains",
+      "Boundary properties",
+      "Boundary defects",
+      "ON/OFF selection"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Domains and errors",
+      "difficulty": "easy",
+      "question": "What identifies a path domain in this lecture?",
+      "options": [
+        "A) Inputs necessarily producing the same numeric output",
+        "B) Inputs executing the same program path",
+        "C) All files with one extension",
+        "D) All outputs of the system"
+      ],
+      "correctAnswer": "B",
+      "explanation": "A path domain groups inputs by execution/computation sequence.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "3,5–9"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Domains and errors",
+      "difficulty": "easy",
+      "question": "The intended path executes, but an arithmetic result is wrong. What is this?",
+      "options": [
+        "A) An integration strategy",
+        "B) A closure error necessarily",
+        "C) A computation error",
+        "D) A domain error necessarily"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Computation errors concern the calculation on the correct path.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "5"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Domains and errors",
+      "difficulty": "easy",
+      "question": "An input executes the wrong path because of a faulty condition. What is this?",
+      "options": [
+        "A) A documentation test",
+        "B) A domain error",
+        "C) A correct computation necessarily",
+        "D) A driver"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The input has been misclassified into the wrong path domain.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "5,8"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Domains and errors",
+      "difficulty": "medium",
+      "question": "What makes domain testing fault-oriented?",
+      "options": [
+        "A) It selects inputs to expose a specified class of domain faults",
+        "B) It avoids any assumption about defects",
+        "C) It tests only interface timing",
+        "D) It ignores all predicates"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The boundary-error model drives input selection.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "9"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Deriving domains",
+      "difficulty": "medium",
+      "question": "After c=x+y, the predicate c>5 becomes what?",
+      "options": [
+        "A) x-y>5",
+        "B) x=5",
+        "C) x+y>=5",
+        "D) x+y>5"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Substitute the assignment without changing the comparison.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "10–13"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Deriving domains",
+      "difficulty": "medium",
+      "question": "On the P1-true path, d=c-x/2 and P2 is d>=c+2. Which real-arithmetic constraint follows?",
+      "options": [
+        "A) x>4",
+        "B) x>=4",
+        "C) x<-4",
+        "D) x<=-4"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Cancel c and solve -x/2>=2.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "10–15"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Deriving domains",
+      "difficulty": "hard",
+      "question": "On the P1-false path, d=c+x/2 and P2 is d>=c+2. Which constraint follows from the displayed code?",
+      "options": [
+        "A) x<4",
+        "B) x<=-4",
+        "C) x>=4",
+        "D) x>4"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Cancel c to obtain x/2>=2. The slide's x>4 wording omits equality.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "10–15"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Deriving domains",
+      "difficulty": "hard",
+      "question": "For codedomain x=4,y=0, what are the P1,P2 outcomes?",
+      "options": [
+        "A) FT",
+        "B) TT",
+        "C) FF",
+        "D) TF"
+      ],
+      "correctAnswer": "A",
+      "explanation": "c=4 gives false; d=6 and 6>=6 gives true. This follows the code rather than the slide typo.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "10–16"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Deriving domains",
+      "difficulty": "medium",
+      "question": "Which input lies in TT for the displayed codedomain predicates?",
+      "options": [
+        "A) (0,0)",
+        "B) (4,0)",
+        "C) (2,6)",
+        "D) (-4,10)"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Its sum exceeds 5 and x<=-4.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "10–16"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Deriving domains",
+      "difficulty": "medium",
+      "question": "Which input lies in FF for the displayed codedomain predicates?",
+      "options": [
+        "A) (2,6)",
+        "B) (-4,10)",
+        "C) (4,0)",
+        "D) (0,0)"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Its sum is at most 5 and x<4.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "10–16"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Boundary properties",
+      "difficulty": "easy",
+      "question": "Which operator describes a closed inequality boundary?",
+      "options": [
+        "A) !=",
+        "B) <",
+        "C) >",
+        "D) <="
+      ],
+      "correctAnswer": "D",
+      "explanation": "Equality belongs to a closed boundary.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "19–20"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Boundary properties",
+      "difficulty": "easy",
+      "question": "For x+y>5, does a point with x+y=5 belong to the selected domain?",
+      "options": [
+        "A) No",
+        "B) Yes in every case",
+        "C) Only if x is positive",
+        "D) Only if y is positive"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The strict operator excludes equality.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "19–20"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Boundary properties",
+      "difficulty": "medium",
+      "question": "Under the slides' terminology, when is a domain called closed?",
+      "options": [
+        "A) The domain is empty",
+        "B) Any one boundary is closed",
+        "C) All its boundaries are closed",
+        "D) All boundaries use strict inequalities"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Keep this course definition distinct from the slide's broad use of open domain.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "20"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Boundary properties",
+      "difficulty": "easy",
+      "question": "What is an extreme point in the lecture?",
+      "options": [
+        "A) An intersection of two or more boundaries",
+        "B) Any point far from zero",
+        "C) Only a negative input",
+        "D) The point with largest test ID"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Boundary intersections can need special attention.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "21"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Boundary defects",
+      "difficulty": "easy",
+      "question": "Changing x<=10 into x<10 creates which defect?",
+      "options": [
+        "A) Tilted boundary",
+        "B) A test driver",
+        "C) Shifted boundary",
+        "D) Closure error"
+      ],
+      "correctAnswer": "D",
+      "explanation": "The geometric boundary stays at 10 but equality membership changes.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Boundary defects",
+      "difficulty": "medium",
+      "question": "Changing x+y>4 into x+y>5 creates which defect?",
+      "options": [
+        "A) Tilted boundary",
+        "B) Closure only",
+        "C) Missing input vector",
+        "D) Shifted boundary"
+      ],
+      "correctAnswer": "D",
+      "explanation": "The constant changes while the boundary normal remains the same.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 17,
+      "topic": "Boundary defects",
+      "difficulty": "medium",
+      "question": "Changing x+0.5y>5 into x+y>5 creates which defect?",
+      "options": [
+        "A) Tilted boundary",
+        "B) Closure only",
+        "C) Parallel shift only",
+        "D) No domain defect"
+      ],
+      "correctAnswer": "A",
+      "explanation": "A changed coefficient changes the line's orientation.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 18,
+      "topic": "Boundary defects",
+      "difficulty": "medium",
+      "question": "Can an assignment before a predicate cause a domain error?",
+      "options": [
+        "A) Only if the program has no inputs",
+        "B) Yes, if it changes the value used for classification",
+        "C) No, assignments never influence control flow",
+        "D) No, only the relational operator can matter"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Faulty data feeding a condition can move the effective boundary.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "22–23"
+      }
+    },
+    {
+      "id": 19,
+      "topic": "Boundary defects",
+      "difficulty": "medium",
+      "question": "Removing a required boundary constraint can cause what?",
+      "options": [
+        "A) Only a closure defect",
+        "B) Guaranteed shrinkage in every case",
+        "C) A missing-boundary defect and possible domain enlargement",
+        "D) No input reclassification"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Dropping a constraint may admit inputs previously excluded.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "24"
+      }
+    },
+    {
+      "id": 20,
+      "topic": "ON/OFF selection",
+      "difficulty": "easy",
+      "question": "For a closed domain boundary, where is an exact ON point?",
+      "options": [
+        "A) Always inside a different domain",
+        "B) Far outside",
+        "C) On the boundary and included",
+        "D) Only at the origin"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Closed inequalities include their equality points.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "26–29"
+      }
+    },
+    {
+      "id": 21,
+      "topic": "ON/OFF selection",
+      "difficulty": "medium",
+      "question": "For a closed boundary, where should the OFF point be?",
+      "options": [
+        "A) At an arbitrary extreme point",
+        "B) Just outside the domain",
+        "C) Exactly on the included boundary",
+        "D) Far inside"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The slide's OFF choice crosses to the nearby exterior side.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "26–29"
+      }
+    },
+    {
+      "id": 22,
+      "topic": "ON/OFF selection",
+      "difficulty": "medium",
+      "question": "For an open boundary, where is an exact ON point?",
+      "options": [
+        "A) Nowhere because open boundaries have no geometric line",
+        "B) Always included",
+        "C) On the boundary but excluded from the domain",
+        "D) Far inside"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The boundary exists geometrically even though equality is excluded.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "26–29"
+      }
+    },
+    {
+      "id": 23,
+      "topic": "ON/OFF selection",
+      "difficulty": "medium",
+      "question": "For an open boundary, where should its OFF point be?",
+      "options": [
+        "A) Exactly on the excluded boundary",
+        "B) Just inside the domain",
+        "C) Always identical to the ON point",
+        "D) Far outside"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Membership is reversed relative to the closed-boundary case.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "26–29"
+      }
+    },
+    {
+      "id": 24,
+      "topic": "ON/OFF selection",
+      "difficulty": "easy",
+      "question": "What is the lecture's per-boundary test-selection pattern?",
+      "options": [
+        "A) One random point only",
+        "B) OFF–OFF–OFF",
+        "C) ON–OFF–ON",
+        "D) Every interior point"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Two distinct ON points and a nearby OFF point target boundary faults.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "31"
+      }
+    },
+    {
+      "id": 25,
+      "topic": "ON/OFF selection",
+      "difficulty": "medium",
+      "question": "Why select two distinct ON points rather than only one?",
+      "options": [
+        "A) To improve sensitivity to a boundary tilt",
+        "B) To turn an open domain into a closed one",
+        "C) To avoid evaluating the predicate",
+        "D) To guarantee all nonlinear defects are detected"
+      ],
+      "correctAnswer": "A",
+      "explanation": "A line can rotate around one sampled point; another point helps expose the change.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "25–31"
+      }
+    },
+    {
+      "id": 26,
+      "topic": "ON/OFF selection",
+      "difficulty": "hard",
+      "question": "For D:x+y>=10 with real-valued inputs, which is an appropriate nearby OFF point?",
+      "options": [
+        "A) (2,8)",
+        "B) (5,4.99)",
+        "C) (5,5)",
+        "D) (5,5.01)"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Its sum is just below 10, outside the closed domain.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "26–31"
+      }
+    },
+    {
+      "id": 27,
+      "topic": "ON/OFF selection",
+      "difficulty": "hard",
+      "question": "For D:x+y<10 with real-valued inputs, which is an appropriate nearby OFF point?",
+      "options": [
+        "A) (5,4.99)",
+        "B) (8,2)",
+        "C) (5,5.01)",
+        "D) (5,5)"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The lecture uses an interior near-boundary point for an open domain.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "26–31"
+      }
+    },
+    {
+      "id": 28,
+      "topic": "ON/OFF selection",
+      "difficulty": "hard",
+      "question": "For the closed domain x+7y>=6, is (0,0.858) inside or outside?",
+      "options": [
+        "A) Not a valid pair of coordinates",
+        "B) Inside, since 7*0.858=6.006",
+        "C) Outside, since every rounded point is outside",
+        "D) Exactly on the boundary"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The slide's final outside wording conflicts with its arithmetic; evaluate the actual inequality.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "27"
+      }
+    },
+    {
+      "id": 29,
+      "topic": "Boundary defects",
+      "difficulty": "medium",
+      "question": "Which integer distinguishes intended x<=10 from faulty x<10?",
+      "options": [
+        "A) 0",
+        "B) 10",
+        "C) 11",
+        "D) 9"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Only equality changes membership for this closure fault.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "23"
+      }
+    },
+    {
+      "id": 30,
+      "topic": "ON/OFF selection",
+      "difficulty": "medium",
+      "question": "Why keep the other domain constraints satisfied while testing one boundary?",
+      "options": [
+        "A) To isolate that boundary's classification effect",
+        "B) To turn all inequalities into equalities",
+        "C) To avoid all boundary inputs",
+        "D) To force every path to be identical"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Violating another constraint may hide the boundary fault under study.",
+      "source": {
+        "file": "L5_Ch6-DomainTesting [Updated].pdf",
+        "pages": "25–31"
+      }
+    }
+  ]
+}

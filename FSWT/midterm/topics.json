@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "control_flow",
+    "title": "Control Flow Testing",
+    "icon": "🔀",
+    "description": "CFGs, coverage criteria, short-circuit evaluation, symbolic execution, feasible paths, and cyclomatic complexity.",
+    "quiz": 30,
+    "fill": 20,
+    "source": "L4_Ch4-ControlFlowTesting [Updated].pdf"
+  },
+  {
+    "slug": "domain_testing",
+    "title": "Domain Testing",
+    "icon": "📏",
+    "description": "Input classification, path domains, boundary defects, ON/OFF points, and ON–OFF–ON test selection.",
+    "quiz": 30,
+    "fill": 20,
+    "source": "L5_Ch6-DomainTesting [Updated].pdf"
+  },
+  {
+    "slug": "system_integration",
+    "title": "System Integration Testing",
+    "icon": "🧩",
+    "description": "Interfaces, integration strategies, stubs/drivers, builds, hardware compatibility, test plans, COTS, and built-in testing.",
+    "quiz": 30,
+    "fill": 20,
+    "source": "L6_Ch7-SystemIntegrationTesting [Updated].pdf"
+  },
+  {
+    "slug": "system_categories",
+    "title": "System Testing and Test Categories",
+    "icon": "🧪",
+    "description": "The full system-test taxonomy, scenario classification, performance distinctions, reliability metrics, documentation, and safety.",
+    "quiz": 40,
+    "fill": 24,
+    "source": "L7_Ch8-SystemTestCategories.pdf"
+  }
+]
