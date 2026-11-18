@@ -1,0 +1,96 @@
+[
+  {
+    "slug": "stack_and_sockets",
+    "title": "Stacks Processes and Sockets",
+    "icon": "🧱",
+    "description": "OSI and TCP/IP layers, application processes, sockets, ports, and encapsulation.",
+    "sections": [
+      1,
+      2,
+      3
+    ],
+    "quiz": 16,
+    "fill": 12,
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ]
+  },
+  {
+    "slug": "smtp_and_dns",
+    "title": "Email SMTP and DNS",
+    "icon": "✉️",
+    "description": "Mail roles, envelopes, MX resolution, SMTP replies, message framing, and TLS.",
+    "sections": [
+      4,
+      5,
+      6
+    ],
+    "quiz": 16,
+    "fill": 12,
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ]
+  },
+  {
+    "slug": "tcp",
+    "title": "TCP Reliability and Control",
+    "icon": "🔁",
+    "description": "Handshake, byte numbering, acknowledgments, retransmission, windows, and closing.",
+    "sections": [
+      7
+    ],
+    "quiz": 16,
+    "fill": 12,
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ]
+  },
+  {
+    "slug": "ip_and_neighbors",
+    "title": "IP Routing and Neighbor Resolution",
+    "icon": "🧭",
+    "description": "Prefix matching, IPv4 and IPv6 headers, next hops, ARP, ND, and NAT.",
+    "sections": [
+      8,
+      9
+    ],
+    "quiz": 16,
+    "fill": 12,
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ]
+  },
+  {
+    "slug": "link_and_forwarding",
+    "title": "Links Switches and Routers",
+    "icon": "🔌",
+    "description": "Ethernet, Wi-Fi, physical delivery, switch learning, frame replacement, and device state.",
+    "sections": [
+      10,
+      11
+    ],
+    "quiz": 16,
+    "fill": 12,
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ]
+  },
+  {
+    "slug": "end_to_end",
+    "title": "Packet Walkthrough and Worked Examples",
+    "icon": "📦",
+    "description": "Hex headers, decapsulation, segmentation, timing, loss, and diagnosing delivery failures.",
+    "sections": [
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "quiz": 16,
+    "fill": 12,
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ]
+  }
+]

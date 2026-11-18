@@ -1,0 +1,273 @@
+{
+  "metadata": {
+    "title": "IP Routing and Neighbor Resolution",
+    "subject": "NCC — Net-Centric Computing",
+    "course": "Review — November 18, 2026",
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ],
+    "sourceSections": [
+      8,
+      9
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 12,
+    "topics": [
+      "IP Routing and Neighbor Resolution"
+    ],
+    "contentType": "Original practice based on the accompanying lecture notes"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 8 — IP addressing routing and forwarding"
+      },
+      "sentence": "The local forwarding choice among matching routes uses the ___ prefix match.",
+      "blanks": [
+        "longest"
+      ],
+      "hints": [
+        "The most specific matching route."
+      ],
+      "explanation": "More prefix bits give a more specific matching entry.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 2,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 8 — IP addressing routing and forwarding"
+      },
+      "sentence": "For a remote destination, the first frame normally targets the default ___ MAC address.",
+      "blanks": [
+        "gateway"
+      ],
+      "hints": [
+        "The local router used as next hop."
+      ],
+      "explanation": "The packet retains the remote host IP destination.",
+      "acceptedAnswers": [
+        [
+          "router"
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 8 — IP addressing routing and forwarding"
+      },
+      "sentence": "The IPv4 field that prevents indefinite forwarding loops is ___.",
+      "blanks": [
+        "TTL"
+      ],
+      "hints": [
+        "Three-letter hop-limit field."
+      ],
+      "explanation": "Routers decrement it and can discard packets when it expires.",
+      "acceptedAnswers": [
+        [
+          "time to live"
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 8 — IP addressing routing and forwarding"
+      },
+      "sentence": "The IPv4 Protocol number for TCP is ___.",
+      "blanks": [
+        "6"
+      ],
+      "hints": [
+        "A protocol number, not port 25."
+      ],
+      "explanation": "The field directs IP payload processing to TCP.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 5,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 8 — IP addressing routing and forwarding"
+      },
+      "sentence": "An IPv4 header with IHL 5 occupies ___ bytes.",
+      "blanks": [
+        "20"
+      ],
+      "hints": [
+        "Multiply five by four."
+      ],
+      "explanation": "IHL uses 32-bit words, so a value of 5 means a 20-byte IPv4 header.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 6,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 8 — IP addressing routing and forwarding"
+      },
+      "sentence": "The IPv6 base header occupies ___ bytes.",
+      "blanks": [
+        "40"
+      ],
+      "hints": [
+        "Twice the minimum IPv4 header length."
+      ],
+      "explanation": "Extension headers can add further bytes.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 7,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 8 — IP addressing routing and forwarding"
+      },
+      "sentence": "IPv6 replaces the IPv4 TTL field with ___.",
+      "blanks": [
+        "Hop Limit"
+      ],
+      "hints": [
+        "Two words naming the hop counter."
+      ],
+      "explanation": "Forwarding routers decrease the IPv6 hop counter.",
+      "acceptedAnswers": [
+        [
+          "hop-limit"
+        ]
+      ]
+    },
+    {
+      "id": 8,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 9 — ARP and IPv6 Neighbor Discovery"
+      },
+      "sentence": "The IPv4-to-MAC local resolution protocol is ___.",
+      "blanks": [
+        "ARP"
+      ],
+      "hints": [
+        "Three letters for address resolution."
+      ],
+      "explanation": "ARP discovers a local neighbor link address.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 9,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 9 — ARP and IPv6 Neighbor Discovery"
+      },
+      "sentence": "Neighbor Discovery uses ___ rather than ARP for IPv6.",
+      "blanks": [
+        "ICMPv6"
+      ],
+      "hints": [
+        "The IPv6 control-message protocol."
+      ],
+      "explanation": "Neighbor Solicitation and Advertisement are ICMPv6 messages.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 10,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 9 — ARP and IPv6 Neighbor Discovery"
+      },
+      "sentence": "An Ethernet ARP request commonly uses destination ff:ff:ff:ff:ff:ff, which is a ___ address.",
+      "blanks": [
+        "broadcast"
+      ],
+      "hints": [
+        "It reaches all interfaces in the relevant LAN."
+      ],
+      "explanation": "Routers do not normally forward this LAN broadcast across subnets.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 11,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 8 — IP addressing routing and forwarding"
+      },
+      "sentence": "A mapping from private 10.0.0.10:49152 to public 192.0.2.50:62001 illustrates address-and-port ___.",
+      "blanks": [
+        "translation"
+      ],
+      "hints": [
+        "The T in NAT."
+      ],
+      "explanation": "A NAT tracks the mapping and rewrites return traffic.",
+      "acceptedAnswers": [
+        [
+          "NAT"
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "topic": "IP Routing and Neighbor Resolution",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 9 — ARP and IPv6 Neighbor Discovery"
+      },
+      "sentence": "An IPv4 host can learn configuration such as its address and gateway through ___.",
+      "blanks": [
+        "DHCP"
+      ],
+      "hints": [
+        "Dynamic configuration protocol."
+      ],
+      "explanation": "The running example assumes configuration already exists.",
+      "acceptedAnswers": [
+        [
+          "DHCPv4"
+        ]
+      ]
+    }
+  ]
+}

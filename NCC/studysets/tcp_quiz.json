@@ -1,0 +1,310 @@
+{
+  "metadata": {
+    "title": "TCP Reliability and Control",
+    "subject": "NCC — Net-Centric Computing",
+    "course": "Review — November 18, 2026",
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ],
+    "sourceSections": [
+      7
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 16,
+    "topics": [
+      "TCP Reliability and Control"
+    ],
+    "contentType": "Original practice based on the accompanying lecture notes"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "A client SYN uses sequence 1000. What is its next sequence position after establishment, before application data?",
+      "options": [
+        "A) 1000",
+        "B) 1001",
+        "C) 1020",
+        "D) 7001"
+      ],
+      "correctAnswer": "B",
+      "explanation": "SYN consumes one position in the client sequence space.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "A server SYN ACK uses sequence 7000 and acknowledgment 1001. What does the client acknowledge in the last handshake segment?",
+      "options": [
+        "A) 1001",
+        "B) 7000",
+        "C) 7001",
+        "D) 25"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The server SYN consumes one server sequence number.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "A segment starts at sequence 1001 and carries 26 payload bytes. What cumulative ACK covers all those bytes?",
+      "options": [
+        "A) 1026",
+        "B) 1027",
+        "C) 26",
+        "D) 1002"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Bytes 1001 through 1026 are covered; 1027 is next expected.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "What does a TCP cumulative acknowledgment number identify?",
+      "options": [
+        "A) The number of complete SMTP messages",
+        "B) The next byte expected in that stream direction",
+        "C) The number of Ethernet switches visited",
+        "D) The segment ordinal number"
+      ],
+      "correctAnswer": "B",
+      "explanation": "TCP acknowledgments refer to stream byte positions, not application message counts.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "Segment 2 is missing but segment 3 has arrived. Why can the application still be blocked?",
+      "options": [
+        "A) IP prohibits receiving any out-of-order packet",
+        "B) The receiver must discard every later segment immediately",
+        "C) TCP cannot deliver an uninterrupted stream past the missing byte range",
+        "D) SMTP must issue another DNS request for segment 3"
+      ],
+      "correctAnswer": "C",
+      "explanation": "TCP can buffer out-of-order bytes while withholding data beyond the stream gap.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "Which mechanism protects a slow receiver from being overwhelmed?",
+      "options": [
+        "A) The advertised receive window rwnd",
+        "B) The IP TTL",
+        "C) The DNS TTL",
+        "D) The Ethernet source field"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Flow control limits sending based on the receiving endpoint buffer state.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "What is the distinct purpose of the congestion window cwnd?",
+      "options": [
+        "A) To identify the receiving mailbox",
+        "B) To describe only free application buffer space",
+        "C) To constrain load offered to the network",
+        "D) To encrypt TCP options"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Congestion control responds to network load; receiver flow control has a different purpose.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "hard",
+      "question": "If rwnd is 32 KiB, cwnd is 12 KiB, and 8 KiB are in flight, how much new data fits under the simplified window bound?",
+      "options": [
+        "A) 12 KiB",
+        "B) 24 KiB",
+        "C) 32 KiB",
+        "D) 4 KiB"
+      ],
+      "correctAnswer": "D",
+      "explanation": "The outstanding limit is min(32,12)=12 KiB, leaving 4 KiB beyond the 8 KiB already outstanding.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "What is the minimum ordinary TCP header length?",
+      "options": [
+        "A) 20 bytes",
+        "B) 8 bytes",
+        "C) 14 bytes",
+        "D) 40 bytes"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The base TCP header is 20 bytes; options increase it.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "What does TCP data offset 5 mean?",
+      "options": [
+        "A) The TCP header occupies five 32-bit words, or 20 bytes",
+        "B) The payload starts at stream byte five",
+        "C) The IP packet traversed five routers",
+        "D) Five SMTP commands are included"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Data offset is a header-length field measured in 32-bit words.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "Which fields contribute to the TCP checksum pseudoheader?",
+      "options": [
+        "A) Ethernet source, destination, and FCS only",
+        "B) Only IP TTL and header checksum",
+        "C) Only the SMTP Subject and Date fields",
+        "D) IP source, IP destination, protocol, and TCP length"
+      ],
+      "correctAnswer": "D",
+      "explanation": "The pseudoheader binds checksum computation to relevant network-layer addressing and length information.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "What property does a TCP checksum supply?",
+      "options": [
+        "A) Encryption of all message content",
+        "B) Detection of accidental corruption, rather than cryptographic authentication",
+        "C) Proof that a specific human sent a message",
+        "D) Guaranteed recovery without retransmission"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The checksum is an error-detection mechanism and is not a cryptographic integrity or identity guarantee.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "What is the relationship between QUIT and FIN?",
+      "options": [
+        "A) QUIT and FIN are two spellings of the same TCP flag",
+        "B) FIN proves SMTP accepted the message",
+        "C) QUIT is an SMTP command, while FIN closes one TCP sending direction",
+        "D) QUIT changes the IP Protocol field from TCP to UDP"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Application dialogue and transport closure operate at different boundaries.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "Why is closing commonly described as separate in each direction?",
+      "options": [
+        "A) TCP is full duplex and either endpoint can finish sending independently",
+        "B) TCP carries only one direction at a time",
+        "C) Every FIN opens an additional email connection",
+        "D) Ethernet requires two different SMTP servers"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Each stream direction can end separately and FIN consumes a sequence number.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "hard",
+      "question": "Does receipt of a single out-of-order later segment necessarily trigger classic fast retransmit?",
+      "options": [
+        "A) Yes; every out-of-order segment triggers it immediately",
+        "B) Yes; the receiving application retransmits the missing packet",
+        "C) No; TCP never retransmits until a new connection is created",
+        "D) No; the classic duplicate-ACK trigger commonly requires three duplicate ACKs"
+      ],
+      "correctAnswer": "D",
+      "explanation": "One later segment may produce only one duplicate ACK; timers or other implemented recovery can matter.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "question": "Which conclusion about TCP PSH is correct?",
+      "options": [
+        "A) It terminates the SMTP DATA transaction",
+        "B) It forces one complete command per application read",
+        "C) It changes the destination port to the receiving mailbox",
+        "D) It does not define an SMTP message boundary"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Applications must use their own framing regardless of PSH.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      }
+    }
+  ]
+}

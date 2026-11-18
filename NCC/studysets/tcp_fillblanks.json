@@ -1,0 +1,278 @@
+{
+  "metadata": {
+    "title": "TCP Reliability and Control",
+    "subject": "NCC — Net-Centric Computing",
+    "course": "Review — November 18, 2026",
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ],
+    "sourceSections": [
+      7
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 12,
+    "topics": [
+      "TCP Reliability and Control"
+    ],
+    "contentType": "Original practice based on the accompanying lecture notes"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "The three basic handshake messages are SYN, ___, and ACK.",
+      "blanks": [
+        "SYN ACK"
+      ],
+      "hints": [
+        "Both flags are set in the middle message."
+      ],
+      "explanation": "The server acknowledges the client SYN and supplies its own initial sequence.",
+      "acceptedAnswers": [
+        [
+          "SYN-ACK",
+          "SYN+ACK",
+          "SYN/ACK"
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "SYN consumes ___ sequence number even without application data.",
+      "blanks": [
+        "1"
+      ],
+      "hints": [
+        "A single position."
+      ],
+      "explanation": "Both SYN and FIN consume one sequence position.",
+      "acceptedAnswers": [
+        [
+          "one"
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "Sequence 1001 carrying 26 bytes can be cumulatively acknowledged with ___.",
+      "blanks": [
+        "1027"
+      ],
+      "hints": [
+        "Add the payload length."
+      ],
+      "explanation": "The next expected position is 1001 + 26.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 4,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "The receive window abbreviation is ___ and the congestion window abbreviation is ___.",
+      "blanks": [
+        "rwnd",
+        "cwnd"
+      ],
+      "hints": [
+        "Receiver flow control.",
+        "Network congestion control."
+      ],
+      "explanation": "The two windows constrain different resources.",
+      "acceptedAnswers": [
+        [],
+        []
+      ]
+    },
+    {
+      "id": 5,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "The minimum TCP header is ___ bytes.",
+      "blanks": [
+        "20"
+      ],
+      "hints": [
+        "Five 32-bit words."
+      ],
+      "explanation": "Options can increase the header length.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 6,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "TCP acknowledgment numbers count ___ rather than whole SMTP messages.",
+      "blanks": [
+        "bytes"
+      ],
+      "hints": [
+        "Units of the stream sequence space."
+      ],
+      "explanation": "All TCP payload bytes participate, including application commands and replies.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 7,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "A TCP endpoint with no more bytes to send can transmit ___.",
+      "blanks": [
+        "FIN"
+      ],
+      "hints": [
+        "An orderly-close control flag."
+      ],
+      "explanation": "FIN ends one sending direction and consumes a sequence number.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 8,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "An abrupt TCP connection termination can use the ___ flag.",
+      "blanks": [
+        "RST"
+      ],
+      "hints": [
+        "Three letters meaning reset."
+      ],
+      "explanation": "RST differs from an orderly FIN exchange.",
+      "acceptedAnswers": [
+        [
+          "reset"
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "The active closer normally waits in the ___ state.",
+      "blanks": [
+        "TIME-WAIT"
+      ],
+      "hints": [
+        "The state handles delayed traffic and final ACK recovery."
+      ],
+      "explanation": "TIME-WAIT is part of orderly connection closure.",
+      "acceptedAnswers": [
+        [
+          "TIME_WAIT",
+          "TIME WAIT"
+        ]
+      ]
+    },
+    {
+      "id": 10,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "With rwnd 32 KiB and cwnd 12 KiB, the simplified limit on outstanding bytes is ___ KiB.",
+      "blanks": [
+        "12"
+      ],
+      "hints": [
+        "Choose the smaller window."
+      ],
+      "explanation": "The send limit must respect both receive and congestion windows.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 11,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "The TCP checksum uses an IP-address ___ that is not transmitted as a separate layer header.",
+      "blanks": [
+        "pseudoheader"
+      ],
+      "hints": [
+        "A calculation input."
+      ],
+      "explanation": "The pseudoheader includes addressing, protocol, and TCP length.",
+      "acceptedAnswers": [
+        [
+          "pseudo-header"
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "topic": "TCP Reliability and Control",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 7 — TCP connection reliability and control"
+      },
+      "sentence": "MSS stands for maximum ___ size and describes TCP payload capacity, not a complete Ethernet frame.",
+      "blanks": [
+        "segment"
+      ],
+      "hints": [
+        "The TCP protocol unit."
+      ],
+      "explanation": "MSS is a payload sizing constraint and is separate from link MTU.",
+      "acceptedAnswers": [
+        []
+      ]
+    }
+  ]
+}

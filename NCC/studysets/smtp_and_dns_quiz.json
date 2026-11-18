@@ -1,0 +1,312 @@
+{
+  "metadata": {
+    "title": "Email SMTP and DNS",
+    "subject": "NCC — Net-Centric Computing",
+    "course": "Review — November 18, 2026",
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ],
+    "sourceSections": [
+      4,
+      5,
+      6
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 16,
+    "topics": [
+      "Email SMTP and DNS"
+    ],
+    "contentType": "Original practice based on the accompanying lecture notes"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "Which DNS query normally locates mail exchangers for bob@recipient.example during direct relay?",
+      "options": [
+        "A) An A query for bob",
+        "B) An MX query for recipient.example",
+        "C) An ARP query for recipient.example",
+        "D) A PTR query for the visible Subject field"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The recipient domain supplies MX records; a selected exchanger is then resolved to an IP address.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 5 — DNS and the destination mail server"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "Two MX records have preferences 10 and 20. Which is preferred?",
+      "options": [
+        "A) 20, because a larger value always means a faster server",
+        "B) Both must be contacted simultaneously for every recipient",
+        "C) The numbers determine TCP destination ports",
+        "D) 10, because lower preference values have higher priority"
+      ],
+      "correctAnswer": "D",
+      "explanation": "MX preference is an ordering value, separate from port numbers and measured performance.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 5 — DNS and the destination mail server"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "What does a null MX explicitly announce?",
+      "options": [
+        "A) The domain has temporarily lost its DNS cache",
+        "B) The domain requires TCP port zero",
+        "C) The domain does not accept email",
+        "D) The domain accepts mail only through ARP"
+      ],
+      "correctAnswer": "C",
+      "explanation": "An explicit null MX differs from a missing MX record and its possible fallback behavior.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 5 — DNS and the destination mail server"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "What resolves an exchanger hostname into an address after MX lookup?",
+      "options": [
+        "A) An A or AAAA lookup",
+        "B) Another SMTP DATA command",
+        "C) A TCP window scaling exchange",
+        "D) An Ethernet CRC lookup"
+      ],
+      "correctAnswer": "A",
+      "explanation": "A provides IPv4 addresses and AAAA provides IPv6 addresses.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 5 — DNS and the destination mail server"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "Which information normally controls the recipient delivery path in SMTP?",
+      "options": [
+        "A) Only the visible To message header",
+        "B) The envelope RCPT TO recipients",
+        "C) The Ethernet source address",
+        "D) The Subject field"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Blind copies and forwarding demonstrate why envelope and visible headers can differ.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 4 — Email architecture and message structure"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "Which server reply is the application acceptance point for transmitted message content?",
+      "options": [
+        "A) A TCP ACK for the first content segment",
+        "B) A 250 reply to MAIL FROM before content",
+        "C) A successful final reply after the DATA content terminator",
+        "D) The server TCP SYN ACK"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The final SMTP success acknowledges acceptance at that server, separate from transport receipt.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "Why does a transmitted body line beginning with a dot have an extra leading dot?",
+      "options": [
+        "A) SMTP uses dot transparency to distinguish content from its DATA terminator",
+        "B) TCP requires every line to begin with two bytes",
+        "C) DNS encodes all punctuation twice",
+        "D) Ethernet reserves the first dot for its checksum"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The receiver removes the extra leading dot when recovering content.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "What separates the Internet message header fields from the body?",
+      "options": [
+        "A) The TCP SYN flag",
+        "B) The MX preference number",
+        "C) An Ethernet FCS",
+        "D) A blank line"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Message content has headers, a blank line, and a body.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 4 — Email architecture and message structure"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "Which port normally serves server-to-server SMTP relay?",
+      "options": [
+        "A) 53",
+        "B) 465",
+        "C) 25",
+        "D) 587"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Port 25 is the relay service; 587 and 465 are submission contexts and 53 is traditional DNS.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 4 — Email architecture and message structure"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "What occurs after a successful STARTTLS negotiation?",
+      "options": [
+        "A) The client switches the existing TCP connection to UDP",
+        "B) The receiver reuses the old capabilities without a new EHLO",
+        "C) The sender must resolve the recipient MAC across the Internet",
+        "D) A new EHLO is sent over TLS and earlier capability information is discarded"
+      ],
+      "correctAnswer": "D",
+      "explanation": "STARTTLS resets relevant SMTP protocol knowledge after the TLS handshake.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "How does implicit TLS submission on port 465 begin?",
+      "options": [
+        "A) SMTP DATA, then DNS, then the TLS handshake",
+        "B) An unencrypted SMTP greeting before any TLS handshake",
+        "C) A TLS handshake before an IP address is selected",
+        "D) TCP establishment, then TLS handshake, then SMTP greeting"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Implicit TLS starts protection immediately on the established TCP connection.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "What is the normal broad interpretation of an SMTP 451 reply?",
+      "options": [
+        "A) A temporary failure that can lead to queued retry",
+        "B) Proof that the recipient has read the message",
+        "C) A successful content acceptance",
+        "D) A command to use IPv4 fragment offset 451"
+      ],
+      "correctAnswer": "A",
+      "explanation": "A 4xx reply is a transient negative completion, distinct from 5xx permanent rejection.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "Which statement describes traditional DNS transport accurately?",
+      "options": [
+        "A) It can use UDP or TCP, commonly with server port 53",
+        "B) It always uses the SMTP TCP connection",
+        "C) It uses ARP instead of transport",
+        "D) It cannot use TCP under any circumstances"
+      ],
+      "correctAnswer": "A",
+      "explanation": "DNS is an independent application exchange and has TCP as well as UDP operation.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 5 — DNS and the destination mail server"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "What does a TCP ACK of all message bytes prove?",
+      "options": [
+        "A) The final SMTP content was accepted",
+        "B) The peer TCP has cumulatively received those stream bytes",
+        "C) The message is stored in the final mailbox",
+        "D) The message has been read by Bob"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Application acceptance is a separate protocol decision expressed by SMTP replies.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "question": "Which service is normally responsible for Bob reading and synchronizing mailbox folders?",
+      "options": [
+        "A) SMTP relay alone",
+        "B) IMAP",
+        "C) ARP",
+        "D) OSPF"
+      ],
+      "correctAnswer": "B",
+      "explanation": "IMAP is mailbox access; SMTP handles message transfer.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 4 — Email architecture and message structure"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "hard",
+      "question": "Why can a retry create a duplicate after the SMTP connection fails near the final reply?",
+      "options": [
+        "A) TCP sequence numbers are reused for different recipients within one segment",
+        "B) Every SMTP error requires the recipient to create two mailboxes",
+        "C) The receiver may have accepted the content even though the client never received the final success",
+        "D) DNS always duplicates its MX records during retry"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The sender can be uncertain about application acceptance after a connection failure.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      }
+    }
+  ]
+}

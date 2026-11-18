@@ -1,0 +1,278 @@
+{
+  "metadata": {
+    "title": "Email SMTP and DNS",
+    "subject": "NCC — Net-Centric Computing",
+    "course": "Review — November 18, 2026",
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ],
+    "sourceSections": [
+      4,
+      5,
+      6
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 12,
+    "topics": [
+      "Email SMTP and DNS"
+    ],
+    "contentType": "Original practice based on the accompanying lecture notes"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 5 — DNS and the destination mail server"
+      },
+      "sentence": "The DNS record type for mail exchangers is ___.",
+      "blanks": [
+        "MX"
+      ],
+      "hints": [
+        "Two-letter record type."
+      ],
+      "explanation": "MX identifies mail exchanger hostnames and preferences.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 2,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 5 — DNS and the destination mail server"
+      },
+      "sentence": "A mail exchanger preference of 10 is preferred over 20 because the ___ number has higher priority.",
+      "blanks": [
+        "lower"
+      ],
+      "hints": [
+        "Compare the numerical values."
+      ],
+      "explanation": "Lower MX preferences are preferred.",
+      "acceptedAnswers": [
+        [
+          "smaller"
+        ]
+      ]
+    },
+    {
+      "id": 3,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      },
+      "sentence": "The SMTP envelope recipient command is ___.",
+      "blanks": [
+        "RCPT TO"
+      ],
+      "hints": [
+        "Two words, not a visible message header."
+      ],
+      "explanation": "RCPT TO names an envelope recipient.",
+      "acceptedAnswers": [
+        [
+          "RCPT TO:"
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      },
+      "sentence": "The SMTP command that starts the reverse-path part of a mail transaction is ___.",
+      "blanks": [
+        "MAIL FROM"
+      ],
+      "hints": [
+        "Two words introducing the sender path."
+      ],
+      "explanation": "MAIL FROM begins the mail transaction envelope.",
+      "acceptedAnswers": [
+        [
+          "MAIL FROM:"
+        ]
+      ]
+    },
+    {
+      "id": 5,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      },
+      "sentence": "The reply code asking for message content after DATA is ___.",
+      "blanks": [
+        "354"
+      ],
+      "hints": [
+        "A three-digit intermediate reply."
+      ],
+      "explanation": "354 permits the client to send DATA content.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 6,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 4 — Email architecture and message structure"
+      },
+      "sentence": "Server-to-server SMTP normally uses TCP port ___; message submission normally uses port ___.",
+      "blanks": [
+        "25",
+        "587"
+      ],
+      "hints": [
+        "Relay service.",
+        "STARTTLS submission service."
+      ],
+      "explanation": "Relay and submission are distinct service roles.",
+      "acceptedAnswers": [
+        [],
+        []
+      ]
+    },
+    {
+      "id": 7,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 4 — Email architecture and message structure"
+      },
+      "sentence": "Implicit TLS message submission uses port ___.",
+      "blanks": [
+        "465"
+      ],
+      "hints": [
+        "The TLS handshake comes before the SMTP greeting."
+      ],
+      "explanation": "Port 465 provides implicit TLS submission.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 8,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      },
+      "sentence": "SMTP lines in these examples end with ___, represented by hexadecimal 0d 0a.",
+      "blanks": [
+        "CRLF"
+      ],
+      "hints": [
+        "Carriage return plus line feed."
+      ],
+      "explanation": "The application framing includes both control bytes.",
+      "acceptedAnswers": [
+        [
+          "CR LF",
+          "carriage return line feed"
+        ]
+      ]
+    },
+    {
+      "id": 9,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 5 — DNS and the destination mail server"
+      },
+      "sentence": "The DNS record for an IPv6 exchanger address is ___.",
+      "blanks": [
+        "AAAA"
+      ],
+      "hints": [
+        "Four repeated letters."
+      ],
+      "explanation": "AAAA maps a name to an IPv6 address.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 10,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      },
+      "sentence": "A 4xx SMTP reply broadly indicates a ___ failure.",
+      "blanks": [
+        "temporary"
+      ],
+      "hints": [
+        "A later retry can be meaningful."
+      ],
+      "explanation": "Temporary and permanent replies have different retry implications.",
+      "acceptedAnswers": [
+        [
+          "transient"
+        ]
+      ]
+    },
+    {
+      "id": 11,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 4 — Email architecture and message structure"
+      },
+      "sentence": "___ describes message media types, multipart bodies, and transfer encodings.",
+      "blanks": [
+        "MIME"
+      ],
+      "hints": [
+        "The Internet mail content extension family."
+      ],
+      "explanation": "MIME structures content; it does not provide TCP reliability.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 12,
+      "topic": "Email SMTP and DNS",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 6 — SMTP dialogue and acceptance"
+      },
+      "sentence": "After STARTTLS succeeds, the SMTP client sends ___ again.",
+      "blanks": [
+        "EHLO"
+      ],
+      "hints": [
+        "The ESMTP capability request."
+      ],
+      "explanation": "Earlier capability knowledge is discarded after TLS negotiation.",
+      "acceptedAnswers": [
+        []
+      ]
+    }
+  ]
+}

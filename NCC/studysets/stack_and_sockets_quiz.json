@@ -1,0 +1,312 @@
+{
+  "metadata": {
+    "title": "Stacks Processes and Sockets",
+    "subject": "NCC — Net-Centric Computing",
+    "course": "Review — November 18, 2026",
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ],
+    "sourceSections": [
+      1,
+      2,
+      3
+    ],
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 16,
+    "topics": [
+      "Stacks Processes and Sockets"
+    ],
+    "contentType": "Original practice based on the accompanying lecture notes"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "A mail relay accepts a message and forwards it to another mail server. What happens to the transport connection?",
+      "options": [
+        "A) The original TCP segment continues unchanged through the relay",
+        "B) The relay uses a separate TCP connection for the next transfer",
+        "C) The original client socket moves into the next server",
+        "D) DNS extends the original connection without another handshake"
+      ],
+      "correctAnswer": "B",
+      "explanation": "A relay terminates an application transaction and originates another; TCP state belongs to each connection.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 1 — The complete delivery story"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "Which boundary does the socket API expose to a typical network application?",
+      "options": [
+        "A) A direct interface to the remote Ethernet switch table",
+        "B) The physical radio modulation of every transmitted bit",
+        "C) The local interface used to request transport communication",
+        "D) A mailbox address that replaces the destination port"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The process uses a local socket API while the operating system normally handles TCP and IP.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 3 — Processes sockets and addressing"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "What is the correct interpretation of a successful application write to a TCP socket?",
+      "options": [
+        "A) The receiving SMTP server has accepted the email",
+        "B) The local system has accepted bytes for transmission",
+        "C) The destination mailbox has stored the message",
+        "D) The recipient has read the message"
+      ],
+      "correctAnswer": "B",
+      "explanation": "A local write can return before remote transport receipt or application acceptance.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 3 — Processes sockets and addressing"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "Which statement correctly maps Internet functions to OSI concepts?",
+      "options": [
+        "A) MIME requires a separate presentation-layer packet on every link",
+        "B) TCP is classified as the OSI session protocol because it has connections",
+        "C) Representation and session functions can be implemented within Internet application functionality",
+        "D) DNS becomes a network-layer protocol because applications depend on it"
+      ],
+      "correctAnswer": "C",
+      "explanation": "OSI functions need not correspond to separate Internet implementation modules or headers.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 2 — OSI and TCP IP models"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "In a common desktop mail configuration, what does the mail application contact first?",
+      "options": [
+        "A) Every recipient domain authoritative DNS server directly",
+        "B) The recipient laptop Ethernet interface",
+        "C) The final mailbox using an SMTP connection from every browser",
+        "D) Its configured message submission service"
+      ],
+      "correctAnswer": "D",
+      "explanation": "A configured submission service handles outgoing mail; later MTA relay can use recipient MX records.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 1 — The complete delivery story"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "Which sequence correctly describes encapsulation for plaintext SMTP over Ethernet?",
+      "options": [
+        "A) SMTP bytes inside Ethernet inside TCP inside IP",
+        "B) SMTP bytes inside DNS inside ARP inside TCP",
+        "C) SMTP bytes inside TCP inside IP inside Ethernet",
+        "D) SMTP bytes inside TCP inside Ethernet inside IP"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Each lower layer carries the higher-layer data in its payload.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 2 — OSI and TCP IP models"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "A TCP server accepts several clients on port 25. How can it distinguish their established connections?",
+      "options": [
+        "A) By their source and destination IP addresses and ports",
+        "B) By the server port alone",
+        "C) By requiring every connection to use a different server port",
+        "D) By the visible To message header"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Accepted connections have distinct connection tuples even when the local listening port is shared.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 3 — Processes sockets and addressing"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "What is the role of the listening socket after accept produces a connected socket?",
+      "options": [
+        "A) It must become the connected client socket and stop listening",
+        "B) It is converted into a DNS resolver",
+        "C) It can continue accepting additional connections",
+        "D) It stores the recipient message body"
+      ],
+      "correctAnswer": "C",
+      "explanation": "Listening and connected sockets serve different roles in a typical TCP server.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 3 — Processes sockets and addressing"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "Which identifier is used for local delivery of a frame to a link interface?",
+      "options": [
+        "A) The SMTP subject",
+        "B) A TCP receive window",
+        "C) A DNS MX preference",
+        "D) A MAC address"
+      ],
+      "correctAnswer": "D",
+      "explanation": "MAC addresses identify link interfaces within the relevant link or bridged LAN.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 3 — Processes sockets and addressing"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "Why can a TCP read return only part of one SMTP command?",
+      "options": [
+        "A) TCP always removes the first half of a command",
+        "B) An SMTP command is required to use exactly two packets",
+        "C) The Ethernet switch chooses where a command ends",
+        "D) TCP provides a byte stream without preserving application write boundaries"
+      ],
+      "correctAnswer": "D",
+      "explanation": "SMTP must parse its own CRLF framing after TCP reconstructs stream bytes.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 2 — OSI and TCP IP models"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "Where is TLS normally placed relative to plaintext SMTP and TCP?",
+      "options": [
+        "A) Below Ethernet and above physical signals",
+        "B) Above TCP and below application plaintext",
+        "C) Inside the IPv4 TTL field",
+        "D) In place of both DNS and TCP"
+      ],
+      "correctAnswer": "B",
+      "explanation": "TLS protects application communication carried by the TCP stream; it does not replace IP or link delivery.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 2 — OSI and TCP IP models"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "Which fields form the five-tuple commonly used to identify a transport flow?",
+      "options": [
+        "A) Source IP, destination IP, source port, destination port, transport protocol",
+        "B) Sender mailbox, recipient mailbox, subject, date, message ID",
+        "C) Source MAC, destination MAC, TTL, window, DNS preference",
+        "D) Source IP, destination IP, source MAC, destination MAC, SMTP command"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The TCP four-tuple plus protocol distinguishes flows at the network and transport boundary.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 3 — Processes sockets and addressing"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "How does the four-layer TCP/IP model differ from the five-layer Internet teaching model?",
+      "options": [
+        "A) It removes transport and puts TCP directly into SMTP",
+        "B) It groups link and physical functions into one network-access or link layer",
+        "C) It adds an independent MIME layer",
+        "D) It classifies IP as an application protocol"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The grouping differs while the actual data-delivery functions remain.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 2 — OSI and TCP IP models"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "A user sends email in a web browser. Which initial network protocol is typical?",
+      "options": [
+        "A) SMTP directly from every browser to the recipient MX",
+        "B) ARP across the Internet to the recipient mailbox",
+        "C) IMAP from the browser to every destination router",
+        "D) HTTPS between the browser and webmail provider"
+      ],
+      "correctAnswer": "D",
+      "explanation": "A webmail backend can originate SMTP after receiving the browser request.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 1 — The complete delivery story"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "What does an ephemeral source port identify in the example A:49152 to B:25?",
+      "options": [
+        "A) The client transport endpoint for that connection",
+        "B) The client Ethernet switch port number",
+        "C) The recipient mailbox local part",
+        "D) The MX priority of the recipient server"
+      ],
+      "correctAnswer": "A",
+      "explanation": "The operating system selects a local ephemeral transport port; it is separate from MAC and mailbox addressing.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 3 — Processes sockets and addressing"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "Stacks Processes and Sockets",
+      "difficulty": "medium",
+      "question": "Which two events can be absent from a successful capture because relevant information is cached?",
+      "options": [
+        "A) DNS resolution exchanges and ARP exchanges",
+        "B) TCP data delivery and all physical signaling",
+        "C) The destination IP address and transport port",
+        "D) All SMTP replies and the receiving process"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Caches can eliminate supporting lookups, while the actual communication still uses the corresponding addressing information.",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 1 — The complete delivery story"
+      }
+    }
+  ]
+}

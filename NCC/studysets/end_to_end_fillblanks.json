@@ -1,0 +1,270 @@
+{
+  "metadata": {
+    "title": "Packet Walkthrough and Worked Examples",
+    "subject": "NCC — Net-Centric Computing",
+    "course": "Review — November 18, 2026",
+    "sourceFiles": [
+      "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md"
+    ],
+    "sourceSections": [
+      12,
+      13,
+      14,
+      15,
+      16
+    ],
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 12,
+    "topics": [
+      "Packet Walkthrough and Worked Examples"
+    ],
+    "contentType": "Original practice based on the accompanying lecture notes"
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 12 — Encapsulation and a fully specified packet"
+      },
+      "sentence": "A greeting starting at sequence 7001 with 39 bytes is acknowledged by ___.",
+      "blanks": [
+        "7040"
+      ],
+      "hints": [
+        "Add its byte length."
+      ],
+      "explanation": "TCP ACK reports the next expected byte.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 2,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 12 — Encapsulation and a fully specified packet"
+      },
+      "sentence": "The exact EHLO command in the packet example contains ___ payload bytes including CRLF.",
+      "blanks": [
+        "26"
+      ],
+      "hints": [
+        "24 printable bytes and two control bytes."
+      ],
+      "explanation": "The line terminator contributes two bytes to the TCP stream.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 3,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 12 — Encapsulation and a fully specified packet"
+      },
+      "sentence": "With 20-byte IP and TCP headers and 26 payload bytes, IPv4 Total Length is ___.",
+      "blanks": [
+        "66"
+      ],
+      "hints": [
+        "Add all three lengths."
+      ],
+      "explanation": "Ethernet framing is outside IPv4 Total Length.",
+      "acceptedAnswers": [
+        [
+          "66 bytes"
+        ]
+      ]
+    },
+    {
+      "id": 4,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 12 — Encapsulation and a fully specified packet"
+      },
+      "sentence": "The resulting untagged Ethernet MAC frame including FCS is ___ bytes.",
+      "blanks": [
+        "84"
+      ],
+      "hints": [
+        "Add 18 bytes to the IP packet."
+      ],
+      "explanation": "No Ethernet padding is needed for a 66-byte payload.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 5,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 14 — Worked examples of size timing and loss"
+      },
+      "sentence": "For a 1500-byte MTU and option-free IPv4 and TCP, the TCP payload limit is ___ bytes.",
+      "blanks": [
+        "1460"
+      ],
+      "hints": [
+        "Subtract 20 and 20."
+      ],
+      "explanation": "The headers consume 40 bytes of the IP packet budget.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 6,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 14 — Worked examples of size timing and loss"
+      },
+      "sentence": "A 5000-byte stream split into three 1460-byte payloads has a final payload of ___ bytes.",
+      "blanks": [
+        "620"
+      ],
+      "hints": [
+        "Subtract 4380 from 5000."
+      ],
+      "explanation": "Payload totals must equal the application byte count.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 7,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 14 — Worked examples of size timing and loss"
+      },
+      "sentence": "At 100 Mb/s, serializing 12000 bits takes ___ microseconds.",
+      "blanks": [
+        "120"
+      ],
+      "hints": [
+        "Bits divided by bits per second."
+      ],
+      "explanation": "The result excludes link framing overhead.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 8,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 14 — Worked examples of size timing and loss"
+      },
+      "sentence": "A 2000 km path at 2 × 10^8 m/s has a propagation delay of ___ ms.",
+      "blanks": [
+        "10"
+      ],
+      "hints": [
+        "Convert kilometers to meters first."
+      ],
+      "explanation": "The travel time is 0.01 seconds.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 9,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 14 — Worked examples of size timing and loss"
+      },
+      "sentence": "Seven round trips of 40 ms total ___ ms in the stated timing example.",
+      "blanks": [
+        "280"
+      ],
+      "hints": [
+        "Multiply 7 by 40."
+      ],
+      "explanation": "Different TLS, pipelining, cache, and greeting assumptions change the model.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 10,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 14 — Worked examples of size timing and loss"
+      },
+      "sentence": "Base64 encodes 3000 input bytes into ___ characters before wrapping.",
+      "blanks": [
+        "4000"
+      ],
+      "hints": [
+        "Multiply by four thirds."
+      ],
+      "explanation": "Line endings, MIME boundaries, and part headers add more bytes.",
+      "acceptedAnswers": [
+        []
+      ]
+    },
+    {
+      "id": 11,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 13 — Receiving and decapsulation"
+      },
+      "sentence": "The receiving SMTP process reads reconstructed TCP ___ rather than directly reading Ethernet frames.",
+      "blanks": [
+        "bytes"
+      ],
+      "hints": [
+        "The ordered application stream."
+      ],
+      "explanation": "TCP supplies contiguous stream bytes through the socket.",
+      "acceptedAnswers": [
+        [
+          "stream bytes"
+        ]
+      ]
+    },
+    {
+      "id": 12,
+      "topic": "Packet Walkthrough and Worked Examples",
+      "difficulty": "medium",
+      "source": {
+        "file": "Complete_Networking_Notes_SMTP_OSI_TCPIP_English_Expanded.md",
+        "section": "Section 15 — Failure analysis and explained cases"
+      },
+      "sentence": "The final SMTP acceptance reply after content is commonly ___, whereas a TCP ACK proves only transport receipt.",
+      "blanks": [
+        "250"
+      ],
+      "hints": [
+        "Three-digit success code used in the dialogue."
+      ],
+      "explanation": "Acceptance by one server still does not prove reading by the recipient.",
+      "acceptedAnswers": [
+        []
+      ]
+    }
+  ]
+}
