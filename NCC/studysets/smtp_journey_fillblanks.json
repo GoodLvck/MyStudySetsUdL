@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "title": "The SMTP Message Journey",
+    "subject": "NCC — Net-Centric Computing",
+    "language": "en",
+    "format": "fillblanks",
+    "totalQuestions": 12,
+    "topics": [
+      "The SMTP Message Journey"
+    ],
+    "sourceFiles": [
+      "studysets/resumen_smtp_journey.md"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "A running program uses a ___ to send and receive network data.",
+      "blanks": [
+        "socket"
+      ],
+      "hints": [
+        "The local API endpoint."
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "explanation": "The socket is the interface between the process and transport communication.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 1"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "The sending mail server uses ___ to find the recipient domain mail exchanger.",
+      "blanks": [
+        "DNS"
+      ],
+      "hints": [
+        "The Internet naming system."
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "explanation": "DNS supplies MX records and the exchanger address information.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 2"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "The DNS record type for a mail exchanger is ___.",
+      "blanks": [
+        "MX"
+      ],
+      "hints": [
+        "Two letters."
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "explanation": "MX records identify the servers that handle mail for a domain.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 2"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "The application protocol for transferring the email is ___.",
+      "blanks": [
+        "SMTP"
+      ],
+      "hints": [
+        "Simple Mail Transfer Protocol."
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "explanation": "SMTP defines the commands and replies for transferring messages.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 3"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "The protocol that provides the ordered reliable byte stream is ___.",
+      "blanks": [
+        "TCP"
+      ],
+      "hints": [
+        "Transmission Control Protocol."
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "explanation": "TCP carries the application bytes between the endpoints.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 3"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "Adding protocol information as data moves down the stack is called ___.",
+      "blanks": [
+        "encapsulation"
+      ],
+      "hints": [
+        "Wrapping the higher-layer data."
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "explanation": "The lower layers add information needed for transport, routing, and local delivery.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 4"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "An IP packet is carried over an Ethernet link inside a ___.",
+      "blanks": [
+        "frame"
+      ],
+      "hints": [
+        "The link-layer unit."
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "explanation": "A local link frame carries the network-layer packet.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 4"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "For an off-network destination, the first local frame normally targets the default ___.",
+      "blanks": [
+        "gateway"
+      ],
+      "hints": [
+        "The local router used as next hop."
+      ],
+      "acceptedAnswers": [
+        [
+          "router"
+        ]
+      ],
+      "explanation": "The frame goes to the local router while the IP destination remains the remote server.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 5"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "The IPv4 local address-resolution protocol is ___.",
+      "blanks": [
+        "ARP"
+      ],
+      "hints": [
+        "Address Resolution Protocol."
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "explanation": "ARP can find the local next hop MAC address.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 5"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "A ___ forwards IP packets between networks.",
+      "blanks": [
+        "router"
+      ],
+      "hints": [
+        "A network-layer forwarding device."
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "explanation": "A router selects an outgoing link and constructs the required new link frame.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 5"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "Removing protocol information as data moves up the stack is called ___.",
+      "blanks": [
+        "decapsulation"
+      ],
+      "hints": [
+        "The reverse of wrapping."
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "explanation": "Each receiving layer removes and interprets its own protocol information.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 6"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "sentence": "In the OSI model, TCP belongs to the ___ layer.",
+      "blanks": [
+        "transport"
+      ],
+      "hints": [
+        "Layer 4."
+      ],
+      "acceptedAnswers": [
+        []
+      ],
+      "explanation": "TCP provides transport services between the communicating endpoints.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 7"
+      }
+    }
+  ]
+}

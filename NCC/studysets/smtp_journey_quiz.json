@@ -1,0 +1,305 @@
+{
+  "metadata": {
+    "title": "The SMTP Message Journey",
+    "subject": "NCC — Net-Centric Computing",
+    "language": "en",
+    "format": "quiz",
+    "totalQuestions": 16,
+    "topics": [
+      "The SMTP Message Journey"
+    ],
+    "sourceFiles": [
+      "studysets/resumen_smtp_journey.md"
+    ]
+  },
+  "questions": [
+    {
+      "id": 1,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "What is the starting point of the stack walkthrough?",
+      "options": [
+        "A) An unread message inside an Ethernet switch",
+        "B) A physical signal without an application",
+        "C) A running SMTP process",
+        "D) A MAC address stored in DNS"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The process creates the application data and uses the stack to communicate.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 1"
+      }
+    },
+    {
+      "id": 2,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "What does a socket provide to the SMTP process?",
+      "options": [
+        "A) A path that bypasses TCP and IP",
+        "B) An interface for sending and receiving data through the operating system",
+        "C) The recipient mailbox password",
+        "D) The physical cable between two routers"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The socket is the local application interface to transport communication.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 1"
+      }
+    },
+    {
+      "id": 3,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "Why does a sending mail server query DNS MX records?",
+      "options": [
+        "A) To discover a remote MAC address across the Internet",
+        "B) To encrypt the message body",
+        "C) To decide whether Bob has read the message",
+        "D) To find the recipient domain mail server"
+      ],
+      "correctAnswer": "D",
+      "explanation": "MX records identify mail exchanger names; address lookups provide IP addresses.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 2"
+      }
+    },
+    {
+      "id": 4,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "Which protocol defines commands such as EHLO, MAIL FROM, RCPT TO, and DATA?",
+      "options": [
+        "A) IP",
+        "B) ARP",
+        "C) SMTP",
+        "D) Ethernet"
+      ],
+      "correctAnswer": "C",
+      "explanation": "SMTP defines the application conversation for transferring the message.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 3"
+      }
+    },
+    {
+      "id": 5,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "What does TCP contribute to the message journey?",
+      "options": [
+        "A) The recipient domain MX record",
+        "B) A complete mailbox reading interface",
+        "C) An ordered reliable byte stream between endpoints",
+        "D) The MAC forwarding table of every switch"
+      ],
+      "correctAnswer": "C",
+      "explanation": "TCP detects missing data and can retransmit it while delivering bytes in order.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 3"
+      }
+    },
+    {
+      "id": 6,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "What is the usual order of the TCP handshake?",
+      "options": [
+        "A) DATA, SYN, QUIT",
+        "B) SYN, SYN ACK, ACK",
+        "C) ARP, MX, DATA",
+        "D) ACK, FIN, EHLO"
+      ],
+      "correctAnswer": "B",
+      "explanation": "The three-way handshake establishes TCP connection state before the ordinary SMTP exchange.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 3"
+      }
+    },
+    {
+      "id": 7,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "Which sequence describes the sending stack?",
+      "options": [
+        "A) SMTP bytes, TCP segment, IP packet, link frame, signals",
+        "B) Signals, IP packet, SMTP bytes, link frame, TCP segment",
+        "C) SMTP bytes, DNS record, ARP message, mailbox",
+        "D) TCP segment, SMTP bytes, signals, IP packet, link frame"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Each lower layer wraps and carries the data supplied by the layer above it.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 4"
+      }
+    },
+    {
+      "id": 8,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "What is encapsulation?",
+      "options": [
+        "A) Adding the protocol information needed as data travels down the stack",
+        "B) Opening a mailbox in a browser",
+        "C) Removing every header at a switch",
+        "D) Replacing the recipient address with a DNS query"
+      ],
+      "correctAnswer": "A",
+      "explanation": "TCP, IP, and link processing add information for their respective delivery functions.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 4"
+      }
+    },
+    {
+      "id": 9,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "Which address remains the IP destination when the sender sends a frame to its gateway?",
+      "options": [
+        "A) The gateway MAC address",
+        "B) The visible email To field",
+        "C) The remote mail server IP address",
+        "D) The switch port number"
+      ],
+      "correctAnswer": "C",
+      "explanation": "The frame targets the local next hop while the packet targets the remote host.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 5"
+      }
+    },
+    {
+      "id": 10,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "What does ARP discover in the IPv4 example?",
+      "options": [
+        "A) The remote SMTP password",
+        "B) The recipient domain MX preference",
+        "C) The complete Internet route",
+        "D) A local next hop MAC address"
+      ],
+      "correctAnswer": "D",
+      "explanation": "ARP resolves a neighbor on the current link; IPv6 uses Neighbor Discovery.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 5"
+      }
+    },
+    {
+      "id": 11,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "Which pairing correctly describes switches and routers?",
+      "options": [
+        "A) Switches forward local frames; routers forward IP packets between networks",
+        "B) Switches interpret SMTP; routers read mailboxes",
+        "C) Switches resolve DNS; routers assign message subjects",
+        "D) Switches establish TCP; routers replace TCP with SMTP"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Switching uses local MAC forwarding; routing connects IP networks.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 5"
+      }
+    },
+    {
+      "id": 12,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "What happens to link framing at a forwarding router?",
+      "options": [
+        "A) The same frame carries the same MAC addresses over every routed link",
+        "B) The router removes the incoming frame and creates an outgoing frame",
+        "C) The router converts the SMTP message into an MX record",
+        "D) The router must become the final SMTP recipient"
+      ],
+      "correctAnswer": "B",
+      "explanation": "Link encapsulation belongs to each local delivery step, not the full routed path.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 5"
+      }
+    },
+    {
+      "id": 13,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "What happens as the message travels up the receiving stack?",
+      "options": [
+        "A) Link information is removed, IP hands data to TCP, and TCP supplies bytes to SMTP",
+        "B) SMTP parses the Ethernet signals before TCP sees them",
+        "C) The switch writes the message directly into the mailbox",
+        "D) The receiving host repeats the sender DNS query for every byte"
+      ],
+      "correctAnswer": "A",
+      "explanation": "Decapsulation and transport reconstruction make application bytes available through the socket.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 6"
+      }
+    },
+    {
+      "id": 14,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "Which statement correctly distinguishes a TCP ACK from SMTP acceptance?",
+      "options": [
+        "A) A TCP ACK proves that Bob read the message",
+        "B) An SMTP success replaces all TCP acknowledgments",
+        "C) The two replies always mean exactly the same thing",
+        "D) A TCP ACK confirms stream receipt; a final SMTP success after content confirms application acceptance"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Different layers confirm different events; neither reply proves that the recipient has read the email.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 6"
+      }
+    },
+    {
+      "id": 15,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "Which OSI layer corresponds to IP?",
+      "options": [
+        "A) Presentation",
+        "B) Network",
+        "C) Session",
+        "D) Physical"
+      ],
+      "correctAnswer": "B",
+      "explanation": "IP handles addressing and forwarding across networks at OSI layer 3.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 7"
+      }
+    },
+    {
+      "id": 16,
+      "topic": "The SMTP Message Journey",
+      "difficulty": "easy",
+      "question": "How does the receiving server send an SMTP reply?",
+      "options": [
+        "A) It bypasses the network because a connection already exists",
+        "B) It is delivered by DNS instead of TCP",
+        "C) It is stored only in the local Ethernet switch",
+        "D) Its reply travels down its stack and back up the sender stack"
+      ],
+      "correctAnswer": "D",
+      "explanation": "Replies require the same layered transport and network delivery as commands.",
+      "source": {
+        "file": "studysets/resumen_smtp_journey.md",
+        "section": "Section 8"
+      }
+    }
+  ]
+}
